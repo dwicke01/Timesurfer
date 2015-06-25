@@ -33,7 +33,10 @@
 - (void) populateWeatherByHour{
     
     if (self.weatherDictionary[@"currently"]) {
-        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"]];
+        
+
+        
+        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunrise:self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"] sunSet:self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"]];
         [self.weatherByHour addObject:weather];
         
     }
@@ -41,9 +44,9 @@
     if (self.weatherDictionary[@"hourly"]){
         
         NSArray *hourlyDataArray = self.weatherDictionary[@"hourly"][@"data"];
-        NSLog(@"%@",hourlyDataArray[1]);
+       // NSLog(@"%@",hourlyDataArray[1]);
         for (NSUInteger i = 1; i < hourlyDataArray.count; i++) {
-            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i]];
+            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i] sunrise:self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"] sunSet:self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"]];
             [self.weatherByHour addObject:weather];
         }
     }
@@ -52,7 +55,7 @@
 
 - (TSWeather *)weatherForHour:(NSUInteger)hour{
     
-    return nil;
+    return self.weatherByHour[hour];
 }
 
 @end

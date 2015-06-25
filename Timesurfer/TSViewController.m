@@ -88,18 +88,15 @@
                                   success:^(id JSON) {
                                       //NSLog(@"JSON Response was: %@", JSON);
                                       
-                                      self.weatherDictionary = JSON;
+                                      //self.weatherDictionary = JSON;
                                       
-                                      TSWeatherData *weatherData = [[TSWeatherData alloc] initWithDictionary:self.weatherDictionary];
+                                      TSWeatherData *weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
-                                      NSNumber *currentTemp = self.weatherDictionary[@"currently"][@"temperature"];
-                                      CGFloat currentTempFloat = currentTemp.floatValue;
-                                      self.weatherTemp = [NSString stringWithFormat:@"%.f",currentTempFloat];
-                                      self.temperatureLabel.text = self.weatherTemp;
+                                      TSWeather *weather = [weatherData weatherForHour:0];
                                       
-                                      NSString *weatherIcon = self.weatherDictionary[@"currently"][@"icon"];
-                                      NSLog(@"%@",weatherIcon);
-                                      self.weatherImage.image = [UIImage imageNamed:weatherIcon];
+                                      self.temperatureLabel.text = weather.weatherTemperature;
+                                    
+                                      self.weatherImage.image = weather.weatherImage;
                                       
                                   } failure:^(NSError *error, id response) {
                                       NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
