@@ -8,6 +8,25 @@
 
 #import "TSWeather.h"
 
+@interface TSWeather()
+
+@property (nonatomic, strong) NSDictionary *incomingDictionary;
+
+@end
+
 @implementation TSWeather
+
+
+- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary{
+    
+    self = [super init];
+    
+    if (self) {
+        _incomingDictionary = incomingDictionary;
+    }
+    
+    return self;
+}
+
 
 @end

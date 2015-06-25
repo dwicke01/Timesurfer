@@ -9,6 +9,7 @@
 #import <Forecastr/Forecastr.h>
 
 #import "TSViewController.h"
+#import "TSWeatherData.h"
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -88,6 +89,8 @@
                                       //NSLog(@"JSON Response was: %@", JSON);
                                       
                                       self.weatherDictionary = JSON;
+                                      
+                                      TSWeatherData *weatherData = [[TSWeatherData alloc] initWithDictionary:self.weatherDictionary];
                                       
                                       NSNumber *currentTemp = self.weatherDictionary[@"currently"][@"temperature"];
                                       CGFloat currentTempFloat = currentTemp.floatValue;
