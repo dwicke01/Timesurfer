@@ -11,4 +11,6 @@
 
 @interface TSBackgroundView : UIView
 
++ (Class)layerClass;
+
 @end
