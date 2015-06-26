@@ -42,7 +42,7 @@
     _weatherImage = [UIImage imageNamed:self.incomingDictionary[@"icon"]];
     
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
-    _weatherTemperature = [[NSString alloc] initWithFormat:@"%.f",temperatureNumber.floatValue];
+    _weatherTemperature = [[NSString alloc] initWithFormat:@"%.f°F",temperatureNumber.floatValue];
     
     NSDate *dateTime = [[NSDate alloc] initWithTimeIntervalSince1970:self.currentTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
