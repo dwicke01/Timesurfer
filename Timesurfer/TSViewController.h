@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+
 @interface TSViewController : UIViewController <CLLocationManagerDelegate>
 
-
+- (void) getWeather;
 
 @end
 

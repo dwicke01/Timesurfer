@@ -11,8 +11,6 @@
 @interface TSWeather()
 
 @property (nonatomic, strong) NSDictionary *incomingDictionary;
-@property (nonatomic, strong) NSNumber *sunRise;
-@property (nonatomic, strong) NSNumber *sunSet;
 @property (nonatomic, assign) NSUInteger currentTime;
 
 @end
@@ -20,14 +18,13 @@
 @implementation TSWeather
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary sunrise:(NSNumber*)sunRise sunSet:(NSNumber *)sunSet{
+- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary {
     
     self = [super init];
     
     if (self) {
         _incomingDictionary = incomingDictionary;
-        _sunSet = sunSet;
-        _sunRise = sunRise;
+        _currentTime = [self.incomingDictionary[@"time"] integerValue];
         [self formatWeatherData];
     }
     
@@ -39,12 +36,31 @@
     
     _weatherImage = [UIImage imageNamed:self.incomingDictionary[@"icon"]];
     
+    
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
     _weatherTemperature = [[NSString alloc] initWithFormat:@"%.f",temperatureNumber.floatValue];
     
-    _currentTime = [self.incomingDictionary[@"time"] integerValue];
     
-    _dayTime = (self.currentTime >= self.sunRise.integerValue && self.currentTime <= self.sunSet.integerValue) ? YES: NO;
+//    NSTimeInterval seconds = self.currentTime;
+    NSDate *dateTime = [[NSDate alloc] initWithTimeIntervalSince1970:self.currentTime];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    _currentDate = [dateFormatter stringFromDate:dateTime];
+    
+    
+    NSNumber *cloudCover = self.incomingDictionary[@"cloudCover"];
+    _cloudCoverInt = cloudCover.integerValue;
+    
+    
+    NSNumber *percentRain = self.incomingDictionary[@"precipProbability"];
+    _percentRainInt = percentRain.integerValue;
+    _percentRainString = [NSString stringWithFormat:@"%lu %%",self.percentRainInt];
+    
+    
+    NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];
+    _precipIntensity = precipIntense.integerValue;
+    
+    //_dayTime = (self.currentTime >= self.sunRise.integerValue && self.currentTime <= self.sunSet.integerValue) ? YES : NO;
 }
 
 @end

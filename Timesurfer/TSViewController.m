@@ -15,16 +15,18 @@
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UISlider *hourSlider;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
 @property (nonatomic, strong) CLGeocoder *geoCoder;
 
 @property (nonatomic, strong) Forecastr *forcastr;
-@property (nonatomic, strong) NSDictionary *weatherDictionary;
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
-@property (nonatomic, strong) NSString *weatherTemp;
+
+@property (nonatomic, strong) TSWeatherData *weatherData;
 
 @end
 
@@ -43,18 +45,28 @@
     
     self.forcastr = [Forecastr sharedManager];
     self.forcastr.apiKey = @"530d1d38e625bdd0d86381ffe990ca1c";
+    self.hourSlider.value = 0;
+    self.hourSlider.maximumValue = 24;
+    //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
+    self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [self requestAlwaysAuth];
     [self.locationManager startMonitoringSignificantLocationChanges];
-//    [self getCachedForecast];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+- (IBAction)sliderChanged:(id)sender {
+    CGFloat theHour = floor(self.hourSlider.value);
+    NSLog(@"%.2f",self.hourSlider.value);
+    [self updateWeather:theHour];
+}
+
 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -77,8 +89,6 @@
     
 }
 
-
-
 - (void) getWeather{
     [self.forcastr getForecastForLatitude:self.latitude
                                 longitude:self.longitude
@@ -86,26 +96,35 @@
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
-                                      //NSLog(@"JSON Response was: %@", JSON);
+                                      NSLog(@"JSON Response was: %@", JSON);
                                       
-                                      //self.weatherDictionary = JSON;
+                                      _weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
-                                      TSWeatherData *weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
-                                      
-                                      TSWeather *weather = [weatherData weatherForHour:0];
-                                      
-                                      self.temperatureLabel.text = weather.weatherTemperature;
-                                    
-                                      self.weatherImage.image = weather.weatherImage;
+                                      [self updateWeather:0];
                                       
                                   } failure:^(NSError *error, id response) {
                                       NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
                                   }];
 }
 
+- (void) updateWeather:(NSUInteger)forHour{
+    TSWeather *weather = [self.weatherData weatherForHour:forHour];
+    
+    if (forHour == 0) {
+        NSDate *dateTime = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"hh:mm a"];
+        self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
+        self.temperatureLabel.text = weather.weatherTemperature;
+        self.weatherImage.image = weather.weatherImage;
+    } else {
+        self.temperatureLabel.text = weather.weatherTemperature;
+        self.timeLabel.text = weather.currentDate;
+        self.weatherImage.image = weather.weatherImage;
+    }
+}
 
-
--(void)requestAlwaysAuth{
+- (void)requestAlwaysAuth{
     
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     
@@ -137,5 +156,6 @@
     {[self.locationManager requestAlwaysAuthorization];}
     
 }
+
 
 @end
