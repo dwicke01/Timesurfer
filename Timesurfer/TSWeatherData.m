@@ -12,6 +12,10 @@
 
 @property (nonatomic, strong) NSDictionary *weatherDictionary;
 @property (nonatomic, strong) NSMutableArray *weatherByHour;
+@property (nonatomic, strong) NSDate *sunRiseDate;
+@property (nonatomic, strong) NSDate *sunSetDate;
+@property (nonatomic, strong) NSString *sunRiseHour;
+@property (nonatomic, strong) NSString *sunSetHour;
 @end
 
 
@@ -24,8 +28,23 @@
     if (self){
         _weatherDictionary = incomingWeather;
         _weatherByHour = [[NSMutableArray alloc] init];
-        _sunRise = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
-        _sunSet = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
+        
+        NSNumber *sunRiseNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
+        NSNumber *sunSetNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
+        _sunRiseDate = [NSDate dateWithTimeIntervalSince1970:sunRiseNum.integerValue];
+        _sunSetDate = [NSDate dateWithTimeIntervalSince1970:sunSetNum.integerValue];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"h:mm a"];
+        
+        _sunRise = [dateFormatter stringFromDate:self.sunRiseDate];
+        _sunSet = [dateFormatter stringFromDate:self.sunSetDate];
+        
+        [dateFormatter setDateFormat:@"H"];
+        
+        _sunRiseHour = [dateFormatter stringFromDate:self.sunRiseDate];
+        _sunSetHour = [dateFormatter stringFromDate:self.sunSetDate];
+        
         [self populateWeatherByHour];
     }
     
@@ -36,7 +55,7 @@
     
     if (self.weatherDictionary[@"currently"]) {
     
-        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"]];
+        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour];
         [self.weatherByHour addObject:weather];
     }
     
@@ -52,7 +71,7 @@
             [hourlyDataArray removeObjectAtIndex:1];
         }
         for (NSUInteger i = 1; i < hourlyDataArray.count; i++) {
-            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i]];
+            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour];
             [self.weatherByHour addObject:weather];
         }
     }

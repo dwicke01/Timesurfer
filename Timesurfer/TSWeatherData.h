@@ -11,8 +11,8 @@
 
 @interface TSWeatherData : NSObject
 
-@property (nonatomic, strong) NSNumber *sunRise;
-@property (nonatomic, strong) NSNumber *sunSet;
+@property (nonatomic, strong) NSString *sunRise;
+@property (nonatomic, strong) NSString *sunSet;
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingWeather;
 - (TSWeather *)weatherForHour:(NSUInteger)hour;

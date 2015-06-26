@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
@@ -63,7 +64,7 @@
 
 - (IBAction)sliderChanged:(id)sender {
     CGFloat theHour = floor(self.hourSlider.value);
-    NSLog(@"%.2f",self.hourSlider.value);
+    //NSLog(@"%.2f",self.hourSlider.value);
     [self updateWeather:theHour];
 }
 
@@ -96,7 +97,7 @@
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
-                                      NSLog(@"JSON Response was: %@", JSON);
+                                      // NSLog(@"JSON Response was: %@", JSON);
                                       
                                       _weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
@@ -109,18 +110,31 @@
 
 - (void) updateWeather:(NSUInteger)forHour{
     TSWeather *weather = [self.weatherData weatherForHour:forHour];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    
+    if (weather.sunSetHour) {
+        self.sunRiseSetLabel.hidden = NO;
+        self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
+        
+    } else if (weather.sunRiseHour) {
+        self.sunRiseSetLabel.hidden = NO;
+        self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
+        
+    } else {
+        self.sunRiseSetLabel.hidden = YES;
+    }
     
     if (forHour == 0) {
         NSDate *dateTime = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"hh:mm a"];
-        self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
         self.temperatureLabel.text = weather.weatherTemperature;
         self.weatherImage.image = weather.weatherImage;
+        self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
+        
     } else {
         self.temperatureLabel.text = weather.weatherTemperature;
-        self.timeLabel.text = weather.currentDate;
         self.weatherImage.image = weather.weatherImage;
+        self.timeLabel.text = weather.currentDate;
     }
 }
 
@@ -159,3 +173,12 @@
 
 
 @end
+
+
+//        NSUInteger minutes = (self.hourSlider.value -floor(self.hourSlider.value))*60;
+//        if (minutes >= 30) {
+//            minutes = 30;
+//        } else {
+//            minutes = 0;
+//        }
+//        NSDate *exactDate = [dateTime dateByAddingTimeInterval:minutes*60];
