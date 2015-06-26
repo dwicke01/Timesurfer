@@ -24,6 +24,8 @@
     if (self){
         _weatherDictionary = incomingWeather;
         _weatherByHour = [[NSMutableArray alloc] init];
+        _sunRise = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
+        _sunSet = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
         [self populateWeatherByHour];
     }
     
@@ -33,20 +35,24 @@
 - (void) populateWeatherByHour{
     
     if (self.weatherDictionary[@"currently"]) {
-        
-
-        
-        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunrise:self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"] sunSet:self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"]];
+    
+        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"]];
         [self.weatherByHour addObject:weather];
-        
     }
     
     if (self.weatherDictionary[@"hourly"]){
         
-        NSArray *hourlyDataArray = self.weatherDictionary[@"hourly"][@"data"];
-       // NSLog(@"%@",hourlyDataArray[1]);
+        NSMutableArray *hourlyDataArray = [[NSMutableArray alloc] initWithArray:self.weatherDictionary[@"hourly"][@"data"]];
+        NSDate *dateTime = [NSDate date];
+        
+        NSNumber *unixTimeAtIndex1 = hourlyDataArray[1][@"time"];
+        NSDate *dateAtIndex1 = [NSDate dateWithTimeIntervalSince1970:unixTimeAtIndex1.doubleValue];
+        
+        if ([dateTime compare:dateAtIndex1] == NSOrderedDescending ||[dateTime compare:dateAtIndex1] == NSOrderedSame) {
+            [hourlyDataArray removeObjectAtIndex:1];
+        }
         for (NSUInteger i = 1; i < hourlyDataArray.count; i++) {
-            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i] sunrise:self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"] sunSet:self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"]];
+            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i]];
             [self.weatherByHour addObject:weather];
         }
     }

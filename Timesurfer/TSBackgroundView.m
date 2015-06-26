@@ -18,7 +18,7 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    UIColor* color1 = [UIColor colorWithRed:148./255. green:186./255. blue:101./255. alpha:1.];
+    UIColor* color1 = [UIColor colorWithRed:148./255. green:186./255. blue:101./255. alpha:0.99];
     UIColor* color2 = [UIColor colorWithRed:39./255. green:144./255. blue:176./255. alpha:1.];
     
     UIColor* color3 = [UIColor colorWithRed: 0.547 green: 0 blue: 0.084 alpha: 0.373];
@@ -43,7 +43,7 @@
     CGGradientRelease(linearGradient1);
     CGColorSpaceRelease(colorSpace);
     
-    
+
 }
 
 @end

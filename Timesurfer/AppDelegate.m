@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TSViewController.h"
 
 @interface AppDelegate ()
 

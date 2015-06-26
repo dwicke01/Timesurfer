@@ -10,10 +10,14 @@
 #import <UIKit/UIKit.h>
 @interface TSWeather : NSObject
 
-- (instancetype) initWithDictionary:(NSDictionary *)incomingDictionary sunrise:(NSNumber*)sunRise sunSet:(NSNumber *)sunSet;
+- (instancetype) initWithDictionary:(NSDictionary *)incomingDictionary;
 
 @property (nonatomic, strong) UIImage *weatherImage;
 @property (nonatomic, strong) NSString *weatherTemperature;
-@property (nonatomic, assign) BOOL dayTime;
+@property (nonatomic, strong) NSString *currentDate;
+@property (nonatomic, strong) NSString *percentRainString;
+@property (nonatomic, assign) NSUInteger percentRainInt;
+@property (nonatomic, assign) NSUInteger cloudCoverInt;
+@property (nonatomic, assign) NSUInteger precipIntensity;
 
 @end
