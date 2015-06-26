@@ -142,7 +142,7 @@
     
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     
-    if (status==kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status==kCLAuthorizationStatusRestricted || status==kCLAuthorizationStatusNotDetermined) {
+    if (status==kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status==kCLAuthorizationStatusRestricted) {
         
         NSString *title;
         
