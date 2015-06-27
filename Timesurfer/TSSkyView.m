@@ -37,8 +37,7 @@
         
         CGRect rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
         CGFloat maxX = CGRectGetMaxX(rect1);
-        NSLog(@"%f",maxX);
-//        NSLog(@"%f",self.frame.size.width);
+//        NSLog(@"%f",maxX);
         UIColor *starColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:alpha];
         
         if (maxX+xAxisPadding >= self.frame.size.width) {
