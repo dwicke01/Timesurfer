@@ -18,6 +18,10 @@
 		17DB0C161B3BAA690001810D /* TimesurferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C151B3BAA690001810D /* TimesurferTests.m */; };
 		17DB0C241B3BAB3E0001810D /* TSBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C231B3BAB3E0001810D /* TSBackgroundView.m */; };
 		94E51C919289510E881E0502 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B14A0B62EBC1128086416F88 /* libPods.a */; };
+		FA1AAC591B3E2A2E00F5A151 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */; };
+		FA1AAC5F1B3E2A2E00F5A151 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1AAC5E1B3E2A2E00F5A151 /* TodayViewController.m */; };
+		FA1AAC611B3E2A2E00F5A151 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1AAC601B3E2A2E00F5A151 /* MainInterface.storyboard */; };
+		FA1AAC641B3E2A2E00F5A151 /* TimesurferExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA1AAC571B3E2A2E00F5A151 /* TimesurferExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +32,28 @@
 			remoteGlobalIDString = 17DB0BF51B3BAA690001810D;
 			remoteInfo = Timesurfer;
 		};
+		FA1AAC621B3E2A2E00F5A151 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA1AAC561B3E2A2E00F5A151;
+			remoteInfo = TimesurferExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA1AAC681B3E2A2E00F5A151 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FA1AAC641B3E2A2E00F5A151 /* TimesurferExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1780FAF51B3C75E700C31748 /* TSWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSWeatherData.h; sourceTree = "<group>"; };
@@ -52,6 +77,12 @@
 		17DB0C231B3BAB3E0001810D /* TSBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBackgroundView.m; sourceTree = "<group>"; };
 		3C3327961059FA91D5089983 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B14A0B62EBC1128086416F88 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1AAC571B3E2A2E00F5A151 /* TimesurferExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimesurferExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		FA1AAC5C1B3E2A2E00F5A151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA1AAC5D1B3E2A2E00F5A151 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		FA1AAC5E1B3E2A2E00F5A151 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		FA1AAC601B3E2A2E00F5A151 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		FF899399A8ECEF16FDA43F15 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +102,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA1AAC541B3E2A2E00F5A151 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA1AAC591B3E2A2E00F5A151 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,6 +118,7 @@
 			children = (
 				17DB0BF81B3BAA690001810D /* Timesurfer */,
 				17DB0C121B3BAA690001810D /* TimesurferTests */,
+				FA1AAC5A1B3E2A2E00F5A151 /* TimesurferExtension */,
 				17DB0BF71B3BAA690001810D /* Products */,
 				CC29F1F52CE12D53FC87DF4F /* Pods */,
 				27DA3A21DD46A38B361502E4 /* Frameworks */,
@@ -90,6 +130,7 @@
 			children = (
 				17DB0BF61B3BAA690001810D /* Timesurfer.app */,
 				17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */,
+				FA1AAC571B3E2A2E00F5A151 /* TimesurferExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				B14A0B62EBC1128086416F88 /* libPods.a */,
+				FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,6 +198,25 @@
 				FF899399A8ECEF16FDA43F15 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA1AAC5A1B3E2A2E00F5A151 /* TimesurferExtension */ = {
+			isa = PBXGroup;
+			children = (
+				FA1AAC5D1B3E2A2E00F5A151 /* TodayViewController.h */,
+				FA1AAC5E1B3E2A2E00F5A151 /* TodayViewController.m */,
+				FA1AAC601B3E2A2E00F5A151 /* MainInterface.storyboard */,
+				FA1AAC5B1B3E2A2E00F5A151 /* Supporting Files */,
+			);
+			path = TimesurferExtension;
+			sourceTree = "<group>";
+		};
+		FA1AAC5B1B3E2A2E00F5A151 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA1AAC5C1B3E2A2E00F5A151 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,10 +231,12 @@
 				17DB0BF31B3BAA690001810D /* Frameworks */,
 				17DB0BF41B3BAA690001810D /* Resources */,
 				05FF64F59A063DC5C68A5907 /* Copy Pods Resources */,
+				FA1AAC681B3E2A2E00F5A151 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA1AAC631B3E2A2E00F5A151 /* PBXTargetDependency */,
 			);
 			name = Timesurfer;
 			productName = Timesurfer;
@@ -198,6 +261,23 @@
 			productReference = 17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FA1AAC561B3E2A2E00F5A151 /* TimesurferExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA1AAC671B3E2A2E00F5A151 /* Build configuration list for PBXNativeTarget "TimesurferExtension" */;
+			buildPhases = (
+				FA1AAC531B3E2A2E00F5A151 /* Sources */,
+				FA1AAC541B3E2A2E00F5A151 /* Frameworks */,
+				FA1AAC551B3E2A2E00F5A151 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimesurferExtension;
+			productName = TimesurferExtension;
+			productReference = FA1AAC571B3E2A2E00F5A151 /* TimesurferExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,6 +293,9 @@
 					17DB0C0E1B3BAA690001810D = {
 						CreatedOnToolsVersion = 6.3.2;
 						TestTargetID = 17DB0BF51B3BAA690001810D;
+					};
+					FA1AAC561B3E2A2E00F5A151 = {
+						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
 			};
@@ -231,6 +314,7 @@
 			targets = (
 				17DB0BF51B3BAA690001810D /* Timesurfer */,
 				17DB0C0E1B3BAA690001810D /* TimesurferTests */,
+				FA1AAC561B3E2A2E00F5A151 /* TimesurferExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +334,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA1AAC551B3E2A2E00F5A151 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA1AAC611B3E2A2E00F5A151 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +402,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA1AAC531B3E2A2E00F5A151 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA1AAC5F1B3E2A2E00F5A151 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -317,6 +417,11 @@
 			isa = PBXTargetDependency;
 			target = 17DB0BF51B3BAA690001810D /* Timesurfer */;
 			targetProxy = 17DB0C101B3BAA690001810D /* PBXContainerItemProxy */;
+		};
+		FA1AAC631B3E2A2E00F5A151 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA1AAC561B3E2A2E00F5A151 /* TimesurferExtension */;
+			targetProxy = FA1AAC621B3E2A2E00F5A151 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -476,6 +581,30 @@
 			};
 			name = Release;
 		};
+		FA1AAC651B3E2A2E00F5A151 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FA1AAC661B3E2A2E00F5A151 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TimesurferExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,6 +634,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FA1AAC671B3E2A2E00F5A151 /* Build configuration list for PBXNativeTarget "TimesurferExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA1AAC651B3E2A2E00F5A151 /* Debug */,
+				FA1AAC661B3E2A2E00F5A151 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
