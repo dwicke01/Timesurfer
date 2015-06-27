@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *percentRainString;
 @property (nonatomic, assign) BOOL sunRiseHour;
 @property (nonatomic, assign) BOOL sunSetHour;
-@property (nonatomic, assign) NSUInteger percentRainInt;
+@property (nonatomic, assign) CGFloat percentRainFloat;
 @property (nonatomic, assign) NSUInteger cloudCoverInt;
 @property (nonatomic, assign) NSUInteger precipIntensity;
 
