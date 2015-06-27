@@ -11,4 +11,7 @@
 
 @interface TSBackgroundView : UIView
 
+@property (nonatomic, strong) CALayer *maskLayer;
+@property (nonatomic) CGFloat progress;
+
 @end
