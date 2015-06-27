@@ -7,7 +7,7 @@
 //
 #import <FontAwesomeKit/FontAwesomeKit.h>
 #import <Forecastr/Forecastr.h>
-
+#import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
 #import "TSWeatherData.h"
 
@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
@@ -58,6 +59,7 @@
     [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -97,7 +99,7 @@
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
-                                      // NSLog(@"JSON Response was: %@", JSON);
+                                     // NSLog(@"JSON Response was: %@", JSON);
                                       
                                       _weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
@@ -108,10 +110,11 @@
                                   }];
 }
 
-- (void) updateWeather:(NSUInteger)forHour{
-    TSWeather *weather = [self.weatherData weatherForHour:forHour];
+- (void) updateWeather:(NSUInteger)hour{
+    TSWeather *weather = [self.weatherData weatherForHour:hour];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"hh:mm a"];
+    [dateFormatter setDateFormat:@"h:mm a"];
     
     if (weather.sunSetHour) {
         self.sunRiseSetLabel.hidden = NO;
@@ -125,15 +128,17 @@
         self.sunRiseSetLabel.hidden = YES;
     }
     
-    if (forHour == 0) {
+    if (hour == 0) {
         NSDate *dateTime = [NSDate date];
         self.temperatureLabel.text = weather.weatherTemperature;
         self.weatherImage.image = weather.weatherImage;
+        self.percentPrecip.text = weather.percentRainString;
         self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
         
     } else {
         self.temperatureLabel.text = weather.weatherTemperature;
         self.weatherImage.image = weather.weatherImage;
+        self.percentPrecip.text = weather.percentRainString;
         self.timeLabel.text = weather.currentDate;
     }
 }
@@ -165,12 +170,9 @@
         
         [self presentViewController:settingsAlert animated:YES completion:nil];
         
-    }else if (status==kCLAuthorizationStatusNotDetermined)
-        
-    {[self.locationManager requestAlwaysAuthorization];}
-    
+    } else if (status==kCLAuthorizationStatusNotDetermined){
+        [self.locationManager requestAlwaysAuthorization];}
 }
-
 
 @end
 
