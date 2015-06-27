@@ -54,6 +54,8 @@
     //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
     
+
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

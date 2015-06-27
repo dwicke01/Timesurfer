@@ -16,6 +16,8 @@
 
 // Drawing Methods
 + (void)drawBigStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
++ (void)drawMediumStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
 + (void)drawLittleStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
++ (void)drawDotStarWithStarColor: (UIColor*)starColor rotation: (CGFloat)rotation;
 
 @end

@@ -49,7 +49,7 @@
     CGContextRestoreGState(context);
 }
 
-+ (void)drawLittleStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation
++ (void)drawMediumStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation
 {
     //// General Declarations
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -72,6 +72,78 @@
     [starPath addLineToPoint: CGPointMake(-2.39, -0)];
     [starPath addLineToPoint: CGPointMake(-6.09, -3.51)];
     [starPath addLineToPoint: CGPointMake(-1.2, -2.07)];
+    [starPath closePath];
+    [starColor setFill];
+    [starPath fill];
+
+    CGContextRestoreGState(context);
+}
+
++ (void)drawLittleStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation
+{
+    //// General Declarations
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    //// star Drawing
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, CGRectGetMinX(frame) + 2, CGRectGetMinY(frame) + 2);
+    CGContextRotateCTM(context, -rotation * M_PI / 180);
+
+    UIBezierPath* starPath = UIBezierPath.bezierPath;
+    [starPath moveToPoint: CGPointMake(0, -1.5)];
+    [starPath addLineToPoint: CGPointMake(0.18, -0.48)];
+    [starPath addLineToPoint: CGPointMake(0.99, -1.15)];
+    [starPath addLineToPoint: CGPointMake(0.45, -0.25)];
+    [starPath addLineToPoint: CGPointMake(1.51, -0.26)];
+    [starPath addLineToPoint: CGPointMake(0.51, 0.09)];
+    [starPath addLineToPoint: CGPointMake(1.33, 0.75)];
+    [starPath addLineToPoint: CGPointMake(0.34, 0.39)];
+    [starPath addLineToPoint: CGPointMake(0.53, 1.41)];
+    [starPath addLineToPoint: CGPointMake(0, 0.51)];
+    [starPath addLineToPoint: CGPointMake(-0.53, 1.41)];
+    [starPath addLineToPoint: CGPointMake(-0.34, 0.39)];
+    [starPath addLineToPoint: CGPointMake(-1.33, 0.75)];
+    [starPath addLineToPoint: CGPointMake(-0.51, 0.09)];
+    [starPath addLineToPoint: CGPointMake(-1.51, -0.26)];
+    [starPath addLineToPoint: CGPointMake(-0.45, -0.25)];
+    [starPath addLineToPoint: CGPointMake(-0.99, -1.15)];
+    [starPath addLineToPoint: CGPointMake(-0.18, -0.48)];
+    [starPath closePath];
+    [starColor setFill];
+    [starPath fill];
+
+    CGContextRestoreGState(context);
+}
+
++ (void)drawDotStarWithStarColor: (UIColor*)starColor rotation: (CGFloat)rotation
+{
+    //// General Declarations
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    //// star Drawing
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, 0.96, 0.5);
+    CGContextRotateCTM(context, -rotation * M_PI / 180);
+
+    UIBezierPath* starPath = UIBezierPath.bezierPath;
+    [starPath moveToPoint: CGPointMake(0, -0.5)];
+    [starPath addLineToPoint: CGPointMake(0.03, -0.09)];
+    [starPath addLineToPoint: CGPointMake(0.32, -0.38)];
+    [starPath addLineToPoint: CGPointMake(0.08, -0.05)];
+    [starPath addLineToPoint: CGPointMake(0.49, -0.09)];
+    [starPath addLineToPoint: CGPointMake(0.09, 0.02)];
+    [starPath addLineToPoint: CGPointMake(0.43, 0.25)];
+    [starPath addLineToPoint: CGPointMake(0.06, 0.07)];
+    [starPath addLineToPoint: CGPointMake(0.17, 0.47)];
+    [starPath addLineToPoint: CGPointMake(0, 0.09)];
+    [starPath addLineToPoint: CGPointMake(-0.17, 0.47)];
+    [starPath addLineToPoint: CGPointMake(-0.06, 0.07)];
+    [starPath addLineToPoint: CGPointMake(-0.43, 0.25)];
+    [starPath addLineToPoint: CGPointMake(-0.09, 0.02)];
+    [starPath addLineToPoint: CGPointMake(-0.49, -0.09)];
+    [starPath addLineToPoint: CGPointMake(-0.08, -0.05)];
+    [starPath addLineToPoint: CGPointMake(-0.32, -0.38)];
+    [starPath addLineToPoint: CGPointMake(-0.03, -0.09)];
     [starPath closePath];
     [starColor setFill];
     [starPath fill];
