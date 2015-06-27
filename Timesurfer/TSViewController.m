@@ -10,6 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
 #import "TSWeatherData.h"
+#import "TSSkyView.h"
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
+@property (weak, nonatomic) IBOutlet TSSkyView *skyView;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
