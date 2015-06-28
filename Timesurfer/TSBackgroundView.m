@@ -57,6 +57,7 @@
         [self performAnimation];
         [layer setMask:self.maskLayer];
         [self.layer insertSublayer:self.maskLayer atIndex:0];
+
     }
     return self;
 }
