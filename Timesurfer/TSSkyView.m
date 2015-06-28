@@ -29,7 +29,7 @@
     CGFloat xAxis = 0;
     CGFloat xAxisPadding = 10;
     CGFloat yAxis = 5;
-    CGFloat starWidth = 25;
+    CGFloat starWidth = 22;
     
     CGFloat rotation = 0;
     CGFloat alpha = 1;
@@ -48,11 +48,11 @@
         if (maxX+xAxisPadding >= self.frame.size.width) {
             if (evenRow == 0){
                 xAxis = starWidth+xAxisPadding*3;
-                yAxis += arc4random_uniform(30)+15;
+                yAxis += arc4random_uniform(50)+15;
                 evenRow = 1;
             } else {
                 xAxis = 20;
-                yAxis += arc4random_uniform(30)+15;
+                yAxis += arc4random_uniform(50)+15;
                 evenRow = 0;
             }
             rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
@@ -70,9 +70,9 @@
         }
         
         if (![self newStarIntersects:rect1]) {
-            if (i % 4 == 0 && rowCount < 4) {
+            if (i % 2 == 0 && rowCount < 4) {
                 [TSStar drawBigStarWithFrame:rect1 starColor:starColor rotation:rotation];
-            } else if (i % 2 == 0 && rowCount < 4) {
+            } else if (i % 1 == 0 && rowCount < 4) {
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
             } else if (i % 4 == 0 && rowCount < 9) {
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
