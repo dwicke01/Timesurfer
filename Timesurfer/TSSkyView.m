@@ -28,8 +28,8 @@
 - (void) buildBigStars {
     CGFloat xAxis = 0;
     CGFloat xAxisPadding = 10;
-    CGFloat yAxis = 5;
-    CGFloat starWidth = 25;
+    CGFloat yAxis = 25;
+    CGFloat starWidth = 22;
     
     CGFloat rotation = 0;
     CGFloat alpha = 1;
@@ -38,7 +38,7 @@
     CGFloat rowCount = 0;
     
     
-    for (int i = 1; i < 2000; i++) {
+    for (int i = 1; i < 100; i++) {
         
         CGRect rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
         CGFloat maxX = CGRectGetMaxX(rect1);
@@ -47,34 +47,38 @@
         
         if (maxX+xAxisPadding >= self.frame.size.width) {
             if (evenRow == 0){
-                xAxis = starWidth+xAxisPadding*3;
-                yAxis += arc4random_uniform(30)+15;
+                xAxis = 30;
+                yAxis += arc4random_uniform(10)+30;
                 evenRow = 1;
+                alpha *= .95;
             } else {
-                xAxis = 20;
-                yAxis += arc4random_uniform(30)+15;
+                xAxis = 5;
+                yAxis += arc4random_uniform(10)+30;
                 evenRow = 0;
             }
             rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
-            alpha *= .95;
+            
             rowCount++;
             
-            if (yAxis > 175) {
+            if (yAxis > 300) {
                 yAxis = 0;
                 alpha = 1;
             }
             
         } else {
-            rect1 = CGRectMake(xAxis+arc4random_uniform(10)-10, yAxis+arc4random_uniform(10)-10, starWidth, starWidth);
-            xAxis += 2*starWidth+xAxisPadding*2;
+            rect1 = CGRectMake(xAxis+arc4random_uniform(10)+40, yAxis+arc4random_uniform(20)-10, starWidth, starWidth);
+            xAxis += arc4random_uniform(20)+60;
         }
         
         if (![self newStarIntersects:rect1]) {
-            if (i % 4 == 0 && rowCount < 4) {
-                [TSStar drawBigStarWithFrame:rect1 starColor:starColor rotation:rotation];
+            if (i % 2 == 0 && rowCount < 1) {
+                [TSStar drawBiggerStarWithFrame:rect1 starColor:starColor rotation:rotation];
             } else if (i % 2 == 0 && rowCount < 4) {
+                [TSStar drawBigStarWithFrame:rect1 starColor:starColor rotation:rotation];
+            } else if (i % 1 == 0 && rowCount >1 && rowCount < 3 && i % 5 != 0) {
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
-            } else if (i % 4 == 0 && rowCount < 9) {
+            } else if (i % 3 == 0 && rowCount < 4 && i < 90) {
+
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
             }
             [self.stars addObject:[NSValue valueWithCGRect:rect1]];
@@ -95,7 +99,7 @@
     CGFloat rowCount = 0;
     
     
-    for (int i = 1; i < 500; i++) {
+    for (int i = 1; i < 265; i++) {
         
         CGRect rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
         CGFloat maxX = CGRectGetMaxX(rect1);
@@ -108,12 +112,11 @@
                 yAxis += arc4random_uniform(30);
 
             rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
-            alpha *= .8;
-            
+            alpha *= .90;
             
             if (yAxis > 200) {
-                yAxis = 0;
-                alpha = 1;
+                yAxis = 150;
+                alpha *= .4;
             }
             
         } else {
