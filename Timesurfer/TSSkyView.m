@@ -48,15 +48,16 @@
         if (maxX+xAxisPadding >= self.frame.size.width) {
             if (evenRow == 0){
                 xAxis = starWidth+xAxisPadding*3;
-                yAxis += arc4random_uniform(50)+15;
+                yAxis += arc4random_uniform(10)+30;
                 evenRow = 1;
+                alpha *= .7;
             } else {
                 xAxis = 20;
-                yAxis += arc4random_uniform(50)+15;
+                yAxis += arc4random_uniform(10)+30;
                 evenRow = 0;
             }
             rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
-            alpha *= .95;
+            
             rowCount++;
             
             if (yAxis > 175) {
@@ -65,7 +66,7 @@
             }
             
         } else {
-            rect1 = CGRectMake(xAxis+arc4random_uniform(10)-10, yAxis+arc4random_uniform(10)-10, starWidth, starWidth);
+            rect1 = CGRectMake(xAxis+arc4random_uniform(10)+40, yAxis+arc4random_uniform(10)-10, starWidth, starWidth);
             xAxis += 2*starWidth+xAxisPadding*2;
         }
         
@@ -74,7 +75,8 @@
                 [TSStar drawBigStarWithFrame:rect1 starColor:starColor rotation:rotation];
             } else if (i % 1 == 0 && rowCount < 4) {
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
-            } else if (i % 4 == 0 && rowCount < 9) {
+            } else if (i % 2 == 0 && rowCount < 5 && i < 80) {
+
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
             }
             [self.stars addObject:[NSValue valueWithCGRect:rect1]];
