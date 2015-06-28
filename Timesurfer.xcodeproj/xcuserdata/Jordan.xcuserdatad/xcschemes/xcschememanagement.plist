@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>TimesurferExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>17DB0C0E1B3BAA690001810D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA1AAC561B3E2A2E00F5A151</key>
 		<dict>
 			<key>primary</key>
 			<true/>
