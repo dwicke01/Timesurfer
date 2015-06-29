@@ -46,17 +46,17 @@
         nighttimeLayer.endPoint = CGPointMake(0, 0);
         nighttimeLayer.colors = _nighttimeColors;
         
-        [self.layer addSublayer:nighttimeLayer];
-        [self.layer addSublayer:daytimeLayer];
+        //[self.layer addSublayer:nighttimeLayer];
+        //[self.layer addSublayer:daytimeLayer];
         
         self.maskLayer = [CALayer layer];
         [self.maskLayer setFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
         [self.maskLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
         
-        //[self makeDaytimeLayerTransparent];
-        [self performAnimation];
-        [layer setMask:self.maskLayer];
-        [self.layer insertSublayer:self.maskLayer atIndex:0];
+        [self makeDaytimeLayerTransparent];
+        //[self performAnimation];
+        //[layer setMask:self.maskLayer];
+        //[self.layer insertSublayer:self.maskLayer atIndex:0];
 
     }
     return self;
@@ -72,9 +72,10 @@
     CABasicAnimation* fadeAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeAnim.fromValue = [NSNumber numberWithFloat:1.0];
     fadeAnim.toValue = [NSNumber numberWithFloat:0.0];
-    fadeAnim.duration = 1.0;
+    fadeAnim.duration = 2.0;
     [layer addAnimation:fadeAnim forKey:@"opacity"];
-    layer.opacity = 0;
+    daytimeLayer.opacity = 0.5;
+    //layer.opacity = 0;
 //    CABasicAnimation *animation;
 //    animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 //    [animation setToValue:[NSNumber numberWithDouble:(layer.opacity - .1)]];
@@ -109,8 +110,11 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
+    daytimeLayer.opacity = 0;
     return;
     CAGradientLayer *layer = (id)self.layer;
+    if (self.layer.opacity != 0)
+        [self makeDaytimeLayerTransparent];
     if (![((UIColor*)layer.colors[10]) isEqual:[self cgColorForRed:0 green:0 blue:10 alpha:1]
           ])
         [self performAnimation];

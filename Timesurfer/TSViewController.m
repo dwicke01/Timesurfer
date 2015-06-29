@@ -5,12 +5,13 @@
 //  Created by Jordan Guggenheim on 6/24/15.
 //  Copyright (c) 2015 gugges. All rights reserved.
 //
-#import <FontAwesomeKit/FontAwesomeKit.h>
+
 #import <Forecastr/Forecastr.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
-#import "TSWeatherData.h"
+@import TimesurferFramework;
 #import "TSSkyView.h"
+@import CoreLocation;
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -179,7 +180,7 @@
         [settingsAlert addAction:cancel];
         
         [self presentViewController:settingsAlert animated:YES completion:nil];
-        
+
     } else if (status==kCLAuthorizationStatusNotDetermined){
         [self.locationManager requestAlwaysAuthorization];}
 }
