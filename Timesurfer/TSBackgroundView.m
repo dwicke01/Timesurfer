@@ -34,7 +34,7 @@
         self.maskLayer = [CALayer layer];
         [self.maskLayer setFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
         [self.maskLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
-        [self performAnimation];
+      //  [self performAnimation];
         [layer setMask:self.maskLayer];
         [self.layer insertSublayer:self.maskLayer atIndex:0];
 

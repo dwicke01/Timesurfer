@@ -11,6 +11,7 @@
 #import "TSViewController.h"
 #import "TSWeatherData.h"
 #import "TSSkyView.h"
+#import "TSGradientBackground.h"
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet TSSkyView *skyView;
+@property (weak, nonatomic) IBOutlet TSGradientBackground *gradientBackground;
+
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
@@ -53,7 +56,8 @@
     self.hourSlider.maximumValue = 24;
     //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
-    
+    self.skyView.hidden = NO;
+
     [self setNeedsStatusBarAppearanceUpdate];
     
 }
@@ -61,6 +65,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [self requestAlwaysAuth];
     [self.locationManager startMonitoringSignificantLocationChanges];
+    
 }
 
 
@@ -129,6 +134,8 @@
     if (weather.sunSetHour) {
         self.sunRiseSetLabel.hidden = NO;
         self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
+        self.gradientBackground.frame = CGRectMake(0, -736, 414, 1472);
+        self.skyView.hidden = YES;
         
     } else if (weather.sunRiseHour) {
         self.sunRiseSetLabel.hidden = NO;
@@ -136,6 +143,7 @@
         
     } else {
         self.sunRiseSetLabel.hidden = YES;
+        self.skyView.hidden = NO;
     }
     
     if (hour == 0) {
