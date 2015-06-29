@@ -9,6 +9,7 @@
 #import "TSBackgroundView.h"
 
 @implementation TSBackgroundView {
+    CAGradientLayer *daytimeLayer;
     NSArray   *_daytimeColors;
     NSArray   *_nighttimeColors;
     NSUInteger _counter;
@@ -20,12 +21,15 @@
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        _daytimeColors = @[[self cgColorForRed:148 green:186 blue:101 alpha:.99], [self cgColorForRed:137 green:181 blue:108 alpha:1], [self cgColorForRed:126 green:177 blue:116 alpha:1], [self cgColorForRed:115 green:173 blue:123 alpha:1], [self cgColorForRed:104 green:169 blue:131 alpha:1], [self cgColorForRed:93 green:165 blue:138 alpha:1], [self cgColorForRed:82 green:160 blue:148 alpha:1], [self cgColorForRed:71 green:156 blue:153 alpha:1], [self cgColorForRed:60 green:152 blue:161 alpha:1], [self cgColorForRed:49 green:148 blue:168 alpha:1], [self cgColorForRed:39 green:144 blue:176 alpha:1]];
+//        _daytimeColors = @[[self cgColorForRed:148 green:186 blue:101 alpha:.99], [self cgColorForRed:137 green:181 blue:108 alpha:1], [self cgColorForRed:126 green:177 blue:116 alpha:1], [self cgColorForRed:115 green:173 blue:123 alpha:1], [self cgColorForRed:104 green:169 blue:131 alpha:1], [self cgColorForRed:93 green:165 blue:138 alpha:1], [self cgColorForRed:82 green:160 blue:148 alpha:1], [self cgColorForRed:71 green:156 blue:153 alpha:1], [self cgColorForRed:60 green:152 blue:161 alpha:1], [self cgColorForRed:49 green:148 blue:168 alpha:1], [self cgColorForRed:39 green:144 blue:176 alpha:1]];
+        _daytimeColors =  @[[self cgColorForRed: 148 green: 186 blue: 101 alpha: 1], [self cgColorForRed: 39 green: 144 blue: 176 alpha: 1]];
         _nighttimeColors = @[[self cgColorForRed:39 green:144 blue:176 alpha:1], [self cgColorForRed:36 green:136 blue:166 alpha:1], [self cgColorForRed:34 green:128 blue:157 alpha:1], [self cgColorForRed:32 green:120 blue:147 alpha:1], [self cgColorForRed:30 green:113 blue:138 alpha:1], [self cgColorForRed:28 green:105 blue:128 alpha:1],  [self cgColorForRed:26 green:97 blue:119 alpha:1], [self cgColorForRed:24 green:90 blue:110 alpha:1], [self cgColorForRed:22 green:82 blue:100 alpha:1], [self cgColorForRed:20 green:74 blue:91 alpha:1], [self cgColorForRed:18 green:67 blue:82 alpha:1], [self cgColorForRed:16 green:60 blue:74 alpha:1], [self cgColorForRed:15 green:54 blue:66 alpha:1], [self cgColorForRed:12 green:46 blue:56 alpha:1],[self cgColorForRed:10 green:37 blue:46 alpha:1],[self cgColorForRed:7 green:27 blue:33 alpha:1],[self cgColorForRed:4 green:17 blue:19 alpha:1],[self cgColorForRed:4 green:17 blue:19 alpha:1],[self cgColorForRed:0 green:0 blue:10 alpha:1]];
         
         
         _counter = 0;
         CAGradientLayer *layer = (id)self.layer;
+//        daytimeLayer = (id)self.layer;
+        
         layer.frame = [self bounds];
         layer.colors = _daytimeColors;
         
@@ -33,10 +37,29 @@
         layer.endPoint = CGPointMake(0, 0);
         self.maskLayer = [CALayer layer];
         [self.maskLayer setFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
-        [self.maskLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
-      //  [self performAnimation];
+        [self.maskLayer setBackgroundColor:[[UIColor whiteColor] CGColor]];
+        [self performAnimation];
+        daytimeLayer = [[CAGradientLayer alloc]init];
+        daytimeLayer.frame = [self bounds];
+        daytimeLayer.startPoint = CGPointMake(0, 1);
+        daytimeLayer.endPoint = CGPointMake(0, 0);
+        daytimeLayer.colors = _daytimeColors;
+        daytimeLayer.opacity = 1;
+        
+        CAGradientLayer *nighttimeLayer = [[CAGradientLayer alloc] init];
+        nighttimeLayer.frame = [self bounds];
+        nighttimeLayer.startPoint = CGPointMake(0, 1);
+        nighttimeLayer.endPoint = CGPointMake(0, 0);
+        nighttimeLayer.colors = _nighttimeColors;
+        nighttimeLayer.opacity = 1;
+
+        [self.layer addSublayer:nighttimeLayer];
+        [self.layer addSublayer:daytimeLayer];
+        
         [layer setMask:self.maskLayer];
         [self.layer insertSublayer:self.maskLayer atIndex:0];
+        
+        [self makeDaytimeLayerTransparent];
 
     }
     return self;
@@ -72,6 +95,7 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
+    return;
     CAGradientLayer *layer = (id)self.layer;
     if (![((UIColor*)layer.colors[10]) isEqual:[self cgColorForRed:0 green:0 blue:10 alpha:1]
           ])
@@ -86,6 +110,24 @@
         self.progress = MIN(1.0, fabs(value));
         [self setNeedsLayout];
     }
+}
+
+
+- (void)makeDaytimeLayerTransparent {
+    CAGradientLayer *layer = daytimeLayer; //self.layer.sublayers[[self.layer.sublayers count]-1];
+    CABasicAnimation* fadeAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeAnim.fromValue = [NSNumber numberWithFloat:1.0];
+    fadeAnim.toValue = [NSNumber numberWithFloat:0.0];
+    fadeAnim.duration = 1.3;
+    [layer addAnimation:fadeAnim forKey:@"opacity"];
+    layer.opacity = 0.0;
+    //    CABasicAnimation *animation;
+    //    animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    //    [animation setToValue:[NSNumber numberWithDouble:(layer.opacity - .1)]];
+    //    [animation setDuration:.16];
+    //    [animation setRemovedOnCompletion:YES];
+    //    [animation setDelegate:self];
+    //    [layer addAnimation:animation forKey:@"opacity"];
 }
 
 - (void)layoutSubviews {
