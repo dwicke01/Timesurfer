@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1721541B1B40F51E00379B22 /* TSGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 1721541A1B40F51E00379B22 /* TSGradientBackground.m */; };
 		1732C4B01B3E242700B82ED3 /* TSSkyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732C4AF1B3E242700B82ED3 /* TSSkyView.m */; };
 		1732C4B61B3F0ECF00B82ED3 /* TSStar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732C4B51B3F0ECF00B82ED3 /* TSStar.m */; };
 		17DB0BFC1B3BAA690001810D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFB1B3BAA690001810D /* main.m */; };
@@ -99,6 +100,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		172154191B40F51E00379B22 /* TSGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGradientBackground.h; sourceTree = "<group>"; };
+		1721541A1B40F51E00379B22 /* TSGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGradientBackground.m; sourceTree = "<group>"; };
 		1732C4AE1B3E242700B82ED3 /* TSSkyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSkyView.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSSkyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSkyView.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSStar.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				17DB0BFE1B3BAA690001810D /* AppDelegate.m */,
 				17DB0C221B3BAB3E0001810D /* TSBackgroundView.h */,
 				17DB0C231B3BAB3E0001810D /* TSBackgroundView.m */,
+				172154191B40F51E00379B22 /* TSGradientBackground.h */,
+				1721541A1B40F51E00379B22 /* TSGradientBackground.m */,
 				1732C4AE1B3E242700B82ED3 /* TSSkyView.h */,
 				1732C4AF1B3E242700B82ED3 /* TSSkyView.m */,
 				1732C4B41B3F0ECF00B82ED3 /* TSStar.h */,
@@ -629,6 +634,7 @@
 				17DB0C241B3BAB3E0001810D /* TSBackgroundView.m in Sources */,
 				17DB0BFC1B3BAA690001810D /* main.m in Sources */,
 				1732C4B01B3E242700B82ED3 /* TSSkyView.m in Sources */,
+				1721541B1B40F51E00379B22 /* TSGradientBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1002,7 @@
 				FA22DADE1B41DEEE0072005E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA5695201B41B65300A9FB98 /* Build configuration list for PBXNativeTarget "TimesurferExtension" */ = {
 			isa = XCConfigurationList;

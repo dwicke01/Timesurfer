@@ -32,6 +32,7 @@
 @property (nonatomic, assign) CGFloat latitude;
 
 @property (nonatomic, strong) TSWeatherData *weatherData;
+@property (nonatomic, strong) TSWeather *currentWeather;
 
 @end
 
@@ -54,6 +55,9 @@
     self.hourSlider.maximumValue = 24;
     //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
+    self.skyView.hidden = NO;
+
+    
     
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -62,6 +66,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [self requestAlwaysAuth];
     [self.locationManager startMonitoringSignificantLocationChanges];
+    
 }
 
 
@@ -123,6 +128,12 @@
 
 - (void) updateWeather:(NSUInteger)hour{
     TSWeather *weather = [self.weatherData weatherForHour:hour];
+
+    if(self.currentWeather && self.currentWeather == weather) {
+        return;
+    }
+    
+    self.currentWeather = weather;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"h:mm a"];
@@ -130,13 +141,17 @@
     if (weather.sunSetHour) {
         self.sunRiseSetLabel.hidden = NO;
         self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
+//        self.gradientBackground.frame = CGRectMake(0, 0, 414, 1472);
+        self.skyView.hidden = NO;
         
     } else if (weather.sunRiseHour) {
-        self.sunRiseSetLabel.hidden = NO;
+        self.sunRiseSetLabel.hidden = YES;
+//            self.gradientBackground.frame = CGRectMake(0, -736, 414, 1472);
         self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
         
     } else {
         self.sunRiseSetLabel.hidden = YES;
+        self.skyView.hidden = NO;
     }
     
     if (hour == 0) {
@@ -152,6 +167,13 @@
         self.percentPrecip.text = weather.percentRainString;
         self.timeLabel.text = weather.currentDate;
     }
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    NSLog(@"-viewDidLayoutSubviews. frame: %@", NSStringFromCGRect(self.gradientBackground.frame));
 }
 
 - (void)requestAlwaysAuth{
