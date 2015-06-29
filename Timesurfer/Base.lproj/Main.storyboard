@@ -80,7 +80,6 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="gradientBackground" destination="Nyu-aB-BzZ" id="kZN-YE-Lvg"/>
                         <outlet property="hourSlider" destination="EqI-wX-JTi" id="mJY-xQ-zt9"/>
                         <outlet property="locationLabel" destination="XEV-1r-G3o" id="feL-vq-3Yl"/>
                         <outlet property="percentPrecip" destination="d5D-eI-mHl" id="5yu-Bq-caj"/>

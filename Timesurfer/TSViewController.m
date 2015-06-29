@@ -9,9 +9,9 @@
 #import <Forecastr/Forecastr.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
-@import TimesurferFramework;
 #import "TSSkyView.h"
 @import CoreLocation;
+@import TimesurferFramework;
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -173,7 +173,7 @@
 {
     [super viewDidLayoutSubviews];
     
-    NSLog(@"-viewDidLayoutSubviews. frame: %@", NSStringFromCGRect(self.gradientBackground.frame));
+    //NSLog(@"-viewDidLayoutSubviews. frame: %@", NSStringFromCGRect(self.gradientBackground.frame));
 }
 
 - (void)requestAlwaysAuth{

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
+@import CoreLocation;
 
 
 @interface TSViewController : UIViewController <CLLocationManagerDelegate>
