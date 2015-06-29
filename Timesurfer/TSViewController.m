@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet TSSkyView *skyView;
+@property (weak, nonatomic) IBOutlet TSBackgroundView *gradientBackground;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
@@ -30,7 +31,7 @@
 @property (nonatomic, strong) Forecastr *forcastr;
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
-
+@property (nonatomic, assign) CGFloat startPoint;
 @property (nonatomic, strong) TSWeatherData *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
@@ -55,13 +56,31 @@
     self.hourSlider.maximumValue = 24;
     //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
-    self.skyView.hidden = NO;
-
+    self.skyView.hidden = YES;
     
+//    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(detectPan:)];
+    
+    //panRecognizer.delegate = self;
+   
+//    [self.view addGestureRecognizer:panRecognizer];
     
     [self setNeedsStatusBarAppearanceUpdate];
     
 }
+
+
+//- (IBAction)detectPan:(id)sender{
+//    UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)sender;
+//    CGPoint relativeLocation = [pan translationInView:self.view];
+//    CGPoint actualLocation = [pan locationInView:self.view];
+//
+////    NSLog(@"%@",NSStringFromCGPoint(actualLocation));
+//    NSLog(@"%f",self.startPoint);
+//
+//    if (pan.state == UIGestureRecognizerStateBegan) {
+//        self.startPoint = actualLocation.x;
+//    }
+//}
 
 - (void)viewDidAppear:(BOOL)animated{
     [self requestAlwaysAuth];
@@ -141,8 +160,8 @@
     if (weather.sunSetHour) {
         self.sunRiseSetLabel.hidden = NO;
         self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
-//        self.gradientBackground.frame = CGRectMake(0, 0, 414, 1472);
         self.skyView.hidden = NO;
+        [self.gradientBackground makeDaytimeLayerTransparent];
         
     } else if (weather.sunRiseHour) {
         self.sunRiseSetLabel.hidden = YES;
@@ -169,12 +188,6 @@
     }
 }
 
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    //NSLog(@"-viewDidLayoutSubviews. frame: %@", NSStringFromCGRect(self.gradientBackground.frame));
-}
 
 - (void)requestAlwaysAuth{
     
@@ -208,7 +221,6 @@
 }
 
 @end
-
 
 //        NSUInteger minutes = (self.hourSlider.value -floor(self.hourSlider.value))*60;
 //        if (minutes >= 30) {

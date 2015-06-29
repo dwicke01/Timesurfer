@@ -14,5 +14,7 @@
 @property (nonatomic, strong) CALayer *maskLayer;
 @property (nonatomic) CGFloat progress;
 
+- (void)makeDaytimeLayerTransparent;
+- (void)makeDaytimeLayerOpaque;
 
 @end
