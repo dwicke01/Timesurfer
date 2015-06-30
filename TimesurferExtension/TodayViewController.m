@@ -17,13 +17,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _time = 0;
+//    self.locationManager = [[CLLocationManager alloc] init];
+//    self.locationManager.delegate = self;
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+
+    //[self getWeather];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self getWeather];
+    [self.locationManager startUpdatingLocation];
+
+//    [self startLocationUpdatesWithCompletionBlock:^{
+//        [self getWeather];
+//    }];
+    //[self getWeather];
 }
 
 - (IBAction)timeStepper:(id)sender {

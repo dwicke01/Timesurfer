@@ -12,7 +12,7 @@
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString sunUp:(BOOL)sunUp;
 
-@property (nonatomic, strong) UIImage *weatherImage;
+@property (nonatomic, strong, readonly) UIImage *weatherImage;
 @property (nonatomic, strong) NSString *currentDate;
 @property (nonatomic, strong) NSString *weatherTemperature;
 @property (nonatomic, strong) NSString *percentRainString;

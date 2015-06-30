@@ -15,9 +15,13 @@
 @interface TSViewController : UIViewController <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 - (void) getWeather;
 - (TSWeather*) updateWeather:(NSUInteger)hour;
+- (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion;
 
 @end
 

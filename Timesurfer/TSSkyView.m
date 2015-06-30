@@ -98,9 +98,9 @@
     
     CGFloat rotation = 0;
     CGFloat alpha = 1;
-    
-    CGFloat evenRow = 0;
-    CGFloat rowCount = 0;
+//    
+//    CGFloat evenRow = 0;
+//    CGFloat rowCount = 0;
     
     
     for (int i = 1; i < 295; i++) {

@@ -31,7 +31,6 @@
 		FA56951D1B41B65300A9FB98 /* TimesurferExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FA5695241B41B6F000A9FB98 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */; };
 		FA5695251B41B6F000A9FB98 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5695231B41B6F000A9FB98 /* TodayViewController.m */; };
-		FA56952D1B41B73400A9FB98 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA56952C1B41B73400A9FB98 /* Info.plist */; };
 		FAECE4F91B41F6F900993A63 /* TSBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 17DB0C221B3BAB3E0001810D /* TSBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 17DB0C001B3BAA690001810D /* TSViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C011B3BAA690001810D /* TSViewController.m */; };
@@ -585,7 +584,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA22DAE41B41E3BF0072005E /* Images.xcassets in Resources */,
-				FA56952D1B41B73400A9FB98 /* Info.plist in Resources */,
 				FA5695241B41B6F000A9FB98 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -946,6 +944,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9720FE54CCFCAAA0EE4F27FC /* Pods-TimesurferFramework.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -971,6 +970,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EAD5C926E34339CB36A0E390 /* Pods-TimesurferFramework.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

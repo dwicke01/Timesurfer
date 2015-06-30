@@ -19,12 +19,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
-@property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet TSSkyView *skyView;
 @property (weak, nonatomic) IBOutlet TSGradientBackground *gradientBackground;
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
 @property (nonatomic, strong) CLGeocoder *geoCoder;
 
@@ -41,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.weatherData = nil;
     self.weatherImage.image = [UIImage imageNamed:@"Surf-Icon"];
     
     self.geoCoder = [[CLGeocoder alloc] init];
@@ -85,9 +83,22 @@
 //}
 
 - (void)viewDidAppear:(BOOL)animated{
-    [self requestAlwaysAuth];
-    [self.locationManager startMonitoringSignificantLocationChanges];
+    [super viewDidAppear:animated];
     
+    [self requestAlwaysAuth];
+    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")])
+        [self.locationManager startMonitoringSignificantLocationChanges];
+    
+//    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")])
+//        [self startLocationUpdatesWithCompletionBlock:nil];
+}
+
+-(void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
+    if (completion != nil) {
+        //[self.locationManager startMonitoringSignificantLocationChanges];
+        [self.locationManager startUpdatingLocation];
+        completion();
+    }
 }
 
 
@@ -142,8 +153,8 @@
     
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;
-    [self getWeather];
-    
+    if (self.weatherData == nil)
+        [self getWeather];
 }
 
 - (void) getWeather{

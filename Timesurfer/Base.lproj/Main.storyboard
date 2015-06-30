@@ -85,7 +85,7 @@
                         <outlet property="locationLabel" destination="XEV-1r-G3o" id="feL-vq-3Yl"/>
                         <outlet property="percentPrecip" destination="d5D-eI-mHl" id="5yu-Bq-caj"/>
                         <outlet property="skyView" destination="Foz-6n-SI8" id="rud-yP-1Oh"/>
-                        <outlet property="sunRiseSetLabel" destination="hrk-RC-asl" id="1bP-fB-J8z"/>
+                        <outlet property="sunRiseSetLabel" destination="hrk-RC-asl" id="Ir6-zd-Sse"/>
                         <outlet property="temperatureLabel" destination="gog-Tu-62I" id="pNR-Ht-EgW"/>
                         <outlet property="timeLabel" destination="5zR-wb-zWd" id="NwT-lp-vU6"/>
                         <outlet property="weatherImage" destination="T9g-ml-zVJ" id="9c5-1a-oYY"/>

@@ -40,8 +40,6 @@
 
 - (void) formatWeatherData{
     
-    _weatherImage = [UIImage imageNamed:self.incomingDictionary[@"icon"]];
-    
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
     _weatherTemperature = [[NSString alloc] initWithFormat:@"%.f°F",temperatureNumber.floatValue];
     
@@ -72,6 +70,11 @@
     
     NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];
     _precipIntensity = precipIntense.integerValue;
+}
+
+-(UIImage *)weatherImage
+{
+    return [UIImage imageNamed:self.incomingDictionary[@"icon"]];
 }
 
 @end
