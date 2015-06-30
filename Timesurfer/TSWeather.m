@@ -21,7 +21,7 @@
 @implementation TSWeather
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString {
+- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString sunUp:(BOOL)sunUp{
     
     self = [super init];
     
@@ -30,6 +30,7 @@
         _currentTime = [self.incomingDictionary[@"time"] integerValue];
         _sunSetString = sunSetString;
         _sunRiseString = sunRiseString;
+        _sunUp = sunUp;
         [self formatWeatherData];
     }
     
@@ -52,7 +53,7 @@
     
     [dateFormatter setDateFormat:@"H"];
     _currentHour = [dateFormatter stringFromDate:dateTime];
-    
+    self.currentHourInt = self.currentHour.integerValue;
     if ([self.currentHour isEqualToString:self.sunRiseString]) {
         _sunRiseHour = YES;
     }
@@ -67,7 +68,7 @@
     NSNumber *percentRain = self.incomingDictionary[@"precipProbability"];
     self.percentRainFloat = roundf(percentRain.floatValue*10)*10;
    // NSLog(@"%.2f",self.percentRainFloat);
-    _percentRainString = [NSString stringWithFormat:@"%.0F%%",self.percentRainFloat];
+    _percentRainString = [NSString stringWithFormat:@"%.0F%% ☂",self.percentRainFloat];
     
     NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];
     _precipIntensity = precipIntense.integerValue;
