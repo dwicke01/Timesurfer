@@ -19,7 +19,7 @@
 + (void)drawMediumStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
 + (void)drawLittleStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
 + (void)drawBigStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
-+ (void)drawCanvas2WithBackgroudY: (CGFloat)backgroudY;
++ (void)drawCanvas2;
 
 @end
 

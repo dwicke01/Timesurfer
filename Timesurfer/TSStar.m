@@ -143,7 +143,7 @@
     CGContextRestoreGState(context);
 }
 
-+ (void)drawCanvas2WithBackgroudY: (CGFloat)backgroudY
++ (void)drawCanvas2
 {
     //// General Declarations
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -155,23 +155,30 @@
     UIColor* midnight = [UIColor colorWithRed: 0 green: 0 blue: 0.039 alpha: 1];
 
     //// Gradient Declarations
-    CGFloat gradientLocations[] = {0, 0.38, 0.41, 0.44, 0.64, 1};
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)green.CGColor, (id)blue.CGColor, (id)[blue blendedColorWithFraction: 0.5 ofColor: blue].CGColor, (id)blue.CGColor, (id)[blue blendedColorWithFraction: 0.5 ofColor: midnight].CGColor, (id)midnight.CGColor], gradientLocations);
+    CGFloat gradientLocations[] = {0, 0.37, 0.75, 1};
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)green.CGColor, (id)[green blendedColorWithFraction: 0.5 ofColor: blue].CGColor, (id)blue.CGColor, (id)blue.CGColor], gradientLocations);
+    CGFloat gradient2Locations[] = {0, 1};
+    CGGradientRef gradient2 = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)blue.CGColor, (id)midnight.CGColor], gradient2Locations);
 
     //// backgroundGradient Drawing
-    CGRect backgroundGradientRect = CGRectMake(0, (backgroudY - 2), 414, 1472);
-    UIBezierPath* backgroundGradientPath = [UIBezierPath bezierPathWithRect: backgroundGradientRect];
+    UIBezierPath* backgroundGradientPath = [UIBezierPath bezierPathWithRect: CGRectMake(0, 736, 414, 736)];
     CGContextSaveGState(context);
     [backgroundGradientPath addClip];
-    CGContextDrawLinearGradient(context, gradient,
-        CGPointMake(CGRectGetMidX(backgroundGradientRect), CGRectGetMaxY(backgroundGradientRect)),
-        CGPointMake(CGRectGetMidX(backgroundGradientRect), CGRectGetMinY(backgroundGradientRect)),
-        0);
+    CGContextDrawLinearGradient(context, gradient, CGPointMake(207, 1472), CGPointMake(207, 736), 0);
+    CGContextRestoreGState(context);
+
+
+    //// backgroundGradient 2 Drawing
+    UIBezierPath* backgroundGradient2Path = [UIBezierPath bezierPathWithRect: CGRectMake(0, 0, 414, 736)];
+    CGContextSaveGState(context);
+    [backgroundGradient2Path addClip];
+    CGContextDrawLinearGradient(context, gradient2, CGPointMake(207, 736), CGPointMake(207, -0), 0);
     CGContextRestoreGState(context);
 
 
     //// Cleanup
     CGGradientRelease(gradient);
+    CGGradientRelease(gradient2);
     CGColorSpaceRelease(colorSpace);
 }
 

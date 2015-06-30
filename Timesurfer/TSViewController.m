@@ -11,7 +11,8 @@
 #import "TSViewController.h"
 #import "TSWeatherData.h"
 #import "TSSkyView.h"
-#import "TSBackgroundView.h"
+//#import "TSBackgroundView.h"
+#import "TSGradientBackground.h"
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -22,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet TSSkyView *skyView;
-@property (weak, nonatomic) IBOutlet TSBackgroundView *gradientBackground;
+@property (weak, nonatomic) IBOutlet TSGradientBackground *gradientBackground;
 
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -58,12 +59,12 @@
     //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
     self.skyView.hidden = YES;
-    
-//    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(detectPan:)];
+    self.gradientBackground.frame = CGRectMake(0, -736, 414, 1472);
+    //    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(detectPan:)];
     
     //panRecognizer.delegate = self;
-   
-//    [self.view addGestureRecognizer:panRecognizer];
+    
+    //    [self.view addGestureRecognizer:panRecognizer];
     
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -103,7 +104,18 @@
 - (IBAction)sliderChanged:(id)sender {
     CGFloat theHour = floor(self.hourSlider.value);
     //NSLog(@"%.2f",self.hourSlider.value);
+    
     [self updateWeather:theHour];
+    
+    CGFloat currentTime = self.currentWeather.currentHourInt;
+    
+    if (currentTime >= 12) {
+        currentTime = ((24-currentTime)/12)*-736;
+    } else {
+        currentTime = (currentTime/12)*-736;
+    }
+    
+    self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
 }
 
 
@@ -135,11 +147,31 @@
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
-                                     // NSLog(@"JSON Response was: %@", JSON);
+                                      // NSLog(@"JSON Response was: %@", JSON);
                                       
                                       _weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
                                       [self updateWeather:0];
+                                      
+                                      CGFloat currentTime = self.weatherData.startingHour;
+                                      
+                                      if (currentTime >= 12) {
+                                          currentTime = ((24-currentTime)/12)*-736;
+                                      } else {
+                                          currentTime = (currentTime/12)*-736;
+                                      }
+                                      
+                                      
+                                      if (self.currentWeather.sunUp) {
+                                          self.skyView.hidden = YES;
+                                          
+                                          self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
+                                          NSLog(@"%f",currentTime);
+                                      } else {
+                                          self.skyView.hidden = NO;
+                                          self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
+                                          NSLog(@"%lu",self.weatherData.startingHour);
+                                      }
                                       
                                   } failure:^(NSError *error, id response) {
                                       NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
@@ -147,46 +179,48 @@
 }
 
 
-- (void) updateWeather:(NSUInteger)hour{
+- (TSWeather*) updateWeather:(NSUInteger)hour{
     TSWeather *weather = [self.weatherData weatherForHour:hour];
-
+    
     if(self.currentWeather && self.currentWeather == weather) {
-        return;
-    }
-    
-    self.currentWeather = weather;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"h:mm a"];
-    
-    if (weather.sunSetHour) {
-        self.sunRiseSetLabel.hidden = NO;
-        self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
-        self.skyView.hidden = NO;
-        [self.gradientBackground makeDaytimeLayerTransparent];
         
-    } else if (weather.sunRiseHour) {
-        self.sunRiseSetLabel.hidden = YES;
-//            self.gradientBackground.frame = CGRectMake(0, -736, 414, 1472);
-        self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
+        return weather;
         
     } else {
-        self.sunRiseSetLabel.hidden = YES;
-        self.skyView.hidden = NO;
-    }
-    
-    if (hour == 0) {
-        NSDate *dateTime = [NSDate date];
-        self.temperatureLabel.text = weather.weatherTemperature;
-        self.weatherImage.image = weather.weatherImage;
-        self.percentPrecip.text = weather.percentRainString;
-        self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
         
-    } else {
-        self.temperatureLabel.text = weather.weatherTemperature;
-        self.weatherImage.image = weather.weatherImage;
-        self.percentPrecip.text = weather.percentRainString;
-        self.timeLabel.text = weather.currentDate;
+        self.currentWeather = weather;
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"h:mm a"];
+        
+        if (weather.sunSetHour) {
+            self.sunRiseSetLabel.hidden = NO;
+            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
+            
+        } else if (weather.sunRiseHour) {
+            self.sunRiseSetLabel.hidden = NO;
+            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
+            
+        } else {
+            self.sunRiseSetLabel.hidden = YES;
+            
+        }
+        
+        if (hour == 0) {
+            NSDate *dateTime = [NSDate date];
+            self.temperatureLabel.text = weather.weatherTemperature;
+            self.weatherImage.image = weather.weatherImage;
+            self.percentPrecip.text = weather.percentRainString;
+            self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
+            
+        } else {
+            self.temperatureLabel.text = weather.weatherTemperature;
+            self.weatherImage.image = weather.weatherImage;
+            self.percentPrecip.text = weather.percentRainString;
+            self.timeLabel.text = weather.currentDate;
+        }
+        self.skyView.hidden = self.currentWeather.sunUp;
+        return weather;
     }
 }
 

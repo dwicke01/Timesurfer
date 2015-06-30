@@ -19,13 +19,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     
-    [TSStar drawCanvas2WithBackgroudY:0];
+    [TSStar drawCanvas2];
 }
 
-- (void)transitionGradient:(CGFloat)yAxis{
-    
-    [TSStar drawCanvas2WithBackgroudY:yAxis];
-}
 
 
 

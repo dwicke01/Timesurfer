@@ -12,8 +12,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="Nyu-aB-BzZ" customClass="TSBackgroundView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="Nyu-aB-BzZ" customClass="TSGradientBackground">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1472"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>

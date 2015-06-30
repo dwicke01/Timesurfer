@@ -21,7 +21,7 @@
 @implementation TSWeather
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString {
+- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString sunUp:(BOOL)sunUp{
     
     self = [super init];
     
@@ -30,6 +30,7 @@
         _currentTime = [self.incomingDictionary[@"time"] integerValue];
         _sunSetString = sunSetString;
         _sunRiseString = sunRiseString;
+        _sunUp = sunUp;
         [self formatWeatherData];
     }
     
@@ -52,7 +53,7 @@
     
     [dateFormatter setDateFormat:@"H"];
     _currentHour = [dateFormatter stringFromDate:dateTime];
-    
+    self.currentHourInt = self.currentHour.integerValue;
     if ([self.currentHour isEqualToString:self.sunRiseString]) {
         _sunRiseHour = YES;
     }

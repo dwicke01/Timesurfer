@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign) NSInteger yAxis;
 
-- (void)transitionGradient:(CGFloat)yAxis;
+
 
 
 @end

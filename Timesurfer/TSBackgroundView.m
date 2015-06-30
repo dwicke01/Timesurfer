@@ -113,13 +113,15 @@
 
 
 - (void)makeDaytimeLayerTransparent {
-    CAGradientLayer *layer = daytimeLayer;
-    CABasicAnimation* fadeAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeAnim.fromValue = [NSNumber numberWithFloat:1.0];
-    fadeAnim.toValue = [NSNumber numberWithFloat:0.0];
-    fadeAnim.duration = 1.3;
-    [layer addAnimation:fadeAnim forKey:@"opacity"];
-    layer.opacity = 0.0;
+    
+        CAGradientLayer *layer = daytimeLayer;
+        CABasicAnimation* fadeAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        fadeAnim.fromValue = [NSNumber numberWithFloat:1.0];
+        fadeAnim.toValue = [NSNumber numberWithFloat:0.0];
+        fadeAnim.duration = 3.3;
+        [layer addAnimation:fadeAnim forKey:@"opacity"];
+        layer.opacity = 0.0;
+ 
 }
 
 - (void)makeDaytimeLayerOpaque {

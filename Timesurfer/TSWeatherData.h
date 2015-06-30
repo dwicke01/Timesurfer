@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) NSString *sunRise;
 @property (nonatomic, strong) NSString *sunSet;
+@property (nonatomic, assign) NSUInteger startingHour;
+
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingWeather;
 - (TSWeather *)weatherForHour:(NSUInteger)hour;
