@@ -87,7 +87,7 @@
                         <outlet property="skyView" destination="Foz-6n-SI8" id="rud-yP-1Oh"/>
                         <outlet property="sunRiseSetLabel" destination="hrk-RC-asl" id="1bP-fB-J8z"/>
                         <outlet property="temperatureLabel" destination="gog-Tu-62I" id="pNR-Ht-EgW"/>
-                        <outlet property="timeLabel" destination="5zR-wb-zWd" id="4Gz-hZ-3TN"/>
+                        <outlet property="timeLabel" destination="5zR-wb-zWd" id="NwT-lp-vU6"/>
                         <outlet property="weatherImage" destination="T9g-ml-zVJ" id="9c5-1a-oYY"/>
                     </connections>
                 </viewController>

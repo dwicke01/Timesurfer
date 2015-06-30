@@ -10,11 +10,14 @@
 //#import <CoreLocation/CoreLocation.h>
 @import CoreLocation;
 
+@class TSWeather;
 
 @interface TSViewController : UIViewController <CLLocationManagerDelegate>
 
-- (void) getWeather;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
+- (void) getWeather;
+- (TSWeather*) updateWeather:(NSUInteger)hour;
 
 @end
 

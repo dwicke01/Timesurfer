@@ -12,12 +12,12 @@
 //#import <Forecastr/Forecastr.h>
 
 @implementation TodayViewController {
-    
+    NSInteger _time;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _time = 0;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -27,7 +27,15 @@
 }
 
 - (IBAction)timeStepper:(id)sender {
-    
+    UIStepper *stepper = sender;
+    //_time += stepper.value + 24;
+    //_time = _time % 24;
+    if (stepper.value < 0)
+        stepper.value = 0;
+    else if (stepper.value > 23)
+        stepper.value = 23;
+    else
+        [self updateWeather:stepper.value];
 }
 
 - (void)didReceiveMemoryWarning {

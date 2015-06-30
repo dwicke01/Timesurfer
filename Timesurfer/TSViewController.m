@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet TSSkyView *skyView;
