@@ -30,12 +30,13 @@
     UIStepper *stepper = sender;
     //_time += stepper.value + 24;
     //_time = _time % 24;
+    NSLog(@"%f",stepper.value);
     if (stepper.value < 0)
         stepper.value = 0;
     else if (stepper.value > 23)
         stepper.value = 23;
     else
-        [self updateWeather:stepper.value];
+        [self updateWeather:(NSInteger)stepper.value];
 }
 
 - (void)didReceiveMemoryWarning {

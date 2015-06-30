@@ -192,6 +192,7 @@
 - (TSWeather*) updateWeather:(NSUInteger)hour{
     TSWeather *weather = [self.weatherData weatherForHour:hour];
     
+    NSLog(@"%lu",hour);
     if(self.currentWeather && self.currentWeather == weather) {
         
         return weather;
