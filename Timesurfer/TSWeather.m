@@ -68,7 +68,7 @@
     NSNumber *percentRain = self.incomingDictionary[@"precipProbability"];
     self.percentRainFloat = roundf(percentRain.floatValue*10)*10;
    // NSLog(@"%.2f",self.percentRainFloat);
-    _percentRainString = [NSString stringWithFormat:@"%.0F%%",self.percentRainFloat];
+    _percentRainString = [NSString stringWithFormat:@"%.0F%% ☂",self.percentRainFloat];
     
     NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];
     _precipIntensity = precipIntense.integerValue;

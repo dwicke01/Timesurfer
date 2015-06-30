@@ -80,7 +80,11 @@
             } else if (i % 3 == 0 && rowCount < 4 && i < 90) {
 
                 [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
+            }  else if (i % 5 == 0 && rowCount == 4) {
+                
+                [TSStar drawMediumStarWithFrame:rect1 starColor:starColor rotation:rotation];
             }
+
             [self.stars addObject:[NSValue valueWithCGRect:rect1]];
         }
     }
@@ -99,7 +103,7 @@
     CGFloat rowCount = 0;
     
     
-    for (int i = 1; i < 265; i++) {
+    for (int i = 1; i < 295; i++) {
         
         CGRect rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
         CGFloat maxX = CGRectGetMaxX(rect1);
@@ -114,9 +118,11 @@
             rect1 = CGRectMake(xAxis, yAxis, starWidth, starWidth);
             alpha *= .90;
             
-            if (yAxis > 200) {
+            if (yAxis > 270) {
                 yAxis = 150;
                 alpha *= .4;
+            } else if (yAxis > 200){
+                alpha *=.9;
             }
             
         } else {

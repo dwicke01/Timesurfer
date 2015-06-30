@@ -11,7 +11,7 @@
 #import "TSViewController.h"
 #import "TSWeatherData.h"
 #import "TSSkyView.h"
-//#import "TSBackgroundView.h"
+#import "TSBackgroundView.h"
 #import "TSGradientBackground.h"
 
 @interface TSViewController ()
@@ -58,6 +58,8 @@
     self.hourSlider.maximumValue = 24;
     //[self.hourSlider setThumbImage:[UIImage imageNamed:@"surfer-thumb2"] forState:UIControlStateNormal];
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
+    self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255. green:255. blue:255. alpha:0.9];
+    self.skyView.alpha = .5;
     self.skyView.hidden = YES;
     self.gradientBackground.frame = CGRectMake(0, -736, 414, 1472);
     //    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(detectPan:)];
@@ -109,10 +111,16 @@
     
     CGFloat currentTime = self.currentWeather.currentHourInt;
     
-    if (currentTime >= 12) {
-        currentTime = ((24-currentTime)/12)*-736;
+    if (currentTime >= 21 || currentTime < 5) {
+        currentTime = 0;
+    } else if (currentTime >= 11 && currentTime <= 15) {
+        currentTime = -736;
+    } else if (currentTime > 12){
+        currentTime = (24-currentTime-4);
+        currentTime = (currentTime/6)*-736;
     } else {
-        currentTime = (currentTime/12)*-736;
+        currentTime -= 4;
+        currentTime = (currentTime/6)*-736;
     }
     
     self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
@@ -147,13 +155,17 @@
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
-                                      // NSLog(@"JSON Response was: %@", JSON);
+                                       NSLog(@"JSON Response was: %@", JSON);
                                       
                                       _weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
                                       [self updateWeather:0];
                                       
                                       CGFloat currentTime = self.weatherData.startingHour;
+                                      
+                                      if (currentTime > 21 || currentTime < 5) {
+                                          self.skyView.alpha =1;
+                                      }
                                       
                                       if (currentTime >= 12) {
                                           currentTime = ((24-currentTime)/12)*-736;
@@ -193,18 +205,31 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"h:mm a"];
         
+        CGFloat currentTime = self.currentWeather.currentHourInt;
+        
         if (weather.sunSetHour) {
             self.sunRiseSetLabel.hidden = NO;
+            self.sunRiseSetLabel.alpha = 1;
             self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
             
         } else if (weather.sunRiseHour) {
             self.sunRiseSetLabel.hidden = NO;
+            self.sunRiseSetLabel.alpha = 1;
             self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
             
+        }  else if (currentTime == 19 || currentTime == 21) {
+            self.sunRiseSetLabel.alpha = .5;
+            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
+            self.sunRiseSetLabel.hidden = NO;
+        } else if (currentTime == 4 || currentTime == 6) {
+            self.sunRiseSetLabel.alpha = .5;
+            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
+            self.sunRiseSetLabel.hidden = NO;
         } else {
             self.sunRiseSetLabel.hidden = YES;
-            
         }
+        
+        
         
         if (hour == 0) {
             NSDate *dateTime = [NSDate date];
@@ -219,7 +244,23 @@
             self.percentPrecip.text = weather.percentRainString;
             self.timeLabel.text = weather.currentDate;
         }
-        self.skyView.hidden = self.currentWeather.sunUp;
+     
+        if (self.currentWeather.currentHourInt == 7 || self.currentWeather.currentHourInt == 19) {
+            self.skyView.hidden = NO;
+            self.skyView.alpha =.35;
+        } else if (self.currentWeather.currentHourInt == 6 || self.currentWeather.currentHourInt == 20){
+            self.skyView.hidden = NO;
+            self.skyView.alpha =.5;
+        } else if (self.currentWeather.currentHourInt == 5 || self.currentWeather.currentHourInt == 21){
+                   self.skyView.hidden = NO;
+                   self.skyView.alpha = .75;
+        } else if (self.currentWeather.currentHourInt < 5 || self.currentWeather.currentHourInt > 21){
+            self.skyView.hidden = NO;
+            self.skyView.alpha = 1;
+        } else {
+            self.skyView.hidden = YES;
+        }
+//        self.skyView.hidden = self.currentWeather.sunUp;
         return weather;
     }
 }
@@ -257,11 +298,3 @@
 }
 
 @end
-
-//        NSUInteger minutes = (self.hourSlider.value -floor(self.hourSlider.value))*60;
-//        if (minutes >= 30) {
-//            minutes = 30;
-//        } else {
-//            minutes = 0;
-//        }
-//        NSDate *exactDate = [dateTime dateByAddingTimeInterval:minutes*60];
