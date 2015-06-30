@@ -7,17 +7,27 @@
 //
 
 #import "TodayViewController.h"
+#define AF_APP_EXTENSIONS
 #import <NotificationCenter/NotificationCenter.h>
+//#import <Forecastr/Forecastr.h>
 
-@interface TodayViewController () <NCWidgetProviding>
-
-@end
-
-@implementation TodayViewController
+@implementation TodayViewController {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self getWeather];
+}
+
+- (IBAction)timeStepper:(id)sender {
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -94,12 +94,12 @@
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
     return;
-    CAGradientLayer *layer = (id)self.layer;
-    if (![((UIColor*)layer.colors[10]) isEqual:[self cgColorForRed:0 green:0 blue:10 alpha:1]
-          ])
-        [self performAnimation];
-    else
-        _counter = 0;
+//    CAGradientLayer *layer = (id)self.layer;
+//    if (![((UIColor*)layer.colors[10]) isEqual:[self cgColorForRed:0 green:0 blue:10 alpha:1]
+//          ])
+//        [self performAnimation];
+//    else
+//        _counter = 0;
 }
 
 - (void)setProgress:(CGFloat)value {

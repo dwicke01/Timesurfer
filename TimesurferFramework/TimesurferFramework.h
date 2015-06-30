@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSWeather.h"
+#import "TSWeatherData.h"
+#import "TSSkyView.h"
+#import "TSStar.h"
+#import "TSBackgroundView.h"
+#import "TSViewController.h"
+#import "TSGradientBackground.h"
 
 //! Project version number for TimesurferFramework.
 FOUNDATION_EXPORT double TimesurferFrameworkVersionNumber;

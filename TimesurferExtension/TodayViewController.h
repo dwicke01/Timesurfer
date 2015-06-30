@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@import TimesurferFramework;
 
-@interface TodayViewController : UIViewController
+@interface TodayViewController : TSViewController
 
 @end
