@@ -10,8 +10,9 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
 #import "TSSkyView.h"
+#import "TSWeatherData.h"
+#import "TSBackgroundView.h"
 @import CoreLocation;
-@import TimesurferFramework;
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
