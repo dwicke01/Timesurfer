@@ -5,14 +5,13 @@
 //  Created by Jordan Guggenheim on 6/24/15.
 //  Copyright (c) 2015 gugges. All rights reserved.
 //
-#import <FontAwesomeKit/FontAwesomeKit.h>
+
 #import <Forecastr/Forecastr.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
-#import "TSWeatherData.h"
 #import "TSSkyView.h"
-#import "TSBackgroundView.h"
-#import "TSGradientBackground.h"
+@import CoreLocation;
+@import TimesurferFramework;
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -24,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet TSSkyView *skyView;
 @property (weak, nonatomic) IBOutlet TSGradientBackground *gradientBackground;
-
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *weatherLocation;
@@ -292,7 +290,7 @@
         [settingsAlert addAction:cancel];
         
         [self presentViewController:settingsAlert animated:YES completion:nil];
-        
+
     } else if (status==kCLAuthorizationStatusNotDetermined){
         [self.locationManager requestAlwaysAuthorization];}
 }

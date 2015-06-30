@@ -43,7 +43,6 @@
         daytimeLayer.startPoint = CGPointMake(0, 1);
         daytimeLayer.endPoint = CGPointMake(0, 0);
         daytimeLayer.colors = _daytimeColors;
-        daytimeLayer.opacity = 1;
         
         CAGradientLayer *nighttimeLayer = [[CAGradientLayer alloc] init];
         nighttimeLayer.frame = [self bounds];

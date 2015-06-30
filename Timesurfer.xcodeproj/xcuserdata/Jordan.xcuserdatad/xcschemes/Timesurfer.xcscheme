@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Timesurfer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA22DAC81B41DEEE0072005E"
+               BuildableName = "TimesurferFrameworkTests.xctest"
+               BlueprintName = "TimesurferFrameworkTests"
+               ReferencedContainer = "container:Timesurfer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "17DB0C0E1B3BAA690001810D"
                BuildableName = "TimesurferTests.xctest"
                BlueprintName = "TimesurferTests"
+               ReferencedContainer = "container:Timesurfer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA22DAC81B41DEEE0072005E"
+               BuildableName = "TimesurferFrameworkTests.xctest"
+               BlueprintName = "TimesurferFrameworkTests"
                ReferencedContainer = "container:Timesurfer.xcodeproj">
             </BuildableReference>
          </TestableReference>
