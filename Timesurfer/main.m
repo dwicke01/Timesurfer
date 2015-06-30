@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+@import TimesurferFramework;
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
+        [TSViewController class];
+        [TSBackgroundView class];
+        [TSSkyView class];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
