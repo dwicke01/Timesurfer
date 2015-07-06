@@ -9,7 +9,7 @@
 #import <Forecastr/Forecastr.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import "TSViewController.h"
-#import "TSSkyView.h"
+#import "TSStarField.h"
 #import "TSWeatherData.h"
 #import "TSGradientBackground.h"
 @import CoreLocation;
@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
-@property (weak, nonatomic) IBOutlet TSSkyView *skyView;
+@property (weak, nonatomic) IBOutlet TSStarField *skyView;
 @property (weak, nonatomic) IBOutlet TSGradientBackground *gradientBackground;
 
 @property (nonatomic, strong) CLLocation *weatherLocation;
@@ -64,6 +64,10 @@
     
     //    [self.view addGestureRecognizer:panRecognizer];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(returnFromSleep)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+    
     [self setNeedsStatusBarAppearanceUpdate];
     
 }
@@ -86,14 +90,17 @@
     [super viewDidAppear:animated];
     
     [self requestAlwaysAuth];
-    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")])
+    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]){
+        
         [self.locationManager startMonitoringSignificantLocationChanges];
-    
-//    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")])
-//        [self startLocationUpdatesWithCompletionBlock:nil];
+    }
 }
 
--(void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
+
+
+
+
+- (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
     if (completion != nil) {
         //[self.locationManager startMonitoringSignificantLocationChanges];
         [self.locationManager startUpdatingLocation];
@@ -111,102 +118,28 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (void) returnFromSleep{
+    self.hourSlider.value = 0;
+    [self getWeather];
+}
 
 - (IBAction)sliderChanged:(id)sender {
+    [self updateWeatherInfo];
+}
+
+- (void) updateWeatherInfo {
     CGFloat theHour = floor(self.hourSlider.value);
     //NSLog(@"%.2f",self.hourSlider.value);
     
     [self updateWeather:theHour];
-    
-    CGFloat currentTime = self.currentWeather.currentHourInt;
-    
-    if (currentTime >= 21 || currentTime < 5) {
-        currentTime = 0;
-    } else if (currentTime >= 11 && currentTime <= 15) {
-        currentTime = -736;
-    } else if (currentTime > 12){
-        currentTime = (24-currentTime-4);
-        currentTime = (currentTime/6)*-736;
-    } else {
-        currentTime -= 4;
-        currentTime = (currentTime/6)*-736;
-    }
-    
-    self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
 }
 
-
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    if (locations.lastObject != nil) {
-        self.weatherLocation = locations.lastObject;
-    } else {
-        self.weatherLocation = manager.location;
-    }
-    
-    [self.geoCoder reverseGeocodeLocation:self.weatherLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = placemarks.firstObject;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", placemark.locality, placemark.administrativeArea];
-        });
-    }];
-    
-    self.latitude = self.weatherLocation.coordinate.latitude;
-    self.longitude = self.weatherLocation.coordinate.longitude;
-    if (self.weatherData == nil)
-        [self getWeather];
-}
-
-- (void) getWeather{
-    [self.forcastr getForecastForLatitude:self.latitude
-                                longitude:self.longitude
-                                     time:nil
-                               exclusions:nil
-                                   extend:nil
-                                  success:^(id JSON) {
-                                       NSLog(@"JSON Response was: %@", JSON);
-                                      
-                                      _weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
-                                      
-                                      [self updateWeather:0];
-                                      
-                                      CGFloat currentTime = self.weatherData.startingHour;
-                                      
-                                      if (currentTime > 21 || currentTime < 5) {
-                                          self.skyView.alpha =1;
-                                      }
-                                      
-                                      if (currentTime >= 12) {
-                                          currentTime = ((24-currentTime)/12)*-736;
-                                      } else {
-                                          currentTime = (currentTime/12)*-736;
-                                      }
-                                      
-                                      
-                                      if (self.currentWeather.sunUp) {
-                                          self.skyView.hidden = YES;
-                                          
-                                          self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
-                                          NSLog(@"%f",currentTime);
-                                      } else {
-                                          self.skyView.hidden = NO;
-                                          self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
-                                          NSLog(@"%lu",self.weatherData.startingHour);
-                                      }
-                                      
-                                  } failure:^(NSError *error, id response) {
-                                      NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
-                                  }];
-}
-
-
-- (TSWeather*) updateWeather:(NSUInteger)hour{
+- (void) updateWeather:(NSUInteger)hour{
     TSWeather *weather = [self.weatherData weatherForHour:hour];
     
-    NSLog(@"%lu",hour);
     if(self.currentWeather && self.currentWeather == weather) {
         
-        return weather;
+        return;
         
     } else {
         
@@ -216,6 +149,21 @@
         [dateFormatter setDateFormat:@"h:mm a"];
         
         CGFloat currentTime = self.currentWeather.currentHourInt;
+        
+        if (currentTime >= 21 || currentTime < 5) {
+            currentTime = 0;
+        } else if (currentTime >= 11 && currentTime <= 15) {
+            currentTime = -736;
+        } else if (currentTime > 12){
+            currentTime = (24-currentTime-4);
+            currentTime = (currentTime/6)*-736;
+        } else {
+            currentTime -= 4;
+            currentTime = (currentTime/6)*-736;
+        }
+        
+        self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
+        
         
         if (weather.sunSetHour) {
             self.sunRiseSetLabel.hidden = NO;
@@ -239,8 +187,6 @@
             self.sunRiseSetLabel.hidden = YES;
         }
         
-        
-        
         if (hour == 0) {
             NSDate *dateTime = [NSDate date];
             self.temperatureLabel.text = weather.weatherTemperature;
@@ -254,7 +200,7 @@
             self.percentPrecip.text = weather.percentRainString;
             self.timeLabel.text = weather.currentDate;
         }
-     
+        
         if (self.currentWeather.currentHourInt == 7 || self.currentWeather.currentHourInt == 19) {
             self.skyView.hidden = NO;
             self.skyView.alpha =.35;
@@ -262,18 +208,84 @@
             self.skyView.hidden = NO;
             self.skyView.alpha =.5;
         } else if (self.currentWeather.currentHourInt == 5 || self.currentWeather.currentHourInt == 21){
-                   self.skyView.hidden = NO;
-                   self.skyView.alpha = .75;
+            self.skyView.hidden = NO;
+            self.skyView.alpha = .75;
         } else if (self.currentWeather.currentHourInt < 5 || self.currentWeather.currentHourInt > 21){
             self.skyView.hidden = NO;
             self.skyView.alpha = 1;
         } else {
             self.skyView.hidden = YES;
         }
-//        self.skyView.hidden = self.currentWeather.sunUp;
-        return weather;
     }
 }
+
+- (void) getWeather{
+
+    if (self.latitude == 0 && self.longitude == 0) {
+        return;
+    }
+    
+    [self.forcastr getForecastForLatitude:self.latitude
+                                longitude:self.longitude
+                                     time:nil
+                               exclusions:nil
+                                   extend:nil
+                                  success:^(id JSON) {
+                                      //NSLog(@"JSON Response was: %@", JSON);
+                                      
+                                      self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
+                                      
+                                      [self updateWeather:0];
+                                      
+                                      CGFloat currentTime = self.weatherData.startingHour;
+                                      
+                                      if (currentTime > 21 || currentTime < 5) {
+                                          self.skyView.alpha =1;
+                                      }
+                                      
+                                      if (currentTime >= 12) {
+                                          currentTime = ((24-currentTime)/12)*-736;
+                                      } else {
+                                          currentTime = (currentTime/12)*-736;
+                                      }
+                                      
+                                      
+                                      if (self.currentWeather.sunUp) {
+                                          self.skyView.hidden = YES;
+                                          
+                                          self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
+                                          // NSLog(@"%f",currentTime);
+                                      } else {
+                                          self.skyView.hidden = NO;
+                                          self.gradientBackground.frame = CGRectMake(0, currentTime, 414, 1472);
+                                          //  NSLog(@"%lu",self.weatherData.startingHour);
+                                      }
+                                      
+                                  } failure:^(NSError *error, id response) {
+                                      NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                  }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    if (locations.lastObject != nil) {
+        self.weatherLocation = locations.lastObject;
+    } else {
+        self.weatherLocation = manager.location;
+    }
+  
+    [self.geoCoder reverseGeocodeLocation:self.weatherLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = placemarks.firstObject;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", placemark.locality, placemark.administrativeArea];
+            //NSLog(@"%@",placemark.locality);
+        });
+    }];
+    
+    self.latitude = self.weatherLocation.coordinate.latitude;
+    self.longitude = self.weatherLocation.coordinate.longitude;
+        [self getWeather];
+}
+
 
 
 - (void)requestAlwaysAuth{

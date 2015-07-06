@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TSWeather.h"
 #import "TSWeatherData.h"
-#import "TSSkyView.h"
+#import "TSStarField.h"
 #import "TSStar.h"
 #import "TSBackgroundView.h"
 #import "TSViewController.h"

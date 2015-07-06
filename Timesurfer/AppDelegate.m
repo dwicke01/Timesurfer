@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TSViewController.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -37,6 +38,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    TSViewController *vc = [[TSViewController alloc] init];
+    
+    [vc getWeather];
+    
+    NSLog(@"App Del");
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

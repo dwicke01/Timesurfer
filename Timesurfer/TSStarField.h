@@ -1,5 +1,5 @@
 //
-//  TSSkyView.h
+//  TSStarView.h
 //  Timesurfer
 //
 //  Created by Jordan Guggenheim on 6/26/15.
@@ -10,11 +10,6 @@
 #import "TSStar.h"
 
 
-@interface TSSkyView : UIView
-
-@property (nonatomic, strong) NSMutableArray *stars;
-
-
-
+@interface TSStarField : UIView
 
 @end
