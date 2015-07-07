@@ -104,7 +104,7 @@
             } else if (i % 3 == 0 && rowCount < 4 && i < 90) {
                 [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
-            }  else if (i % 5 == 0 && rowCount == 4) {
+            } else if (i % 5 == 0 && rowCount == 4) {
                 
                 [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
             }
