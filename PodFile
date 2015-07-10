@@ -8,6 +8,7 @@ end
 
 target 'TimesurferFramework' do
 pod 'Forecastr', '~> 0.2.1'
+pod 'LMGeocoder'
 end
 
 post_install do |installer_representation|
