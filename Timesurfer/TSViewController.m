@@ -236,6 +236,11 @@
                                       
                                       self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
+                                      NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
+                                      NSInteger high = [today[@"apparentTemperatureMax"] integerValue];
+                                      NSInteger low = [today[@"apparentTemperatureMin"] integerValue];
+                                      NSLog(@"H %lu L %lu", high, low); // add this to the label
+                                      
                                       [self updateWeather:0];
                                       
                                       CGFloat currentTime = self.weatherData.startingHour;
