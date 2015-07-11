@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Cool-Moon" translatesAutoresizingMaskIntoConstraints="NO" id="CEU-Yb-vb6">
-                                        <rect key="frame" x="-150" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="-161" y="0.0" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CEU-Yb-vb6" secondAttribute="height" multiplier="1:1" id="R8V-x6-25C"/>
                                             <constraint firstAttribute="height" constant="150" id="fyl-Wb-fLD"/>
@@ -45,7 +45,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="CEU-Yb-vb6" firstAttribute="leading" secondItem="Foz-6n-SI8" secondAttribute="leading" constant="-150" id="26v-89-Pwm"/>
+                                    <constraint firstItem="CEU-Yb-vb6" firstAttribute="trailing" secondItem="Foz-6n-SI8" secondAttribute="trailing" constant="-425" id="26v-89-Pwm"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I">

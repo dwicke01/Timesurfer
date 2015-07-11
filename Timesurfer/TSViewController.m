@@ -102,7 +102,7 @@
 
 - (void) returnFromSleep{
     self.hourSlider.value = 0;
-    self.moonXAxis.constant = -150;
+    self.moonXAxis.constant = -425;
     [self getWeather];
 }
 
@@ -208,7 +208,7 @@
             self.sunRiseSetLabel.hidden = NO;
             
             [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                self.moonXAxis.constant = 265;
+                self.moonXAxis.constant = -20;
                 [self.skyView layoutIfNeeded];
             } completion:^(BOOL finished) {
                 

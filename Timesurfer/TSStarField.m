@@ -52,7 +52,7 @@
         rotation = arc4random_uniform(72);
         
         // If the star + x padding will be off the screen, start a new row.
-        if (maxX+xAxisPadding >= self.frame.size.width) {
+        if (maxX >= self.frame.size.width) {
             
             // Stagger starting x coordinate for even vs odd rows.
             if (evenRow == NO){
@@ -95,10 +95,10 @@
             if (i % 2 == 0 && rowCount < 1) {
                 [TSStar drawBiggerStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
-            } else if (i % 2 == 0 && rowCount < 4) {
+            } else if (rowCount < 4 && i % 2) {
                 [TSStar drawBigStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
-            } else if (rowCount > 1 && rowCount < 3 && i % 5 != 0) {
+            } else if (rowCount >= 1 && rowCount < 3 && i % 5 != 0) {
                 [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
             } else if (i % 3 == 0 && rowCount < 4 && i < 90) {
