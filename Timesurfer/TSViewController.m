@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
+@property (weak, nonatomic) IBOutlet UILabel *highLowLabel;
 
 @property (nonatomic, strong) CLLocation *weatherLocation;
 @property (nonatomic, strong) CLGeocoder *geoCoder;
@@ -259,9 +260,9 @@
                                       self.hourOffset = self.hourSlider.minimumValue;
 
                                       NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
-                                      NSInteger high = [today[@"apparentTemperatureMax"] integerValue];
-                                      NSInteger low = [today[@"apparentTemperatureMin"] integerValue];
-                                      NSLog(@"H %lu L %lu", high, low); // add this to the label
+                                      NSInteger high = [today[@"temperatureMax"] integerValue];
+                                      NSInteger low = [today[@"temperatureMin"] integerValue];
+                                      self.highLowLabel.text = [NSString stringWithFormat:@"H %lu L %lu", high, low];
                                       
                                       [self updateWeather:0];
                                       

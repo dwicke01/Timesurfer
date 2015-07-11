@@ -127,6 +127,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="dayTimeGradient" destination="Mkh-CP-iOv" id="aM2-Hm-Mpx"/>
+                        <outlet property="highLowLabel" destination="U99-vA-Ucs" id="OTa-Lu-Sus"/>
                         <outlet property="hourSlider" destination="EqI-wX-JTi" id="mJY-xQ-zt9"/>
                         <outlet property="locationLabel" destination="XEV-1r-G3o" id="feL-vq-3Yl"/>
                         <outlet property="milkyWay" destination="8D6-NV-UvY" id="LXX-9e-VJR"/>
