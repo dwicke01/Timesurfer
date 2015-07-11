@@ -1,6 +1,6 @@
 #include "Pods-TimesurferExtension-Forecastr.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Forecastr" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Forecastr"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Forecastr" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Forecastr" "${PODS_ROOT}/Headers/Public/LMGeocoder"
 OTHER_LDFLAGS = ${PODS_TIMESURFEREXTENSION_FORECASTR_OTHER_LDFLAGS} -ObjC
 PODS_ROOT = ${SRCROOT}
 SKIP_INSTALL = YES

@@ -11,6 +11,8 @@
 #import "TSViewController.h"
 #import "TSStarField.h"
 #import "TSWeatherData.h"
+#import "LMGeocoder.h"
+
 @import CoreLocation;
 
 @interface TSViewController ()
@@ -255,6 +257,25 @@
                                       self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
                                       self.hourSlider.value = self.hourSlider.minimumValue;
                                       self.hourOffset = self.hourSlider.minimumValue;
+
+                                      NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
+                                      NSInteger high = [today[@"apparentTemperatureMax"] integerValue];
+                                      NSInteger low = [today[@"apparentTemperatureMin"] integerValue];
+                                      NSLog(@"H %lu L %lu", high, low); // add this to the label
+                                      
+                                      [self updateWeather:0];
+                                      
+                                      CGFloat currentTime = self.weatherData.startingHour;
+                                      
+                                      if (currentTime > 21 || currentTime < 5) {
+                                          self.skyView.alpha =1;
+                                      }
+                                      
+                                      if (currentTime >= 12) {
+                                          currentTime = ((24-currentTime)/12)*-736;
+                                      } else {
+                                          currentTime = (currentTime/12)*-736;
+                                      }
                                       
                                       [self updateWeatherInfo];
                                       
@@ -269,14 +290,26 @@
     } else {
         self.weatherLocation = manager.location;
     }
-  
-    [self.geoCoder reverseGeocodeLocation:self.weatherLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = placemarks.firstObject;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", placemark.locality, placemark.administrativeArea];
-            //NSLog(@"%@",placemark.locality);
-        });
-    }];
+
+//    [self.geoCoder reverseGeocodeLocation:self.weatherLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+//        CLPlacemark *placemark = placemarks.firstObject;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", placemark.locality, placemark.administrativeArea];
+//            //NSLog(@"%@",placemark.locality);
+//        });
+//    }];
+    
+    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:self.weatherLocation.coordinate
+                                                  service:kLMGeocoderGoogleService
+                                        completionHandler:^(NSArray *results, NSError *error) {
+                                            if (results.count && !error) {
+                                                LMAddress *address = [results firstObject];
+                                                NSInteger index = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"administrative_area_level_1"];
+                                                }];
+                                                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", address.locality, [address.lines[index] objectForKey:@"short_name"]];
+                                            }
+                                        }];
     
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;

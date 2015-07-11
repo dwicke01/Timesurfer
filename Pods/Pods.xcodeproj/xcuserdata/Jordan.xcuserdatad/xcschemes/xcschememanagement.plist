@@ -6,93 +6,103 @@
 	<dict>
 		<key>Pods-Timesurfer-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Timesurfer-Forecastr.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Timesurfer.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TimesurferExtension-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TimesurferExtension-Forecastr.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TimesurferExtension.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TimesurferFramework-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TimesurferFramework-Forecastr.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferFramework-LMGeocoder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TimesurferFramework.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02E0114ED49423FDB40F4EAC</key>
+		<key>159D7ED5916BA3A5BAEC1A36</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38CB0894F9698C02B990BDF8</key>
+		<key>21639B9C3F58BE95101A4EB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52260035A5635052A4A6F456</key>
+		<key>4D9547591A05C4D3047D0A7C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>874EF3960C30B415A0D5A955</key>
+		<key>68F80285BE83B73F0850F97C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C8B580153B4796D7658725B</key>
+		<key>AAE5FA6006C7E25C1E884BBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>989345B5A5B02F9DDBC35498</key>
+		<key>AEF9A4304FAF2DF921DE4A35</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C82CD7FEB90E8E4C11C5459D</key>
+		<key>BE833671949A4961E714FB79</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD527526B57CDDC103DC20E8</key>
+		<key>BE9A8F8ED1B4E3231D5BAE7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9276C3E1E53164DAB1812A9</key>
+		<key>EB6C886CA4C190DF8FEF2DB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA73A182B9455C29322C948D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

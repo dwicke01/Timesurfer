@@ -22,12 +22,15 @@ PODS:
     - AFNetworking/NSURLSession
   - Forecastr (0.2.1):
     - AFNetworking (~> 2.4.1)
+  - LMGeocoder (1.0.3)
 
 DEPENDENCIES:
   - Forecastr (~> 0.2.1)
+  - LMGeocoder
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
   Forecastr: d54d4a53e93b592c64754551cd86aa3d00a5ef1a
+  LMGeocoder: 100572f9e572a26d3506ee0604d6629bea391767
 
 COCOAPODS: 0.37.2

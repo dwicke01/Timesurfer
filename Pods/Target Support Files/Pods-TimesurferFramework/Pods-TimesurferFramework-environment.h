@@ -54,3 +54,9 @@
 #define COCOAPODS_VERSION_MINOR_Forecastr 2
 #define COCOAPODS_VERSION_PATCH_Forecastr 1
 
+// LMGeocoder
+#define COCOAPODS_POD_AVAILABLE_LMGeocoder
+#define COCOAPODS_VERSION_MAJOR_LMGeocoder 1
+#define COCOAPODS_VERSION_MINOR_LMGeocoder 0
+#define COCOAPODS_VERSION_PATCH_LMGeocoder 3
+
