@@ -13,11 +13,13 @@
 		17DB0C071B3BAA690001810D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
 		17DB0C0A1B3BAA690001810D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C081B3BAA690001810D /* LaunchScreen.xib */; };
 		17DB0C161B3BAA690001810D /* TimesurferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C151B3BAA690001810D /* TimesurferTests.m */; };
+		17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */; };
+		17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */; };
+		17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */; };
+		17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */; };
 		44219C10B632388FE09B70FB /* libPods-TimesurferExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A7DEE960EE55BF206C158D /* libPods-TimesurferExtension.a */; };
 		50038113C52D76AD9B55049B /* libPods-TimesurferFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3DE8ECFA93BFF385CBE865 /* libPods-TimesurferFramework.a */; };
 		8312CC48020A4414A82E60DB /* libPods-Timesurfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFDD922A2F4C2D38E58CA82 /* libPods-Timesurfer.a */; };
-		FA1605921B42F2E300218DDA /* TSGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 1721541A1B40F51E00379B22 /* TSGradientBackground.m */; };
-		FA1605931B42F2EC00218DDA /* TSGradientBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 172154191B40F51E00379B22 /* TSGradientBackground.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA22DACA1B41DEEE0072005E /* TimesurferFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */; };
 		FA22DAD31B41DEEE0072005E /* TimesurferFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */; };
@@ -114,8 +116,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		172154191B40F51E00379B22 /* TSGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGradientBackground.h; path = ../Timesurfer/TSGradientBackground.h; sourceTree = "<group>"; };
-		1721541A1B40F51E00379B22 /* TSGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSGradientBackground.m; path = ../Timesurfer/TSGradientBackground.m; sourceTree = "<group>"; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStar.h; path = ../Timesurfer/TSStar.h; sourceTree = "<group>"; };
@@ -139,6 +139,10 @@
 		17DB0C151B3BAA690001810D /* TimesurferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferTests.m; sourceTree = "<group>"; };
 		17DB0C221B3BAB3E0001810D /* TSBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSBackgroundView.h; path = ../Timesurfer/TSBackgroundView.h; sourceTree = "<group>"; };
 		17DB0C231B3BAB3E0001810D /* TSBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSBackgroundView.m; path = ../Timesurfer/TSBackgroundView.m; sourceTree = "<group>"; };
+		17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDayTimeGradient.h; sourceTree = "<group>"; };
+		17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDayTimeGradient.m; sourceTree = "<group>"; };
+		17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSNightGradient.h; path = Timesurfer/TSNightGradient.h; sourceTree = SOURCE_ROOT; };
+		17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSNightGradient.m; path = Timesurfer/TSNightGradient.m; sourceTree = SOURCE_ROOT; };
 		1A76722F0040275B706F556D /* Pods-Timesurfer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timesurfer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer.debug.xcconfig"; sourceTree = "<group>"; };
 		37C3A64486D20A46C0AA10FE /* Pods-Timesurfer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timesurfer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer.release.xcconfig"; sourceTree = "<group>"; };
 		3C3327961059FA91D5089983 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -323,10 +327,12 @@
 				17DB0C011B3BAA690001810D /* TSViewController.m */,
 				17DB0C221B3BAB3E0001810D /* TSBackgroundView.h */,
 				17DB0C231B3BAB3E0001810D /* TSBackgroundView.m */,
-				172154191B40F51E00379B22 /* TSGradientBackground.h */,
-				1721541A1B40F51E00379B22 /* TSGradientBackground.m */,
+				17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */,
+				17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
 				FA22DAC11B41DEEE0072005E /* Supporting Files */,
+				17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */,
+				17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */,
 			);
 			path = TimesurferFramework;
 			sourceTree = "<group>";
@@ -382,13 +388,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */,
 				FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */,
 				FA22DAE11B41E04D0072005E /* TSWeatherData.h in Headers */,
 				FAECE4F91B41F6F900993A63 /* TSBackgroundView.h in Headers */,
-				FA1605931B42F2EC00218DDA /* TSGradientBackground.h in Headers */,
 				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
+				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
 				FAECE5011B42384900993A63 /* TSStar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,13 +712,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1605921B42F2E300218DDA /* TSGradientBackground.m in Sources */,
+				17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */,
 				FAECE4FE1B42383E00993A63 /* TSStarField.m in Sources */,
 				FAECE4FF1B42383E00993A63 /* TSStar.m in Sources */,
 				FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */,
 				FAECE4FC1B41F72A00993A63 /* TSBackgroundView.m in Sources */,
 				FA22DADF1B41E0400072005E /* TSWeatherData.m in Sources */,
 				FA22DAE01B41E0400072005E /* TSWeather.m in Sources */,
+				17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

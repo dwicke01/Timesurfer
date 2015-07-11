@@ -48,18 +48,18 @@
         
         UIColor *starColor = [[UIColor whiteColor] colorWithAlphaComponent:alpha];
         
-        //72° is one full star rotation.
+        // 72° is one full star rotation.
         rotation = arc4random_uniform(72);
         
-        //If the star + x padding will be off the screen, start a new row.
+        // If the star + x padding will be off the screen, start a new row.
         if (maxX+xAxisPadding >= self.frame.size.width) {
             
-            //Stagger starting x coordinate for even vs odd rows.
+            // Stagger starting x coordinate for even vs odd rows.
             if (evenRow == NO){
                 xAxis = 30;
                 evenRow = YES;
                 
-                //Only reduce alpha every other row.
+                // Only reduce alpha every other row.
                 alpha *= .95;
                 
             } else {
@@ -67,29 +67,29 @@
                 evenRow = NO;
             }
             
-            //Y axis move at least 30pts to prevent overlap + 10 random for staggering.
+            // Y axis move at least 30pts to prevent overlap + 10 random for staggering.
             yAxis += arc4random_uniform(10)+30;
             
             starFrame = CGRectMake(xAxis, yAxis, starFrameWidth, starFrameWidth);
             
             rowCount++;
             
-            //If y moves past frame, reset y.
+            // If y moves past frame, reset y.
             if (yAxis > self.frame.size.height) {
                 yAxis = 0;
                 alpha = 1;
             }
         }
         
-        //If star is not running off the screen, assign new X and Y coordinates.  X can move an extra 10pts.  Y is range bound +/- 10pts.
+        // If star is not running off the screen, assign new X and Y coordinates.  X can move an extra 10pts.  Y is range bound +/- 10pts.
         else {
             starFrame = CGRectMake(xAxis+arc4random_uniform(10), yAxis+arc4random_uniform(20)-10, starFrameWidth, starFrameWidth);
             
-            //Move x for next star.
+            // Move x for next star.
             xAxis += arc4random_uniform(20)+60;
         }
         
-        //If the new star's frame doesn't overlap another star then draw it.  Bigger stars are biased toward the top rows.  The modulo ensures that it only draws stars at certain iterations in the for loop to prevent drawing too many stars.
+        // If the new star's frame doesn't overlap another star then draw it.  Bigger stars are biased toward the top rows.  The modulo ensures that it only draws stars at certain iterations in the for loop to prevent drawing too many stars.
         if (![self starIntersects:starFrame]) {
             
             if (i % 2 == 0 && rowCount < 1) {
@@ -109,7 +109,7 @@
                 [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
             }
             
-            //Add star frame to array to prevent overlapping stars.
+            // Add star frame to array to prevent overlapping stars.
             [self.starFrames addObject:[NSValue valueWithCGRect:starFrame]];
         }
     }
@@ -131,13 +131,13 @@
         
         UIColor *starColor = [[UIColor whiteColor] colorWithAlphaComponent:alpha];
         
-        //72° is one full star rotation.
+        // 72° is one full star rotation.
         rotation = arc4random_uniform(72);
         
-        //If the star + x padding will be off the screen, start a new row.
+        // If the star + x padding will be off the screen, start a new row.
         if (maxX+xAxisPadding >= self.frame.size.width) {
             
-            //Randomize starting coordinates
+            // Randomize starting coordinates
             xAxis = arc4random_uniform(15)+5;
             yAxis += arc4random_uniform(30);
             
@@ -145,26 +145,26 @@
             
             alpha *= .90;
             
-            //If y moves past frame, reset y.
+            // If y moves past frame, reset y.
             if (yAxis > self.frame.size.height) {
                 yAxis = 150;
                 alpha *= .4;
             }
             
-            //Increase speed of alpha reduction for bottom rows
+            // Increase speed of alpha reduction for bottom rows
             else if (yAxis > 200){
                 alpha *=.9;
             }
             
-            //If star is not running off the screen, assign new X and Y coordinates.  X and Y are range bound +20pts /-10pts.
+            // If star is not running off the screen, assign new X and Y coordinates.  X and Y are range bound +20pts /-10pts.
         } else {
             starFrame = CGRectMake(xAxis+arc4random_uniform(30)-10, yAxis+arc4random_uniform(30)-10, starWidth, starWidth);
             
-            //Move x for the next star.
+            // Move x for the next star.
             xAxis += 2 * starWidth + xAxisPadding * 2;
         }
         
-        //Little stars can intersect, so no validation for CGRect.
+        // Little stars can intersect, so no validation for CGRect.
         [TSStar drawLittleStarWithFrame:starFrame starColor:starColor rotation:rotation];
     }
 }
