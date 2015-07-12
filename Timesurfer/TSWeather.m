@@ -39,7 +39,7 @@
 
 
 - (void) formatWeatherData{
-    
+
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
     _weatherTemperature = [[NSString alloc] initWithFormat:@"%.f°F",temperatureNumber.floatValue];
     

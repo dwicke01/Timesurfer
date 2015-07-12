@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1704BDD71B52FCFB00E0DFEF /* TSSheepClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSSheepClouds.h */; };
+		1704BDD81B52FCFB00E0DFEF /* TSSheepClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704BDD61B52FCFB00E0DFEF /* TSSheepClouds.m */; };
 		17DB0BFC1B3BAA690001810D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFB1B3BAA690001810D /* main.m */; };
 		17DB0BFF1B3BAA690001810D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFE1B3BAA690001810D /* AppDelegate.m */; };
 		17DB0C051B3BAA690001810D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C031B3BAA690001810D /* Main.storyboard */; };
@@ -114,6 +116,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1704BDD51B52FCFB00E0DFEF /* TSSheepClouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSSheepClouds.h; path = Timesurfer/TSSheepClouds.h; sourceTree = SOURCE_ROOT; };
+		1704BDD61B52FCFB00E0DFEF /* TSSheepClouds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSSheepClouds.m; path = Timesurfer/TSSheepClouds.m; sourceTree = SOURCE_ROOT; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
@@ -325,6 +329,8 @@
 				17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */,
 				17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */,
 				17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */,
+				1704BDD51B52FCFB00E0DFEF /* TSSheepClouds.h */,
+				1704BDD61B52FCFB00E0DFEF /* TSSheepClouds.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
 				FA22DAC11B41DEEE0072005E /* Supporting Files */,
 			);
@@ -390,6 +396,7 @@
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
 				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
 				FAECE5011B42384900993A63 /* TSGraphics.h in Headers */,
+				1704BDD71B52FCFB00E0DFEF /* TSSheepClouds.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1704BDD81B52FCFB00E0DFEF /* TSSheepClouds.m in Sources */,
 				17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */,
 				FAECE4FE1B42383E00993A63 /* TSStarField.m in Sources */,
 				FAECE4FF1B42383E00993A63 /* TSGraphics.m in Sources */,

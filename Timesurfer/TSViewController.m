@@ -27,9 +27,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 @property (weak, nonatomic) IBOutlet UIView *skyView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
+@property (weak, nonatomic) IBOutlet UIView *sheepClouds;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sheepCloudsXAxis;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -106,6 +108,7 @@
 - (void) returnFromSleep {
     self.hourSlider.value = 0;
     self.moonXAxis.constant = -425;
+    self.sheepCloudsXAxis.constant = 440;
     [self requestAlwaysAuth];
     [self getWeather];
 }
@@ -189,6 +192,13 @@
         
     } else if (currentTime > 730 && currentTime < 1700){
         alphaValue = 0;
+        
+        [UIView animateWithDuration:20 delay:0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction animations:^{
+            self.sheepCloudsXAxis.constant = -440;
+            [self.sheepClouds layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
         
     } else if (currentTime > 2200){
         alphaValue = 1;
