@@ -93,20 +93,20 @@
         if (![self starIntersects:starFrame]) {
             
             if (i % 2 == 0 && rowCount < 1) {
-                [TSStar drawBiggerStarWithFrame:starFrame starColor:starColor rotation:rotation];
+                [TSGraphics drawBiggerStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
             } else if (rowCount < 4 && i % 2) {
-                [TSStar drawBigStarWithFrame:starFrame starColor:starColor rotation:rotation];
+                [TSGraphics drawBigStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
             } else if (rowCount >= 1 && rowCount < 3 && i % 5 != 0) {
-                [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
+                [TSGraphics drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
             } else if (i % 3 == 0 && rowCount < 4 && i < 90) {
-                [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
+                [TSGraphics drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
                 
             } else if (i % 5 == 0 && rowCount == 4) {
                 
-                [TSStar drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
+                [TSGraphics drawMediumStarWithFrame:starFrame starColor:starColor rotation:rotation];
             }
             
             // Add star frame to array to prevent overlapping stars.
@@ -165,7 +165,7 @@
         }
         
         // Little stars can intersect, so no validation for CGRect.
-        [TSStar drawLittleStarWithFrame:starFrame starColor:starColor rotation:rotation];
+        [TSGraphics drawLittleStarWithFrame:starFrame starColor:starColor rotation:rotation];
     }
 }
 

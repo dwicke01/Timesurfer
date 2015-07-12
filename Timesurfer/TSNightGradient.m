@@ -7,7 +7,7 @@
 //
 
 #import "TSNightGradient.h"
-#import "TSStar.h"
+#import "TSGraphics.h"
 
 @implementation TSNightGradient
 
@@ -15,7 +15,7 @@
     
     
     CGSize canvas = CGSizeMake(self.frame.size.width, self.frame.size.height);
-    [TSStar drawNightGradientWithCanvasSize:canvas];
+    [TSGraphics drawNightGradientWithCanvasSize:canvas];
 }
 
 @end

@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TSStar : NSObject
+@interface TSGraphics : NSObject
 
 // Drawing Methods
 + (void)drawBiggerStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
