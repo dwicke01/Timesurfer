@@ -10,10 +10,9 @@
 #import "TSWeather.h"
 #import "TSWeatherData.h"
 #import "TSStarField.h"
-#import "TSStar.h"
-#import "TSBackgroundView.h"
+#import "TSGraphics.h"
 #import "TSViewController.h"
-#import "TSGradientBackground.h"
+
 
 //! Project version number for TimesurferFramework.
 FOUNDATION_EXPORT double TimesurferFrameworkVersionNumber;

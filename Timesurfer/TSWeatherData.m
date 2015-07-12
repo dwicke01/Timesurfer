@@ -18,17 +18,17 @@
 @property (nonatomic, strong) NSString *sunRiseHour;
 @property (nonatomic, strong) NSString *sunSetHour;
 @property (nonatomic, assign) BOOL dayLight;
-@end
 
+@end
 
 @implementation TSWeatherData
 
-- (instancetype)initWithDictionary:(NSDictionary *)incomingWeather{
+- (instancetype)initWithDictionary:(NSDictionary *)incomingWeatherJSON{
     
     self = [super init];
     
     if (self){
-        _weatherDictionary = incomingWeather;
+        _weatherDictionary = incomingWeatherJSON;
         _weatherByHour = [[NSMutableArray alloc] init];
         
         NSNumber *sunRiseNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
@@ -58,31 +58,40 @@
 
 - (void) populateWeatherByHour{
     
+    
+    // Create first weather object for current weather
     if (self.weatherDictionary[@"currently"]) {
-        NSNumber *hour = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];
-        NSUInteger theHour = [self currentHour:hour];
         
-        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:theHour]];
+        NSNumber *unixTime = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];
+        NSUInteger militaryHour = [self convertToMilitaryHourWithUnixTime:unixTime];
+        
+        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
+        
         [self.weatherByHour addObject:weather];
     }
     
+    // Create weather objects for remaining hours
     if (self.weatherDictionary[@"hourly"]){
         
-        NSMutableArray *hourlyDataArray = [[NSMutableArray alloc] initWithArray:self.weatherDictionary[@"hourly"][@"data"]];
-        NSDate *dateTime = [NSDate date];
+        NSMutableArray *hourlyWeatherDataArray = [[NSMutableArray alloc] initWithArray:self.weatherDictionary[@"hourly"][@"data"]];
         
-        NSNumber *unixTimeAtIndex1 = hourlyDataArray[1][@"time"];
+        
+        // If the hourly weather for Index 1 is the same hour as the current weather hour then remove the redundant weather info
+        NSDate *currentDateTime = [NSDate date];
+        NSNumber *unixTimeAtIndex1 = hourlyWeatherDataArray[1][@"time"];
         NSDate *dateAtIndex1 = [NSDate dateWithTimeIntervalSince1970:unixTimeAtIndex1.doubleValue];
         
-        if ([dateTime compare:dateAtIndex1] == NSOrderedDescending ||[dateTime compare:dateAtIndex1] == NSOrderedSame) {
-            [hourlyDataArray removeObjectAtIndex:1];
+        if ([currentDateTime compare:dateAtIndex1] == NSOrderedDescending || [currentDateTime compare:dateAtIndex1] == NSOrderedSame) {
+            [hourlyWeatherDataArray removeObjectAtIndex:1];
         }
-        for (NSUInteger i = 1; i < hourlyDataArray.count; i++) {
+        
+        //Create Weather Objects and add to weatherByHour array
+        for (NSUInteger i = 1; i < hourlyWeatherDataArray.count; i++) {
             
-            NSNumber *hour = self.weatherDictionary[@"hourly"][@"data"][i][@"time"];
-            NSUInteger theHour = [self currentHour:hour];
+            NSNumber *unixTime = self.weatherDictionary[@"hourly"][@"data"][i][@"time"];
+            NSUInteger militaryHour = [self convertToMilitaryHourWithUnixTime:unixTime];
             
-            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyDataArray[i] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:theHour]];
+            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
             [self.weatherByHour addObject:weather];
         }
     }
@@ -94,8 +103,9 @@
     return self.weatherByHour[hour];
 }
 
-- (NSUInteger)currentHour:(NSNumber *) num{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:num.integerValue];
+- (NSUInteger)convertToMilitaryHourWithUnixTime:(NSNumber *) unixTime{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:unixTime.integerValue];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"H"];
     NSString *hourString = [dateFormatter stringFromDate:date];
@@ -103,6 +113,7 @@
 }
 
 - (BOOL) sunUpCheck:(NSUInteger) theHour {
+    
     if (theHour >= self.sunRiseHour.integerValue && theHour < self.sunSetHour.integerValue) {
         return YES;
     } else {

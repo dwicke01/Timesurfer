@@ -1,5 +1,5 @@
 //
-//  TSStar.h
+//  TSGraphics.h
 //  (null)
 //
 //  Created by Jordan Guggenheim on 7/11/15.
@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TSStar : NSObject
+@interface TSGraphics : NSObject
 
 // Drawing Methods
 + (void)drawBiggerStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
@@ -24,8 +24,6 @@
 + (void)drawNightGradientWithCanvasSize: (CGSize)canvasSize;
 
 @end
-
-
 
 @interface UIColor (PaintCodeAdditions)
 
