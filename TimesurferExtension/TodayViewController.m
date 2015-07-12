@@ -45,7 +45,7 @@
     else if (stepper.value > 23)
         stepper.value = 23;
     else
-        [self updateWeatherLabels:(NSInteger)stepper.value];
+        [self updateWeatherLabelsWithIndex:(NSInteger)stepper.value];
 }
 
 - (void)didReceiveMemoryWarning {

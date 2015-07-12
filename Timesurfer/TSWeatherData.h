@@ -16,7 +16,7 @@
 @property (nonatomic, assign) NSUInteger startingHour;
 
 
-- (instancetype) initWithDictionary:(NSDictionary *)incomingWeather;
+- (instancetype) initWithDictionary:(NSDictionary *)incomingWeatherJSON;
 - (TSWeather *)weatherForHour:(NSUInteger)hour;
 
 @end

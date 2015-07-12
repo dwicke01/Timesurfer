@@ -117,7 +117,7 @@
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
    
-    [self updateWeatherLabels:currentTime];
+    [self updateWeatherLabelsWithIndex:currentTime];
     [self updateGradient];
     [self updateSky];
 }
@@ -198,7 +198,7 @@
     self.milkyWay.alpha = alphaValue-.7;
 }
 
-- (void) updateWeatherLabels:(NSUInteger)indexOfHour{
+- (void) updateWeatherLabelsWithIndex:(NSUInteger)indexOfHour{
     TSWeather *weather = [self.weatherData weatherForHour:indexOfHour];
     
     if(self.currentWeather && self.currentWeather == weather) {
@@ -279,7 +279,7 @@
                                       NSInteger low = [today[@"temperatureMin"] integerValue];
                                       self.highLowLabel.text = [NSString stringWithFormat:@"H %lu L %lu", high, low];
                                       
-                                      [self updateWeatherLabels:0];
+                                      [self updateWeatherLabelsWithIndex:0];
                                       
                                       CGFloat currentTime = self.weatherData.startingHour;
                                       
@@ -331,8 +331,6 @@
     self.longitude = self.weatherLocation.coordinate.longitude;
     [self getWeather];
 }
-
-
 
 - (void)requestAlwaysAuth{
     
