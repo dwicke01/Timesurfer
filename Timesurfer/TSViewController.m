@@ -17,17 +17,19 @@
 
 @interface TSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
-@property (weak, nonatomic) IBOutlet TSStarField *skyView;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *highLowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
+
+@property (weak, nonatomic) IBOutlet TSStarField *skyView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
-@property (weak, nonatomic) IBOutlet UILabel *highLowLabel;
 
 @property (nonatomic, strong) CLLocation *weatherLocation;
 @property (nonatomic, strong) CLGeocoder *geoCoder;
@@ -41,7 +43,7 @@
 @property (nonatomic, strong) TSWeatherData *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
-
+@property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 
 @end
 
