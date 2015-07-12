@@ -20,7 +20,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 - (void) getWeather;
-- (void) updateWeather:(NSUInteger)hour;
+- (void) updateWeatherLabels:(NSUInteger)hour;
 - (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion;
 
 @end

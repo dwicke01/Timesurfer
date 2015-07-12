@@ -60,9 +60,9 @@
     
     if (self.weatherDictionary[@"currently"]) {
         NSNumber *hour = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];
-        NSUInteger theHour = [self currentHour:hour];
+        NSUInteger militaryHour = [self currentHour:hour];
         
-        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:theHour]];
+        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
         [self.weatherByHour addObject:weather];
     }
     

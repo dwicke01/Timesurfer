@@ -25,25 +25,24 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
+@property (weak, nonatomic) IBOutlet UIView *skyView;
+@property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
+@property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
 
-@property (weak, nonatomic) IBOutlet TSStarField *skyView;
-@property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
-
-@property (nonatomic, strong) CLLocation *weatherLocation;
-@property (nonatomic, strong) CLGeocoder *geoCoder;
-
-@property (nonatomic, strong) Forecastr *forcastr;
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
 @property (nonatomic, assign) CGFloat startPoint;
 @property (nonatomic, assign) CGFloat frameHeight;
 @property (nonatomic, assign) CGFloat hourOffset;
+
+@property (nonatomic, strong) CLLocation *weatherLocation;
+@property (nonatomic, strong) CLGeocoder *geoCoder;
+
+@property (nonatomic, strong) Forecastr *forcastr;
 @property (nonatomic, strong) TSWeatherData *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
-
-@property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 
 @end
 
@@ -64,7 +63,7 @@
     self.forcastr.apiKey = @"530d1d38e625bdd0d86381ffe990ca1c";
 
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
-    self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255. green:255. blue:255. alpha:0.9];
+    self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
     
     self.frameHeight = self.view.frame.size.height;
 
@@ -72,14 +71,17 @@
                                              selector:@selector(returnFromSleep)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
     
-    [self setNeedsStatusBarAppearanceUpdate];
+    self.milkyWay.alpha = 0;
+    self.skyView.alpha = 0;
     
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     [self requestAlwaysAuth];
+    
     if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]){
         
         [self.locationManager startMonitoringSignificantLocationChanges];
@@ -97,14 +99,14 @@
     [super didReceiveMemoryWarning];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
-- (void) returnFromSleep{
+- (void) returnFromSleep {
     self.hourSlider.value = 0;
     self.moonXAxis.constant = -425;
+    [self requestAlwaysAuth];
     [self getWeather];
 }
 
@@ -115,13 +117,13 @@
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
    
-    [self updateWeather:currentTime];
+    [self updateWeatherLabels:currentTime];
     [self updateGradient];
     [self updateSky];
-    
 }
 
 - (void) updateGradient {
+    
     CGFloat currentTime;
     CGFloat alphaValue;
     
@@ -130,15 +132,21 @@
     } else {
         currentTime = self.hourSlider.value;
     }
-    
+
+    // Program this to correspond with actual sunset
     if (currentTime >= 1500 && currentTime <= 2200) {
         alphaValue = ((2200-currentTime)/700);
+
+    // Program this to correspond with actual sunrise
     } else if (currentTime >= 500 && currentTime <= 1000){
         alphaValue = ((currentTime-500)/500);
+        
     } else if (currentTime < 500) {
         alphaValue = 0;
+        
     } else if (currentTime > 1000 && currentTime < 1500){
         alphaValue = 1;
+        
     } else if (currentTime > 2200){
         alphaValue = 0;
     }
@@ -164,12 +172,24 @@
     
     if (currentTime >= 1700 && currentTime <= 2200) {
         alphaValue = ((currentTime-1700)/500);
+        
+        //Move this to separate method to account for accurate moon rise/set times
+        [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.moonXAxis.constant = -20;
+            [self.skyView layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
+        
     } else if (currentTime >= 500 && currentTime <= 730){
         alphaValue = ((730-currentTime)/230);
+        
     } else if (currentTime < 500) {
         alphaValue = 1;
+        
     } else if (currentTime > 730 && currentTime < 1700){
         alphaValue = 0;
+        
     } else if (currentTime > 2200){
         alphaValue = 1;
     }
@@ -178,8 +198,8 @@
     self.milkyWay.alpha = alphaValue-.7;
 }
 
-- (void) updateWeather:(NSUInteger)hour{
-    TSWeather *weather = [self.weatherData weatherForHour:hour];
+- (void) updateWeatherLabels:(NSUInteger)indexOfHour{
+    TSWeather *weather = [self.weatherData weatherForHour:indexOfHour];
     
     if(self.currentWeather && self.currentWeather == weather) {
         
@@ -209,13 +229,6 @@
             self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
             self.sunRiseSetLabel.hidden = NO;
             
-            [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                self.moonXAxis.constant = -20;
-                [self.skyView layoutIfNeeded];
-            } completion:^(BOOL finished) {
-                
-            }];
-            
         } else if (currentTime == 4 || currentTime == 6) {
             self.sunRiseSetLabel.alpha = .5;
             self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
@@ -224,7 +237,7 @@
             self.sunRiseSetLabel.hidden = YES;
         }
         
-        if (hour == 0) {
+        if (indexOfHour == 0) {
             NSDate *dateTime = [NSDate date];
             self.temperatureLabel.text = weather.weatherTemperature;
             self.weatherImage.image = weather.weatherImage;
@@ -266,7 +279,7 @@
                                       NSInteger low = [today[@"temperatureMin"] integerValue];
                                       self.highLowLabel.text = [NSString stringWithFormat:@"H %lu L %lu", high, low];
                                       
-                                      [self updateWeather:0];
+                                      [self updateWeatherLabels:0];
                                       
                                       CGFloat currentTime = self.weatherData.startingHour;
                                       
@@ -316,7 +329,7 @@
     
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;
-        [self getWeather];
+    [self getWeather];
 }
 
 
