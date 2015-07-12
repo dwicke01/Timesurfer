@@ -299,16 +299,33 @@
 //            //NSLog(@"%@",placemark.locality);
 //        });
 //    }];
-    
-    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:self.weatherLocation.coordinate
+    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate: /*CLLocationCoordinate2DMake(40.5744, -73.9786)*/
+    self.weatherLocation.coordinate
                                                   service:kLMGeocoderGoogleService
                                         completionHandler:^(NSArray *results, NSError *error) {
                                             if (results.count && !error) {
                                                 LMAddress *address = [results firstObject];
-                                                NSInteger index = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                NSInteger indexOfLocality = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"locality"];
+                                                }];
+                                                NSInteger indexOfAdministrativeArea = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
                                                     return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"administrative_area_level_1"];
                                                 }];
-                                                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", address.locality, [address.lines[index] objectForKey:@"short_name"]];
+                                                NSInteger indexOfNeighborhood = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"neighborhood"];
+                                                }];
+                                                
+                                                NSString *locality;
+                                                
+                                                if (indexOfNeighborhood < [address.lines count])
+                                                     locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
+                                                if (indexOfLocality < [address.lines count] && [locality length] > 14) {
+                                                    locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
+                                                }
+                                                
+                                                NSString *administrativeArea = [address.lines[indexOfAdministrativeArea] objectForKey:@"short_name"];
+                                                
+                                                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", locality, administrativeArea];
                                             }
                                         }];
     
