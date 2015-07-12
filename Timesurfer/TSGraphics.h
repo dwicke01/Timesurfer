@@ -1,5 +1,5 @@
 //
-//  TSStar.h
+//  TSGraphics.h
 //  (null)
 //
 //  Created by Jordan Guggenheim on 7/11/15.
@@ -24,8 +24,6 @@
 + (void)drawNightGradientWithCanvasSize: (CGSize)canvasSize;
 
 @end
-
-
 
 @interface UIColor (PaintCodeAdditions)
 

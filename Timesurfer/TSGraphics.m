@@ -1,5 +1,5 @@
 //
-//  TSStar.m
+//  TSGraphics.m
 //  (null)
 //
 //  Created by Jordan Guggenheim on 7/11/15.
