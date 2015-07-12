@@ -334,7 +334,7 @@
                                                 
                                                 if (indexOfNeighborhood < [address.lines count])
                                                      locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
-                                                if (indexOfLocality < [address.lines count] && [locality length] > 14) {
+                                                if (indexOfLocality < [address.lines count] && [locality length] < 14) {
                                                     locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
                                                 }
                                                 
