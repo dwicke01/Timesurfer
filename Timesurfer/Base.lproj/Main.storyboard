@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Cool-Moon" translatesAutoresizingMaskIntoConstraints="NO" id="CEU-Yb-vb6">
-                                        <rect key="frame" x="-161" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="-141" y="10" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CEU-Yb-vb6" secondAttribute="height" multiplier="1:1" id="R8V-x6-25C"/>
                                             <constraint firstAttribute="height" constant="150" id="fyl-Wb-fLD"/>
@@ -45,7 +45,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="CEU-Yb-vb6" firstAttribute="trailing" secondItem="Foz-6n-SI8" secondAttribute="trailing" constant="-425" id="26v-89-Pwm"/>
+                                    <constraint firstItem="CEU-Yb-vb6" firstAttribute="trailing" secondItem="Foz-6n-SI8" secondAttribute="trailing" constant="-405" id="26v-89-Pwm"/>
+                                    <constraint firstItem="CEU-Yb-vb6" firstAttribute="top" secondItem="Foz-6n-SI8" secondAttribute="top" constant="10" id="mFC-2c-5FB"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-Ki-w4E" customClass="TSSheepClouds">
@@ -62,7 +63,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="H 84 L 71" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U99-vA-Ucs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H 84 L 71" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U99-vA-Ucs">
                                 <rect key="frame" x="175" y="493" width="68" height="20"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,13 +76,13 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100% ☂" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d5D-eI-mHl">
-                                <rect key="frame" x="149" y="454" width="121" height="39"/>
+                                <rect key="frame" x="148" y="453" width="121" height="39"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5zR-wb-zWd">
-                                <rect key="frame" x="123" y="400" width="170" height="47"/>
+                                <rect key="frame" x="123" y="399" width="170" height="47"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -93,7 +94,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise: 7:04 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hrk-RC-asl">
-                                <rect key="frame" x="156" y="442" width="104" height="17"/>
+                                <rect key="frame" x="156" y="441.5" width="104" height="17"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -141,7 +142,9 @@
                         <outlet property="hourSlider" destination="EqI-wX-JTi" id="mJY-xQ-zt9"/>
                         <outlet property="locationLabel" destination="XEV-1r-G3o" id="feL-vq-3Yl"/>
                         <outlet property="milkyWay" destination="8D6-NV-UvY" id="LXX-9e-VJR"/>
+                        <outlet property="moonImage" destination="CEU-Yb-vb6" id="pT9-aW-csL"/>
                         <outlet property="moonXAxis" destination="26v-89-Pwm" id="sR0-cn-zBV"/>
+                        <outlet property="moonYAxis" destination="mFC-2c-5FB" id="9O5-hh-mql"/>
                         <outlet property="percentPrecip" destination="d5D-eI-mHl" id="5yu-Bq-caj"/>
                         <outlet property="sheepClouds" destination="Isr-Ki-w4E" id="8D6-un-tx0"/>
                         <outlet property="sheepCloudsXAxis" destination="1PZ-lO-jaz" id="Zhh-JR-la4"/>
