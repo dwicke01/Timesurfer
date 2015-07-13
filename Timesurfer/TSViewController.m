@@ -111,6 +111,8 @@
     self.hourSlider.value = 0;
     self.moonXAxis.constant = -405;
     self.sheepCloudsXAxis.constant = 440;
+    self.cloudsInMotion = NO;
+    self.moonInMotion = NO;
     
     NSUInteger randomInt = arc4random_uniform(2);
     
@@ -191,20 +193,28 @@
         
         if ([self.moonImage.image isEqual: [UIImage imageNamed:@"Moon"]] && self.moonInMotion == NO && self.moonXAxis.constant != -15) {
             self.moonInMotion = YES;
-            self.cloudsInMotion = YES;
+
             self.moonYAxis.constant = 30;
             self.moonXAxis.constant = -390;
             [self.skyView layoutIfNeeded];
             
+            [UIView animateWithDuration:20 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                self.moonXAxis.constant = -15;
+                self.moonYAxis.constant = 0;
+                [self.skyView layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                self.moonInMotion = NO;
+            }];
             
-            [UIView animateKeyframesWithDuration:20 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
-                
-                [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1 animations:^{
-                    self.moonXAxis.constant = 0;
-                    self.moonYAxis.constant = -10;
-                    [self.skyView layoutIfNeeded];
-                }];
-                
+            
+//            [UIView animateKeyframesWithDuration:20 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
+//                
+//                [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1 animations:^{
+//                    self.moonXAxis.constant = 0;
+//                    self.moonYAxis.constant = -10;
+//                    [self.skyView layoutIfNeeded];
+//                }];
+            
 //                [UIView addKeyframeWithRelativeStartTime:.5 relativeDuration:.1 animations:^{
 //                    self.moonXAxis.constant = -80;
 //                    self.moonYAxis.constant = -40;
@@ -223,9 +233,9 @@
 //                    [self.skyView layoutIfNeeded];
 //                }];
             
-            } completion:^(BOOL finished) {
-                self.moonInMotion = NO;
-            }];
+//            } completion:^(BOOL finished) {
+//                self.moonInMotion = NO;
+//            }];
             
             
         
