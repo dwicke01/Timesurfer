@@ -164,7 +164,7 @@
     }
     
     if (self.hourSlider.value == 0) {
-        [UIView animateWithDuration:1.5 animations:^{
+        [UIView animateWithDuration:1 animations:^{
             self.dayTimeGradient.alpha = alphaValue;
         }];
     } else {
@@ -218,7 +218,7 @@
     }
     
     if (self.hourSlider.value == 0) {
-        [UIView animateWithDuration:2 animations:^{
+        [UIView animateWithDuration:1 animations:^{
             self.sheepCloudsXAxis.constant = (self.hourSlider.value-self.hourOffset)/1000 * -880 + 440;
             self.skyView.alpha = alphaValue;
             self.milkyWay.alpha = alphaValue-.7;
