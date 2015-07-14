@@ -116,13 +116,7 @@
     self.cloudsInMotion = NO;
     self.moonInMotion = NO;
     
-    NSUInteger randomInt = arc4random_uniform(2);
-    
-    if (randomInt == 1) {
-        self.moonImage.image = [UIImage imageNamed:@"Cool-Moon"];
-    } else {
-        self.moonImage.image = [UIImage imageNamed:@"Moon"];
-    }
+    self.moonImage.image = [UIImage imageNamed:@"Moon"];
     
     [self requestAlwaysAuth];
     [self getWeather];
@@ -169,12 +163,7 @@
         alphaValue = 0;
     }
     
-    [UIView animateWithDuration:.7 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.dayTimeGradient.alpha = alphaValue;
-        
-    } completion:^(BOOL finished) {
-        
-    }];
+      self.dayTimeGradient.alpha = alphaValue;
 }
 
 - (void) updateSky {
@@ -190,13 +179,11 @@
     
     if (currentTime >= 1900 && currentTime <= 2230) {
         alphaValue = ((currentTime-1900)/330);
-        
 
-        
-        if ([self.moonImage.image isEqual: [UIImage imageNamed:@"Moon"]] && self.moonInMotion == NO && self.moonXAxis.constant != -15) {
+        if (self.moonInMotion == NO && self.moonXAxis.constant != -15 && self.hourSlider.value > (50 + self.hourOffset) ) {
             self.moonInMotion = YES;
 
-            self.moonYAxis.constant = 30;
+            self.moonYAxis.constant = 45;
             self.moonXAxis.constant = -390;
             [self.skyView layoutIfNeeded];
             
@@ -205,52 +192,29 @@
                 self.moonYAxis.constant = 0;
                 [self.skyView layoutIfNeeded];
             } completion:^(BOOL finished) {
+
                 self.moonInMotion = NO;
             }];
         
-        } else if (self.moonInMotion == NO) {
-            //Move this to separate method to account for accurate moon rise/set times
-            self.moonInMotion = YES;
-            
-            [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                self.moonXAxis.constant = -15;
-                [self.skyView layoutIfNeeded];
-            } completion:^(BOOL finished) {
-                self.moonInMotion = NO;
-            }];
         }
-        
-        if (self.cloudsInMotion == NO) {
-            
-            self.cloudsInMotion = YES;
-            
-            [UIView animateWithDuration:40 delay:0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction animations:^{
-                self.sheepCloudsXAxis.constant = -440;
-                [self.sheepClouds layoutIfNeeded];
-                
-            } completion:^(BOOL finished) {
-                self.cloudsInMotion = NO;
-                NSLog(@"Clouds done %d",self.moonInMotion);
-            }];
-            
-        }
-     
-        
+ 
     } else if (currentTime >= 500 && currentTime <= 730){
         alphaValue = ((730-currentTime)/230);
         
     } else if (currentTime < 500) {
         alphaValue = 1;
         
-    } else if (currentTime > 730 && currentTime < 1700){
+    } else if (currentTime > 730 && currentTime < 1900){
         alphaValue = 0;
         
     } else if (currentTime > 2200){
         alphaValue = 1;
     }
-    
+    self.sheepCloudsXAxis.constant = (self.hourSlider.value-self.hourOffset)/1000 * -880 + 440;
     self.skyView.alpha = alphaValue;
     self.milkyWay.alpha = alphaValue-.7;
+    [self.sheepClouds layoutIfNeeded];
+
 }
 
 - (void) updateWeatherLabelsWithIndex:(NSUInteger)indexOfHour{
