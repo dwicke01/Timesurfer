@@ -12,7 +12,7 @@
 #import "TSStarField.h"
 #import "TSWeatherData.h"
 #import "LMGeocoder.h"
-#import <BAFluidView/BAFluidView.h>
+//#import <BAFluidView/BAFluidView.h>
 
 @import CoreLocation;
 
@@ -136,8 +136,8 @@
 
 - (void) updateGradient {
     
-    CGFloat currentTime;
-    CGFloat alphaValue;
+    CGFloat currentTime = 0.0;
+    CGFloat alphaValue = 0.0;
     
     if (self.hourSlider.value > 2400) {
         currentTime = self.hourSlider.value-2400;
@@ -163,13 +163,19 @@
         alphaValue = 0;
     }
     
+    if (self.hourSlider.value == 0) {
+        [UIView animateWithDuration:1.5 animations:^{
+            self.dayTimeGradient.alpha = alphaValue;
+        }];
+    } else {
       self.dayTimeGradient.alpha = alphaValue;
+    }
 }
 
 - (void) updateSky {
     
-    CGFloat currentTime;
-    CGFloat alphaValue;
+    CGFloat currentTime = 0.0;
+    CGFloat alphaValue = 0.0;
     
     if (self.hourSlider.value > 2400) {
         currentTime = self.hourSlider.value-2400;
@@ -210,10 +216,20 @@
     } else if (currentTime > 2200){
         alphaValue = 1;
     }
+    
+    if (self.hourSlider.value == 0) {
+        [UIView animateWithDuration:2 animations:^{
+            self.sheepCloudsXAxis.constant = (self.hourSlider.value-self.hourOffset)/1000 * -880 + 440;
+            self.skyView.alpha = alphaValue;
+            self.milkyWay.alpha = alphaValue-.7;
+            [self.sheepClouds layoutIfNeeded];
+        }];
+    } else {
     self.sheepCloudsXAxis.constant = (self.hourSlider.value-self.hourOffset)/1000 * -880 + 440;
     self.skyView.alpha = alphaValue;
     self.milkyWay.alpha = alphaValue-.7;
     [self.sheepClouds layoutIfNeeded];
+    }
 
 }
 
@@ -263,27 +279,12 @@
             self.percentPrecip.text = weather.percentRainString;
             self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
             
-            BAFluidView *precipLevel = [[BAFluidView alloc] initWithFrame:self.precipitationAnimation.frame startElevation:@0];
-            
-            [precipLevel fillTo:@1.0];
-            precipLevel.fillColor = [UIColor blueColor];
-            [precipLevel startAnimation];
-            
-            CALayer *maskingLayer = [CALayer layer];
-            maskingLayer.frame = CGRectMake(CGRectGetMidX(precipLevel.frame) - self.precipitationAnimation.frame.size.width/2, 70, self.precipitationAnimation.frame.size.width, self.precipitationAnimation.frame.size.height);
-            [maskingLayer setContents:(id)[self.precipitationAnimation.image CGImage]];
-            [precipLevel.layer setMask:maskingLayer];
-            
         } else {
             self.temperatureLabel.text = weather.weatherTemperature;
             self.weatherImage.image = weather.weatherImage;
             self.percentPrecip.text = weather.percentRainString;
             self.timeLabel.text = weather.currentDate;
             
-            BAFluidView *view = [[BAFluidView alloc] initWithFrame:self.view.frame];
-            [view fillTo:@1.0];
-            view.fillColor = [UIColor blueColor];
-            [view startAnimation];
         }
     }
 }
