@@ -528,6 +528,7 @@
 					};
 					FA5695101B41B65300A9FB98 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 9RXLE5FXUN;
 					};
 				};
 			};
@@ -1032,6 +1033,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C3AD4C50D68B9CFB4914A08 /* Pods-TimesurferExtension.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1039,6 +1042,7 @@
 				INFOPLIST_FILE = TimesurferExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1047,9 +1051,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A067D15C2B0B556E37267623 /* Pods-TimesurferExtension.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimesurferExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

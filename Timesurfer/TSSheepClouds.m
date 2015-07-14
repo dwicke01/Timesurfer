@@ -14,6 +14,8 @@
 - (void)drawRect:(CGRect)rect {
 
     [TSGraphics drawSheepCloudsWithAlpha:1];
+    
+//    [self setNeedsDisplay];
 }
 
 @end

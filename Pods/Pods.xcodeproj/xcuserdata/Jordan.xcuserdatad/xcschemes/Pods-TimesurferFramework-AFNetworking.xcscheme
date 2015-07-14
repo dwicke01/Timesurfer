@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE833671949A4961E714FB79"
+               BlueprintIdentifier = "66C6740804326608161DB5E4"
                BuildableName = "libPods-TimesurferFramework-AFNetworking.a"
                BlueprintName = "Pods-TimesurferFramework-AFNetworking"
                ReferencedContainer = "container:Pods.xcodeproj">

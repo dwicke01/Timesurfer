@@ -12,6 +12,7 @@
 #import "TSStarField.h"
 #import "TSWeatherData.h"
 #import "LMGeocoder.h"
+#import <BAFluidView/BAFluidView.h>
 
 @import CoreLocation;
 
@@ -34,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sheepCloudsXAxis;
 @property (nonatomic) BOOL moonInMotion;
 @property (nonatomic) BOOL cloudsInMotion;
+@property (weak, nonatomic) IBOutlet UIImageView *precipitationAnimation;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -205,41 +207,7 @@
             } completion:^(BOOL finished) {
                 self.moonInMotion = NO;
             }];
-            
-            
-//            [UIView animateKeyframesWithDuration:20 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
-//                
-//                [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1 animations:^{
-//                    self.moonXAxis.constant = 0;
-//                    self.moonYAxis.constant = -10;
-//                    [self.skyView layoutIfNeeded];
-//                }];
-            
-//                [UIView addKeyframeWithRelativeStartTime:.5 relativeDuration:.1 animations:^{
-//                    self.moonXAxis.constant = -80;
-//                    self.moonYAxis.constant = -40;
-//                    [self.skyView layoutIfNeeded];
-//                }];
-//                
-//                [UIView addKeyframeWithRelativeStartTime:.6 relativeDuration:.1 animations:^{
-//                    self.moonXAxis.constant = -60;
-//                    self.moonYAxis.constant = -20;
-//                    [self.skyView layoutIfNeeded];
-//                }];
-//                
-//                [UIView addKeyframeWithRelativeStartTime:.7 relativeDuration:.1 animations:^{
-//                    self.moonXAxis.constant = -5;
-//                    self.moonYAxis.constant = 30;
-//                    [self.skyView layoutIfNeeded];
-//                }];
-            
-//            } completion:^(BOOL finished) {
-//                self.moonInMotion = NO;
-//            }];
-            
-            
         
-            
         } else if (self.moonInMotion == NO) {
             //Move this to separate method to account for accurate moon rise/set times
             self.moonInMotion = YES;
@@ -331,11 +299,27 @@
             self.percentPrecip.text = weather.percentRainString;
             self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
             
+            BAFluidView *precipLevel = [[BAFluidView alloc] initWithFrame:self.precipitationAnimation.frame startElevation:@0];
+            
+            [precipLevel fillTo:@1.0];
+            precipLevel.fillColor = [UIColor blueColor];
+            [precipLevel startAnimation];
+            
+            CALayer *maskingLayer = [CALayer layer];
+            maskingLayer.frame = CGRectMake(CGRectGetMidX(precipLevel.frame) - self.precipitationAnimation.frame.size.width/2, 70, self.precipitationAnimation.frame.size.width, self.precipitationAnimation.frame.size.height);
+            [maskingLayer setContents:(id)[self.precipitationAnimation.image CGImage]];
+            [precipLevel.layer setMask:maskingLayer];
+            
         } else {
             self.temperatureLabel.text = weather.weatherTemperature;
             self.weatherImage.image = weather.weatherImage;
             self.percentPrecip.text = weather.percentRainString;
             self.timeLabel.text = weather.currentDate;
+            
+            BAFluidView *view = [[BAFluidView alloc] initWithFrame:self.view.frame];
+            [view fillTo:@1.0];
+            view.fillColor = [UIColor blueColor];
+            [view startAnimation];
         }
     }
 }
@@ -429,7 +413,7 @@
                                                 
                                                 NSString *administrativeArea = [address.lines[indexOfAdministrativeArea] objectForKey:@"short_name"];
                                                 
-                                                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", locality, administrativeArea];
+                                                self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
                                             }
                                         }];
     
