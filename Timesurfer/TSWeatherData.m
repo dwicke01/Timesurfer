@@ -23,6 +23,16 @@
 
 @implementation TSWeatherData
 
++ (instancetype)sharedDataStore {
+    static TSWeatherData *_sharedDataStore = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedDataStore = [[TSWeatherData alloc] init];
+    });
+    
+    return _sharedDataStore;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)incomingWeatherJSON{
     
     self = [super init];
@@ -93,6 +103,12 @@
             
             TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
             [self.weatherByHour addObject:weather];
+            
+//            if (i == 23) {
+//                
+//                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"staleWeather"];
+//                [[NSUserDefaults standardUserDefaults] setObject:self.weatherByHour forKey:@"staleWeather"];
+//            }
         }
     }
 }
@@ -100,7 +116,16 @@
 
 - (TSWeather *)weatherForHour:(NSUInteger)hour{
     
-    return self.weatherByHour[hour];
+    if (self.weatherByHour[hour]) {
+        
+        return self.weatherByHour[hour];
+        
+    } else {
+        
+        NSArray *staleWeatherArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"staleWeather"];
+        
+        return staleWeatherArray[hour];
+    }
 }
 
 - (NSUInteger)convertToMilitaryHourWithUnixTime:(NSNumber *) unixTime{

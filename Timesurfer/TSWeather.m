@@ -61,15 +61,15 @@
     }
     
     NSNumber *cloudCover = self.incomingDictionary[@"cloudCover"];
-    _cloudCoverInt = cloudCover.integerValue;
+    _cloudCoverFloat = cloudCover.floatValue;
     
     NSNumber *percentRain = self.incomingDictionary[@"precipProbability"];
     self.percentRainFloat = roundf(percentRain.floatValue*10)*10;
-   // NSLog(@"%.2f",self.percentRainFloat);
+//    NSLog(@"%.2f",self.cloudCoverFloat);
     _percentRainString = [NSString stringWithFormat:@"%.0F%% ☂",self.percentRainFloat];
     
     NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];
-    _precipIntensity = precipIntense.integerValue;
+    _precipIntensityFloat = precipIntense.floatValue;
 }
 
 -(UIImage *)weatherImage

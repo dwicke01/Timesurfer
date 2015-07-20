@@ -12,6 +12,7 @@
 #import "TSStarField.h"
 #import "TSWeatherData.h"
 #import "LMGeocoder.h"
+#import "TSClouds.h"
 //#import <BAFluidView/BAFluidView.h>
 
 @import CoreLocation;
@@ -26,16 +27,19 @@
 @property (weak, nonatomic) IBOutlet UIImageView *moonImage;
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
+@property (weak, nonatomic) IBOutlet UIImageView *precipitationAnimation;
 @property (weak, nonatomic) IBOutlet UIView *skyView;
+@property (weak, nonatomic) IBOutlet UIView *sunView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
 @property (weak, nonatomic) IBOutlet UIView *sheepClouds;
+@property (weak, nonatomic) IBOutlet TSClouds *clouds;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonYAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sunYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sunXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cloudsXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sheepCloudsXAxis;
-@property (nonatomic) BOOL moonInMotion;
-@property (nonatomic) BOOL cloudsInMotion;
-@property (weak, nonatomic) IBOutlet UIImageView *precipitationAnimation;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -50,13 +54,15 @@
 @property (nonatomic, strong) TSWeatherData *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
+@property (nonatomic, strong) NSTimer *sliderStoppedTimer;
 @end
 
 @implementation TSViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.weatherData = nil;
+    self.weatherData = [TSWeatherData sharedDataStore];
+    
     self.weatherImage.image = [UIImage imageNamed:@"Surf-Icon"];
     
     self.geoCoder = [[CLGeocoder alloc] init];
@@ -66,7 +72,8 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     
     self.forcastr = [Forecastr sharedManager];
-    self.forcastr.apiKey = @"530d1d38e625bdd0d86381ffe990ca1c";
+    self.forcastr.apiKey = @"82d1282ee172912aa77141cb6cb479b8";
+    self.sheepCloudsXAxis.constant = self.view.frame.size.width;
     
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
     self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
@@ -111,12 +118,7 @@
 
 - (void) returnFromSleep {
     self.hourSlider.value = 0;
-    self.moonXAxis.constant = -405;
-    self.sheepCloudsXAxis.constant = 440;
-    self.cloudsInMotion = NO;
-    self.moonInMotion = NO;
-    
-    self.moonImage.image = [UIImage imageNamed:@"Moon"];
+    self.sheepCloudsXAxis.constant = self.view.frame.size.width;
     
     [self requestAlwaysAuth];
     [self getWeather];
@@ -124,6 +126,35 @@
 
 - (IBAction)sliderChanged:(id)sender {
     [self updateWeatherInfo];
+    
+    if (!self.sliderStoppedTimer) {
+        self.sliderStoppedTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1] interval:0 target:self selector:@selector(easterEggs) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.sliderStoppedTimer forMode:NSDefaultRunLoopMode];
+    } else {
+        self.sliderStoppedTimer.fireDate = [[NSDate date] dateByAddingTimeInterval:1];
+        
+    }
+}
+
+- (void) easterEggs {
+    CGFloat currentTime = 0.0;
+    
+    if (self.hourSlider.value > 2400) {
+        currentTime = self.hourSlider.value-2400;
+    } else {
+        currentTime = self.hourSlider.value;
+    }
+    
+    if ((currentTime >= 2000 || currentTime < 500) && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
+        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
+            [self.sheepClouds layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }
+    self.sliderStoppedTimer = nil;
 }
 
 - (void) updateWeatherInfo {
@@ -132,6 +163,95 @@
     [self updateWeatherLabelsWithIndex:currentTime];
     [self updateGradient];
     [self updateSky];
+    [self updateSun];
+    [self updateMoon];
+}
+
+- (void) updateSun {
+    
+    CGFloat currentTime = 0.0;
+    CGFloat x = self.view.frame.size.width * .5;
+    CGFloat z = self.view.frame.size.width + 50;
+    
+    if (self.hourSlider.value > 2400) {
+        currentTime = self.hourSlider.value-2400;
+    } else {
+        currentTime = self.hourSlider.value;
+    }
+    
+    
+    if (currentTime >= 700 && currentTime <= 1200) {
+        
+        [UIView animateWithDuration:.2
+                         animations:^{
+                             self.sunXAxis.constant = x * ((currentTime-700)/500);
+                             self.sunYAxis.constant = -65 * sin((M_PI * (self.sunXAxis.constant))/z)+50;
+                             
+                             [self.sunView layoutIfNeeded];
+                         }];
+        
+        
+    } else if (currentTime > 1200 && currentTime <= 2200){
+        
+        [UIView animateWithDuration:.2
+                         animations:^{
+                             self.sunXAxis.constant = x + x * ((currentTime-1200)/800) ;
+                             self.sunYAxis.constant = -65 * sin((M_PI * (self.sunXAxis.constant))/z)+50;
+                             [self.sunView layoutIfNeeded];
+                         }];
+    } else if (currentTime < 700) {
+        self.sunXAxis.constant = 0;
+    } else if (currentTime > 2100){
+        self.sunXAxis.constant = z;
+    }
+    
+    NSLog(@"Sun X %f Sun Y %f",self.sunXAxis.constant, self.sunYAxis.constant);
+}
+
+- (void) updateMoon {
+    
+    
+    CGFloat currentTime = 0.0;
+    CGFloat x = self.view.frame.size.width * .5 + 100;
+    CGFloat z = self.view.frame.size.width;
+    
+    
+    if (self.hourSlider.value > 2600) {
+        currentTime = self.hourSlider.value-2600;
+    } else {
+        currentTime = self.hourSlider.value;
+    }
+    
+    
+    if (currentTime >= 2000 && currentTime <= 2600) {
+        
+        self.moonXAxis.constant = -x;
+        
+        [UIView animateWithDuration:.4
+                         animations:^{
+                             self.moonXAxis.constant = x * ((currentTime-2000)/600);
+                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant))/z)+75;
+                             
+                             [self.moonImage layoutIfNeeded];
+                             
+                         }];
+        
+        
+    } else if (currentTime <= 800){
+        
+        [UIView animateWithDuration:.4
+                         animations:^{
+                             self.moonXAxis.constant = x + x * (currentTime/600);
+                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant))/z)+75;
+                             [self.moonImage layoutIfNeeded];
+                         }];
+    } else if (currentTime < 900) {
+        self.moonXAxis.constant = z + 100;
+    } else if (currentTime > 1900){
+        self.moonXAxis.constant = 0;
+    }
+    
+    
 }
 
 - (void) updateGradient {
@@ -163,12 +283,13 @@
         alphaValue = 0;
     }
     
-    if (self.hourSlider.value == 0) {
+    if (self.hourSlider.value == self.hourOffset) {
         [UIView animateWithDuration:1 animations:^{
             self.dayTimeGradient.alpha = alphaValue;
         }];
+        
     } else {
-      self.dayTimeGradient.alpha = alphaValue;
+        self.dayTimeGradient.alpha = alphaValue;
     }
 }
 
@@ -185,25 +306,7 @@
     
     if (currentTime >= 1900 && currentTime <= 2230) {
         alphaValue = ((currentTime-1900)/330);
-
-        if (self.moonInMotion == NO && self.moonXAxis.constant != -15 && self.hourSlider.value > (50 + self.hourOffset) ) {
-            self.moonInMotion = YES;
-
-            self.moonYAxis.constant = 45;
-            self.moonXAxis.constant = -390;
-            [self.skyView layoutIfNeeded];
-            
-            [UIView animateWithDuration:20 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                self.moonXAxis.constant = -15;
-                self.moonYAxis.constant = 0;
-                [self.skyView layoutIfNeeded];
-            } completion:^(BOOL finished) {
-
-                self.moonInMotion = NO;
-            }];
         
-        }
- 
     } else if (currentTime >= 500 && currentTime <= 730){
         alphaValue = ((730-currentTime)/230);
         
@@ -215,28 +318,39 @@
         
     } else if (currentTime > 2200){
         alphaValue = 1;
+        
     }
     
-    if (self.hourSlider.value == 0) {
+    if (self.hourSlider.value == self.hourOffset) {
         [UIView animateWithDuration:1 animations:^{
-            self.sheepCloudsXAxis.constant = (self.hourSlider.value-self.hourOffset)/1000 * -880 + 440;
+            
             self.skyView.alpha = alphaValue;
             self.milkyWay.alpha = alphaValue-.7;
-            [self.sheepClouds layoutIfNeeded];
+            
+            self.cloudsXAxis.constant = 0;
+            [self.clouds layoutIfNeeded];
         }];
     } else {
-    self.sheepCloudsXAxis.constant = (self.hourSlider.value-self.hourOffset)/1000 * -880 + 440;
-    self.skyView.alpha = alphaValue;
-    self.milkyWay.alpha = alphaValue-.7;
-    [self.sheepClouds layoutIfNeeded];
+        
+        self.skyView.alpha = alphaValue;
+        self.milkyWay.alpha = alphaValue-.7;
+        [self.clouds layoutIfNeeded];
     }
-
+    
 }
 
 - (void) updateWeatherLabelsWithIndex:(NSUInteger)indexOfHour{
     TSWeather *weather = [self.weatherData weatherForHour:indexOfHour];
     
     if(self.currentWeather && self.currentWeather == weather) {
+        
+        [UIView animateWithDuration:.5 animations:^{
+            
+            self.cloudsXAxis.constant = floor(self.hourSlider.value-self.hourOffset)/2400*(self.view.frame.size.width*-23) ;
+            [self.clouds layoutIfNeeded];
+            
+        }];
+        
         
         return;
         
@@ -247,29 +361,21 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"h:mm a"];
         
-        CGFloat currentTime = self.currentWeather.currentHourInt;
-        
         if (weather.sunSetHour) {
             self.sunRiseSetLabel.hidden = NO;
             self.sunRiseSetLabel.alpha = 1;
-            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
+            self.timeLabel.text = self.weatherData.sunSet;
+            self.sunRiseSetLabel.text = @"Sunset";
             
         } else if (weather.sunRiseHour) {
             self.sunRiseSetLabel.hidden = NO;
             self.sunRiseSetLabel.alpha = 1;
-            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
+            self.timeLabel.text = self.weatherData.sunRise;
+            self.sunRiseSetLabel.text = @"Sunrise";
             
-        }  else if (currentTime == 19 || currentTime == 21) {
-            self.sunRiseSetLabel.alpha = .5;
-            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunset: %@",self.weatherData.sunSet];
-            self.sunRiseSetLabel.hidden = NO;
-            
-        } else if (currentTime == 4 || currentTime == 6) {
-            self.sunRiseSetLabel.alpha = .5;
-            self.sunRiseSetLabel.text = [NSString stringWithFormat:@"Sunrise: %@",self.weatherData.sunRise];
-            self.sunRiseSetLabel.hidden = NO;
-        } else {
+        }  else {
             self.sunRiseSetLabel.hidden = YES;
+            self.timeLabel.text = weather.currentDate;
         }
         
         if (indexOfHour == 0) {
@@ -283,8 +389,6 @@
             self.temperatureLabel.text = weather.weatherTemperature;
             self.weatherImage.image = weather.weatherImage;
             self.percentPrecip.text = weather.percentRainString;
-            self.timeLabel.text = weather.currentDate;
-            
         }
     }
 }
@@ -313,9 +417,7 @@
                                       NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
                                       NSInteger high = [today[@"temperatureMax"] integerValue];
                                       NSInteger low = [today[@"temperatureMin"] integerValue];
-                                      self.highLowLabel.text = [NSString stringWithFormat:@"H %lu L %lu", high, low];
-                                      
-                                      [self updateWeatherLabelsWithIndex:0];
+                                      self.highLowLabel.text = [NSString stringWithFormat:@"H %lu°F   L %lu°F", high, low];
                                       
                                       CGFloat currentTime = self.weatherData.startingHour;
                                       
@@ -328,11 +430,12 @@
                                       } else {
                                           currentTime = (currentTime/12)*-736;
                                       }
-                                      
+                                      self.clouds.weatherData = self.weatherData;
                                       [self updateWeatherInfo];
                                       
                                   } failure:^(NSError *error, id response) {
                                       NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                      
                                   }];
 }
 
@@ -369,10 +472,10 @@
                                                 NSString *locality;
                                                 
                                                 if (indexOfNeighborhood < [address.lines count])
-
-                                                     locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
+                                                    
+                                                    locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
                                                 if (indexOfLocality < [address.lines count] && [locality length] < 14) {
-
+                                                    
                                                     locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
                                                 }
                                                 

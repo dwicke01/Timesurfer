@@ -20,7 +20,7 @@
 @property (nonatomic, assign) BOOL sunSetHour;
 @property (nonatomic, assign) BOOL sunUp;
 @property (nonatomic, assign) CGFloat percentRainFloat;
-@property (nonatomic, assign) NSUInteger cloudCoverInt;
-@property (nonatomic, assign) NSUInteger precipIntensity;
+@property (nonatomic, assign) CGFloat cloudCoverFloat;
+@property (nonatomic, assign) CGFloat precipIntensityFloat;
 @property (nonatomic, assign) NSUInteger currentHourInt;
 @end

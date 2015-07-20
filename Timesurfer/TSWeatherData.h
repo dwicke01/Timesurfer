@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *sunSet;
 @property (nonatomic, assign) NSUInteger startingHour;
 
++ (instancetype)sharedDataStore;
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingWeatherJSON;
 - (TSWeather *)weatherForHour:(NSUInteger)hour;
