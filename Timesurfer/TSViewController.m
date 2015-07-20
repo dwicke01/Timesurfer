@@ -13,6 +13,7 @@
 #import "TSWeatherData.h"
 #import "LMGeocoder.h"
 #import "TSClouds.h"
+#import "TSConstants.h"
 //#import <BAFluidView/BAFluidView.h>
 
 @import CoreLocation;
@@ -72,7 +73,7 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     
     self.forcastr = [Forecastr sharedManager];
-    self.forcastr.apiKey = @"82d1282ee172912aa77141cb6cb479b8";
+    self.forcastr.apiKey = FORCAST_KEY;
     self.sheepCloudsXAxis.constant = self.view.frame.size.width;
     
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
