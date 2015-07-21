@@ -31,14 +31,12 @@
 
 @property (strong,nonatomic) NSArray *amplitudeArray;
 @property (assign,nonatomic) int startingAmplitude;
-@property (assign,nonatomic) int amplitudeIncrement;
-@property (assign,nonatomic) int maxAmplitude;
-@property (assign,nonatomic) int minAmplitude;
 
 @property (strong,nonatomic) NSNumber* startElevation;
 @property (strong,nonatomic) NSNumber* fillLevel;
 @property (assign,nonatomic) BOOL initialFill;
 
+@property (assign,nonatomic) BOOL animating;
 
 @property (assign,nonatomic) int waveLength;//** 2 UIBezierPaths = 1 wavelength
 @property (assign,nonatomic) int finalX;
@@ -123,6 +121,16 @@
     return self;
 }
 
+- (void)willMoveToWindow:(UIWindow *)newWindow {
+    if(newWindow == nil){
+        //the view is being removed
+        [self stopAnimation];
+        return;
+    }
+    
+    //the view is being added
+    [self startAnimation];
+}
 
 #pragma mark - Custom Accessors
 
@@ -154,7 +162,21 @@
     CGRect frame = self.lineLayer.frame;
     frame.origin.y = CGRectGetHeight(self.rootView.frame)*((1-[_startElavation floatValue]));
     self.lineLayer.frame = frame;
-    
+}
+
+- (void)setMaxAmplitude:(int)maxAmplitude {
+    _maxAmplitude = maxAmplitude;
+    self.amplitudeArray = [self createAmplitudeOptions];
+}
+
+- (void)setMinAmplitude:(int)minAmplitude {
+    _minAmplitude = minAmplitude;
+    self.amplitudeArray = [self createAmplitudeOptions];
+}
+
+- (void)setAmplitudeIncrement:(int)amplitudeIncrement {
+    _amplitudeIncrement = amplitudeIncrement;
+    self.amplitudeArray = [self createAmplitudeOptions];
 }
 
 #pragma mark - Public
@@ -198,31 +220,54 @@
     //fill level
     self.initialFill = YES;
     self.fillLevel = @0.0;
+    
+    //adding notification for when the app enters the foreground/background
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stopAnimation)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startAnimation)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 }
 
 - (void)startAnimation {
-    self.startingAmplitude = self.maxAmplitude;
-    
-    //Phase Shift Animation
-    CAKeyframeAnimation *horizontalAnimation =
-    [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
-    horizontalAnimation.values = @[@(self.lineLayer.position.x),@(-self.finalX + self.waveLength)];
-    horizontalAnimation.duration = 1.0;
-    horizontalAnimation.repeatCount = HUGE;
-    [self.lineLayer addAnimation:horizontalAnimation forKey:@"horizontalAnimation"];
-    
-    //Wave Crest Animations
-    self.waveCrestAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    self.waveCrestAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    self.waveCrestAnimation.values = [self getBezierPathValues];
-    self.waveCrestAnimation.duration = 0.5;
-    self.waveCrestAnimation.removedOnCompletion = NO;
-    self.waveCrestAnimation.fillMode = kCAFillModeForwards;
-    self.waveCrestAnimation.delegate = self;
-    [self updateWaveSegmentAnimation];
+    if (!self.animating) {
+        self.startingAmplitude = self.maxAmplitude;
 
-    //add sublayer to view
-    [self.layer addSublayer:self.lineLayer];
+        //Phase Shift Animation
+        CAKeyframeAnimation *horizontalAnimation =
+        [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
+        horizontalAnimation.values = @[@(self.lineLayer.position.x),@(-self.finalX + self.waveLength)];
+        horizontalAnimation.duration = 1.0;
+        horizontalAnimation.repeatCount = HUGE;
+        [self.lineLayer addAnimation:horizontalAnimation forKey:@"horizontalAnimation"];
+
+        //Wave Crest Animations
+        self.waveCrestAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        self.waveCrestAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        self.waveCrestAnimation.values = [self getBezierPathValues];
+        self.waveCrestAnimation.duration = 0.5;
+        self.waveCrestAnimation.removedOnCompletion = NO;
+        self.waveCrestAnimation.fillMode = kCAFillModeForwards;
+        self.waveCrestAnimation.delegate = self;
+        [self updateWaveSegmentAnimation];
+
+        //add sublayer to view
+        [self.layer addSublayer:self.lineLayer];
+        
+        self.animating = YES;
+    }
+}
+
+- (void)stopAnimation {
+    [self.lineLayer removeAnimationForKey:@"horizontalAnimation"];
+    [self.lineLayer removeAnimationForKey:@"waveSegmentAnimation"];
+    self.waveCrestAnimation =  nil;
+
+    self.animating = NO;
 }
 
 - (void)keepStationary {
@@ -273,7 +318,10 @@
     self.waveCrestAnimation.values = [self getBezierPathValues];
     [CATransaction setCompletionBlock:^{
         //keeps it repeating but also changing in wave size
-        [self updateWaveSegmentAnimation];
+        if (self.animating) {
+            [self updateWaveSegmentAnimation];
+        }
+
     }];
     [self.lineLayer addAnimation:self.waveCrestAnimation forKey:@"waveSegmentAnimation"];
     [CATransaction commit];

@@ -12,6 +12,7 @@
 #import "TSStarField.h"
 #import "TSGraphics.h"
 #import "TSViewController.h"
+#import "TSClouds.h"
 
 
 //! Project version number for TimesurferFramework.

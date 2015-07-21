@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "02E0114ED49423FDB40F4EAC"
+               BlueprintIdentifier = "BF57C07F045C151D260AAC50"
                BuildableName = "libPods-TimesurferFramework-Forecastr.a"
                BlueprintName = "Pods-TimesurferFramework-Forecastr"
                ReferencedContainer = "container:Pods.xcodeproj">

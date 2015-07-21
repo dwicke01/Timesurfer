@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Timesurfer-BAFluidView-BAFluidView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Timesurfer-BAFluidView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Timesurfer-Forecastr.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,6 +30,16 @@
 			<false/>
 		</dict>
 		<key>Pods-TimesurferExtension-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferExtension-BAFluidView-BAFluidView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferExtension-BAFluidView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -39,7 +59,37 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TimesurferFramework-BAFluidView-BAFluidView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferFramework-BAFluidView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TimesurferFramework-Forecastr.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferFramework-Google-API-Client.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferFramework-LMGeocoder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferFramework-gtm-http-fetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TimesurferFramework-gtm-oauth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +102,97 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02E0114ED49423FDB40F4EAC</key>
+		<key>06E8501EEDC78E1263B4A583</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38CB0894F9698C02B990BDF8</key>
+		<key>0DDDC247A9E2441F1DD2FCBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52260035A5635052A4A6F456</key>
+		<key>1CCDC2DB5FDEF19821B10195</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>874EF3960C30B415A0D5A955</key>
+		<key>2645873B4CF0C4DFC0767C5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C8B580153B4796D7658725B</key>
+		<key>3E3F255A5F9E205BBC50795A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>989345B5A5B02F9DDBC35498</key>
+		<key>4D814A8A6AF52F3DB67B016A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C82CD7FEB90E8E4C11C5459D</key>
+		<key>642496D652337E6CEBE1931C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD527526B57CDDC103DC20E8</key>
+		<key>71E532F4507BB2E5EB06E7BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9276C3E1E53164DAB1812A9</key>
+		<key>75087658B227AE07005C5743</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8765282F7C7F69B7588FB1AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9FF42BE0326FEBC133F4530F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6962F2630016B82123DB147</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ABDFB65FE81C5B7E3E566D54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDDE9F0CDFEDEA18F5AE13B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF57C07F045C151D260AAC50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4102B01A734C3EC5995A8C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7BA04F1AC259EB71864DD64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D2AB46D774A4A90091539893</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D66AC87BC4730BA5FF1216ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>

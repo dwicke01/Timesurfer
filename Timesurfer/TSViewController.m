@@ -14,6 +14,7 @@
 #import "LMGeocoder.h"
 #import "TSClouds.h"
 #import "TSConstants.h"
+#import "TSEventManager.h"
 //#import <BAFluidView/BAFluidView.h>
 
 @import CoreLocation;
@@ -62,7 +63,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.weatherData = [TSWeatherData sharedDataStore];
+    //self.weatherData = [TSWeatherData sharedDataStore];
     
     self.weatherImage.image = [UIImage imageNamed:@"Surf-Icon"];
     
@@ -80,6 +81,8 @@
     self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
     
     self.frameHeight = self.view.frame.size.height;
+    
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(returnFromSleep)
@@ -100,6 +103,9 @@
         
         [self.locationManager startMonitoringSignificantLocationChanges];
     }
+    
+    //[[TSEventManager sharedEventManger] fetchEvents];
+    
 }
 
 - (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
@@ -206,7 +212,7 @@
         self.sunXAxis.constant = z;
     }
     
-    NSLog(@"Sun X %f Sun Y %f",self.sunXAxis.constant, self.sunYAxis.constant);
+    //NSLog(@"Sun X %f Sun Y %f",self.sunXAxis.constant, self.sunYAxis.constant);
 }
 
 - (void) updateMoon {
@@ -279,7 +285,6 @@
         
     } else if (currentTime > 1000 && currentTime < 1500){
         alphaValue = 1;
-        
     } else if (currentTime > 2200){
         alphaValue = 0;
     }
@@ -400,13 +405,15 @@
         return;
     }
     
-    [self.forcastr getForecastForLatitude:self.latitude
+    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || [self.weatherData.currentDate timeIntervalSinceNow]>1800) {
+        [self.forcastr getForecastForLatitude:self.latitude
                                 longitude:self.longitude
                                      time:nil
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
                                       //NSLog(@"JSON Response was: %@", JSON);
+                                      NSLog(@"Made API Call");
                                       
                                       self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
@@ -438,6 +445,7 @@
                                       NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
                                       
                                   }];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -446,7 +454,6 @@
     } else {
         self.weatherLocation = manager.location;
     }
-    
     //    [self.geoCoder reverseGeocodeLocation:self.weatherLocation completionHandler:^(NSArray *placemarks, NSError *error) {
     //        CLPlacemark *placemark = placemarks.firstObject;
     //        dispatch_async(dispatch_get_main_queue(), ^{
@@ -469,8 +476,12 @@
                                                 NSInteger indexOfNeighborhood = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
                                                     return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"neighborhood"];
                                                 }];
-                                                
                                                 NSString *locality;
+                                                
+                                                if (address.subLocality)
+                                                    locality = address.subLocality;
+                                                else
+                                                    locality = address.locality;
                                                 
                                                 if (indexOfNeighborhood < [address.lines count])
                                                     
@@ -484,7 +495,12 @@
                                                 
                                                 self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
                                             }
-                                        }];
+                                            else if (error) {
+                                                NSLog(@"%@ %@", results, error.localizedDescription);
+                                            }
+                                        }
+
+     ];
     
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;

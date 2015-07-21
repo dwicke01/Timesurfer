@@ -7,6 +7,7 @@
 //
 
 #import "TSWeatherData.h"
+#import <CoreLocation/CLLocation.h>
 
 @interface TSWeatherData ()
 
@@ -14,7 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *weatherByHour;
 @property (nonatomic, strong) NSDate *sunRiseDate;
 @property (nonatomic, strong) NSDate *sunSetDate;
-@property (nonatomic, strong) NSDate *currentDate;
 @property (nonatomic, strong) NSString *sunRiseHour;
 @property (nonatomic, strong) NSString *sunSetHour;
 @property (nonatomic, assign) BOOL dayLight;
@@ -40,6 +40,8 @@
     if (self){
         _weatherDictionary = incomingWeatherJSON;
         _weatherByHour = [[NSMutableArray alloc] init];
+        
+        _location = [[CLLocation alloc] initWithLatitude:[self.weatherDictionary[@"latitude"] doubleValue] longitude:[self.weatherDictionary[@"longitude"] doubleValue]];
         
         NSNumber *sunRiseNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
         NSNumber *sunSetNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
