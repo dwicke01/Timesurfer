@@ -35,7 +35,7 @@
     for (int i = 1; i <= 24; i++) {
         
         TSWeather *weather = [self.weatherData weatherForHour:i];
-            NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, weather.currentHourInt);
+           // NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, weather.currentHourInt);
         
         if (weather.percentRainFloat <= 30) {
             

@@ -13,7 +13,7 @@
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         [TSViewController class];
-        [TSStarField class];
+        //[TSStarField class];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

@@ -7,17 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1704BDD71B52FCFB00E0DFEF /* TSClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSClouds.h */; };
-		1704BDD81B52FCFB00E0DFEF /* TSClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704BDD61B52FCFB00E0DFEF /* TSClouds.m */; };
-		176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4541B5D9BE9006190BD /* TSConstants.h */; };
-		176DA4571B5D9BE9006190BD /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 176DA4551B5D9BE9006190BD /* TSConstants.m */; };
-		176DA45A1B5E0979006190BD /* TSAirplane.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4581B5E0979006190BD /* TSAirplane.h */; };
-		176DA45B1B5E0979006190BD /* TSAirplane.m in Sources */ = {isa = PBXBuildFile; fileRef = 176DA4591B5E0979006190BD /* TSAirplane.m */; };
-		178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */; };
+		176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4541B5D9BE9006190BD /* TSConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */; };
 		178CDEF41B58788500B76ED6 /* TSRainParticleSystem.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */; };
 		178CDEF51B58788500B76ED6 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 178CDEF31B58788500B76ED6 /* spark.png */; };
-		178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEFC1B5C5DE900B76ED6 /* TSSun.h */; };
+		178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEFC1B5C5DE900B76ED6 /* TSSun.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		178CDEFF1B5C5DE900B76ED6 /* TSSun.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CDEFD1B5C5DE900B76ED6 /* TSSun.m */; };
 		17DB0BFC1B3BAA690001810D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFB1B3BAA690001810D /* main.m */; };
 		17DB0BFF1B3BAA690001810D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFE1B3BAA690001810D /* AppDelegate.m */; };
@@ -25,9 +20,11 @@
 		17DB0C071B3BAA690001810D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
 		17DB0C0A1B3BAA690001810D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C081B3BAA690001810D /* LaunchScreen.xib */; };
 		17DB0C161B3BAA690001810D /* TimesurferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C151B3BAA690001810D /* TimesurferTests.m */; };
-		17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */; };
+		17E0115B1B612FF600E3EE31 /* TSAirplane.h in Headers */ = {isa = PBXBuildFile; fileRef = 17E011581B612FF600E3EE31 /* TSAirplane.h */; };
+		17E0115C1B612FF600E3EE31 /* TSAirplane.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E011591B612FF600E3EE31 /* TSAirplane.m */; };
+		17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */; };
-		17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */; };
+		17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */; };
 		44219C10B632388FE09B70FB /* libPods-TimesurferExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A7DEE960EE55BF206C158D /* libPods-TimesurferExtension.a */; };
 		50038113C52D76AD9B55049B /* libPods-TimesurferFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3DE8ECFA93BFF385CBE865 /* libPods-TimesurferFramework.a */; };
@@ -41,10 +38,14 @@
 		FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */ = {isa = PBXBuildFile; fileRef = 1780FAF81B3C75FE00C31748 /* TSWeather.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA22DAE31B41E22E0072005E /* TimesurferFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */; };
 		FA22DAE41B41E3BF0072005E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
+		FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B14341B5DB5FC008878C8 /* TSConstants.m */; };
+		FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSClouds.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA5695121B41B65300A9FB98 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */; };
 		FA56951D1B41B65300A9FB98 /* TimesurferExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FA5695241B41B6F000A9FB98 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */; };
 		FA5695251B41B6F000A9FB98 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5695231B41B6F000A9FB98 /* TodayViewController.m */; };
+		FA741C881B599614001BA727 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA741C871B599614001BA727 /* Security.framework */; };
+		FA741C8A1B599622001BA727 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA741C891B599622001BA727 /* SystemConfiguration.framework */; };
 		FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 17DB0C001B3BAA690001810D /* TSViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C011B3BAA690001810D /* TSViewController.m */; };
 		FAECE4FD1B42350100993A63 /* TimesurferFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -53,6 +54,7 @@
 		FAECE5001B42384900993A63 /* TSStarField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1732C4AE1B3E242700B82ED3 /* TSStarField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAECE5011B42384900993A63 /* TSGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAECE5021B423B3900993A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C031B3BAA690001810D /* Main.storyboard */; };
+		FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704BDD61B52FCFB00E0DFEF /* TSClouds.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,9 +135,6 @@
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
 		1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSGraphics.m; path = ../Timesurfer/TSGraphics.m; sourceTree = "<group>"; };
 		176DA4541B5D9BE9006190BD /* TSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSConstants.h; path = Timesurfer/TSConstants.h; sourceTree = SOURCE_ROOT; };
-		176DA4551B5D9BE9006190BD /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSConstants.m; path = Timesurfer/TSConstants.m; sourceTree = SOURCE_ROOT; };
-		176DA4581B5E0979006190BD /* TSAirplane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAirplane.h; path = Timesurfer/TSAirplane.h; sourceTree = SOURCE_ROOT; };
-		176DA4591B5E0979006190BD /* TSAirplane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAirplane.m; path = Timesurfer/TSAirplane.m; sourceTree = SOURCE_ROOT; };
 		1780FAF51B3C75E700C31748 /* TSWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWeatherData.h; path = ../Timesurfer/TSWeatherData.h; sourceTree = "<group>"; };
 		1780FAF61B3C75E700C31748 /* TSWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSWeatherData.m; path = ../Timesurfer/TSWeatherData.m; sourceTree = "<group>"; };
 		1780FAF81B3C75FE00C31748 /* TSWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWeather.h; path = ../Timesurfer/TSWeather.h; sourceTree = "<group>"; };
@@ -159,6 +158,9 @@
 		17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimesurferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DB0C141B3BAA690001810D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17DB0C151B3BAA690001810D /* TimesurferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferTests.m; sourceTree = "<group>"; };
+		17E011581B612FF600E3EE31 /* TSAirplane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAirplane.h; sourceTree = "<group>"; };
+		17E011591B612FF600E3EE31 /* TSAirplane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAirplane.m; sourceTree = "<group>"; };
+		17E0115A1B612FF600E3EE31 /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConstants.m; sourceTree = "<group>"; };
 		17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDayTimeGradient.h; sourceTree = "<group>"; };
 		17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDayTimeGradient.m; sourceTree = "<group>"; };
 		17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSNightGradient.h; path = Timesurfer/TSNightGradient.h; sourceTree = SOURCE_ROOT; };
@@ -184,11 +186,14 @@
 		FA22DAC91B41DEEE0072005E /* TimesurferFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimesurferFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA22DAD11B41DEEE0072005E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferFrameworkTests.m; sourceTree = "<group>"; };
+		FA2B14341B5DB5FC008878C8 /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConstants.m; sourceTree = "<group>"; };
 		FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimesurferExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		FA5695221B41B6F000A9FB98 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		FA5695231B41B6F000A9FB98 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		FA56952C1B41B73400A9FB98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA741C871B599614001BA727 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FA741C891B599622001BA727 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FF899399A8ECEF16FDA43F15 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +217,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA741C8A1B599622001BA727 /* SystemConfiguration.framework in Frameworks */,
+				FA741C881B599614001BA727 /* Security.framework in Frameworks */,
 				50038113C52D76AD9B55049B /* libPods-TimesurferFramework.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +312,8 @@
 		27DA3A21DD46A38B361502E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA741C891B599622001BA727 /* SystemConfiguration.framework */,
+				FA741C871B599614001BA727 /* Security.framework */,
 				FA1086841B408E99009B705E /* libPods.a */,
 				FA1086821B408E82009B705E /* libPods-AFNetworking.a */,
 				FA1086801B408E7D009B705E /* libPods-Forecastr.a */,
@@ -335,6 +344,9 @@
 		FA22DAC01B41DEEE0072005E /* TimesurferFramework */ = {
 			isa = PBXGroup;
 			children = (
+				17E011581B612FF600E3EE31 /* TSAirplane.h */,
+				17E011591B612FF600E3EE31 /* TSAirplane.m */,
+				17E0115A1B612FF600E3EE31 /* TSConstants.m */,
 				17DB0C001B3BAA690001810D /* TSViewController.h */,
 				17DB0C011B3BAA690001810D /* TSViewController.m */,
 				1732C4AE1B3E242700B82ED3 /* TSStarField.h */,
@@ -355,10 +367,8 @@
 				1704BDD61B52FCFB00E0DFEF /* TSClouds.m */,
 				178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */,
 				178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */,
-				176DA4581B5E0979006190BD /* TSAirplane.h */,
-				176DA4591B5E0979006190BD /* TSAirplane.m */,
 				176DA4541B5D9BE9006190BD /* TSConstants.h */,
-				176DA4551B5D9BE9006190BD /* TSConstants.m */,
+				FA2B14341B5DB5FC008878C8 /* TSConstants.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
 				FA22DAC11B41DEEE0072005E /* Supporting Files */,
 				178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */,
@@ -418,19 +428,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */,
-				178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */,
 				FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */,
-				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
 				FA22DAE11B41E04D0072005E /* TSWeatherData.h in Headers */,
+				17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */,
+				17E0115B1B612FF600E3EE31 /* TSAirplane.h in Headers */,
+				178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */,
+				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
+				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
+				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
+				FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */,
 				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
-				176DA45A1B5E0979006190BD /* TSAirplane.h in Headers */,
-				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
-				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
 				FAECE5011B42384900993A63 /* TSGraphics.h in Headers */,
-				1704BDD71B52FCFB00E0DFEF /* TSClouds.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,18 +759,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1704BDD81B52FCFB00E0DFEF /* TSClouds.m in Sources */,
-				176DA4571B5D9BE9006190BD /* TSConstants.m in Sources */,
 				17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */,
 				FAECE4FE1B42383E00993A63 /* TSStarField.m in Sources */,
 				178CDEFF1B5C5DE900B76ED6 /* TSSun.m in Sources */,
 				FAECE4FF1B42383E00993A63 /* TSGraphics.m in Sources */,
 				FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */,
+				FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */,
 				FA22DADF1B41E0400072005E /* TSWeatherData.m in Sources */,
+				17E0115C1B612FF600E3EE31 /* TSAirplane.m in Sources */,
 				FA22DAE01B41E0400072005E /* TSWeather.m in Sources */,
 				17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */,
-				176DA45B1B5E0979006190BD /* TSAirplane.m in Sources */,
 				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,
+				FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,6 +1020,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

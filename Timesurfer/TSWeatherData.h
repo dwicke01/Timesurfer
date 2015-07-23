@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "TSWeather.h"
 
+@class CLLocation;
+
 @interface TSWeatherData : NSObject
 
 @property (nonatomic, strong) NSString *sunRise;
 @property (nonatomic, strong) NSString *sunSet;
 @property (nonatomic, assign) NSUInteger startingHour;
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) NSDate *currentDate;
 
 + (instancetype)sharedDataStore;
 

@@ -21,7 +21,7 @@
 
 - (void) getWeather;
 - (void) updateWeatherLabelsWithIndex:(NSUInteger)hour;
-- (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion;
+- (void) startLocationUpdatesWithCompletionBlock:(void (^)(void))completion;
 
 @end
 

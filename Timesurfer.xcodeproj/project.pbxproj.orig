@@ -1,0 +1,1227 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+<<<<<<< HEAD
+		1704BDD71B52FCFB00E0DFEF /* TSClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSClouds.h */; };
+		1704BDD81B52FCFB00E0DFEF /* TSClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704BDD61B52FCFB00E0DFEF /* TSClouds.m */; };
+		176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4541B5D9BE9006190BD /* TSConstants.h */; };
+		176DA4571B5D9BE9006190BD /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 176DA4551B5D9BE9006190BD /* TSConstants.m */; };
+		176DA45A1B5E0979006190BD /* TSAirplane.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4581B5E0979006190BD /* TSAirplane.h */; };
+		176DA45B1B5E0979006190BD /* TSAirplane.m in Sources */ = {isa = PBXBuildFile; fileRef = 176DA4591B5E0979006190BD /* TSAirplane.m */; };
+		178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */; };
+=======
+		176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4541B5D9BE9006190BD /* TSConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */; settings = {ATTRIBUTES = (Public, ); }; };
+>>>>>>> origin/master
+		178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */; };
+		178CDEF41B58788500B76ED6 /* TSRainParticleSystem.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */; };
+		178CDEF51B58788500B76ED6 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 178CDEF31B58788500B76ED6 /* spark.png */; };
+		178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEFC1B5C5DE900B76ED6 /* TSSun.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		178CDEFF1B5C5DE900B76ED6 /* TSSun.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CDEFD1B5C5DE900B76ED6 /* TSSun.m */; };
+		17DB0BFC1B3BAA690001810D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFB1B3BAA690001810D /* main.m */; };
+		17DB0BFF1B3BAA690001810D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BFE1B3BAA690001810D /* AppDelegate.m */; };
+		17DB0C051B3BAA690001810D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C031B3BAA690001810D /* Main.storyboard */; };
+		17DB0C071B3BAA690001810D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
+		17DB0C0A1B3BAA690001810D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C081B3BAA690001810D /* LaunchScreen.xib */; };
+		17DB0C161B3BAA690001810D /* TimesurferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C151B3BAA690001810D /* TimesurferTests.m */; };
+		17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */; };
+		17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */; };
+		44219C10B632388FE09B70FB /* libPods-TimesurferExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A7DEE960EE55BF206C158D /* libPods-TimesurferExtension.a */; };
+		50038113C52D76AD9B55049B /* libPods-TimesurferFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3DE8ECFA93BFF385CBE865 /* libPods-TimesurferFramework.a */; };
+		8312CC48020A4414A82E60DB /* libPods-Timesurfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFDD922A2F4C2D38E58CA82 /* libPods-Timesurfer.a */; };
+		FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA22DACA1B41DEEE0072005E /* TimesurferFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */; };
+		FA22DAD31B41DEEE0072005E /* TimesurferFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */; };
+		FA22DADF1B41E0400072005E /* TSWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1780FAF61B3C75E700C31748 /* TSWeatherData.m */; };
+		FA22DAE01B41E0400072005E /* TSWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = 1780FAF91B3C75FE00C31748 /* TSWeather.m */; };
+		FA22DAE11B41E04D0072005E /* TSWeatherData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1780FAF51B3C75E700C31748 /* TSWeatherData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */ = {isa = PBXBuildFile; fileRef = 1780FAF81B3C75FE00C31748 /* TSWeather.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA22DAE31B41E22E0072005E /* TimesurferFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */; };
+		FA22DAE41B41E3BF0072005E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
+		FA2B13BA1B59BAD5008878C8 /* TSGoogleCalendarManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA2B13B81B59BAD5008878C8 /* TSGoogleCalendarManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA2B13BB1B59BAD5008878C8 /* TSGoogleCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B13B91B59BAD5008878C8 /* TSGoogleCalendarManager.m */; };
+		FA2B13BD1B5AAD1D008878C8 /* GTLCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = FA2B13BC1B5AAD1D008878C8 /* GTLCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B14341B5DB5FC008878C8 /* TSConstants.m */; };
+		FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSClouds.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA5695121B41B65300A9FB98 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */; };
+		FA56951D1B41B65300A9FB98 /* TimesurferExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FA5695241B41B6F000A9FB98 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */; };
+		FA5695251B41B6F000A9FB98 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5695231B41B6F000A9FB98 /* TodayViewController.m */; };
+		FA741C751B597AA9001BA727 /* TSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = FA741C731B597AA9001BA727 /* TSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA741C761B597AA9001BA727 /* TSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FA741C741B597AA9001BA727 /* TSEvent.m */; };
+		FA741C881B599614001BA727 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA741C871B599614001BA727 /* Security.framework */; };
+		FA741C8A1B599622001BA727 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA741C891B599622001BA727 /* SystemConfiguration.framework */; };
+		FA87259B1B5326700096E5C7 /* TSWeatherDay.h in Headers */ = {isa = PBXBuildFile; fileRef = FA8725991B5326700096E5C7 /* TSWeatherDay.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA87259C1B5326700096E5C7 /* TSWeatherDay.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87259A1B5326700096E5C7 /* TSWeatherDay.m */; };
+		FAD668961B56E73D00325F65 /* TSEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FAD668941B56E73D00325F65 /* TSEventManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAD668971B56E73D00325F65 /* TSEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD668951B56E73D00325F65 /* TSEventManager.m */; };
+		FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 17DB0C001B3BAA690001810D /* TSViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C011B3BAA690001810D /* TSViewController.m */; };
+		FAECE4FD1B42350100993A63 /* TimesurferFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FAECE4FE1B42383E00993A63 /* TSStarField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732C4AF1B3E242700B82ED3 /* TSStarField.m */; };
+		FAECE4FF1B42383E00993A63 /* TSGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */; };
+		FAECE5001B42384900993A63 /* TSStarField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1732C4AE1B3E242700B82ED3 /* TSStarField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAECE5011B42384900993A63 /* TSGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAECE5021B423B3900993A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C031B3BAA690001810D /* Main.storyboard */; };
+		FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704BDD61B52FCFB00E0DFEF /* TSClouds.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		17DB0C101B3BAA690001810D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17DB0BF51B3BAA690001810D;
+			remoteInfo = Timesurfer;
+		};
+		FA22DACB1B41DEEE0072005E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA22DABE1B41DEED0072005E;
+			remoteInfo = TimesurferFramework;
+		};
+		FA22DACD1B41DEEE0072005E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17DB0BF51B3BAA690001810D;
+			remoteInfo = Timesurfer;
+		};
+		FA22DAD41B41DEEE0072005E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA22DABE1B41DEED0072005E;
+			remoteInfo = TimesurferFramework;
+		};
+		FA22DAE51B41F1B90072005E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA22DABE1B41DEED0072005E;
+			remoteInfo = TimesurferFramework;
+		};
+		FA56951B1B41B65300A9FB98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17DB0BEE1B3BAA690001810D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA5695101B41B65300A9FB98;
+			remoteInfo = TimesurferExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA1AAC681B3E2A2E00F5A151 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FA56951D1B41B65300A9FB98 /* TimesurferExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DADB1B41DEEE0072005E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FAECE4FD1B42350100993A63 /* TimesurferFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1704BDD51B52FCFB00E0DFEF /* TSClouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSClouds.h; path = Timesurfer/TSClouds.h; sourceTree = SOURCE_ROOT; };
+		1704BDD61B52FCFB00E0DFEF /* TSClouds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSClouds.m; path = Timesurfer/TSClouds.m; sourceTree = SOURCE_ROOT; };
+		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
+		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
+		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
+		1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSGraphics.m; path = ../Timesurfer/TSGraphics.m; sourceTree = "<group>"; };
+		176DA4541B5D9BE9006190BD /* TSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSConstants.h; path = Timesurfer/TSConstants.h; sourceTree = SOURCE_ROOT; };
+<<<<<<< HEAD
+		176DA4551B5D9BE9006190BD /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSConstants.m; path = Timesurfer/TSConstants.m; sourceTree = SOURCE_ROOT; };
+		176DA4581B5E0979006190BD /* TSAirplane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAirplane.h; path = Timesurfer/TSAirplane.h; sourceTree = SOURCE_ROOT; };
+		176DA4591B5E0979006190BD /* TSAirplane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAirplane.m; path = Timesurfer/TSAirplane.m; sourceTree = SOURCE_ROOT; };
+=======
+>>>>>>> origin/master
+		1780FAF51B3C75E700C31748 /* TSWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWeatherData.h; path = ../Timesurfer/TSWeatherData.h; sourceTree = "<group>"; };
+		1780FAF61B3C75E700C31748 /* TSWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSWeatherData.m; path = ../Timesurfer/TSWeatherData.m; sourceTree = "<group>"; };
+		1780FAF81B3C75FE00C31748 /* TSWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWeather.h; path = ../Timesurfer/TSWeather.h; sourceTree = "<group>"; };
+		1780FAF91B3C75FE00C31748 /* TSWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSWeather.m; path = ../Timesurfer/TSWeather.m; sourceTree = "<group>"; };
+		178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSSheepClouds.h; path = Timesurfer/TSSheepClouds.h; sourceTree = SOURCE_ROOT; };
+		178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSSheepClouds.m; path = Timesurfer/TSSheepClouds.m; sourceTree = SOURCE_ROOT; };
+		178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = TSRainParticleSystem.scnp; sourceTree = "<group>"; };
+		178CDEF31B58788500B76ED6 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		178CDEFC1B5C5DE900B76ED6 /* TSSun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSSun.h; path = Timesurfer/TSSun.h; sourceTree = SOURCE_ROOT; };
+		178CDEFD1B5C5DE900B76ED6 /* TSSun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSSun.m; path = Timesurfer/TSSun.m; sourceTree = SOURCE_ROOT; };
+		17DB0BF61B3BAA690001810D /* Timesurfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timesurfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17DB0BFA1B3BAA690001810D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17DB0BFB1B3BAA690001810D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		17DB0BFD1B3BAA690001810D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		17DB0BFE1B3BAA690001810D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		17DB0C001B3BAA690001810D /* TSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSViewController.h; path = ../Timesurfer/TSViewController.h; sourceTree = "<group>"; };
+		17DB0C011B3BAA690001810D /* TSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TSViewController.m; path = ../Timesurfer/TSViewController.m; sourceTree = "<group>"; };
+		17DB0C041B3BAA690001810D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		17DB0C061B3BAA690001810D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		17DB0C091B3BAA690001810D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimesurferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17DB0C141B3BAA690001810D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17DB0C151B3BAA690001810D /* TimesurferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferTests.m; sourceTree = "<group>"; };
+		17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDayTimeGradient.h; sourceTree = "<group>"; };
+		17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDayTimeGradient.m; sourceTree = "<group>"; };
+		17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSNightGradient.h; path = Timesurfer/TSNightGradient.h; sourceTree = SOURCE_ROOT; };
+		17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSNightGradient.m; path = Timesurfer/TSNightGradient.m; sourceTree = SOURCE_ROOT; };
+		1A76722F0040275B706F556D /* Pods-Timesurfer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timesurfer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer.debug.xcconfig"; sourceTree = "<group>"; };
+		37C3A64486D20A46C0AA10FE /* Pods-Timesurfer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timesurfer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer.release.xcconfig"; sourceTree = "<group>"; };
+		3C3327961059FA91D5089983 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5C3AD4C50D68B9CFB4914A08 /* Pods-TimesurferExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimesurferExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimesurferExtension/Pods-TimesurferExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		5F3DE8ECFA93BFF385CBE865 /* libPods-TimesurferFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimesurferFramework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CFDD922A2F4C2D38E58CA82 /* libPods-Timesurfer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Timesurfer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9720FE54CCFCAAA0EE4F27FC /* Pods-TimesurferFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimesurferFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimesurferFramework/Pods-TimesurferFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		A067D15C2B0B556E37267623 /* Pods-TimesurferExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimesurferExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimesurferExtension/Pods-TimesurferExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B14A0B62EBC1128086416F88 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5A7DEE960EE55BF206C158D /* libPods-TimesurferExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimesurferExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAD5C926E34339CB36A0E390 /* Pods-TimesurferFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimesurferFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimesurferFramework/Pods-TimesurferFramework.release.xcconfig"; sourceTree = "<group>"; };
+		FA1086801B408E7D009B705E /* libPods-Forecastr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Forecastr.a"; path = "Pods/../build/Debug-iphoneos/libPods-Forecastr.a"; sourceTree = "<group>"; };
+		FA1086821B408E82009B705E /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		FA1086841B408E99009B705E /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimesurferFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA22DAC21B41DEEE0072005E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimesurferFramework.h; sourceTree = "<group>"; };
+		FA22DAC91B41DEEE0072005E /* TimesurferFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimesurferFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA22DAD11B41DEEE0072005E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferFrameworkTests.m; sourceTree = "<group>"; };
+		FA2B13B81B59BAD5008878C8 /* TSGoogleCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGoogleCalendarManager.h; sourceTree = "<group>"; };
+		FA2B13B91B59BAD5008878C8 /* TSGoogleCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGoogleCalendarManager.m; sourceTree = "<group>"; };
+		FA2B13BC1B5AAD1D008878C8 /* GTLCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLCalendar.h; sourceTree = "<group>"; };
+		FA2B13BE1B5AAD2B008878C8 /* GTLCalendar_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLCalendar_Sources.m; sourceTree = "<group>"; };
+		FA2B14341B5DB5FC008878C8 /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConstants.m; sourceTree = "<group>"; };
+		FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimesurferExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		FA5695221B41B6F000A9FB98 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		FA5695231B41B6F000A9FB98 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		FA56952C1B41B73400A9FB98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA741C731B597AA9001BA727 /* TSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSEvent.h; sourceTree = "<group>"; };
+		FA741C741B597AA9001BA727 /* TSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSEvent.m; sourceTree = "<group>"; };
+		FA741C871B599614001BA727 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FA741C891B599622001BA727 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FA8725991B5326700096E5C7 /* TSWeatherDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSWeatherDay.h; sourceTree = "<group>"; };
+		FA87259A1B5326700096E5C7 /* TSWeatherDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSWeatherDay.m; sourceTree = "<group>"; };
+		FAD668941B56E73D00325F65 /* TSEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSEventManager.h; sourceTree = "<group>"; };
+		FAD668951B56E73D00325F65 /* TSEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSEventManager.m; sourceTree = "<group>"; };
+		FF899399A8ECEF16FDA43F15 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17DB0BF31B3BAA690001810D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8312CC48020A4414A82E60DB /* libPods-Timesurfer.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17DB0C0C1B3BAA690001810D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DABB1B41DEED0072005E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA741C8A1B599622001BA727 /* SystemConfiguration.framework in Frameworks */,
+				FA741C881B599614001BA727 /* Security.framework in Frameworks */,
+				50038113C52D76AD9B55049B /* libPods-TimesurferFramework.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DAC61B41DEEE0072005E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA22DACA1B41DEEE0072005E /* TimesurferFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA56950E1B41B65300A9FB98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA22DAE31B41E22E0072005E /* TimesurferFramework.framework in Frameworks */,
+				FA5695121B41B65300A9FB98 /* NotificationCenter.framework in Frameworks */,
+				44219C10B632388FE09B70FB /* libPods-TimesurferExtension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17DB0BED1B3BAA690001810D = {
+			isa = PBXGroup;
+			children = (
+				17DB0BF81B3BAA690001810D /* Timesurfer */,
+				17DB0C121B3BAA690001810D /* TimesurferTests */,
+				FA5695131B41B65300A9FB98 /* TimesurferExtension */,
+				FA22DAC01B41DEEE0072005E /* TimesurferFramework */,
+				FA22DACF1B41DEEE0072005E /* TimesurferFrameworkTests */,
+				17DB0BF71B3BAA690001810D /* Products */,
+				CC29F1F52CE12D53FC87DF4F /* Pods */,
+				27DA3A21DD46A38B361502E4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		17DB0BF71B3BAA690001810D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0BF61B3BAA690001810D /* Timesurfer.app */,
+				17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */,
+				FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */,
+				FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */,
+				FA22DAC91B41DEEE0072005E /* TimesurferFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17DB0BF81B3BAA690001810D /* Timesurfer */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0BFD1B3BAA690001810D /* AppDelegate.h */,
+				17DB0BFE1B3BAA690001810D /* AppDelegate.m */,
+				17DB0C031B3BAA690001810D /* Main.storyboard */,
+				17DB0C061B3BAA690001810D /* Images.xcassets */,
+				17DB0C081B3BAA690001810D /* LaunchScreen.xib */,
+				17DB0BF91B3BAA690001810D /* Supporting Files */,
+			);
+			path = Timesurfer;
+			sourceTree = "<group>";
+		};
+		17DB0BF91B3BAA690001810D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0BFA1B3BAA690001810D /* Info.plist */,
+				17DB0BFB1B3BAA690001810D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		17DB0C121B3BAA690001810D /* TimesurferTests */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0C151B3BAA690001810D /* TimesurferTests.m */,
+				17DB0C131B3BAA690001810D /* Supporting Files */,
+			);
+			path = TimesurferTests;
+			sourceTree = "<group>";
+		};
+		17DB0C131B3BAA690001810D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0C141B3BAA690001810D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27DA3A21DD46A38B361502E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA741C891B599622001BA727 /* SystemConfiguration.framework */,
+				FA741C871B599614001BA727 /* Security.framework */,
+				FA1086841B408E99009B705E /* libPods.a */,
+				FA1086821B408E82009B705E /* libPods-AFNetworking.a */,
+				FA1086801B408E7D009B705E /* libPods-Forecastr.a */,
+				B14A0B62EBC1128086416F88 /* libPods.a */,
+				FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */,
+				8CFDD922A2F4C2D38E58CA82 /* libPods-Timesurfer.a */,
+				E5A7DEE960EE55BF206C158D /* libPods-TimesurferExtension.a */,
+				5F3DE8ECFA93BFF385CBE865 /* libPods-TimesurferFramework.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC29F1F52CE12D53FC87DF4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C3327961059FA91D5089983 /* Pods.debug.xcconfig */,
+				FF899399A8ECEF16FDA43F15 /* Pods.release.xcconfig */,
+				1A76722F0040275B706F556D /* Pods-Timesurfer.debug.xcconfig */,
+				37C3A64486D20A46C0AA10FE /* Pods-Timesurfer.release.xcconfig */,
+				5C3AD4C50D68B9CFB4914A08 /* Pods-TimesurferExtension.debug.xcconfig */,
+				A067D15C2B0B556E37267623 /* Pods-TimesurferExtension.release.xcconfig */,
+				9720FE54CCFCAAA0EE4F27FC /* Pods-TimesurferFramework.debug.xcconfig */,
+				EAD5C926E34339CB36A0E390 /* Pods-TimesurferFramework.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA22DAC01B41DEEE0072005E /* TimesurferFramework */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0C001B3BAA690001810D /* TSViewController.h */,
+				17DB0C011B3BAA690001810D /* TSViewController.m */,
+				1732C4AE1B3E242700B82ED3 /* TSStarField.h */,
+				1732C4AF1B3E242700B82ED3 /* TSStarField.m */,
+				1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */,
+				1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */,
+				1780FAF51B3C75E700C31748 /* TSWeatherData.h */,
+				1780FAF61B3C75E700C31748 /* TSWeatherData.m */,
+				1780FAF81B3C75FE00C31748 /* TSWeather.h */,
+				1780FAF91B3C75FE00C31748 /* TSWeather.m */,
+				17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */,
+				17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */,
+				17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */,
+				17EC3D6D1B5178A000BA0D9E /* TSNightGradient.m */,
+				178CDEFC1B5C5DE900B76ED6 /* TSSun.h */,
+				178CDEFD1B5C5DE900B76ED6 /* TSSun.m */,
+				1704BDD51B52FCFB00E0DFEF /* TSClouds.h */,
+				1704BDD61B52FCFB00E0DFEF /* TSClouds.m */,
+				178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */,
+				178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */,
+				176DA4581B5E0979006190BD /* TSAirplane.h */,
+				176DA4591B5E0979006190BD /* TSAirplane.m */,
+				176DA4541B5D9BE9006190BD /* TSConstants.h */,
+				FA2B14341B5DB5FC008878C8 /* TSConstants.m */,
+				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
+				FA22DAC11B41DEEE0072005E /* Supporting Files */,
+				FA8725991B5326700096E5C7 /* TSWeatherDay.h */,
+				FA87259A1B5326700096E5C7 /* TSWeatherDay.m */,
+				FAD668941B56E73D00325F65 /* TSEventManager.h */,
+				FAD668951B56E73D00325F65 /* TSEventManager.m */,
+				178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */,
+				178CDEF31B58788500B76ED6 /* spark.png */,
+			);
+			path = TimesurferFramework;
+			sourceTree = "<group>";
+		};
+		FA22DAC11B41DEEE0072005E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA2B13BC1B5AAD1D008878C8 /* GTLCalendar.h */,
+				FA2B13BE1B5AAD2B008878C8 /* GTLCalendar_Sources.m */,
+				FA22DAC21B41DEEE0072005E /* Info.plist */,
+				FA741C731B597AA9001BA727 /* TSEvent.h */,
+				FA741C741B597AA9001BA727 /* TSEvent.m */,
+				FA2B13B81B59BAD5008878C8 /* TSGoogleCalendarManager.h */,
+				FA2B13B91B59BAD5008878C8 /* TSGoogleCalendarManager.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA22DACF1B41DEEE0072005E /* TimesurferFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */,
+				FA22DAD01B41DEEE0072005E /* Supporting Files */,
+			);
+			path = TimesurferFrameworkTests;
+			sourceTree = "<group>";
+		};
+		FA22DAD01B41DEEE0072005E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA22DAD11B41DEEE0072005E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA5695131B41B65300A9FB98 /* TimesurferExtension */ = {
+			isa = PBXGroup;
+			children = (
+				FA56952C1B41B73400A9FB98 /* Info.plist */,
+				FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */,
+				FA5695221B41B6F000A9FB98 /* TodayViewController.h */,
+				FA5695231B41B6F000A9FB98 /* TodayViewController.m */,
+				FA5695141B41B65300A9FB98 /* Supporting Files */,
+			);
+			path = TimesurferExtension;
+			sourceTree = "<group>";
+		};
+		FA5695141B41B65300A9FB98 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FA22DABC1B41DEED0072005E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */,
+				FA22DAE11B41E04D0072005E /* TSWeatherData.h in Headers */,
+				17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */,
+				178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */,
+				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
+				FA741C751B597AA9001BA727 /* TSEvent.h in Headers */,
+				FA87259B1B5326700096E5C7 /* TSWeatherDay.h in Headers */,
+				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
+				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
+				FAD668961B56E73D00325F65 /* TSEventManager.h in Headers */,
+				FA2B13BD1B5AAD1D008878C8 /* GTLCalendar.h in Headers */,
+				FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */,
+				FA2B13BA1B59BAD5008878C8 /* TSGoogleCalendarManager.h in Headers */,
+				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
+				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
+<<<<<<< HEAD
+				176DA45A1B5E0979006190BD /* TSAirplane.h in Headers */,
+				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
+=======
+>>>>>>> origin/master
+				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
+				FAECE5011B42384900993A63 /* TSGraphics.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		17DB0BF51B3BAA690001810D /* Timesurfer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17DB0C191B3BAA690001810D /* Build configuration list for PBXNativeTarget "Timesurfer" */;
+			buildPhases = (
+				47A78D151CF5056CB9B4E59E /* Check Pods Manifest.lock */,
+				17DB0BF21B3BAA690001810D /* Sources */,
+				17DB0BF31B3BAA690001810D /* Frameworks */,
+				17DB0BF41B3BAA690001810D /* Resources */,
+				05FF64F59A063DC5C68A5907 /* Copy Pods Resources */,
+				FA1AAC681B3E2A2E00F5A151 /* Embed App Extensions */,
+				FA22DADB1B41DEEE0072005E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA56951C1B41B65300A9FB98 /* PBXTargetDependency */,
+				FA22DAD51B41DEEE0072005E /* PBXTargetDependency */,
+			);
+			name = Timesurfer;
+			productName = Timesurfer;
+			productReference = 17DB0BF61B3BAA690001810D /* Timesurfer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		17DB0C0E1B3BAA690001810D /* TimesurferTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17DB0C1C1B3BAA690001810D /* Build configuration list for PBXNativeTarget "TimesurferTests" */;
+			buildPhases = (
+				17DB0C0B1B3BAA690001810D /* Sources */,
+				17DB0C0C1B3BAA690001810D /* Frameworks */,
+				17DB0C0D1B3BAA690001810D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17DB0C111B3BAA690001810D /* PBXTargetDependency */,
+			);
+			name = TimesurferTests;
+			productName = TimesurferTests;
+			productReference = 17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA22DABE1B41DEED0072005E /* TimesurferFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA22DAD81B41DEEE0072005E /* Build configuration list for PBXNativeTarget "TimesurferFramework" */;
+			buildPhases = (
+				3BD958E00F367287F7B75F40 /* Check Pods Manifest.lock */,
+				FA22DABA1B41DEED0072005E /* Sources */,
+				FA22DABB1B41DEED0072005E /* Frameworks */,
+				FA22DABC1B41DEED0072005E /* Headers */,
+				FA22DABD1B41DEED0072005E /* Resources */,
+				6328ADE9026D009280549F3C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimesurferFramework;
+			productName = TimesurferFramework;
+			productReference = FA22DABF1B41DEEE0072005E /* TimesurferFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FA22DAC81B41DEEE0072005E /* TimesurferFrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA22DADC1B41DEEE0072005E /* Build configuration list for PBXNativeTarget "TimesurferFrameworkTests" */;
+			buildPhases = (
+				FA22DAC51B41DEEE0072005E /* Sources */,
+				FA22DAC61B41DEEE0072005E /* Frameworks */,
+				FA22DAC71B41DEEE0072005E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA22DACC1B41DEEE0072005E /* PBXTargetDependency */,
+				FA22DACE1B41DEEE0072005E /* PBXTargetDependency */,
+			);
+			name = TimesurferFrameworkTests;
+			productName = TimesurferFrameworkTests;
+			productReference = FA22DAC91B41DEEE0072005E /* TimesurferFrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA5695101B41B65300A9FB98 /* TimesurferExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA5695201B41B65300A9FB98 /* Build configuration list for PBXNativeTarget "TimesurferExtension" */;
+			buildPhases = (
+				6F3A8ECC790F3BF017272A84 /* Check Pods Manifest.lock */,
+				FA56950D1B41B65300A9FB98 /* Sources */,
+				FA56950E1B41B65300A9FB98 /* Frameworks */,
+				FA56950F1B41B65300A9FB98 /* Resources */,
+				61D84578C057B14E47DCAA98 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA22DAE61B41F1B90072005E /* PBXTargetDependency */,
+			);
+			name = TimesurferExtension;
+			productName = TimesurferExtension;
+			productReference = FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		17DB0BEE1B3BAA690001810D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = gugges;
+				TargetAttributes = {
+					17DB0BF51B3BAA690001810D = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					17DB0C0E1B3BAA690001810D = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 17DB0BF51B3BAA690001810D;
+					};
+					FA22DABE1B41DEED0072005E = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					FA22DAC81B41DEEE0072005E = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 17DB0BF51B3BAA690001810D;
+					};
+					FA5695101B41B65300A9FB98 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 9RXLE5FXUN;
+					};
+				};
+			};
+			buildConfigurationList = 17DB0BF11B3BAA690001810D /* Build configuration list for PBXProject "Timesurfer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 17DB0BED1B3BAA690001810D;
+			productRefGroup = 17DB0BF71B3BAA690001810D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17DB0BF51B3BAA690001810D /* Timesurfer */,
+				17DB0C0E1B3BAA690001810D /* TimesurferTests */,
+				FA5695101B41B65300A9FB98 /* TimesurferExtension */,
+				FA22DABE1B41DEED0072005E /* TimesurferFramework */,
+				FA22DAC81B41DEEE0072005E /* TimesurferFrameworkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		17DB0BF41B3BAA690001810D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17DB0C051B3BAA690001810D /* Main.storyboard in Resources */,
+				17DB0C0A1B3BAA690001810D /* LaunchScreen.xib in Resources */,
+				17DB0C071B3BAA690001810D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17DB0C0D1B3BAA690001810D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DABD1B41DEED0072005E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAECE5021B423B3900993A63 /* Main.storyboard in Resources */,
+				178CDEF51B58788500B76ED6 /* spark.png in Resources */,
+				178CDEF41B58788500B76ED6 /* TSRainParticleSystem.scnp in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DAC71B41DEEE0072005E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA56950F1B41B65300A9FB98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA22DAE41B41E3BF0072005E /* Images.xcassets in Resources */,
+				FA5695241B41B6F000A9FB98 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05FF64F59A063DC5C68A5907 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BD958E00F367287F7B75F40 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		47A78D151CF5056CB9B4E59E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		61D84578C057B14E47DCAA98 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimesurferExtension/Pods-TimesurferExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6328ADE9026D009280549F3C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimesurferFramework/Pods-TimesurferFramework-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F3A8ECC790F3BF017272A84 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17DB0BF21B3BAA690001810D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17DB0BFF1B3BAA690001810D /* AppDelegate.m in Sources */,
+				17DB0BFC1B3BAA690001810D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17DB0C0B1B3BAA690001810D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17DB0C161B3BAA690001810D /* TimesurferTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DABA1B41DEED0072005E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA2B13BB1B59BAD5008878C8 /* TSGoogleCalendarManager.m in Sources */,
+				17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */,
+				FAECE4FE1B42383E00993A63 /* TSStarField.m in Sources */,
+				178CDEFF1B5C5DE900B76ED6 /* TSSun.m in Sources */,
+				FAD668971B56E73D00325F65 /* TSEventManager.m in Sources */,
+				FAECE4FF1B42383E00993A63 /* TSGraphics.m in Sources */,
+				FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */,
+				FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */,
+				FA87259C1B5326700096E5C7 /* TSWeatherDay.m in Sources */,
+				FA22DADF1B41E0400072005E /* TSWeatherData.m in Sources */,
+				FA22DAE01B41E0400072005E /* TSWeather.m in Sources */,
+				FA741C761B597AA9001BA727 /* TSEvent.m in Sources */,
+				17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */,
+				176DA45B1B5E0979006190BD /* TSAirplane.m in Sources */,
+				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,
+				FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA22DAC51B41DEEE0072005E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA22DAD31B41DEEE0072005E /* TimesurferFrameworkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA56950D1B41B65300A9FB98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA5695251B41B6F000A9FB98 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		17DB0C111B3BAA690001810D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17DB0BF51B3BAA690001810D /* Timesurfer */;
+			targetProxy = 17DB0C101B3BAA690001810D /* PBXContainerItemProxy */;
+		};
+		FA22DACC1B41DEEE0072005E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA22DABE1B41DEED0072005E /* TimesurferFramework */;
+			targetProxy = FA22DACB1B41DEEE0072005E /* PBXContainerItemProxy */;
+		};
+		FA22DACE1B41DEEE0072005E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17DB0BF51B3BAA690001810D /* Timesurfer */;
+			targetProxy = FA22DACD1B41DEEE0072005E /* PBXContainerItemProxy */;
+		};
+		FA22DAD51B41DEEE0072005E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA22DABE1B41DEED0072005E /* TimesurferFramework */;
+			targetProxy = FA22DAD41B41DEEE0072005E /* PBXContainerItemProxy */;
+		};
+		FA22DAE61B41F1B90072005E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA22DABE1B41DEED0072005E /* TimesurferFramework */;
+			targetProxy = FA22DAE51B41F1B90072005E /* PBXContainerItemProxy */;
+		};
+		FA56951C1B41B65300A9FB98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA5695101B41B65300A9FB98 /* TimesurferExtension */;
+			targetProxy = FA56951B1B41B65300A9FB98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		17DB0C031B3BAA690001810D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17DB0C041B3BAA690001810D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		17DB0C081B3BAA690001810D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17DB0C091B3BAA690001810D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		17DB0C171B3BAA690001810D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		17DB0C181B3BAA690001810D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		17DB0C1A1B3BAA690001810D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A76722F0040275B706F556D /* Pods-Timesurfer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Timesurfer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		17DB0C1B1B3BAA690001810D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37C3A64486D20A46C0AA10FE /* Pods-Timesurfer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Timesurfer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		17DB0C1D1B3BAA690001810D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timesurfer.app/Timesurfer";
+			};
+			name = Debug;
+		};
+		17DB0C1E1B3BAA690001810D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timesurfer.app/Timesurfer";
+			};
+			name = Release;
+		};
+		FA22DAD91B41DEEE0072005E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9720FE54CCFCAAA0EE4F27FC /* Pods-TimesurferFramework.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FA22DADA1B41DEEE0072005E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAD5C926E34339CB36A0E390 /* Pods-TimesurferFramework.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TimesurferFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA22DADD1B41DEEE0072005E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferFrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timesurfer.app/Timesurfer";
+			};
+			name = Debug;
+		};
+		FA22DADE1B41DEEE0072005E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferFrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timesurfer.app/Timesurfer";
+			};
+			name = Release;
+		};
+		FA56951E1B41B65300A9FB98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C3AD4C50D68B9CFB4914A08 /* Pods-TimesurferExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimesurferExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FA56951F1B41B65300A9FB98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A067D15C2B0B556E37267623 /* Pods-TimesurferExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TimesurferExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17DB0BF11B3BAA690001810D /* Build configuration list for PBXProject "Timesurfer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17DB0C171B3BAA690001810D /* Debug */,
+				17DB0C181B3BAA690001810D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17DB0C191B3BAA690001810D /* Build configuration list for PBXNativeTarget "Timesurfer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17DB0C1A1B3BAA690001810D /* Debug */,
+				17DB0C1B1B3BAA690001810D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17DB0C1C1B3BAA690001810D /* Build configuration list for PBXNativeTarget "TimesurferTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17DB0C1D1B3BAA690001810D /* Debug */,
+				17DB0C1E1B3BAA690001810D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA22DAD81B41DEEE0072005E /* Build configuration list for PBXNativeTarget "TimesurferFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA22DAD91B41DEEE0072005E /* Debug */,
+				FA22DADA1B41DEEE0072005E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA22DADC1B41DEEE0072005E /* Build configuration list for PBXNativeTarget "TimesurferFrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA22DADD1B41DEEE0072005E /* Debug */,
+				FA22DADE1B41DEEE0072005E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA5695201B41B65300A9FB98 /* Build configuration list for PBXNativeTarget "TimesurferExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA56951E1B41B65300A9FB98 /* Debug */,
+				FA56951F1B41B65300A9FB98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 17DB0BEE1B3BAA690001810D /* Project object */;
+}
