@@ -157,7 +157,7 @@
         currentTime = self.hourSlider.value;
     }
     
-    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
+    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
         
         self.sheepInMotion = YES;
         
