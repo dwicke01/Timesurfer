@@ -248,7 +248,7 @@
         [UIView animateWithDuration:.4
                          animations:^{
                              self.moonXAxis.constant = x * ((currentTime-2000)/600);
-                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant-50))/z)+75;
+                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant-50))/z)+100;
                              
                              [self.moonImage layoutIfNeeded];
                              
@@ -260,7 +260,7 @@
         [UIView animateWithDuration:.4
                          animations:^{
                              self.moonXAxis.constant = x + x * (currentTime/600);
-                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant-50))/z)+75;
+                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant-50))/z)+100;
                              [self.moonImage layoutIfNeeded];
                          }];
     } else if (currentTime < 900) {
