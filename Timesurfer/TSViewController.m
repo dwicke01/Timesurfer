@@ -275,6 +275,7 @@
         self.moonXAxis.constant = 0;
     }
     
+    NSLog(@"Y %f  X %f",self.moonYAxis.constant,self.moonXAxis.constant);
     
 }
 
@@ -424,6 +425,7 @@
     }
     
     [self.locationManager stopUpdatingLocation];
+    NSLog(@"Time Interval Since Now %f", [self.weatherData.currentDate timeIntervalSinceNow]);
     
     if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || [self.weatherData.currentDate timeIntervalSinceNow]>1800) {
 
