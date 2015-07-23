@@ -160,7 +160,6 @@
 		17DB0C151B3BAA690001810D /* TimesurferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferTests.m; sourceTree = "<group>"; };
 		17E011581B612FF600E3EE31 /* TSAirplane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAirplane.h; sourceTree = "<group>"; };
 		17E011591B612FF600E3EE31 /* TSAirplane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAirplane.m; sourceTree = "<group>"; };
-		17E0115A1B612FF600E3EE31 /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConstants.m; sourceTree = "<group>"; };
 		17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDayTimeGradient.h; sourceTree = "<group>"; };
 		17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDayTimeGradient.m; sourceTree = "<group>"; };
 		17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSNightGradient.h; path = Timesurfer/TSNightGradient.h; sourceTree = SOURCE_ROOT; };
@@ -346,7 +345,6 @@
 			children = (
 				17E011581B612FF600E3EE31 /* TSAirplane.h */,
 				17E011591B612FF600E3EE31 /* TSAirplane.m */,
-				17E0115A1B612FF600E3EE31 /* TSConstants.m */,
 				17DB0C001B3BAA690001810D /* TSViewController.h */,
 				17DB0C011B3BAA690001810D /* TSViewController.m */,
 				1732C4AE1B3E242700B82ED3 /* TSStarField.h */,

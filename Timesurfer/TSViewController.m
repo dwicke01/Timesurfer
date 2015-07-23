@@ -468,6 +468,8 @@
                                       NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
                                       
                                   }];
+    } else {
+         [self updateWeatherInfo];
     }
 }
 
