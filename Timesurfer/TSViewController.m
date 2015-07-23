@@ -62,6 +62,8 @@
 @property (nonatomic, strong) TSWeather *currentWeather;
 
 @property (nonatomic, strong) NSTimer *sliderStoppedTimer;
+@property (nonatomic, strong) NSDate *apiLastRequestTime;
+
 @end
 
 @implementation TSViewController
@@ -275,7 +277,7 @@
         self.moonXAxis.constant = 0;
     }
     
-    NSLog(@"Y %f  X %f",self.moonYAxis.constant,self.moonXAxis.constant);
+//    NSLog(@"Y %f  X %f",self.moonYAxis.constant,self.moonXAxis.constant);
     
 }
 
@@ -425,18 +427,20 @@
     }
     
     [self.locationManager stopUpdatingLocation];
-    NSLog(@"Time Interval Since Now %f", [self.weatherData.currentDate timeIntervalSinceNow]);
+    NSLog(@"Time Interval Since Now %f", fabs([self.apiLastRequestTime timeIntervalSinceNow]));
     
-    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || [self.weatherData.currentDate timeIntervalSinceNow]>1800) {
+    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800) {
 
+        self.apiLastRequestTime = [NSDate date];
+        
         [self.forcastr getForecastForLatitude:self.latitude
                                 longitude:self.longitude
                                      time:nil
                                exclusions:nil
                                    extend:nil
                                   success:^(id JSON) {
-                                      //NSLog(@"JSON Response was: %@", JSON);
-                                      NSLog(@"Made API Call");
+//                                      NSLog(@"JSON Response was: %@", JSON);
+//                                      NSLog(@"Made API Call");
                                       
                                       [self.locationManager startMonitoringSignificantLocationChanges];
                                       
