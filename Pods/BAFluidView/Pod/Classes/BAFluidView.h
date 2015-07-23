@@ -56,6 +56,21 @@ Changes the fill color of the wave animation
 @property(assign,nonatomic) NSNumber *startElavation;
 
 /**
+ Changes the interval between Max and Min the random function will use
+ */
+@property (assign,nonatomic) int amplitudeIncrement;
+
+/**
+ Changes the maximum wave crest
+ */
+@property (assign,nonatomic) int maxAmplitude;
+
+/**
+ Changes the minimum wave crest
+ */
+@property (assign,nonatomic) int minAmplitude;
+
+/**
  Returns an object that can create the fluid animation with the given wave properties. This init function lets you adjust the wave crest properties.
  
  @param aRect
@@ -116,9 +131,13 @@ This method lets you choose to what level you want the fluidVIew to increase or 
 - (void)startAnimation;
 
 /**
+ This methods stops all the desired animations
+ */
+- (void)stopAnimation;
+
+/**
 This method can set all the default values prior to start of animation
  */
 - (void)initialize;
-
 
 @end

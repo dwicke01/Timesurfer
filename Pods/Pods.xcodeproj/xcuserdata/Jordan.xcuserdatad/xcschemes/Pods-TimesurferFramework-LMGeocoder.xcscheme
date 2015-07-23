@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1195AC6FD1ACD7C84AB54C6E"
+               BlueprintIdentifier = "BE062DEE8A217F7523475229"
                BuildableName = "libPods-TimesurferFramework-LMGeocoder.a"
                BlueprintName = "Pods-TimesurferFramework-LMGeocoder"
                ReferencedContainer = "container:Pods.xcodeproj">

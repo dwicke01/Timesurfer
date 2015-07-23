@@ -18,7 +18,6 @@
 + (UIImage*)clouds2;
 
 // Drawing Methods
-+ (void)drawDayNightGradientWithCanvasSize: (CGSize)canvasSize;
 + (void)drawDayGradientWithCanvasSize: (CGSize)canvasSize;
 + (void)drawNightGradientWithCanvasSize: (CGSize)canvasSize;
 + (void)drawBiggerStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
@@ -30,7 +29,6 @@
 + (void)drawLightCloudsWithFrame: (CGRect)frame;
 + (void)drawHeavyRainCloudsWithFrame: (CGRect)frame;
 + (void)drawVeryLightCloudsWithFrame: (CGRect)frame;
-+ (void)drawMediumCloudsRainWithFrame: (CGRect)frame;
 + (void)drawSheepCloudsRainWithFrame: (CGRect)frame;
 + (void)drawHeavyCloudsHeavyRainWithFrame: (CGRect)frame;
 + (void)drawLightSheepCloudsWithFrame: (CGRect)frame legRotation: (CGFloat)legRotation;
@@ -38,19 +36,8 @@
 + (void)drawHeavyCloudsLightRainWithFrame: (CGRect)frame;
 + (void)drawHeavyCloudsMayRainWithFrame: (CGRect)frame;
 + (void)drawHeavyCloudsWithFrame: (CGRect)frame;
-+ (void)drawHeavyCloudsBackupWithFrame: (CGRect)frame;
-+ (void)drawHeavyCloudsMediumRainBackupWithFrame: (CGRect)frame;
-+ (void)drawSunOneWithFrame: (CGRect)frame;
 + (void)drawSunTwoWithFrame: (CGRect)frame sunRotation: (CGFloat)sunRotation scale: (CGFloat)scale;
-+ (void)drawCanvas1;
 + (void)drawPrivateJetWithFrame: (CGRect)frame;
-+ (void)drawCanvas2;
-+ (void)drawCanvas3;
-+ (void)drawCanvas4;
-+ (void)drawCanvas6;
-+ (void)drawCanvas7;
-+ (void)drawCanvas8;
-+ (void)drawCanvas9;
 
 @end
 

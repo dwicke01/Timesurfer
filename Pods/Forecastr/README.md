@@ -1,6 +1,8 @@
 Forecastr
 =========
 
+Support this project via Gratipay <a href="https://gratipay.com/iwasrobbed/"><img src="http://img.shields.io/gratipay/iwasrobbed.svg"></a>
+
 A simple Objective-C wrapper to make asynchronous requests to the [Forecast.io API version 2](https://developer.forecast.io/docs/v2)
 
 **Note:** You will need to [request an API key](https://developer.forecast.io) and set that key when you first instantiate Forecastr, otherwise an exception will be thrown.
@@ -103,5 +105,7 @@ A HUGE thank you to the following people for helping me improve and maintain For
 * [Matthew Morey](https://github.com/mmorey)
 * [Joe](https://github.com/jregan)
 * [chrisgonzgonz](https://github.com/chrisgonzgonz) and [Mike](https://github.com/mikeMTOL)
+* [Jeff Dlouhy](https://github.com/jeffd)
+* [Jonathan Dalrymple](https://github.com/veritech)
 
 If you'd like to help, please submit a pull request with tested code and please also update any examples that your code might affect.

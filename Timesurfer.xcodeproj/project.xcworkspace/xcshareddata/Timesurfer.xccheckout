@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>37C302BE-88DC-4517-8E79-EBF79E971DB1</string>
+	<string>5F267920-7AEA-4936-88AD-A69D993CF681</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Timesurfer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>github.com:gugges/Timesurfer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Timesurfer.xcworkspace</string>
+	<string>Timesurfer.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9509A2844C9A9A724D318455FA7523231289D100</key>
-		<string>..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:gugges/Timesurfer.git</string>

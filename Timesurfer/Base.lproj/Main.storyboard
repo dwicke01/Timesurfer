@@ -109,27 +109,27 @@
                                 <rect key="frame" x="500" y="500" width="80" height="80"/>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hrk-RC-asl">
-                                <rect key="frame" x="166" y="396" width="44" height="15.5"/>
+                                <rect key="frame" x="166" y="396" width="44" height="16"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeB-Rb-2y0" customClass="TSClouds">
-                                <rect key="frame" x="0.0" y="0.0" width="9000" height="168.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="9000" height="169"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yeB-Rb-2y0" secondAttribute="height" multiplier="1656:31" id="xpt-O9-Awk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fW1-Qn-bho" customClass="TSSheepClouds">
-                                <rect key="frame" x="400" y="40" width="375" height="160.5"/>
+                                <rect key="frame" x="400" y="40" width="375" height="161"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fW1-Qn-bho" secondAttribute="height" multiplier="145:62" id="jRa-Su-y3W"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuN-EI-buN" customClass="TSAirplane">
-                                <rect key="frame" x="500" y="130" width="125" height="54.5"/>
+                                <rect key="frame" x="500" y="130" width="125" height="55"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NuN-EI-buN" secondAttribute="height" multiplier="23:10" id="X1E-LZ-vsl"/>
@@ -250,7 +250,7 @@
         <image name="Circle" width="600" height="600"/>
         <image name="Circle-Border" width="600" height="600"/>
         <image name="Milky-Way" width="1626" height="883"/>
-        <image name="Moon" width="1000" height="1000"/>
+        <image name="Moon" width="382" height="384"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

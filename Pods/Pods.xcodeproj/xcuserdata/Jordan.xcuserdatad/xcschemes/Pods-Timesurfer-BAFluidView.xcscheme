@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2212DD54790A4F8BA7328BDE"
+               BlueprintIdentifier = "82EFC202AEE904B4D949C4D7"
                BuildableName = "libPods-Timesurfer-BAFluidView.a"
                BlueprintName = "Pods-Timesurfer-BAFluidView"
                ReferencedContainer = "container:Pods.xcodeproj">
