@@ -11,6 +11,8 @@
 		1704BDD81B52FCFB00E0DFEF /* TSClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704BDD61B52FCFB00E0DFEF /* TSClouds.m */; };
 		176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4541B5D9BE9006190BD /* TSConstants.h */; };
 		176DA4571B5D9BE9006190BD /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 176DA4551B5D9BE9006190BD /* TSConstants.m */; };
+		176DA45A1B5E0979006190BD /* TSAirplane.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4581B5E0979006190BD /* TSAirplane.h */; };
+		176DA45B1B5E0979006190BD /* TSAirplane.m in Sources */ = {isa = PBXBuildFile; fileRef = 176DA4591B5E0979006190BD /* TSAirplane.m */; };
 		178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */; };
 		178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */; };
 		178CDEF41B58788500B76ED6 /* TSRainParticleSystem.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */; };
@@ -132,6 +134,8 @@
 		1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSGraphics.m; path = ../Timesurfer/TSGraphics.m; sourceTree = "<group>"; };
 		176DA4541B5D9BE9006190BD /* TSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSConstants.h; path = Timesurfer/TSConstants.h; sourceTree = SOURCE_ROOT; };
 		176DA4551B5D9BE9006190BD /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSConstants.m; path = Timesurfer/TSConstants.m; sourceTree = SOURCE_ROOT; };
+		176DA4581B5E0979006190BD /* TSAirplane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAirplane.h; path = Timesurfer/TSAirplane.h; sourceTree = SOURCE_ROOT; };
+		176DA4591B5E0979006190BD /* TSAirplane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAirplane.m; path = Timesurfer/TSAirplane.m; sourceTree = SOURCE_ROOT; };
 		1780FAF51B3C75E700C31748 /* TSWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWeatherData.h; path = ../Timesurfer/TSWeatherData.h; sourceTree = "<group>"; };
 		1780FAF61B3C75E700C31748 /* TSWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSWeatherData.m; path = ../Timesurfer/TSWeatherData.m; sourceTree = "<group>"; };
 		1780FAF81B3C75FE00C31748 /* TSWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWeather.h; path = ../Timesurfer/TSWeather.h; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 				1704BDD61B52FCFB00E0DFEF /* TSClouds.m */,
 				178CDEEE1B585F0200B76ED6 /* TSSheepClouds.h */,
 				178CDEEF1B585F0200B76ED6 /* TSSheepClouds.m */,
+				176DA4581B5E0979006190BD /* TSAirplane.h */,
+				176DA4591B5E0979006190BD /* TSAirplane.m */,
 				176DA4541B5D9BE9006190BD /* TSConstants.h */,
 				176DA4551B5D9BE9006190BD /* TSConstants.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
@@ -419,6 +425,7 @@
 				FA22DAE11B41E04D0072005E /* TSWeatherData.h in Headers */,
 				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
+				176DA45A1B5E0979006190BD /* TSAirplane.h in Headers */,
 				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
 				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
@@ -752,6 +759,7 @@
 				FA22DADF1B41E0400072005E /* TSWeatherData.m in Sources */,
 				FA22DAE01B41E0400072005E /* TSWeather.m in Sources */,
 				17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */,
+				176DA45B1B5E0979006190BD /* TSAirplane.m in Sources */,
 				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

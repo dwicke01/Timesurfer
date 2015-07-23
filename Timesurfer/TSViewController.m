@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *sunView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
 @property (weak, nonatomic) IBOutlet UIView *sheepClouds;
+@property (weak, nonatomic) IBOutlet UIView *airplane;
 @property (weak, nonatomic) IBOutlet TSClouds *clouds;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonYAxis;
@@ -41,6 +42,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sunXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cloudsXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sheepCloudsXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *airplaneXAxis;
+
+@property (nonatomic, assign) BOOL sheepInMotion;
+@property (nonatomic, assign) BOOL planeInMotion;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -83,7 +88,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(returnFromSleep)
-                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+                                                 name:@"appBecameActive" object:nil];
     
     self.milkyWay.alpha = 0;
     self.skyView.alpha = 0;
@@ -94,7 +99,8 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self requestAlwaysAuth];
+    [self requestWhenInUseAuth];
+    [self.locationManager startUpdatingLocation];
     
     if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]){
         
@@ -119,9 +125,8 @@
 
 - (void) returnFromSleep {
     self.hourSlider.value = 0;
-    self.sheepCloudsXAxis.constant = self.view.frame.size.width;
     
-    [self requestAlwaysAuth];
+    [self requestWhenInUseAuth];
     [self getWeather];
 }
 
@@ -146,14 +151,35 @@
         currentTime = self.hourSlider.value;
     }
     
-    if ((currentTime >= 2000 || currentTime < 500) && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
+    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
+        
+        self.sheepInMotion = YES;
+        
         [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
             [self.sheepClouds layoutIfNeeded];
         } completion:^(BOOL finished) {
+
+            self.sheepCloudsXAxis.constant = self.view.frame.size.width;
+            self.sheepInMotion = NO;
+
             
         }];
         
+    } else if (self.planeInMotion == NO && self.sheepInMotion == NO){
+        
+        self.planeInMotion = YES;
+        
+        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.airplaneXAxis.constant = -200;
+              [self.airplane layoutIfNeeded];
+        } completion:^(BOOL finished) {
+
+            self.airplaneXAxis.constant = 500;
+            [self.airplane layoutIfNeeded];
+            self.planeInMotion = NO;
+
+        }];
     }
     self.sliderStoppedTimer = nil;
 }
@@ -172,7 +198,7 @@
     
     CGFloat currentTime = 0.0;
     CGFloat x = self.view.frame.size.width * .5;
-    CGFloat z = self.view.frame.size.width + 50;
+    CGFloat z = self.view.frame.size.width;
     
     if (self.hourSlider.value > 2400) {
         currentTime = self.hourSlider.value-2400;
@@ -181,29 +207,20 @@
     }
     
     
-    if (currentTime >= 700 && currentTime <= 1200) {
+    if (currentTime >= 800 && currentTime <= 2100) {
         
-        [UIView animateWithDuration:.2
+        [UIView animateWithDuration:.4
                          animations:^{
-                             self.sunXAxis.constant = x * ((currentTime-700)/500);
-                             self.sunYAxis.constant = -65 * sin((M_PI * (self.sunXAxis.constant))/z)+50;
+                             self.sunXAxis.constant = 15 + z * ((currentTime-800)/900);
+                             self.sunYAxis.constant = -65 * sin((M_PI * (self.sunXAxis.constant-50))/z)+50;
                              
                              [self.sunView layoutIfNeeded];
                          }];
         
-        
-    } else if (currentTime > 1200 && currentTime <= 2200){
-        
-        [UIView animateWithDuration:.2
-                         animations:^{
-                             self.sunXAxis.constant = x + x * ((currentTime-1200)/800) ;
-                             self.sunYAxis.constant = -65 * sin((M_PI * (self.sunXAxis.constant))/z)+50;
-                             [self.sunView layoutIfNeeded];
-                         }];
     } else if (currentTime < 700) {
         self.sunXAxis.constant = 0;
-    } else if (currentTime > 2100){
-        self.sunXAxis.constant = z;
+    } else if (currentTime > 2200){
+        self.sunXAxis.constant = z + x;
     }
     
     NSLog(@"Sun X %f Sun Y %f",self.sunXAxis.constant, self.sunYAxis.constant);
@@ -231,7 +248,7 @@
         [UIView animateWithDuration:.4
                          animations:^{
                              self.moonXAxis.constant = x * ((currentTime-2000)/600);
-                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant))/z)+75;
+                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant-50))/z)+75;
                              
                              [self.moonImage layoutIfNeeded];
                              
@@ -243,11 +260,11 @@
         [UIView animateWithDuration:.4
                          animations:^{
                              self.moonXAxis.constant = x + x * (currentTime/600);
-                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant))/z)+75;
+                             self.moonYAxis.constant = -65 * sin((M_PI * (self.moonXAxis.constant-50))/z)+75;
                              [self.moonImage layoutIfNeeded];
                          }];
     } else if (currentTime < 900) {
-        self.moonXAxis.constant = z + 100;
+        self.moonXAxis.constant = z + 200;
     } else if (currentTime > 1900){
         self.moonXAxis.constant = 0;
     }
@@ -400,6 +417,8 @@
         return;
     }
     
+    [self.locationManager stopUpdatingLocation];
+    
     [self.forcastr getForecastForLatitude:self.latitude
                                 longitude:self.longitude
                                      time:nil
@@ -407,6 +426,8 @@
                                    extend:nil
                                   success:^(id JSON) {
                                       //NSLog(@"JSON Response was: %@", JSON);
+                                      
+                                      [self.locationManager startMonitoringSignificantLocationChanges];
                                       
                                       self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
                                       
@@ -491,11 +512,11 @@
     [self getWeather];
 }
 
-- (void)requestAlwaysAuth{
+- (void)requestWhenInUseAuth{
     
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     
-    if (status==kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status==kCLAuthorizationStatusRestricted) {
+    if (status == kCLAuthorizationStatusDenied || status==kCLAuthorizationStatusRestricted) {
         
         NSString *title;
         
@@ -519,7 +540,7 @@
         [self presentViewController:settingsAlert animated:YES completion:nil];
         
     } else if (status==kCLAuthorizationStatusNotDetermined){
-        [self.locationManager requestAlwaysAuthorization];}
+        [self.locationManager requestWhenInUseAuthorization];}
 }
 
 @end
