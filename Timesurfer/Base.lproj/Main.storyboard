@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -80,7 +79,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yorkie" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-3b-LUd">
-                                <rect key="frame" x="197" y="281" width="75" height="117"/>
+                                <rect key="frame" x="212.5" y="281" width="75" height="117"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="ZMd-Ql-bmL"/>
                                     <constraint firstAttribute="width" secondItem="ELg-3b-LUd" secondAttribute="height" multiplier="25:39" id="t8P-Bb-jOS"/>
@@ -151,10 +150,10 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Poodle" translatesAutoresizingMaskIntoConstraints="NO" id="lvi-Qj-QIA">
-                                <rect key="frame" x="144" y="211" width="102" height="117"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Poodle" translatesAutoresizingMaskIntoConstraints="NO" id="lvi-Qj-QIA">
+                                <rect key="frame" x="174" y="211" width="102" height="117"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="2jj-X5-pfO"/>
+                                    <constraint firstAttribute="width" constant="102" id="2jj-X5-pfO"/>
                                     <constraint firstAttribute="width" secondItem="lvi-Qj-QIA" secondAttribute="height" multiplier="86:99" id="HJf-Jl-h1I"/>
                                 </constraints>
                             </imageView>
@@ -208,9 +207,9 @@
                             <constraint firstItem="rM4-sd-xLA" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="209" id="B4h-kh-9hI"/>
                             <constraint firstItem="ELg-3b-LUd" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="261" id="C7k-ip-itF"/>
                             <constraint firstAttribute="width" secondItem="Foz-6n-SI8" secondAttribute="width" id="DJ2-WE-p8n"/>
-                            <constraint firstItem="lvi-Qj-QIA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" id="DkX-AD-1R3"/>
+                            <constraint firstItem="lvi-Qj-QIA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" multiplier="1.2" id="DkX-AD-1R3"/>
                             <constraint firstItem="fW1-Qn-bho" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" multiplier="2" id="EIE-wG-y7L"/>
-                            <constraint firstAttribute="centerX" secondItem="ELg-3b-LUd" secondAttribute="centerX" multiplier="0.8" id="FNp-DD-62W"/>
+                            <constraint firstAttribute="centerX" secondItem="ELg-3b-LUd" secondAttribute="centerX" multiplier="0.75" id="FNp-DD-62W"/>
                             <constraint firstItem="NuN-EI-buN" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" multiplier="6.5" id="HE7-oD-8hy"/>
                             <constraint firstItem="U99-vA-Ucs" firstAttribute="top" secondItem="d5D-eI-mHl" secondAttribute="bottom" constant="8" id="Hs8-tw-0oO"/>
                             <constraint firstItem="yeB-Rb-2y0" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="24" id="Ink-dj-4I1"/>
@@ -227,7 +226,7 @@
                             <constraint firstItem="d5D-eI-mHl" firstAttribute="top" secondItem="XEV-1r-G3o" secondAttribute="bottom" constant="8" id="VdL-Qj-Vuq"/>
                             <constraint firstItem="AEq-0A-abj" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="Ydr-Q6-0C2"/>
                             <constraint firstItem="Mkh-CP-iOv" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="YsB-Ye-1UT"/>
-                            <constraint firstItem="lvi-Qj-QIA" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="209" id="Zbw-O0-2JB"/>
+                            <constraint firstItem="lvi-Qj-QIA" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="191" id="Zbw-O0-2JB"/>
                             <constraint firstAttribute="centerY" secondItem="gog-Tu-62I" secondAttribute="centerY" constant="54" id="ZjH-7Y-HXv"/>
                             <constraint firstItem="AEq-0A-abj" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="aG3-SP-CX0"/>
                             <constraint firstItem="Mkh-CP-iOv" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="acH-Is-hUH"/>
@@ -348,7 +347,7 @@
         <image name="Pug" width="1652" height="1295"/>
         <image name="TummyCat" width="3160" height="3080"/>
         <image name="Yorkie" width="1320" height="1704"/>
-        <image name="purpleCat" width="1215" height="1314"/>
+        <image name="purpleCat" width="1080" height="1168"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

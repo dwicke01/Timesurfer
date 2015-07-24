@@ -245,81 +245,84 @@
         
     } else if (self.currentWeather.currentHourInt == 12 ) {
         
-        [UIView animateWithDuration:10
+        NSUInteger constant = 1100;
+        NSUInteger duration = 9;
+        
+        [UIView animateWithDuration:duration
                               delay:0
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.greyCatYAxis.constant = 700;
+                             self.greyCatYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
                          }];
         
-        [UIView animateWithDuration:10
-                              delay:1
+        [UIView animateWithDuration:duration
+                              delay:.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.corgiYAxis.constant = 700;
+                             self.corgiYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
                          }];
         
-        [UIView animateWithDuration:10
-                              delay:2
+        [UIView animateWithDuration:duration
+                              delay:1.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.blackCatYAxis.constant = 700;
+                             self.blackCatYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
                          }];
         
-        [UIView animateWithDuration:10
+        [UIView animateWithDuration:duration
+                              delay:3
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.poodleYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
                               delay:4
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.poodleYAxis.constant = 700;
+                             self.pugYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
                          }];
         
-        [UIView animateWithDuration:10
-                              delay:5.5
+        [UIView animateWithDuration:duration
+                              delay:5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.pugYAxis.constant = 700;
+                             self.orangeCatYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
                          }];
         
-        [UIView animateWithDuration:10
+        [UIView animateWithDuration:duration
                               delay:6
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.orangeCatYAxis.constant = 700;
+                             self.greyStripeYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
                          }];
         
-        [UIView animateWithDuration:10
-                              delay:8
+        [UIView animateWithDuration:duration
+                              delay:7.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
-                             self.yorkieYAxis.constant = 700;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:10
-                              delay:9
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.greyStripeYAxis.constant = 700;
+                             self.yorkieYAxis.constant = constant;
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              
