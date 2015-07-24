@@ -44,6 +44,22 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cloudsXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sheepCloudsXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *airplaneXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *greyCatYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *blackCatYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *orangeCatYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pugYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *corgiYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *poodleYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *yorkieYAxis;
+@property (weak, nonatomic) IBOutlet UIImageView *yorkieDog;
+@property (weak, nonatomic) IBOutlet UIImageView *greyCat;
+@property (weak, nonatomic) IBOutlet UIImageView *blackCat;
+@property (weak, nonatomic) IBOutlet UIImageView *orangeCat;
+@property (weak, nonatomic) IBOutlet UIImageView *pugDog;
+@property (weak, nonatomic) IBOutlet UIImageView *corgieDog;
+@property (weak, nonatomic) IBOutlet UIImageView *poodleDog;
+@property (weak, nonatomic) IBOutlet UIImageView *greyStripeCat;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *greyStripeYAxis;
 
 @property (nonatomic, assign) BOOL sheepInMotion;
 @property (nonatomic, assign) BOOL planeInMotion;
@@ -98,6 +114,14 @@
     self.milkyWay.alpha = 0;
     self.skyView.alpha = 0;
     
+    self.greyCatYAxis.constant = -150;
+    self.blackCatYAxis.constant = -150;
+    self.orangeCatYAxis.constant = -150;
+    self.corgiYAxis.constant = -150;
+    self.poodleYAxis.constant = -150;
+    self.pugYAxis.constant = -150;
+    self.yorkieYAxis.constant = -150;
+    self.greyStripeYAxis.constant = -150;
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -159,6 +183,51 @@
         currentTime = self.hourSlider.value;
     }
     
+    if (self.currentWeather.percentRainFloat == 0 && !self.planeInMotion && !self.sheepInMotion && self.currentWeather.currentHourInt != 12) {
+        
+        [UIView animateWithDuration:2
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.corgieDog.alpha = 0;
+                             self.greyCat.alpha = 0;
+                             self.pugDog.alpha = 0;
+                             self.orangeCat.alpha = 0;
+                             self.poodleDog.alpha = 0;
+                             self.blackCat.alpha = 0;
+                             self.yorkieDog.alpha = 0;
+                             self.greyStripeCat.alpha = 0;
+                         } completion:^(BOOL finished) {
+                             [self.corgieDog.layer removeAllAnimations];
+                             [self.poodleDog.layer removeAllAnimations];
+                             [self.pugDog.layer removeAllAnimations];
+                             [self.greyCat.layer removeAllAnimations];
+                             [self.blackCat.layer removeAllAnimations];
+                             [self.orangeCat.layer removeAllAnimations];
+                             [self.yorkieDog.layer removeAllAnimations];
+                             [self.greyStripeCat.layer removeAllAnimations];
+                             self.greyStripeCat.alpha = 1;
+                             self.yorkieDog.alpha = 1;
+                             self.corgieDog.alpha = 1;
+                             self.greyCat.alpha = 1;
+                             self.pugDog.alpha = 1;
+                             self.orangeCat.alpha = 1;
+                             self.poodleDog.alpha = 1;
+                             self.blackCat.alpha = 1;
+                             self.yorkieYAxis.constant = -150;
+                             self.greyCatYAxis.constant = -150;
+                             self.blackCatYAxis.constant = -150;
+                             self.orangeCatYAxis.constant = -150;
+                             self.corgiYAxis.constant = -150;
+                             self.poodleYAxis.constant = -150;
+                             self.pugYAxis.constant = -150;
+                             self.greyStripeYAxis.constant = -150;
+                         }];
+        
+        
+    }
+    
+    
     if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
         
         self.sheepInMotion = YES;
@@ -167,12 +236,97 @@
             self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
             [self.sheepClouds layoutIfNeeded];
         } completion:^(BOOL finished) {
-
+            
             self.sheepCloudsXAxis.constant = self.view.frame.size.width;
             self.sheepInMotion = NO;
-
+            
             
         }];
+        
+    } else if (self.currentWeather.currentHourInt == 12 ) {
+        
+        [UIView animateWithDuration:10
+                              delay:0
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.greyCatYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:1
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.corgiYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:2
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.blackCatYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:4
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.poodleYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:5.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.pugYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:6
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.orangeCatYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:8
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.yorkieYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:10
+                              delay:9
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.greyStripeYAxis.constant = 700;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        
+        
         
     } else if (self.planeInMotion == NO && self.sheepInMotion == NO){
         
@@ -180,13 +334,13 @@
         
         [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.airplaneXAxis.constant = -200;
-              [self.airplane layoutIfNeeded];
+            [self.airplane layoutIfNeeded];
         } completion:^(BOOL finished) {
-
+            
             self.airplaneXAxis.constant = 500;
             [self.airplane layoutIfNeeded];
             self.planeInMotion = NO;
-
+            
         }];
     }
     self.sliderStoppedTimer = nil;
@@ -277,7 +431,7 @@
         self.moonXAxis.constant = 0;
     }
     
-//    NSLog(@"Y %f  X %f",self.moonYAxis.constant,self.moonXAxis.constant);
+    //    NSLog(@"Y %f  X %f",self.moonYAxis.constant,self.moonXAxis.constant);
     
 }
 
@@ -430,52 +584,52 @@
     NSLog(@"Time Interval Since Now %f", fabs([self.apiLastRequestTime timeIntervalSinceNow]));
     
     if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800) {
-
+        
         self.apiLastRequestTime = [NSDate date];
         
         [self.forcastr getForecastForLatitude:self.latitude
-                                longitude:self.longitude
-                                     time:nil
-                               exclusions:nil
-                                   extend:nil
-                                  success:^(id JSON) {
-//                                      NSLog(@"JSON Response was: %@", JSON);
-//                                      NSLog(@"Made API Call");
-                                      
-                                      [self.locationManager startMonitoringSignificantLocationChanges];
-                                      
-                                      self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
-                                      
-                                      self.hourSlider.minimumValue = self.weatherData.startingHour*100;
-                                      self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
-                                      self.hourSlider.value = self.hourSlider.minimumValue;
-                                      self.hourOffset = self.hourSlider.minimumValue;
-                                      
-                                      NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
-                                      NSInteger high = [today[@"temperatureMax"] integerValue];
-                                      NSInteger low = [today[@"temperatureMin"] integerValue];
-                                      self.highLowLabel.text = [NSString stringWithFormat:@"H %lu°F   L %lu°F", high, low];
-                                      
-                                      CGFloat currentTime = self.weatherData.startingHour;
-                                      
-                                      if (currentTime > 21 || currentTime < 5) {
-                                          self.skyView.alpha =1;
-                                      }
-                                      
-                                      if (currentTime >= 12) {
-                                          currentTime = ((24-currentTime)/12)*-736;
-                                      } else {
-                                          currentTime = (currentTime/12)*-736;
-                                      }
-                                      self.clouds.weatherData = self.weatherData;
-                                      [self updateWeatherInfo];
-                                      
-                                  } failure:^(NSError *error, id response) {
-                                      NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
-                                      
-                                  }];
+                                    longitude:self.longitude
+                                         time:nil
+                                   exclusions:nil
+                                       extend:nil
+                                      success:^(id JSON) {
+                                          //                                      NSLog(@"JSON Response was: %@", JSON);
+                                          //                                      NSLog(@"Made API Call");
+                                          
+                                          [self.locationManager startMonitoringSignificantLocationChanges];
+                                          
+                                          self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
+                                          
+                                          self.hourSlider.minimumValue = self.weatherData.startingHour*100;
+                                          self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
+                                          self.hourSlider.value = self.hourSlider.minimumValue;
+                                          self.hourOffset = self.hourSlider.minimumValue;
+                                          
+                                          NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
+                                          NSInteger high = [today[@"temperatureMax"] integerValue];
+                                          NSInteger low = [today[@"temperatureMin"] integerValue];
+                                          self.highLowLabel.text = [NSString stringWithFormat:@"H %lu°F   L %lu°F", high, low];
+                                          
+                                          CGFloat currentTime = self.weatherData.startingHour;
+                                          
+                                          if (currentTime > 21 || currentTime < 5) {
+                                              self.skyView.alpha =1;
+                                          }
+                                          
+                                          if (currentTime >= 12) {
+                                              currentTime = ((24-currentTime)/12)*-736;
+                                          } else {
+                                              currentTime = (currentTime/12)*-736;
+                                          }
+                                          self.clouds.weatherData = self.weatherData;
+                                          [self updateWeatherInfo];
+                                          
+                                      } failure:^(NSError *error, id response) {
+                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                          
+                                      }];
     } else {
-         [self updateWeatherInfo];
+        [self updateWeatherInfo];
     }
 }
 
@@ -530,7 +684,7 @@
                                                 NSLog(@"%@ %@", results, error.localizedDescription);
                                             }
                                         }
-
+     
      ];
     
     self.latitude = self.weatherLocation.coordinate.latitude;
