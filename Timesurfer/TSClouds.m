@@ -29,33 +29,35 @@
 
 - (void)doABarrelRoll{
     
-    CGFloat xWidth = (self.frame.size.width/24);
+    CGFloat xWidth = (self.frame.size.width/24) * 1.2;
     CGFloat yHeight = self.frame.size.height;
-    
-    for (int i = 1; i <= 24; i++) {
+    CGFloat xAxis = (self.frame.size.width/24);
+    CGFloat xAxisOffset = 30;
+    for (int i = 0; i < 24; i++) {
         
         TSWeather *weather = [self.weatherData weatherForHour:i];
            // NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, weather.currentHourInt);
         
+        
         if (weather.percentRainFloat <= 30) {
             
             if (weather.cloudCoverFloat >= .7) {
-                [TSGraphics drawHeavyCloudsWithFrame:CGRectMake(xWidth * i, 0, xWidth * 1.08, yHeight)];
+                [TSGraphics drawHeavyCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
                 
             }
         }
         
         if (weather.percentRainFloat >= 80) {
-            [TSGraphics drawHeavyRainCloudsWithFrame:CGRectMake(xWidth * i, 0, xWidth * 1.08, yHeight)];
+            [TSGraphics drawHeavyRainCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         } else if (weather.percentRainFloat >= 70) {
-            [TSGraphics drawHeavyCloudsHeavyRainWithFrame:CGRectMake(xWidth * i, 0, xWidth * 1.08, yHeight)];
+            [TSGraphics drawHeavyCloudsHeavyRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         } else if (weather.percentRainFloat >= 50) {
-            [TSGraphics drawHeavyCloudsMediumRainWithFrame:CGRectMake(xWidth * i, 0, xWidth * 1.08, yHeight)];
+            [TSGraphics drawHeavyCloudsMediumRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         } else if (weather.percentRainFloat >= 40) {
-            [TSGraphics drawHeavyCloudsLightRainWithFrame:CGRectMake(xWidth * i, 0, xWidth * 1.08, yHeight)];
+            [TSGraphics drawHeavyCloudsLightRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         }
     }

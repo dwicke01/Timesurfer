@@ -31,7 +31,6 @@
 
 - (void) drawBigStars {
     CGFloat xAxis = 0;
-    CGFloat xAxisPadding = 10;
     CGFloat yAxis = 25;
     CGFloat starFrameWidth = 22;
     
@@ -168,8 +167,6 @@
         [TSGraphics drawLittleStarWithFrame:starFrame starColor:starColor rotation:rotation];
     }
 }
-
-
 
 - (BOOL) starIntersects:(CGRect)rect{
     

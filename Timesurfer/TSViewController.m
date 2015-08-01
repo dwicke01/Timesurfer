@@ -190,12 +190,10 @@
             
             self.sheepCloudsXAxis.constant = self.view.frame.size.width;
             self.sheepInMotion = NO;
-            
-            
         }];
         
-    } else if (self.currentWeather.currentHourInt == 12 ) {
-        NSLog(@"Animals in motion");
+    } else if (self.currentWeather.percentRainFloat >= 70) {
+
         self.animalsInMotion = YES;
         NSUInteger constant = 1100;
         NSUInteger duration = 9;
@@ -319,7 +317,6 @@
     } else {
         currentTime = self.hourSlider.value;
     }
-    
     
     if (currentTime >= 800 && currentTime <= 2100) {
         
@@ -476,22 +473,23 @@
     TSWeather *weather = [self.weatherData weatherForHour:indexOfHour];
     
     if(self.currentWeather == weather) {
-        
-        [UIView animateWithDuration:.5 animations:^{
-            
-            self.cloudsXAxis.constant = floor(self.hourSlider.value-self.hourOffset)/2400*(self.view.frame.size.width*-23) ;
-            [self.clouds layoutIfNeeded];
-            
-        }];
-        
-        
+
         return;
         
     } else {
         
         [self removeWeatherAnimation];
-        NSLog(@"Running this crazy logic");
+
         self.currentWeather = weather;
+        
+        [UIView animateWithDuration:.5 animations:^{
+            
+            CGFloat nearestHour = floor((self.hourSlider.value - self.hourOffset)/100)*100;
+            
+            self.cloudsXAxis.constant = nearestHour/2400*(self.view.frame.size.width*-24) ;
+            [self.clouds layoutIfNeeded];
+            
+        }];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"h:mm a"];
