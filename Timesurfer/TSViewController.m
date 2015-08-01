@@ -91,6 +91,15 @@
     [super viewDidLoad];
     //self.weatherData = [TSWeatherData sharedDataStore];
     
+    if (arc4random_uniform(5) == 4) {
+        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(60,60)];
+        
+        [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
+    }
+    
+
+
+    
     self.weatherImage.image = [UIImage imageNamed:@"Surf-Icon"];
     
     self.geoCoder = [[CLGeocoder alloc] init];
@@ -125,6 +134,17 @@
     self.yorkieYAxis.constant = -150;
     self.greyStripeYAxis.constant = -150;
     [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(2, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -195,11 +215,13 @@
             self.sheepInMotion = NO;
         }];
         
-    } else if (self.currentWeather.percentRainFloat >= 70) {
+    } else if (self.currentWeather.percentRainFloat >= 80) {
         
         self.animalsInMotion = YES;
         NSUInteger constant = 1100;
-        NSUInteger duration = 9;
+        NSUInteger duration = 5;
+        
+        
         
         [UIView animateWithDuration:duration
                               delay:0
@@ -222,7 +244,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:1.5
+                              delay:1
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.blackCatYAxis.constant = constant;
@@ -232,7 +254,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:3
+                              delay:1.8
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.poodleYAxis.constant = constant;
@@ -242,7 +264,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:4
+                              delay:2.3
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.pugYAxis.constant = constant;
@@ -252,7 +274,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:5
+                              delay:3
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.orangeCatYAxis.constant = constant;
@@ -262,7 +284,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:6
+                              delay:3.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.greyStripeYAxis.constant = constant;
@@ -272,7 +294,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:7.5
+                              delay:4.3
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.yorkieYAxis.constant = constant;
@@ -420,7 +442,7 @@
         [UIView animateWithDuration:.5 animations:^{
             self.dayTimeGradient.alpha = alphaValue;
             
-            self.grayGradient.alpha = 1 * (self.currentWeather.percentRainFloat/100);
+            self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/40);
         }];
         
     } else {
@@ -429,17 +451,13 @@
         if (!self.grayGradientInMotion) {
             self.grayGradientInMotion = YES;
             
-            CGFloat rainPct = self.currentWeather.percentRainFloat;
-            
-            if (rainPct == 90) {
-                rainPct = 100;
-            }
-            
             [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                self.grayGradient.alpha = 1 * rainPct/100;
+                self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/40);
             } completion:^(BOOL finished) {
                 self.grayGradientInMotion = NO;
             }];
+            
+            NSLog(@"%f",self.grayGradient.alpha);
         }
     }
 }
@@ -508,7 +526,7 @@
             
             CGFloat nearestHour = floor((self.hourSlider.value - self.hourOffset)/100)*100;
             
-            self.cloudsXAxis.constant = nearestHour/2400*(self.view.frame.size.width*-24) ;
+            self.cloudsXAxis.constant = nearestHour/2400*(self.view.frame.size.width*-25) ;
             [self.clouds layoutIfNeeded];
         }];
         
@@ -533,28 +551,31 @@
         }
         
         if (indexOfHour == 0) {
-            NSDate *dateTime = [NSDate date];
-            self.temperatureLabel.text = weather.weatherTemperature;
-            self.weatherImage.image = weather.weatherImage;
-            self.percentPrecip.text = weather.percentRainString;
-            self.timeLabel.text = [dateFormatter stringFromDate:dateTime];
-            
+            self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
         } else {
-            self.temperatureLabel.text = weather.weatherTemperature;
-            self.weatherImage.image = weather.weatherImage;
+
+        }
+        self.temperatureLabel.text = weather.weatherTemperature;
+        self.weatherImage.image = weather.weatherImage;
+        
+        if (self.weatherData.rainChanceTodayAbove50 || weather.percentRainFloat >= 50) {
+            self.percentPrecip.text = [NSString stringWithFormat:@"%@ ☂",weather.percentRainString];
+        } else {
             self.percentPrecip.text = weather.percentRainString;
         }
+        
+        
     }
 }
 
 
 - (void) removeWeatherAnimation {
     
-    if (self.currentWeather.percentRainFloat <= 70 && self.animalsInMotion) {
+    if (self.currentWeather.percentRainFloat < 70 && self.animalsInMotion) {
         
         self.animalsInMotion = NO;
         
-        [UIView animateWithDuration:2
+        [UIView animateWithDuration:1
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
@@ -660,13 +681,7 @@
     } else {
         self.weatherLocation = manager.location;
     }
-    //    [self.geoCoder reverseGeocodeLocation:self.weatherLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-    //        CLPlacemark *placemark = placemarks.firstObject;
-    //        dispatch_async(dispatch_get_main_queue(), ^{
-    //            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", placemark.locality, placemark.administrativeArea];
-    //            //NSLog(@"%@",placemark.locality);
-    //        });
-    //    }];
+    
     [[LMGeocoder sharedInstance] reverseGeocodeCoordinate: /*CLLocationCoordinate2DMake(40.5744, -73.9786)*/
      self.weatherLocation.coordinate
                                                   service:kLMGeocoderGoogleService
@@ -676,9 +691,7 @@
                                                 NSInteger indexOfLocality = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
                                                     return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"locality"];
                                                 }];
-                                                NSInteger indexOfAdministrativeArea = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"administrative_area_level_1"];
-                                                }];
+                                                
                                                 NSInteger indexOfNeighborhood = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
                                                     return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"neighborhood"];
                                                 }];
@@ -696,8 +709,6 @@
                                                     
                                                     locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
                                                 }
-                                                
-                                                NSString *administrativeArea = [address.lines[indexOfAdministrativeArea] objectForKey:@"short_name"];
                                                 
                                                 self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
                                             }

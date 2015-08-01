@@ -29,20 +29,22 @@
 
 - (void)doABarrelRoll{
     
-    CGFloat xWidth = (self.frame.size.width/24) * 1.2;
+    CGFloat xWidth = (self.frame.size.width/25) * 1.2;
     CGFloat yHeight = self.frame.size.height;
-    CGFloat xAxis = (self.frame.size.width/24);
+    CGFloat xAxis = (self.frame.size.width/25);
     CGFloat xAxisOffset = 30;
-    for (int i = 0; i < 24; i++) {
+    for (int i = 0; i < 25; i++) {
         
         TSWeather *weather = [self.weatherData weatherForHour:i];
-           // NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, weather.currentHourInt);
-        
+//            NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, weather.currentHourInt);
         
         if (weather.percentRainFloat <= 30) {
             
-            if (weather.cloudCoverFloat >= .7) {
+            if (weather.cloudCoverFloat >= 0.69) {
                 [TSGraphics drawHeavyCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
+                
+            } else if (weather.cloudCoverFloat >= 0.59) {
+                [TSGraphics drawLightCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
                 
             }
         }

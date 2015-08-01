@@ -18,6 +18,7 @@
 @property (nonatomic, assign) NSUInteger startingHour;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSDate *currentDate;
+@property (nonatomic, assign) BOOL rainChanceTodayAbove50;
 
 + (instancetype)sharedDataStore;
 
