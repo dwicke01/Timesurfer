@@ -74,7 +74,6 @@
 @property (nonatomic, assign) CGFloat hourOffset;
 
 @property (nonatomic, strong) CLLocation *weatherLocation;
-@property (nonatomic, strong) CLGeocoder *geoCoder;
 
 @property (nonatomic, strong) Forecastr *forcastr;
 @property (nonatomic, strong) TSWeatherData *weatherData;
@@ -89,20 +88,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.weatherData = [TSWeatherData sharedDataStore];
-    
-    if (arc4random_uniform(5) == 4) {
-        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(60,60)];
-        
-        [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
-    }
-    
-
-
-    
-    self.weatherImage.image = [UIImage imageNamed:@"Surf-Icon"];
-    
-    self.geoCoder = [[CLGeocoder alloc] init];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -110,47 +95,20 @@
     
     self.forcastr = [Forecastr sharedManager];
     self.forcastr.apiKey = FORCAST_KEY;
-    self.sheepCloudsXAxis.constant = self.view.frame.size.width;
-    
-    self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
-    self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
-    
-    self.frameHeight = self.view.frame.size.height;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(returnFromSleep)
                                                  name:@"appBecameActive" object:nil];
+    [self setupView];
     
-    self.milkyWay.alpha = 0;
-    self.skyView.alpha = 0;
-    self.grayGradient.alpha = 0;
-    
-    self.greyCatYAxis.constant = -150;
-    self.blackCatYAxis.constant = -150;
-    self.orangeCatYAxis.constant = -150;
-    self.corgiYAxis.constant = -150;
-    self.poodleYAxis.constant = -150;
-    self.pugYAxis.constant = -150;
-    self.yorkieYAxis.constant = -150;
-    self.greyStripeYAxis.constant = -150;
     [self setNeedsStatusBarAppearanceUpdate];
-}
-
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(2, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     [self requestWhenInUseAuth];
+    
     [self.locationManager startUpdatingLocation];
     
     if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]){
@@ -159,166 +117,18 @@
     }
 }
 
-- (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
-    if (completion != nil) {
-        [self.locationManager startUpdatingLocation];
-        completion();
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 - (void) returnFromSleep {
     [self.locationManager startUpdatingLocation];
     self.hourSlider.value = 0;
+    
+    if (arc4random_uniform(5) == 4) {
+        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(60,60)];
+        
+        [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
+    }
+    
     [self requestWhenInUseAuth];
     [self getWeather];
-}
-
-- (IBAction)sliderChanged:(id)sender {
-    [self updateWeatherInfo];
-    
-    if (!self.sliderStoppedTimer) {
-        self.sliderStoppedTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1] interval:0 target:self selector:@selector(easterEggs) userInfo:nil repeats:NO];
-        [[NSRunLoop currentRunLoop] addTimer:self.sliderStoppedTimer forMode:NSDefaultRunLoopMode];
-    } else {
-        self.sliderStoppedTimer.fireDate = [[NSDate date] dateByAddingTimeInterval:1];
-        
-    }
-}
-
-- (void) easterEggs {
-    CGFloat currentTime = 0.0;
-    
-    if (self.hourSlider.value > 2400) {
-        currentTime = self.hourSlider.value-2400;
-    } else {
-        currentTime = self.hourSlider.value;
-    }
-    
-    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
-        
-        self.sheepInMotion = YES;
-        
-        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
-            [self.sheepClouds layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            
-            self.sheepCloudsXAxis.constant = self.view.frame.size.width;
-            self.sheepInMotion = NO;
-        }];
-        
-    } else if (self.currentWeather.percentRainFloat >= 80) {
-        
-        self.animalsInMotion = YES;
-        NSUInteger constant = 1100;
-        NSUInteger duration = 5;
-        
-        
-        
-        [UIView animateWithDuration:duration
-                              delay:0
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.greyCatYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:.5
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.corgiYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:1
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.blackCatYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:1.8
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.poodleYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:2.3
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.pugYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:3
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.orangeCatYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:3.5
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.greyStripeYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:4.3
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.yorkieYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-    } else if (self.planeInMotion == NO && self.sheepInMotion == NO){
-        
-        self.planeInMotion = YES;
-        
-        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.airplaneXAxis.constant = -200;
-            [self.airplane layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            
-            self.airplaneXAxis.constant = 500;
-            [self.airplane layoutIfNeeded];
-            self.planeInMotion = NO;
-            
-        }];
-    }
-    self.sliderStoppedTimer = nil;
 }
 
 - (void) updateWeatherInfo {
@@ -330,6 +140,67 @@
     [self updateSun];
     [self updateMoon];
 }
+
+- (void) getWeather{
+    
+    if (self.latitude == 0 && self.longitude == 0) {
+        return;
+    }
+    
+    [self.locationManager stopUpdatingLocation];
+    NSLog(@"Time Interval Since Now %f", fabs([self.apiLastRequestTime timeIntervalSinceNow]));
+    
+    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800) {
+        
+        self.apiLastRequestTime = [NSDate date];
+        
+        [self.forcastr getForecastForLatitude:self.latitude
+                                    longitude:self.longitude
+                                         time:nil
+                                   exclusions:nil
+                                       extend:nil
+                                      success:^(id JSON) {
+                                          //                                      NSLog(@"JSON Response was: %@", JSON);
+                                          //                                      NSLog(@"Made API Call");
+                                          
+                                          [self.locationManager startMonitoringSignificantLocationChanges];
+                                          
+                                          self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
+                                          
+                                          self.hourSlider.minimumValue = self.weatherData.startingHour*100;
+                                          self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
+                                          self.hourSlider.value = self.hourSlider.minimumValue;
+                                          self.hourOffset = self.hourSlider.minimumValue;
+                                          
+                                          NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
+                                          NSInteger high = [today[@"temperatureMax"] integerValue];
+                                          NSInteger low = [today[@"temperatureMin"] integerValue];
+                                          self.highLowLabel.text = [NSString stringWithFormat:@"H %lu°F   L %lu°F", high, low];
+                                          
+                                          CGFloat currentTime = self.weatherData.startingHour;
+                                          
+                                          if (currentTime > 21 || currentTime < 5) {
+                                              self.skyView.alpha =1;
+                                          }
+                                          
+                                          if (currentTime >= 12) {
+                                              currentTime = ((24-currentTime)/12)*-736;
+                                          } else {
+                                              currentTime = (currentTime/12)*-736;
+                                          }
+                                          self.clouds.weatherData = self.weatherData;
+                                          [self updateWeatherInfo];
+                                          
+                                      } failure:^(NSError *error, id response) {
+                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                          
+                                      }];
+    } else {
+        [self updateWeatherInfo];
+    }
+}
+
+#pragma mark UI Updates
 
 - (void) updateSun {
     
@@ -553,7 +424,7 @@
         if (indexOfHour == 0) {
             self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
         } else {
-
+            
         }
         self.temperatureLabel.text = weather.weatherTemperature;
         self.weatherImage.image = weather.weatherImage;
@@ -566,6 +437,147 @@
         
         
     }
+}
+
+
+#pragma mark Animations
+
+- (IBAction)sliderChanged:(id)sender {
+    [self updateWeatherInfo];
+    
+    if (!self.sliderStoppedTimer) {
+        self.sliderStoppedTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1] interval:0 target:self selector:@selector(easterEggs) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.sliderStoppedTimer forMode:NSDefaultRunLoopMode];
+    } else {
+        self.sliderStoppedTimer.fireDate = [[NSDate date] dateByAddingTimeInterval:1];
+        
+    }
+}
+
+- (void) easterEggs {
+    CGFloat currentTime = 0.0;
+    
+    if (self.hourSlider.value > 2400) {
+        currentTime = self.hourSlider.value-2400;
+    } else {
+        currentTime = self.hourSlider.value;
+    }
+    
+    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6) {
+        
+        self.sheepInMotion = YES;
+        
+        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
+            [self.sheepClouds layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+            self.sheepCloudsXAxis.constant = self.view.frame.size.width;
+            self.sheepInMotion = NO;
+        }];
+        
+    } else if (self.currentWeather.percentRainFloat >= 80) {
+        
+        self.animalsInMotion = YES;
+        NSUInteger constant = 1100;
+        NSUInteger duration = 5;
+        
+        [UIView animateWithDuration:duration
+                              delay:0
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.greyCatYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.corgiYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:1
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.blackCatYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:1.8
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.poodleYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:2.3
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.pugYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:3
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.orangeCatYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:3.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.greyStripeYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:4.3
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.yorkieYAxis.constant = constant;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+    } else if (self.planeInMotion == NO && self.sheepInMotion == NO){
+        
+        self.planeInMotion = YES;
+        
+        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.airplaneXAxis.constant = -200;
+            [self.airplane layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+            self.airplaneXAxis.constant = 500;
+            [self.airplane layoutIfNeeded];
+            self.planeInMotion = NO;
+            
+        }];
+    }
+    self.sliderStoppedTimer = nil;
 }
 
 
@@ -616,62 +628,12 @@
     }
 }
 
-- (void) getWeather{
-    
-    if (self.latitude == 0 && self.longitude == 0) {
-        return;
-    }
-    
-    [self.locationManager stopUpdatingLocation];
-    NSLog(@"Time Interval Since Now %f", fabs([self.apiLastRequestTime timeIntervalSinceNow]));
-    
-    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800) {
-        
-        self.apiLastRequestTime = [NSDate date];
-        
-        [self.forcastr getForecastForLatitude:self.latitude
-                                    longitude:self.longitude
-                                         time:nil
-                                   exclusions:nil
-                                       extend:nil
-                                      success:^(id JSON) {
-                                          //                                      NSLog(@"JSON Response was: %@", JSON);
-                                          //                                      NSLog(@"Made API Call");
-                                          
-                                          [self.locationManager startMonitoringSignificantLocationChanges];
-                                          
-                                          self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
-                                          
-                                          self.hourSlider.minimumValue = self.weatherData.startingHour*100;
-                                          self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
-                                          self.hourSlider.value = self.hourSlider.minimumValue;
-                                          self.hourOffset = self.hourSlider.minimumValue;
-                                          
-                                          NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
-                                          NSInteger high = [today[@"temperatureMax"] integerValue];
-                                          NSInteger low = [today[@"temperatureMin"] integerValue];
-                                          self.highLowLabel.text = [NSString stringWithFormat:@"H %lu°F   L %lu°F", high, low];
-                                          
-                                          CGFloat currentTime = self.weatherData.startingHour;
-                                          
-                                          if (currentTime > 21 || currentTime < 5) {
-                                              self.skyView.alpha =1;
-                                          }
-                                          
-                                          if (currentTime >= 12) {
-                                              currentTime = ((24-currentTime)/12)*-736;
-                                          } else {
-                                              currentTime = (currentTime/12)*-736;
-                                          }
-                                          self.clouds.weatherData = self.weatherData;
-                                          [self updateWeatherInfo];
-                                          
-                                      } failure:^(NSError *error, id response) {
-                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
-                                          
-                                      }];
-    } else {
-        [self updateWeatherInfo];
+#pragma mark GPS Logic
+
+- (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
+    if (completion != nil) {
+        [self.locationManager startUpdatingLocation];
+        completion();
     }
 }
 
@@ -753,6 +715,47 @@
         
     } else if (status==kCLAuthorizationStatusNotDetermined){
         [self.locationManager requestWhenInUseAuthorization];}
+}
+
+
+# pragma mark Setup Methods
+
+- (void) setupView {
+    self.sheepCloudsXAxis.constant = self.view.frame.size.width;
+    
+    self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
+    self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
+    
+    self.frameHeight = self.view.frame.size.height;
+    
+    self.milkyWay.alpha = 0;
+    self.skyView.alpha = 0;
+    self.grayGradient.alpha = 0;
+    
+    self.greyCatYAxis.constant = -150;
+    self.blackCatYAxis.constant = -150;
+    self.orangeCatYAxis.constant = -150;
+    self.corgiYAxis.constant = -150;
+    self.poodleYAxis.constant = -150;
+    self.pugYAxis.constant = -150;
+    self.yorkieYAxis.constant = -150;
+    self.greyStripeYAxis.constant = -150;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(2, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end
