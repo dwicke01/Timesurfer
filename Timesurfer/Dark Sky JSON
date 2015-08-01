@@ -1,0 +1,1464 @@
+2015-06-25 16:20:55.938 Timesurfer[45269:836575] Forecastr: Checking forecast for 530d1d38e625bdd0d86381ffe990ca1c/37.787359,-122.408227
+2015-06-25 16:20:55.942 Timesurfer[45269:836628] Forecastr: Found cached item for 530d1d38e625bdd0d86381ffe990ca1c/37.79,-122.41
+2015-06-25 16:20:55.945 Timesurfer[45269:836575] JSON Response was: {
+    alerts =     (
+                {
+            description = "A RIDGE OF HIGH PRESSURE IS EXPECTED TO BUILD OVER THE WESTERN\nSTATES RESULTING IN A RAPID RISE IN TEMPERATURES ON THURSDAY. THE\nWARMEST TEMPERATURES WILL IMPACT THE INLAND AREAS WERE\nTEMPERATURES WILL RISE INTO THE MID TO UPPER 90S WITH A FEW INLAND\nLOCATIONS REACHING UP TO 105 DEGREES. A GENTLE SEA BREEZE WILL AID\nIN KEEPING THE IMMEDIATE COAST INCLUDING MUCH OF THE SAN FRANCISCO\nBAY AREA COOLER. COASTAL TEMPERATURES ARE EXPECTED TO BE IN THE\nLOW TO MID 70S WITH DOWNTOWN SAN FRANCISCO EXPECTED TO REACH A\nHIGH OF 75 DEGREES.\nIF YOU ARE PLANNING ON WORKING OR RECREATING OUTDOORS ON THURSDAY\nPLEASE DRINK PLENTY OF WATER AND WHENEVER POSSIBLE SEEK SHELTER\nFROM THE SUN. ALSO DON`T FORGET ABOUT YOUR PETS. NEVER LEAVE YOUR\nPET UNATTENDED IN YOUR VEHICLE AND BE SURE TO PROVIDE PLENTY OF\nWATER AND SHADE TO OUTDOOR ANIMALS. ALSO NEVER LEAVE CHILDREN\nUNATTENDED IN YOUR VEHICLE. REMEMBER BEAT THE HEAT...CHECK THE\nBACK SEAT.\nSLIGHTLY COOLER TEMPERATURES ARE EXPECTED ON FRIDAY AS MID AND HIGH\nCLOUDS PUSH INTO THE FORECAST AREA. CONTINUED COOLING IS\nANTICIPATED FOR THE WEEKEND WITH INLAND TEMPERATURES FALLING BACK\nINTO THE MID 70S TO MID 80S.\n";
+            expires = 1435528800;
+            time = 1435233840;
+            title = "Special Weather Statement for Contra Costa, CA";
+            uri = "http://alerts.weather.gov/cap/wwacapget.php?x=CA1253AEDA3090.SpecialWeatherStatement.1253AF097C60CA.MTRSPSMTR.27b9b6c10eb6baf87748e8f23da17af9";
+        }
+    );
+    currently =     {
+        apparentTemperature = "70.86";
+        cloudCover = "0.07000000000000001";
+        dewPoint = "55.94";
+        humidity = "0.59";
+        icon = "clear-day";
+        nearestStormBearing = 154;
+        nearestStormDistance = 253;
+        ozone = "308.68";
+        precipIntensity = 0;
+        precipProbability = 0;
+        pressure = "1012.48";
+        summary = Clear;
+        temperature = "70.86";
+        time = 1435263107;
+        visibility = "9.19";
+        windBearing = 264;
+        windSpeed = "7.54";
+    };
+    daily =     {
+        data =         (
+                        {
+                apparentTemperatureMax = "71.52";
+                apparentTemperatureMaxTime = 1435273200;
+                apparentTemperatureMin = "55.64";
+                apparentTemperatureMinTime = 1435233600;
+                cloudCover = "0.09";
+                dewPoint = "53.15";
+                humidity = "0.72";
+                icon = "partly-cloudy-night";
+                moonPhase = "0.29";
+                ozone = "311.82";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1011.84";
+                summary = "Partly cloudy overnight.";
+                sunriseTime = 1435236613;
+                sunsetTime = 1435289803;
+                temperatureMax = "71.52";
+                temperatureMaxTime = 1435273200;
+                temperatureMin = "55.64";
+                temperatureMinTime = 1435233600;
+                time = 1435215600;
+                visibility = "8.68";
+                windBearing = 253;
+                windSpeed = "5.74";
+            },
+                        {
+                apparentTemperatureMax = "72.08";
+                apparentTemperatureMaxTime = 1435345200;
+                apparentTemperatureMin = "55.34";
+                apparentTemperatureMinTime = 1435384800;
+                cloudCover = "0.5600000000000001";
+                dewPoint = "53.64";
+                humidity = "0.75";
+                icon = "partly-cloudy-day";
+                moonPhase = "0.32";
+                ozone = "305.79";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1012.43";
+                summary = "Mostly cloudy throughout the day.";
+                sunriseTime = 1435323032;
+                sunsetTime = 1435376207;
+                temperatureMax = "72.08";
+                temperatureMaxTime = 1435345200;
+                temperatureMin = "55.34";
+                temperatureMinTime = 1435384800;
+                time = 1435302000;
+                visibility = "7.94";
+                windBearing = 243;
+                windSpeed = "6.9";
+            },
+                        {
+                apparentTemperatureMax = "66.59999999999999";
+                apparentTemperatureMaxTime = 1435446000;
+                apparentTemperatureMin = "53.18";
+                apparentTemperatureMinTime = 1435406400;
+                cloudCover = "0.71";
+                dewPoint = "53.7";
+                humidity = "0.82";
+                icon = "partly-cloudy-day";
+                moonPhase = "0.35";
+                ozone = "300.87";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1014.24";
+                summary = "Mostly cloudy throughout the day.";
+                sunriseTime = 1435409453;
+                sunsetTime = 1435462610;
+                temperatureMax = "66.59999999999999";
+                temperatureMaxTime = 1435446000;
+                temperatureMin = "53.18";
+                temperatureMinTime = 1435406400;
+                time = 1435388400;
+                visibility = "7.33";
+                windBearing = 232;
+                windSpeed = "8.039999999999999";
+            },
+                        {
+                apparentTemperatureMax = "67.12";
+                apparentTemperatureMaxTime = 1435532400;
+                apparentTemperatureMin = "56.05";
+                apparentTemperatureMinTime = 1435557600;
+                cloudCover = "0.61";
+                dewPoint = "54.51";
+                humidity = "0.8100000000000001";
+                icon = "partly-cloudy-day";
+                moonPhase = "0.39";
+                ozone = "297.16";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1014.34";
+                summary = "Mostly cloudy until evening.";
+                sunriseTime = 1435495875;
+                sunsetTime = 1435549011;
+                temperatureMax = "67.12";
+                temperatureMaxTime = 1435532400;
+                temperatureMin = "56.05";
+                temperatureMinTime = 1435557600;
+                time = 1435474800;
+                visibility = 10;
+                windBearing = 256;
+                windSpeed = "6.66";
+            },
+                        {
+                apparentTemperatureMax = "68.37";
+                apparentTemperatureMaxTime = 1435618800;
+                apparentTemperatureMin = "55.2";
+                apparentTemperatureMinTime = 1435575600;
+                cloudCover = "0.37";
+                dewPoint = "52.06";
+                humidity = "0.76";
+                icon = "partly-cloudy-day";
+                moonPhase = "0.42";
+                ozone = "300.59";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1012.52";
+                summary = "Mostly cloudy until afternoon.";
+                sunriseTime = 1435582298;
+                sunsetTime = 1435635411;
+                temperatureMax = "68.37";
+                temperatureMaxTime = 1435618800;
+                temperatureMin = "55.2";
+                temperatureMinTime = 1435575600;
+                time = 1435561200;
+                windBearing = 236;
+                windSpeed = "5.25";
+            },
+                        {
+                apparentTemperatureMax = "73.91";
+                apparentTemperatureMaxTime = 1435701600;
+                apparentTemperatureMin = "55.23";
+                apparentTemperatureMinTime = 1435662000;
+                cloudCover = "0.11";
+                dewPoint = "51.74";
+                humidity = "0.67";
+                icon = "partly-cloudy-night";
+                moonPhase = "0.45";
+                ozone = "299.71";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1010.95";
+                summary = "Mostly cloudy starting in the evening.";
+                sunriseTime = 1435668723;
+                sunsetTime = 1435721808;
+                temperatureMax = "73.91";
+                temperatureMaxTime = 1435701600;
+                temperatureMin = "55.23";
+                temperatureMinTime = 1435662000;
+                time = 1435647600;
+                windBearing = 221;
+                windSpeed = "4.67";
+            },
+                        {
+                apparentTemperatureMax = "69.93000000000001";
+                apparentTemperatureMaxTime = 1435791600;
+                apparentTemperatureMin = "58.2";
+                apparentTemperatureMinTime = 1435752000;
+                cloudCover = "0.43";
+                dewPoint = "50.3";
+                humidity = "0.62";
+                icon = "partly-cloudy-day";
+                moonPhase = "0.48";
+                ozone = "298.96";
+                precipIntensity = 0;
+                precipIntensityMax = 0;
+                precipProbability = 0;
+                pressure = "1012.13";
+                summary = "Partly cloudy until afternoon.";
+                sunriseTime = 1435755149;
+                sunsetTime = 1435808204;
+                temperatureMax = "69.93000000000001";
+                temperatureMaxTime = 1435791600;
+                temperatureMin = "58.2";
+                temperatureMinTime = 1435752000;
+                time = 1435734000;
+                windBearing = 233;
+                windSpeed = "5.35";
+            },
+                        {
+                apparentTemperatureMax = "69.45";
+                apparentTemperatureMaxTime = 1435867200;
+                apparentTemperatureMin = "58.16";
+                apparentTemperatureMinTime = 1435838400;
+                cloudCover = "0.23";
+                dewPoint = "48.74";
+                humidity = "0.6";
+                icon = "partly-cloudy-night";
+                moonPhase = "0.53";
+                ozone = "297.91";
+                precipIntensity = "0.0004";
+                precipIntensityMax = "0.001";
+                precipIntensityMaxTime = 1435838400;
+                precipProbability = "0.01";
+                precipType = rain;
+                pressure = "1011.85";
+                summary = "Mostly cloudy starting in the evening.";
+                sunriseTime = 1435841577;
+                sunsetTime = 1435894598;
+                temperatureMax = "69.45";
+                temperatureMaxTime = 1435867200;
+                temperatureMin = "58.16";
+                temperatureMinTime = 1435838400;
+                time = 1435820400;
+                windBearing = 241;
+                windSpeed = "6.39";
+            }
+        );
+        icon = "clear-day";
+        summary = "No precipitation throughout the week, with temperatures bottoming out at 67\U00b0F on Saturday.";
+    };
+    flags =     {
+        "darksky-stations" =         (
+            KMUX,
+            KDAX
+        );
+        "isd-stations" =         (
+            "724943-99999",
+            "745039-99999",
+            "745065-99999",
+            "994016-99999",
+            "999999-23272"
+        );
+        "lamp-stations" =         (
+            KAPC,
+            KCCR,
+            KHWD,
+            KLVK,
+            KNUQ,
+            KOAK,
+            KPAO,
+            KSFO,
+            KSQL
+        );
+        "madis-stations" =         (
+            AAMC1,
+            AU915,
+            C5988,
+            C8158,
+            C9629,
+            D5422,
+            D8533,
+            D9579,
+            E0426,
+            E6067,
+            FTPC1,
+            LNDC1,
+            OKXC1,
+            OMHC1,
+            PXOC1,
+            SFOC1
+        );
+        sources =         (
+            nwspa,
+            isd,
+            darksky,
+            "nearest-precip",
+            fnmoc,
+            sref,
+            rtma,
+            rap,
+            nam,
+            cmc,
+            gfs,
+            madis,
+            lamp
+        );
+        units = us;
+    };
+    hourly =     {
+        data =         (
+                        {
+                apparentTemperature = 71;
+                cloudCover = "0.07000000000000001";
+                dewPoint = "56.7";
+                humidity = "0.61";
+                icon = "clear-day";
+                ozone = "308.81";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.52";
+                summary = Clear;
+                temperature = 71;
+                time = 1435262400;
+                visibility = "9.19";
+                windBearing = 265;
+                windSpeed = "6.97";
+            },
+                        {
+                apparentTemperature = "70.26000000000001";
+                cloudCover = "0.08";
+                dewPoint = "52.69";
+                humidity = "0.54";
+                icon = "clear-day";
+                ozone = "308.15";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.32";
+                summary = Clear;
+                temperature = "70.26000000000001";
+                time = 1435266000;
+                visibility = "9.220000000000001";
+                windBearing = 263;
+                windSpeed = "9.869999999999999";
+            },
+                        {
+                apparentTemperature = "71.17";
+                cloudCover = "0.1";
+                dewPoint = "52.93";
+                humidity = "0.53";
+                icon = "clear-day";
+                ozone = "308.11";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.01";
+                summary = Clear;
+                temperature = "71.17";
+                time = 1435269600;
+                visibility = "9.33";
+                windBearing = 259;
+                windSpeed = "10.27";
+            },
+                        {
+                apparentTemperature = "71.52";
+                cloudCover = "0.11";
+                dewPoint = "53.41";
+                humidity = "0.53";
+                icon = "clear-day";
+                ozone = "308.45";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.65";
+                summary = Clear;
+                temperature = "71.52";
+                time = 1435273200;
+                visibility = "9.369999999999999";
+                windBearing = 256;
+                windSpeed = "10.22";
+            },
+                        {
+                apparentTemperature = "70.77";
+                cloudCover = "0.17";
+                dewPoint = "53.99";
+                humidity = "0.55";
+                icon = "clear-day";
+                ozone = "308.74";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.35";
+                summary = Clear;
+                temperature = "70.77";
+                time = 1435276800;
+                visibility = "9.289999999999999";
+                windBearing = 253;
+                windSpeed = "10.4";
+            },
+                        {
+                apparentTemperature = "69.11";
+                cloudCover = "0.17";
+                dewPoint = "54.09";
+                humidity = "0.59";
+                icon = "clear-day";
+                ozone = "308.86";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.14";
+                summary = Clear;
+                temperature = "69.11";
+                time = 1435280400;
+                visibility = "9.029999999999999";
+                windBearing = 252;
+                windSpeed = "9.66";
+            },
+                        {
+                apparentTemperature = "66.5";
+                cloudCover = "0.17";
+                dewPoint = "53.43";
+                humidity = "0.63";
+                icon = "clear-day";
+                ozone = "308.94";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1010.96";
+                summary = Clear;
+                temperature = "66.5";
+                time = 1435284000;
+                visibility = "8.73";
+                windBearing = 248;
+                windSpeed = "8.58";
+            },
+                        {
+                apparentTemperature = "63.9";
+                cloudCover = "0.17";
+                dewPoint = "53.23";
+                humidity = "0.68";
+                icon = "clear-day";
+                ozone = "308.92";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1010.92";
+                summary = Clear;
+                temperature = "63.9";
+                time = 1435287600;
+                visibility = "8.41";
+                windBearing = 245;
+                windSpeed = "7.55";
+            },
+                        {
+                apparentTemperature = "61.36";
+                cloudCover = "0.19";
+                dewPoint = "52.84";
+                humidity = "0.74";
+                icon = "clear-night";
+                ozone = "308.72";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.17";
+                summary = Clear;
+                temperature = "61.36";
+                time = 1435291200;
+                visibility = "8.289999999999999";
+                windBearing = 241;
+                windSpeed = "6.85";
+            },
+                        {
+                apparentTemperature = "59.91";
+                cloudCover = "0.23";
+                dewPoint = "52.7";
+                humidity = "0.77";
+                icon = "clear-night";
+                ozone = "308.42";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.59";
+                summary = Clear;
+                temperature = "59.91";
+                time = 1435294800;
+                visibility = "8.140000000000001";
+                windBearing = 238;
+                windSpeed = "6.41";
+            },
+                        {
+                apparentTemperature = "58.73";
+                cloudCover = "0.26";
+                dewPoint = "52.48";
+                humidity = "0.8";
+                icon = "partly-cloudy-night";
+                ozone = "308.23";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.89";
+                summary = "Partly Cloudy";
+                temperature = "58.73";
+                time = 1435298400;
+                visibility = "8.119999999999999";
+                windBearing = 237;
+                windSpeed = "6.23";
+            },
+                        {
+                apparentTemperature = "58.15";
+                cloudCover = "0.33";
+                dewPoint = "52.56";
+                humidity = "0.82";
+                icon = "partly-cloudy-night";
+                ozone = "308.27";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.91";
+                summary = "Partly Cloudy";
+                temperature = "58.15";
+                time = 1435302000;
+                visibility = "8.050000000000001";
+                windBearing = 237;
+                windSpeed = "5.76";
+            },
+                        {
+                apparentTemperature = "57.71";
+                cloudCover = "0.34";
+                dewPoint = "52.36";
+                humidity = "0.82";
+                icon = "partly-cloudy-night";
+                ozone = "308.4";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.81";
+                summary = "Partly Cloudy";
+                temperature = "57.71";
+                time = 1435305600;
+                visibility = "7.89";
+                windBearing = 237;
+                windSpeed = "5.22";
+            },
+                        {
+                apparentTemperature = "57.67";
+                cloudCover = "0.34";
+                dewPoint = "52.48";
+                humidity = "0.83";
+                icon = "partly-cloudy-night";
+                ozone = "308.46";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.71";
+                summary = "Partly Cloudy";
+                temperature = "57.67";
+                time = 1435309200;
+                visibility = "7.74";
+                windBearing = 232;
+                windSpeed = "4.71";
+            },
+                        {
+                apparentTemperature = "57.27";
+                cloudCover = "0.41";
+                dewPoint = "52.44";
+                humidity = "0.84";
+                icon = "partly-cloudy-night";
+                ozone = "308.38";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.69";
+                summary = "Partly Cloudy";
+                temperature = "57.27";
+                time = 1435312800;
+                visibility = "7.46";
+                windBearing = 230;
+                windSpeed = "4.61";
+            },
+                        {
+                apparentTemperature = 57;
+                cloudCover = "0.41";
+                dewPoint = "52.49";
+                humidity = "0.85";
+                icon = "partly-cloudy-night";
+                ozone = "308.22";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.71";
+                summary = "Partly Cloudy";
+                temperature = 57;
+                time = 1435316400;
+                visibility = "7.33";
+                windBearing = 231;
+                windSpeed = "4.69";
+            },
+                        {
+                apparentTemperature = "57.38";
+                cloudCover = "0.45";
+                dewPoint = "52.76";
+                humidity = "0.85";
+                icon = "partly-cloudy-night";
+                ozone = "307.97";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1011.8";
+                summary = "Partly Cloudy";
+                temperature = "57.38";
+                time = 1435320000;
+                visibility = "7.36";
+                windBearing = 234;
+                windSpeed = "4.47";
+            },
+                        {
+                apparentTemperature = "58.19";
+                cloudCover = "0.53";
+                dewPoint = "53.47";
+                humidity = "0.84";
+                icon = "partly-cloudy-day";
+                ozone = "307.58";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.01";
+                summary = "Partly Cloudy";
+                temperature = "58.19";
+                time = 1435323600;
+                visibility = "7.5";
+                windBearing = 229;
+                windSpeed = "4.65";
+            },
+                        {
+                apparentTemperature = "59.71";
+                cloudCover = "0.52";
+                dewPoint = "54.48";
+                humidity = "0.83";
+                icon = "partly-cloudy-day";
+                ozone = "307.09";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.29";
+                summary = "Partly Cloudy";
+                temperature = "59.71";
+                time = 1435327200;
+                visibility = "7.76";
+                windBearing = 225;
+                windSpeed = "4.94";
+            },
+                        {
+                apparentTemperature = "61.8";
+                cloudCover = "0.55";
+                dewPoint = "54.89";
+                humidity = "0.78";
+                icon = "partly-cloudy-day";
+                ozone = "306.66";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.54";
+                summary = "Partly Cloudy";
+                temperature = "61.8";
+                time = 1435330800;
+                visibility = "8.029999999999999";
+                windBearing = 226;
+                windSpeed = "5.27";
+            },
+                        {
+                apparentTemperature = "64.15000000000001";
+                cloudCover = "0.52";
+                dewPoint = "55.72";
+                humidity = "0.74";
+                icon = "partly-cloudy-day";
+                ozone = "306.31";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.75";
+                summary = "Partly Cloudy";
+                temperature = "64.15000000000001";
+                time = 1435334400;
+                visibility = "8.15";
+                windBearing = 233;
+                windSpeed = "5.56";
+            },
+                        {
+                apparentTemperature = "67.59999999999999";
+                cloudCover = "0.47";
+                dewPoint = "57.56";
+                humidity = "0.7";
+                icon = "partly-cloudy-day";
+                ozone = "306.01";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.92";
+                summary = "Partly Cloudy";
+                temperature = "67.59999999999999";
+                time = 1435338000;
+                visibility = "8.210000000000001";
+                windBearing = 242;
+                windSpeed = "5.89";
+            },
+                        {
+                apparentTemperature = "70.27";
+                cloudCover = "0.4";
+                dewPoint = "58.68";
+                humidity = "0.67";
+                icon = "partly-cloudy-day";
+                ozone = "305.82";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.01";
+                summary = "Partly Cloudy";
+                temperature = "70.27";
+                time = 1435341600;
+                visibility = "8.18";
+                windBearing = 248;
+                windSpeed = "6.58";
+            },
+                        {
+                apparentTemperature = "72.08";
+                cloudCover = "0.36";
+                dewPoint = "58.66";
+                humidity = "0.63";
+                icon = "partly-cloudy-day";
+                ozone = "305.92";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = 1013;
+                summary = "Partly Cloudy";
+                temperature = "72.08";
+                time = 1435345200;
+                visibility = "8.18";
+                windBearing = 249;
+                windSpeed = "7.57";
+            },
+                        {
+                apparentTemperature = "69.55";
+                cloudCover = "0.35";
+                dewPoint = "55.85";
+                humidity = "0.62";
+                icon = "partly-cloudy-day";
+                ozone = "306.13";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.9";
+                summary = "Partly Cloudy";
+                temperature = "69.55";
+                time = 1435348800;
+                visibility = "8.18";
+                windBearing = 251;
+                windSpeed = "8.93";
+            },
+                        {
+                apparentTemperature = "68.53";
+                cloudCover = "0.4";
+                dewPoint = "54.67";
+                humidity = "0.61";
+                icon = "partly-cloudy-day";
+                ozone = "305.96";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.74";
+                summary = "Partly Cloudy";
+                temperature = "68.53";
+                time = 1435352400;
+                visibility = "8.18";
+                windBearing = 251;
+                windSpeed = "9.970000000000001";
+            },
+                        {
+                apparentTemperature = "66.91";
+                cloudCover = "0.52";
+                dewPoint = "53.4";
+                humidity = "0.62";
+                icon = "partly-cloudy-day";
+                ozone = "304.96";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.5";
+                summary = "Partly Cloudy";
+                temperature = "66.91";
+                time = 1435356000;
+                visibility = "8.18";
+                windBearing = 251;
+                windSpeed = "10.47";
+            },
+                        {
+                apparentTemperature = "65.14";
+                cloudCover = "0.6899999999999999";
+                dewPoint = "52.44";
+                humidity = "0.64";
+                icon = "partly-cloudy-day";
+                ozone = "303.57";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.24";
+                summary = "Mostly Cloudy";
+                temperature = "65.14";
+                time = 1435359600;
+                visibility = "8.18";
+                windBearing = 251;
+                windSpeed = "10.61";
+            },
+                        {
+                apparentTemperature = "63.65";
+                cloudCover = "0.8100000000000001";
+                dewPoint = "51.99";
+                humidity = "0.66";
+                icon = "partly-cloudy-day";
+                ozone = "302.67";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.1";
+                summary = "Mostly Cloudy";
+                temperature = "63.65";
+                time = 1435363200;
+                visibility = "8.18";
+                windBearing = 251;
+                windSpeed = "10.38";
+            },
+                        {
+                apparentTemperature = "62.34";
+                cloudCover = "0.83";
+                dewPoint = "52.04";
+                humidity = "0.6899999999999999";
+                icon = "partly-cloudy-day";
+                ozone = "302.79";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.15";
+                summary = "Mostly Cloudy";
+                temperature = "62.34";
+                time = 1435366800;
+                visibility = "8.210000000000001";
+                windBearing = 251;
+                windSpeed = "9.609999999999999";
+            },
+                        {
+                apparentTemperature = "60.99";
+                cloudCover = "0.8";
+                dewPoint = "52.21";
+                humidity = "0.73";
+                icon = "partly-cloudy-day";
+                ozone = "303.39";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.32";
+                summary = "Mostly Cloudy";
+                temperature = "60.99";
+                time = 1435370400;
+                visibility = "8.24";
+                windBearing = 250;
+                windSpeed = "8.609999999999999";
+            },
+                        {
+                apparentTemperature = "59.66";
+                cloudCover = "0.79";
+                dewPoint = "52.24";
+                humidity = "0.76";
+                icon = "partly-cloudy-day";
+                ozone = "303.8";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.56";
+                summary = "Mostly Cloudy";
+                temperature = "59.66";
+                time = 1435374000;
+                visibility = "8.18";
+                windBearing = 246;
+                windSpeed = "7.85";
+            },
+                        {
+                apparentTemperature = "58.25";
+                cloudCover = "0.83";
+                dewPoint = "51.93";
+                humidity = "0.79";
+                icon = "partly-cloudy-night";
+                ozone = "303.78";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1012.87";
+                summary = "Mostly Cloudy";
+                temperature = "58.25";
+                time = 1435377600;
+                visibility = "7.97";
+                windBearing = 242;
+                windSpeed = "7.36";
+            },
+                        {
+                apparentTemperature = "56.61";
+                cloudCover = "0.88";
+                dewPoint = "51.25";
+                humidity = "0.82";
+                icon = "partly-cloudy-night";
+                ozone = "303.57";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.22";
+                summary = "Mostly Cloudy";
+                temperature = "56.61";
+                time = 1435381200;
+                visibility = "7.68";
+                windBearing = 237;
+                windSpeed = "7.03";
+            },
+                        {
+                apparentTemperature = "55.34";
+                cloudCover = "0.9";
+                dewPoint = "50.74";
+                humidity = "0.84";
+                icon = "partly-cloudy-night";
+                ozone = "303.23";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.46";
+                summary = "Mostly Cloudy";
+                temperature = "55.34";
+                time = 1435384800;
+                visibility = "7.47";
+                windBearing = 233;
+                windSpeed = "6.9";
+            },
+                        {
+                apparentTemperature = "55.15";
+                cloudCover = "0.86";
+                dewPoint = 51;
+                humidity = "0.86";
+                icon = "partly-cloudy-night";
+                ozone = "302.63";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.51";
+                summary = "Mostly Cloudy";
+                temperature = "55.15";
+                time = 1435388400;
+                visibility = "7.45";
+                windBearing = 230;
+                windSpeed = "7.05";
+            },
+                        {
+                apparentTemperature = "55.2";
+                cloudCover = "0.78";
+                dewPoint = "51.35";
+                humidity = "0.87";
+                icon = "partly-cloudy-night";
+                ozone = "301.9";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.45";
+                summary = "Mostly Cloudy";
+                temperature = "55.2";
+                time = 1435392000;
+                visibility = "7.52";
+                windBearing = 229;
+                windSpeed = "7.33";
+            },
+                        {
+                apparentTemperature = "55.03";
+                cloudCover = "0.73";
+                dewPoint = "51.54";
+                humidity = "0.88";
+                icon = "partly-cloudy-night";
+                ozone = "301.53";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.42";
+                summary = "Mostly Cloudy";
+                temperature = "55.03";
+                time = 1435395600;
+                visibility = "7.44";
+                windBearing = 228;
+                windSpeed = "7.49";
+            },
+                        {
+                apparentTemperature = "54.38";
+                cloudCover = "0.75";
+                dewPoint = "51.48";
+                humidity = "0.9";
+                icon = "partly-cloudy-night";
+                ozone = "301.81";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.46";
+                summary = "Mostly Cloudy";
+                temperature = "54.38";
+                time = 1435399200;
+                visibility = "7.24";
+                windBearing = 227;
+                windSpeed = "7.51";
+            },
+                        {
+                apparentTemperature = "53.62";
+                cloudCover = "0.79";
+                dewPoint = "51.34";
+                humidity = "0.92";
+                icon = "partly-cloudy-night";
+                ozone = "302.45";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.54";
+                summary = "Mostly Cloudy";
+                temperature = "53.62";
+                time = 1435402800;
+                visibility = "6.9";
+                windBearing = 226;
+                windSpeed = "7.44";
+            },
+                        {
+                apparentTemperature = "53.18";
+                cloudCover = "0.82";
+                dewPoint = "51.23";
+                humidity = "0.93";
+                icon = "partly-cloudy-night";
+                ozone = "303.06";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.68";
+                summary = "Mostly Cloudy";
+                temperature = "53.18";
+                time = 1435406400;
+                visibility = "6.18";
+                windBearing = 225;
+                windSpeed = "7.31";
+            },
+                        {
+                apparentTemperature = "53.22";
+                cloudCover = "0.8";
+                dewPoint = "51.21";
+                humidity = "0.93";
+                icon = "partly-cloudy-day";
+                ozone = "303.62";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1013.94";
+                summary = "Mostly Cloudy";
+                temperature = "53.22";
+                time = 1435410000;
+                visibility = "4.57";
+                windBearing = 220;
+                windSpeed = "7.12";
+            },
+                        {
+                apparentTemperature = "53.78";
+                cloudCover = "0.76";
+                dewPoint = "51.4";
+                humidity = "0.92";
+                icon = "partly-cloudy-day";
+                ozone = "304.16";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.27";
+                summary = "Mostly Cloudy";
+                temperature = "53.78";
+                time = 1435413600;
+                visibility = "2.58";
+                windBearing = 214;
+                windSpeed = "6.93";
+            },
+                        {
+                apparentTemperature = "54.56";
+                cloudCover = "0.72";
+                dewPoint = "51.5";
+                humidity = "0.89";
+                icon = fog;
+                ozone = "304.35";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.56";
+                summary = Foggy;
+                temperature = "54.56";
+                time = 1435417200;
+                visibility = "1.61";
+                windBearing = 211;
+                windSpeed = "6.85";
+            },
+                        {
+                apparentTemperature = "56.06";
+                cloudCover = "0.68";
+                dewPoint = "51.79";
+                humidity = "0.86";
+                icon = "partly-cloudy-day";
+                ozone = "303.99";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.74";
+                summary = "Mostly Cloudy";
+                temperature = "56.06";
+                time = 1435420800;
+                visibility = "2.58";
+                windBearing = 214;
+                windSpeed = "6.8";
+            },
+                        {
+                apparentTemperature = "57.61";
+                cloudCover = "0.64";
+                dewPoint = "51.76";
+                humidity = "0.8100000000000001";
+                icon = "partly-cloudy-day";
+                ozone = "303.27";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.86";
+                summary = "Mostly Cloudy";
+                temperature = "57.61";
+                time = 1435424400;
+                visibility = "4.57";
+                windBearing = 221;
+                windSpeed = "6.75";
+            },
+                        {
+                apparentTemperature = "59.01";
+                cloudCover = "0.6";
+                dewPoint = "51.79";
+                humidity = "0.77";
+                icon = "partly-cloudy-day";
+                ozone = "302.47";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.91";
+                summary = "Mostly Cloudy";
+                temperature = "59.01";
+                time = 1435428000;
+                visibility = "6.25";
+                windBearing = 228;
+                windSpeed = "7.02";
+            },
+                        {
+                apparentTemperature = "60.51";
+                cloudCover = "0.57";
+                dewPoint = "52.41";
+                humidity = "0.75";
+                icon = "partly-cloudy-day";
+                ozone = "301.6";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.9";
+                summary = "Partly Cloudy";
+                temperature = "60.51";
+                time = 1435431600;
+                visibility = "7.05";
+                windBearing = 232;
+                windSpeed = "7.97";
+            },
+                        {
+                apparentTemperature = "62.4";
+                cloudCover = "0.53";
+                dewPoint = "53.66";
+                humidity = "0.73";
+                icon = "partly-cloudy-day";
+                ozone = "300.64";
+                precipIntensity = 0;
+                precipProbability = 0;
+                pressure = "1014.82";
+                summary = "Partly Cloudy";
+                temperature = "62.4";
+                time = 1435435200;
+                visibility = "7.53";
+                windBearing = 233;
+                windSpeed = "9.19";
+            }
+        );
+        icon = "partly-cloudy-day";
+        summary = "Partly cloudy starting tonight.";
+    };
+    latitude = "37.787359";
+    longitude = "-122.408227";
+    minutely =     {
+        data =         (
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263060;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263120;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263180;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263240;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263300;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263360;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263420;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263480;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263540;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263600;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263660;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263720;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263780;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263840;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263900;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435263960;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264020;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264080;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264140;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264200;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264260;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264320;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264380;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264440;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264500;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264560;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264620;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264680;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264740;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264800;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264860;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264920;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435264980;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265040;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265100;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265160;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265220;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265280;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265340;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265400;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265460;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265520;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265580;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265640;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265700;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265760;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265820;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265880;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435265940;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266000;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266060;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266120;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266180;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266240;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266300;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266360;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266420;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266480;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266540;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266600;
+            },
+                        {
+                precipIntensity = 0;
+                precipProbability = 0;
+                time = 1435266660;
+            }
+        );
+        icon = "clear-day";
+        summary = "Clear for the hour.";
+    };
+    offset = "-7";
+    timezone = "America/Los_Angeles";
+}
