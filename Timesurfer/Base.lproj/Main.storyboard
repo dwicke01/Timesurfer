@@ -41,6 +41,10 @@
                                     <constraint firstItem="2hT-l4-BUZ" firstAttribute="trailing" secondItem="Mkh-CP-iOv" secondAttribute="leading" id="csB-vo-bvo"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bef-Ld-ilk" customClass="TSGrayGradient">
+                                <rect key="frame" x="-1" y="1" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Milky-Way" translatesAutoresizingMaskIntoConstraints="NO" id="8D6-NV-UvY">
                                 <rect key="frame" x="-17" y="-55" width="353" height="224"/>
                                 <constraints>
@@ -214,6 +218,7 @@
                             <constraint firstItem="U99-vA-Ucs" firstAttribute="top" secondItem="d5D-eI-mHl" secondAttribute="bottom" constant="8" id="Hs8-tw-0oO"/>
                             <constraint firstItem="yeB-Rb-2y0" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="24" id="Ink-dj-4I1"/>
                             <constraint firstItem="yeB-Rb-2y0" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="-20" id="JkR-p1-JbF"/>
+                            <constraint firstAttribute="centerY" secondItem="bef-Ld-ilk" secondAttribute="centerY" constant="-0.5" id="KYC-9v-1Hf"/>
                             <constraint firstItem="5zR-wb-zWd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="MZ7-i2-HI9"/>
                             <constraint firstItem="U99-vA-Ucs" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Mqc-NV-Pfd"/>
                             <constraint firstItem="F7g-W2-0x5" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" multiplier="0.75" id="Nf0-TO-1Gs"/>
@@ -222,6 +227,7 @@
                             <constraint firstItem="EqI-wX-JTi" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.85" id="Psk-Zi-6HM"/>
                             <constraint firstItem="5zR-wb-zWd" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="Qxr-Dw-XId"/>
                             <constraint firstItem="F7g-W2-0x5" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="135" id="S26-7h-ST9"/>
+                            <constraint firstAttribute="centerX" secondItem="bef-Ld-ilk" secondAttribute="centerX" constant="0.5" id="SzP-iN-r3B"/>
                             <constraint firstItem="NuN-EI-buN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="500" id="Umy-Ni-9Q0"/>
                             <constraint firstItem="d5D-eI-mHl" firstAttribute="top" secondItem="XEV-1r-G3o" secondAttribute="bottom" constant="8" id="VdL-Qj-Vuq"/>
                             <constraint firstItem="AEq-0A-abj" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="Ydr-Q6-0C2"/>
@@ -232,6 +238,7 @@
                             <constraint firstItem="Mkh-CP-iOv" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="acH-Is-hUH"/>
                             <constraint firstItem="m8O-hO-p76" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="c1o-1h-LNk"/>
                             <constraint firstItem="hrk-RC-asl" firstAttribute="top" secondItem="5zR-wb-zWd" secondAttribute="bottom" constant="-6" id="edf-Jd-Khm"/>
+                            <constraint firstAttribute="height" secondItem="bef-Ld-ilk" secondAttribute="height" id="fPT-7Z-65a"/>
                             <constraint firstItem="fW1-Qn-bho" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="gZb-5o-0Rx"/>
                             <constraint firstAttribute="centerY" secondItem="Mkh-CP-iOv" secondAttribute="centerY" id="gr9-yQ-GqI"/>
                             <constraint firstItem="Foz-6n-SI8" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="-20" id="hMj-8q-Jbm"/>
@@ -241,6 +248,7 @@
                             <constraint firstItem="8D6-NV-UvY" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="-75" id="kFU-Tt-rmv"/>
                             <constraint firstItem="Mkh-CP-iOv" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="kVd-Kx-NCG"/>
                             <constraint firstItem="fW1-Qn-bho" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="400" id="msh-cW-BbV"/>
+                            <constraint firstAttribute="width" secondItem="bef-Ld-ilk" secondAttribute="width" id="omB-0a-6KP"/>
                             <constraint firstItem="IJN-7e-fpa" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" multiplier="0.5" id="pMt-Xn-wie"/>
                             <constraint firstItem="XEV-1r-G3o" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.75" id="qK9-Ao-vTB"/>
                             <constraint firstItem="5zR-wb-zWd" firstAttribute="bottom" secondItem="XEV-1r-G3o" secondAttribute="top" constant="-8" id="rCq-3G-QzA"/>
@@ -264,6 +272,7 @@
                         <outlet property="corgiYAxis" destination="uIe-X6-Um9" id="5MS-JT-JSg"/>
                         <outlet property="corgieDog" destination="5bE-hs-iQq" id="yKB-rQ-AX5"/>
                         <outlet property="dayTimeGradient" destination="Mkh-CP-iOv" id="aM2-Hm-Mpx"/>
+                        <outlet property="grayGradient" destination="bef-Ld-ilk" id="ALq-5t-pKo"/>
                         <outlet property="greyCat" destination="rM4-sd-xLA" id="UIY-cP-0wN"/>
                         <outlet property="greyCatYAxis" destination="B4h-kh-9hI" id="tt8-Tz-Izh"/>
                         <outlet property="greyStripeCat" destination="hlW-Bp-yqc" id="TUU-sa-Dx1"/>

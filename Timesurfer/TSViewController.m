@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *skyView;
 @property (weak, nonatomic) IBOutlet UIView *sunView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
+@property (weak, nonatomic) IBOutlet UIView *grayGradient;
 @property (weak, nonatomic) IBOutlet UIView *sheepClouds;
 @property (weak, nonatomic) IBOutlet UIView *airplane;
 @property (weak, nonatomic) IBOutlet TSClouds *clouds;
@@ -64,6 +65,7 @@
 @property (nonatomic, assign) BOOL sheepInMotion;
 @property (nonatomic, assign) BOOL planeInMotion;
 @property (nonatomic, assign) BOOL animalsInMotion;
+@property (nonatomic, assign) BOOL grayGradientInMotion;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -112,6 +114,7 @@
     
     self.milkyWay.alpha = 0;
     self.skyView.alpha = 0;
+    self.grayGradient.alpha = 0;
     
     self.greyCatYAxis.constant = -150;
     self.blackCatYAxis.constant = -150;
@@ -152,8 +155,8 @@
 }
 
 - (void) returnFromSleep {
+    [self.locationManager startUpdatingLocation];
     self.hourSlider.value = 0;
-    
     [self requestWhenInUseAuth];
     [self getWeather];
 }
@@ -193,7 +196,7 @@
         }];
         
     } else if (self.currentWeather.percentRainFloat >= 70) {
-
+        
         self.animalsInMotion = YES;
         NSUInteger constant = 1100;
         NSUInteger duration = 9;
@@ -414,14 +417,33 @@
     }
     
     if (self.hourSlider.value == self.hourOffset) {
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:.5 animations:^{
             self.dayTimeGradient.alpha = alphaValue;
+            
+            self.grayGradient.alpha = 1 * (self.currentWeather.percentRainFloat/100);
         }];
         
     } else {
         self.dayTimeGradient.alpha = alphaValue;
+        
+        if (!self.grayGradientInMotion) {
+            self.grayGradientInMotion = YES;
+            
+            CGFloat rainPct = self.currentWeather.percentRainFloat;
+            
+            if (rainPct == 90) {
+                rainPct = 100;
+            }
+            
+            [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                self.grayGradient.alpha = 1 * rainPct/100;
+            } completion:^(BOOL finished) {
+                self.grayGradientInMotion = NO;
+            }];
+        }
     }
 }
+
 
 - (void) updateSky {
     
@@ -473,13 +495,13 @@
     TSWeather *weather = [self.weatherData weatherForHour:indexOfHour];
     
     if(self.currentWeather == weather) {
-
+        
         return;
         
     } else {
         
         [self removeWeatherAnimation];
-
+        
         self.currentWeather = weather;
         
         [UIView animateWithDuration:.5 animations:^{
@@ -488,7 +510,6 @@
             
             self.cloudsXAxis.constant = nearestHour/2400*(self.view.frame.size.width*-24) ;
             [self.clouds layoutIfNeeded];
-            
         }];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
