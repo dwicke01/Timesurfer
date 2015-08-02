@@ -29,9 +29,13 @@
     CFTimeInterval elapsedTime = self.displayLink.timestamp - self.firstDrawTime;
     // 50 - 140
     
- 
-
-    [TSGraphics drawLightSheepCloudsWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) legRotation:-1*(15 + 15 * sin(self.displayLink.timestamp*8))];
+    
+    if (self.frame.size.width == 320) {
+        [TSGraphics drawLightSheepCloudsSmallWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) legRotation:-1*(15 + 15 * sin(self.displayLink.timestamp*8))];
+    } else {
+        [TSGraphics drawLightSheepCloudsWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) legRotation:-1*(15 + 15 * sin(self.displayLink.timestamp*8))];
+    }
+    
 }
 
 -(void)willMoveToWindow:(UIWindow *)newWindow

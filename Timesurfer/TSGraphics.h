@@ -38,6 +38,7 @@
 + (void)drawHeavyCloudsMayRainWithFrame: (CGRect)frame;
 + (void)drawHeavyCloudsWithFrame: (CGRect)frame;
 + (void)drawHeaviestRainCloudsWithFrame: (CGRect)frame;
++ (void)drawLightSheepCloudsSmallWithFrame: (CGRect)frame legRotation: (CGFloat)legRotation;
 + (void)drawSunTwoWithFrame: (CGRect)frame sunRotation: (CGFloat)sunRotation scale: (CGFloat)scale;
 + (void)drawPrivateJetWithFrame: (CGRect)frame;
 

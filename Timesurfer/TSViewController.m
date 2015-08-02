@@ -186,6 +186,13 @@
                                               currentTime = (currentTime/12)*-736;
                                           }
                                           self.clouds.weatherData = self.weatherData;
+                                          
+                                          if (self.temperatureInCelcius) {
+                                              self.highLowLabel.text = self.weatherData.highLowTempC;
+                                          } else {
+                                              self.highLowLabel.text = self.weatherData.highLowTempF;
+                                          }
+                                          
                                           [self updateWeatherInfo];
                                           
                                       } failure:^(NSError *error, id response) {
@@ -777,6 +784,13 @@
     self.pugYAxis.constant = -150;
     self.yorkieYAxis.constant = -150;
     self.greyStripeYAxis.constant = -150;
+        
+        if (self.view.frame.size.width == 320) {
+            self.locationLabel.font = [self.locationLabel.font fontWithSize:36];
+            self.timeLabel.font = [self.timeLabel.font fontWithSize:28];
+            self.percentPrecip.font = [self.percentPrecip.font fontWithSize:28];
+        }
+    
 }
 
 - (void)didReceiveMemoryWarning {
