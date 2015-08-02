@@ -218,7 +218,7 @@
         [UIView animateWithDuration:.4
                          animations:^{
                              self.sunXAxis.constant = 15 + z * ((currentTime-800)/900);
-                             self.sunYAxis.constant = -80 * sin((M_PI * (self.sunXAxis.constant-50))/z)+80;
+                             self.sunYAxis.constant = -40 * sin((M_PI * (self.sunXAxis.constant-50))/z)+40;
                              
                              [self.sunView layoutIfNeeded];
                          }];
@@ -414,7 +414,7 @@
             self.sunRiseSetLabel.alpha = 1;
 
             if (self.hourSlider.value > 2400) {
-                self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunSet];
+                self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunRise];
                 
             } else {
                 self.timeLabel.text = self.weatherData.sunSet;
