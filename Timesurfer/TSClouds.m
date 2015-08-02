@@ -43,7 +43,7 @@
             if (weather.cloudCoverFloat >= 0.69) {
                 [TSGraphics drawHeavyCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
                 
-            } else if (weather.cloudCoverFloat >= 0.59) {
+            } else if (weather.percentRainFloat == 30) {
                 [TSGraphics drawMediumCloudsWithFrame:CGRectMake(xAxis * i + 10, 0, xAxis, yHeight)];
                 
             }
