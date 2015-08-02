@@ -43,6 +43,18 @@
         
         _location = [[CLLocation alloc] initWithLatitude:[self.weatherDictionary[@"latitude"] doubleValue] longitude:[self.weatherDictionary[@"longitude"] doubleValue]];
         
+        
+        NSDictionary *today = [[[incomingWeatherJSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
+        CGFloat high = [today[@"temperatureMax"] floatValue];
+        CGFloat low = [today[@"temperatureMin"] floatValue];
+        
+        _highLowTempF = [NSString stringWithFormat:@"H %.f°F   L %.f°F", high, low];
+        
+        high = ((high - 32.f) / 1.8f);
+        low = ((low - 32.f) / 1.8f);
+
+        _highLowTempC = [NSString stringWithFormat:@"H %.f°C   L %.f°C", high, low];
+        
         NSNumber *sunRiseNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
         NSNumber *sunSetNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
         NSNumber *currentNum = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];

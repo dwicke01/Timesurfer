@@ -67,6 +67,7 @@
 @property (nonatomic, assign) BOOL planeInMotion;
 @property (nonatomic, assign) BOOL animalsInMotion;
 @property (nonatomic, assign) BOOL grayGradientInMotion;
+@property (nonatomic, assign) BOOL temperatureInCelcius;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -172,12 +173,7 @@
                                           self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
                                           self.hourSlider.value = self.hourSlider.minimumValue;
                                           self.hourOffset = self.hourSlider.minimumValue;
-                                          
-                                          NSDictionary *today = [[[JSON valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
-                                          NSInteger high = [today[@"temperatureMax"] integerValue];
-                                          NSInteger low = [today[@"temperatureMin"] integerValue];
-                                          self.highLowLabel.text = [NSString stringWithFormat:@"H %lu°F   L %lu°F", high, low];
-                                          
+
                                           CGFloat currentTime = self.weatherData.startingHour;
                                           
                                           if (currentTime > 21 || currentTime < 5) {
@@ -380,11 +376,26 @@
     if(self.currentWeather == weather) {
         [self rainAnimation];
         [self removeWeatherAnimation];
+        
+        if (self.temperatureInCelcius) {
+            self.temperatureLabel.text = weather.weatherTemperatureC;
+            self.highLowLabel.text = self.weatherData.highLowTempC;
+        } else {
+            self.temperatureLabel.text = weather.weatherTemperatureF;
+            self.highLowLabel.text = self.weatherData.highLowTempF;
+        }
+        
         return;
         
     } else {
         [self rainAnimation];
         [self removeWeatherAnimation];
+        
+        if (self.temperatureInCelcius) {
+            self.temperatureLabel.text = weather.weatherTemperatureC;
+        } else {
+            self.temperatureLabel.text = weather.weatherTemperatureF;
+        }
         
         self.currentWeather = weather;
         
@@ -438,8 +449,8 @@
         if (indexOfHour == 0) {
             self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
         }
+        
         self.weatherSummaryLabel.text = self.weatherData.weatherSummaryString;
-        self.temperatureLabel.text = weather.weatherTemperature;
         self.weatherImage.image = weather.weatherImage;
         
         if (self.weatherData.rainChanceTodayAbove50 || weather.percentRainFloat >= 50) {
@@ -450,6 +461,18 @@
     }
 }
 
+- (IBAction)toggleTemperatureUnits:(id)sender {
+    
+    if (!self.temperatureInCelcius) {
+        self.temperatureInCelcius = YES;
+        
+    } else {
+        self.temperatureInCelcius = NO;
+    }
+    
+    CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
+    [self updateWeatherLabelsWithIndex:currentTime];
+}
 
 #pragma mark Animations
 

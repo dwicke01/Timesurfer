@@ -103,15 +103,6 @@
                                     <constraint firstAttribute="width" constant="83" id="dkc-eM-xCc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="103" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I" userLabel="Temperature">
-                                <rect key="frame" x="37" y="222" width="300" height="110"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="jkl-JC-tHe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="130"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly cloudy today into the evening" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="76G-yV-tCX">
                                 <rect key="frame" x="38" y="356" width="300" height="26"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
@@ -206,8 +197,21 @@
                                     <action selector="sliderChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="sKF-7l-xso"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="103" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I" userLabel="Temperature">
+                                <rect key="frame" x="37" y="222" width="300" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="jkl-JC-tHe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="130"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="EOP-4c-Xdh" appends="YES" id="AEI-FR-zJY"/>
+                                </connections>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gog-Tu-62I" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="1nP-hG-IDY"/>
                             <constraint firstItem="XEV-1r-G3o" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="2lS-v6-yI7"/>
@@ -319,6 +323,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="BuZ-zn-R5x"/>
+                <tapGestureRecognizer id="EOP-4c-Xdh">
+                    <connections>
+                        <action selector="toggleTemperatureUnits:" destination="vXZ-lx-hvc" id="EZl-TO-jJa"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="304.5" y="233.5"/>
         </scene>

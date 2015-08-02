@@ -41,7 +41,11 @@
 - (void) formatWeatherData{
 
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
-    _weatherTemperature = [[NSString alloc] initWithFormat:@"%.f°F",temperatureNumber.floatValue];
+    _weatherTemperatureF = [[NSString alloc] initWithFormat:@"%.f°F",temperatureNumber.floatValue];
+    
+    CGFloat celcius = ((temperatureNumber.floatValue - 32.f) / 1.8f);
+    
+    _weatherTemperatureC = [[NSString alloc] initWithFormat:@"%.f°C",celcius];
     
     NSDate *dateTime = [[NSDate alloc] initWithTimeIntervalSince1970:self.currentTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
