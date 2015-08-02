@@ -123,9 +123,11 @@
     self.hourSlider.value = 0;
     
     if (arc4random_uniform(5) == 4) {
-        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(50,50)];
+        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(40,40)];
         
         [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
+    } else {
+        [self.hourSlider setThumbImage:nil forState:UIControlStateNormal];
     }
     
     [self requestWhenInUseAuth];
@@ -316,7 +318,7 @@
         if (!self.grayGradientInMotion) {
             self.grayGradientInMotion = YES;
             
-            [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            [UIView animateWithDuration:.25 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
                 self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/40);
             } completion:^(BOOL finished) {
                 self.grayGradientInMotion = NO;
@@ -376,11 +378,12 @@
     TSWeather *weather = [self.weatherData weatherForHour:indexOfHour];
     
     if(self.currentWeather == weather) {
-        
+        [self rainAnimation];
+        [self removeWeatherAnimation];
         return;
         
     } else {
-        
+        [self rainAnimation];
         [self removeWeatherAnimation];
         
         self.currentWeather = weather;
@@ -417,7 +420,7 @@
                 self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunRise];
                 
             } else {
-                self.timeLabel.text = self.weatherData.sunSet;
+                self.timeLabel.text = self.weatherData.sunRise;
                 
             }
             
@@ -484,92 +487,6 @@
             self.sheepInMotion = NO;
         }];
         
-    } else if (self.currentWeather.percentRainFloat >= 80) {
-        
-        self.animalsInMotion = YES;
-        NSUInteger constant = 1100;
-        NSUInteger duration = 5;
-        
-        [UIView animateWithDuration:duration
-                              delay:0
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.greyCatYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:.5
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.corgiYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:1
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.blackCatYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:1.8
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.poodleYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:2.3
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.pugYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:3
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.orangeCatYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:3.5
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.greyStripeYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
-        [UIView animateWithDuration:duration
-                              delay:4.3
-                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                         animations:^{
-                             self.yorkieYAxis.constant = constant;
-                             [self.view layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-        
     } else if (self.planeInMotion == NO && self.sheepInMotion == NO && self.currentWeather.currentHourInt % 2){
         
         self.planeInMotion = YES;
@@ -588,6 +505,95 @@
     self.sliderStoppedTimer = nil;
 }
 
+- (void) rainAnimation {
+    
+    if (self.currentWeather.percentRainFloat >= 70 ) {
+        
+        self.animalsInMotion = YES;
+        NSUInteger constant = 1100;
+        NSUInteger duration = 9;
+        
+        [UIView animateWithDuration:duration
+                              delay:0
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.greyCatYAxis.constant = constant;
+                             [self.greyCat layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:1
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.corgiYAxis.constant = constant;
+                             [self.corgieDog layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:2
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.blackCatYAxis.constant = constant;
+                             [self.blackCat layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:3.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.poodleYAxis.constant = constant;
+                             [self.poodleDog layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:4.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.pugYAxis.constant = constant;
+                             [self.pugDog layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:5.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.orangeCatYAxis.constant = constant;
+                             [self.orangeCat layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:6.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.greyStripeYAxis.constant = constant;
+                             [self.greyStripeCat layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:duration
+                              delay:7.5
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                         animations:^{
+                             self.yorkieYAxis.constant = constant;
+                             [self.yorkieDog layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+    }
+}
 
 - (void) removeWeatherAnimation {
     
