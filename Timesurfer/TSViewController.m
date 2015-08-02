@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *highLowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *weatherSummaryLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *moonImage;
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
@@ -95,7 +96,7 @@
     
     self.forcastr = [Forecastr sharedManager];
     self.forcastr.apiKey = FORCAST_KEY;
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(returnFromSleep)
                                                  name:@"appBecameActive" object:nil];
@@ -122,7 +123,7 @@
     self.hourSlider.value = 0;
     
     if (arc4random_uniform(5) == 4) {
-        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(60,60)];
+        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(50,50)];
         
         [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
     }
@@ -148,7 +149,6 @@
     }
     
     [self.locationManager stopUpdatingLocation];
-    NSLog(@"Time Interval Since Now %f", fabs([self.apiLastRequestTime timeIntervalSinceNow]));
     
     if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800) {
         
@@ -161,7 +161,6 @@
                                        extend:nil
                                       success:^(id JSON) {
                                           //                                      NSLog(@"JSON Response was: %@", JSON);
-                                          //                                      NSLog(@"Made API Call");
                                           
                                           [self.locationManager startMonitoringSignificantLocationChanges];
                                           
@@ -229,8 +228,6 @@
     } else if (currentTime > 2200){
         self.sunXAxis.constant = z + x;
     }
-    
-    //NSLog(@"Sun X %f Sun Y %f",self.sunXAxis.constant, self.sunYAxis.constant);
 }
 
 - (void) updateMoon {
@@ -275,9 +272,6 @@
     } else if (currentTime > 1900){
         self.moonXAxis.constant = 0;
     }
-    
-    //    NSLog(@"Y %f  X %f",self.moonYAxis.constant,self.moonXAxis.constant);
-    
 }
 
 - (void) updateGradient {
@@ -327,8 +321,6 @@
             } completion:^(BOOL finished) {
                 self.grayGradientInMotion = NO;
             }];
-            
-            NSLog(@"%f",self.grayGradient.alpha);
         }
     }
 }
@@ -416,16 +408,19 @@
             self.timeLabel.text = self.weatherData.sunRise;
             self.sunRiseSetLabel.text = @"Sunrise";
             
-        }  else {
+        } else if (self.hourSlider.value > 2400) {
+            self.timeLabel.text = [NSString stringWithFormat:@"+%@",weather.currentDate];
+            self.sunRiseSetLabel.hidden = YES;
+            
+        } else {
             self.sunRiseSetLabel.hidden = YES;
             self.timeLabel.text = weather.currentDate;
         }
         
         if (indexOfHour == 0) {
             self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-        } else {
-            
         }
+        self.weatherSummaryLabel.text = self.weatherData.weatherSummaryString;
         self.temperatureLabel.text = weather.weatherTemperature;
         self.weatherImage.image = weather.weatherImage;
         
@@ -562,7 +557,7 @@
                              
                          }];
         
-    } else if (self.planeInMotion == NO && self.sheepInMotion == NO){
+    } else if (self.planeInMotion == NO && self.sheepInMotion == NO && self.currentWeather.currentHourInt % 2){
         
         self.planeInMotion = YES;
         

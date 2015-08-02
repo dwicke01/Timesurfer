@@ -38,7 +38,7 @@
 
 #pragma mark - UIControl
 
-#define SIZE_EXTENSION_Y -30
+#define SIZE_EXTENSION_Y -100
 
 - (BOOL) pointInside:(CGPoint)point withEvent:(UIEvent*)event {
     CGRect bounds = self.bounds;

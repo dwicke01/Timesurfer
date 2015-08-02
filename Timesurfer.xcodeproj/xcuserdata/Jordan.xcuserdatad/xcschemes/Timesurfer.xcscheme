@@ -109,8 +109,8 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "London, England"
-         referenceType = "1">
+         identifier = "../../../../../Downloads/BrianHead-Network.gpx"
+         referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction

@@ -62,6 +62,8 @@
         _sunSetHour = [dateFormatter stringFromDate:self.sunSetDate];
         _startingHour = [[dateFormatter stringFromDate:self.currentDate] integerValue];
         
+        _weatherSummaryString = self.weatherDictionary[@"hourly"][@"summary"];
+        
         [self populateWeatherByHour];
     }
     
