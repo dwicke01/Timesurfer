@@ -399,13 +399,28 @@
         if (weather.sunSetHour) {
             self.sunRiseSetLabel.hidden = NO;
             self.sunRiseSetLabel.alpha = 1;
+            
+            if (self.hourSlider.value > 2400) {
+            self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunSet];
+                
+            } else {
             self.timeLabel.text = self.weatherData.sunSet;
+                
+            }
             self.sunRiseSetLabel.text = @"Sunset";
             
         } else if (weather.sunRiseHour) {
             self.sunRiseSetLabel.hidden = NO;
             self.sunRiseSetLabel.alpha = 1;
-            self.timeLabel.text = self.weatherData.sunRise;
+
+            if (self.hourSlider.value > 2400) {
+                self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunSet];
+                
+            } else {
+                self.timeLabel.text = self.weatherData.sunSet;
+                
+            }
+            
             self.sunRiseSetLabel.text = @"Sunrise";
             
         } else if (self.hourSlider.value > 2400) {
@@ -429,8 +444,6 @@
         } else {
             self.percentPrecip.text = weather.percentRainString;
         }
-        
-        
     }
 }
 
