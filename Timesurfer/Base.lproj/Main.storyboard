@@ -103,7 +103,7 @@
                                     <constraint firstAttribute="width" constant="83" id="dkc-eM-xCc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="76G-yV-tCX" userLabel="Weather Summary Text">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" minimumScaleFactor="0.30000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="76G-yV-tCX" userLabel="Weather Summary Text">
                                 <rect key="frame" x="38" y="354" width="300" height="23"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -197,7 +197,7 @@
                                     <action selector="sliderChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="sKF-7l-xso"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="103" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I" userLabel="Temperature">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="103" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I" userLabel="Temperature">
                                 <rect key="frame" x="37" y="226" width="300" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="jkl-JC-tHe"/>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D828808BBB67B1E712B4953"
+               BlueprintIdentifier = "0EE47E24A82EF3FEB219D14B"
                BuildableName = "libPods-TimesurferFramework-gtm-http-fetcher.a"
                BlueprintName = "Pods-TimesurferFramework-gtm-http-fetcher"
                ReferencedContainer = "container:Pods.xcodeproj">

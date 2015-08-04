@@ -7,7 +7,9 @@
 //
 
 #import <Forecastr/Forecastr.h>
+#import <SceneKit/SceneKit.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <Mason
 #import "TSViewController.h"
 #import "TSStarField.h"
 #import "TSWeatherData.h"
@@ -102,8 +104,25 @@
                                              selector:@selector(returnFromSleep)
                                                  name:@"appBecameActive" object:nil];
     [self setupView];
-    
+//    [self rain];
     [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void) rain {
+    SCNParticleSystem *particleSystem = [SCNParticleSystem particleSystemNamed:@"Rain" inDirectory:nil];
+    
+    SCNScene *s = [SCNScene new];
+    [s addParticleSystem:particleSystem withTransform:SCNMatrix4Identity];
+    s.background.contents = nil;
+    
+    SCNView *v = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    
+    v.backgroundColor = [UIColor clearColor];
+    v.scene = s;
+    
+    [self.view addSubview:v];
+    
+    [v addConstraint
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -163,7 +182,7 @@
                                    exclusions:nil
                                        extend:nil
                                       success:^(id JSON) {
-                                          //                                      NSLog(@"JSON Response was: %@", JSON);
+                                                                                //NSLog(@"JSON Response was: %@", JSON);
                                           
                                           [self.locationManager startMonitoringSignificantLocationChanges];
                                           
@@ -312,7 +331,7 @@
         [UIView animateWithDuration:.5 animations:^{
             self.dayTimeGradient.alpha = alphaValue;
             
-            self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/40);
+            self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/50);
         }];
         
     } else {
@@ -322,7 +341,7 @@
             self.grayGradientInMotion = YES;
             
             [UIView animateWithDuration:.25 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/40);
+                self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/50);
             } completion:^(BOOL finished) {
                 self.grayGradientInMotion = NO;
             }];

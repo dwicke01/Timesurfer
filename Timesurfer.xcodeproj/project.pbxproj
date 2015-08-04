@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1712E9011B70669000EAC9ED /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 1712E8FF1B70669000EAC9ED /* spark.png */; };
+		1712E9021B7066CD00EAC9ED /* Rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 1712E8FE1B70669000EAC9ED /* Rain.scnp */; };
 		175E551A1B6C8679002A7CAA /* TSGrayGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 175E55191B6C8679002A7CAA /* TSGrayGradient.m */; };
 		175E551D1B6D7B83002A7CAA /* TSSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 175E551C1B6D7B83002A7CAA /* TSSlider.m */; };
 		176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 176DA4541B5D9BE9006190BD /* TSConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -132,6 +134,8 @@
 /* Begin PBXFileReference section */
 		1704BDD51B52FCFB00E0DFEF /* TSClouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSClouds.h; path = Timesurfer/TSClouds.h; sourceTree = SOURCE_ROOT; };
 		1704BDD61B52FCFB00E0DFEF /* TSClouds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSClouds.m; path = Timesurfer/TSClouds.m; sourceTree = SOURCE_ROOT; };
+		1712E8FE1B70669000EAC9ED /* Rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = Rain.scnp; path = Timesurfer/Rain.scnp; sourceTree = SOURCE_ROOT; };
+		1712E8FF1B70669000EAC9ED /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Timesurfer/spark.png; sourceTree = SOURCE_ROOT; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
@@ -381,6 +385,8 @@
 				FA22DAC11B41DEEE0072005E /* Supporting Files */,
 				178CDEF21B58788500B76ED6 /* TSRainParticleSystem.scnp */,
 				178CDEF31B58788500B76ED6 /* spark.png */,
+				1712E8FE1B70669000EAC9ED /* Rain.scnp */,
+				1712E8FF1B70669000EAC9ED /* spark.png */,
 			);
 			path = TimesurferFramework;
 			sourceTree = "<group>";
@@ -612,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DB0C051B3BAA690001810D /* Main.storyboard in Resources */,
+				1712E9021B7066CD00EAC9ED /* Rain.scnp in Resources */,
 				17DB0C0A1B3BAA690001810D /* LaunchScreen.xib in Resources */,
 				17DB0C071B3BAA690001810D /* Images.xcassets in Resources */,
 			);
@@ -628,6 +635,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1712E9011B70669000EAC9ED /* spark.png in Resources */,
 				FAECE5021B423B3900993A63 /* Main.storyboard in Resources */,
 				178CDEF51B58788500B76ED6 /* spark.png in Resources */,
 				178CDEF41B58788500B76ED6 /* TSRainParticleSystem.scnp in Resources */,

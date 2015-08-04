@@ -1,6 +1,7 @@
 target 'Timesurfer' do
 pod 'Forecastr', '~> 0.2.1'
 pod 'BAFluidView', '~> 0.1.1'
+pod 'Masonry'
 end
 
 target 'TimesurferExtension' do
