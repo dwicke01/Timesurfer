@@ -103,24 +103,25 @@
                                              selector:@selector(returnFromSleep)
                                                  name:@"appBecameActive" object:nil];
     [self setupView];
-//    [self rain];
+    [self rain];
     [self setNeedsStatusBarAppearanceUpdate];
+
 }
 
 - (void) rain {
-    SCNParticleSystem *particleSystem = [SCNParticleSystem particleSystemNamed:@"Rain" inDirectory:nil];
+    SCNParticleSystem *particleSystem = [SCNParticleSystem particleSystemNamed:@"DefaultRain" inDirectory:nil];
     
     SCNScene *s = [SCNScene new];
+    
     [s addParticleSystem:particleSystem withTransform:SCNMatrix4Identity];
     s.background.contents = nil;
     
-    SCNView *v = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    SCNView *v = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     v.backgroundColor = [UIColor clearColor];
     v.scene = s;
     
-    [self.view addSubview:v];
-
+    [self.view insertSubview:v aboveSubview:self.grayGradient];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
