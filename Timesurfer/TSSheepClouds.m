@@ -38,17 +38,17 @@
     
 }
 
--(void)willMoveToWindow:(UIWindow *)newWindow
-{
-    if(newWindow) {
-        // We're moving to a window, so we're on screen somehow
-        [self makeDisplayLinkIfNeeded];
-    }
-    else {
-        // We're leaving a window (i.e., we're going offscreen)
-        [self destroyDisplayLink];
-    }
-}
+//-(void)willMoveToWindow:(UIWindow *)newWindow
+//{
+//    if(newWindow) {
+//        // We're moving to a window, so we're on screen somehow
+//        [self makeDisplayLinkIfNeeded];
+//    }
+//    else {
+//        // We're leaving a window (i.e., we're going offscreen)
+//        [self destroyDisplayLink];
+//    }
+//}
 
 -(void)makeDisplayLinkIfNeeded
 {

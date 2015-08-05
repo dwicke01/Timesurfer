@@ -10,4 +10,7 @@
 
 @interface TSSheepClouds : UIView
 
+-(void)makeDisplayLinkIfNeeded;
+-(void)destroyDisplayLink;
+
 @end

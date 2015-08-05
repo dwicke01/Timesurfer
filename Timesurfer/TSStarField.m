@@ -39,7 +39,7 @@
     
     BOOL evenRow = NO;
     CGFloat rowCount = 0;
-    
+    NSLog(@"Drawing stars");
     for (int i = 1; i < 100; i++) {
         
         CGRect starFrame = CGRectMake(xAxis, yAxis, starFrameWidth, starFrameWidth);

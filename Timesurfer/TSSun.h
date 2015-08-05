@@ -10,4 +10,7 @@
 
 @interface TSSun : UIView
 
+-(void)makeDisplayLinkIfNeeded;
+-(void)destroyDisplayLink;
+
 @end

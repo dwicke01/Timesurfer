@@ -9,15 +9,14 @@
 #import <Forecastr/Forecastr.h>
 #import <SceneKit/SceneKit.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import <Mason
 #import "TSViewController.h"
 #import "TSStarField.h"
 #import "TSWeatherData.h"
 #import "LMGeocoder.h"
 #import "TSClouds.h"
 #import "TSConstants.h"
-//#import "TSEventManager.h"
-//#import <BAFluidView/BAFluidView.h>
+#import "TSSheepClouds.h"
+#import "TSSun.h"
 
 @import CoreLocation;
 
@@ -34,10 +33,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 @property (weak, nonatomic) IBOutlet UIImageView *precipitationAnimation;
 @property (weak, nonatomic) IBOutlet UIView *skyView;
-@property (weak, nonatomic) IBOutlet UIView *sunView;
+@property (weak, nonatomic) IBOutlet TSSun *sunView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
 @property (weak, nonatomic) IBOutlet UIView *grayGradient;
-@property (weak, nonatomic) IBOutlet UIView *sheepClouds;
+@property (weak, nonatomic) IBOutlet TSSheepClouds *sheepClouds;
 @property (weak, nonatomic) IBOutlet UIView *airplane;
 @property (weak, nonatomic) IBOutlet TSClouds *clouds;
 @property (weak, nonatomic) IBOutlet UISlider *hourSlider;
@@ -121,8 +120,7 @@
     v.scene = s;
     
     [self.view addSubview:v];
-    
-    [v addConstraint
+
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -239,6 +237,8 @@
     
     if (currentTime >= 800 && currentTime <= 2100) {
         
+        [self.sunView makeDisplayLinkIfNeeded];
+        
         [UIView animateWithDuration:.4
                          animations:^{
                              self.sunXAxis.constant = 15 + z * ((currentTime-800)/900);
@@ -249,8 +249,10 @@
         
     } else if (currentTime < 700) {
         self.sunXAxis.constant = 0;
+        [self.sunView destroyDisplayLink];
     } else if (currentTime > 2200){
         self.sunXAxis.constant = z + x;
+        [self.sunView destroyDisplayLink];
     }
 }
 
@@ -472,8 +474,9 @@
             self.timeLabel.text = weather.currentDate;
         }
         
-        if (indexOfHour == 0) {
+        if (indexOfHour == 0 && !weather.sunRiseHour && !weather.sunSetHour) {
             self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
+            
         }
         
         self.weatherSummaryLabel.text = self.weatherData.weatherSummaryString;
@@ -526,6 +529,7 @@
     if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6 && self.currentWeather.currentHourInt % 2) {
         
         self.sheepInMotion = YES;
+        [self.sheepClouds makeDisplayLinkIfNeeded];
         
         [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
@@ -533,6 +537,7 @@
         } completion:^(BOOL finished) {
             
             self.sheepCloudsXAxis.constant = self.view.frame.size.width;
+            [self.sheepClouds destroyDisplayLink];
             self.sheepInMotion = NO;
         }];
         
