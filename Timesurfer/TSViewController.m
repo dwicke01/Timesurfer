@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 @property (weak, nonatomic) IBOutlet UIImageView *precipitationAnimation;
 @property (weak, nonatomic) IBOutlet UIView *skyView;
+@property (nonatomic, strong) SCNView *v;
 @property (weak, nonatomic) IBOutlet TSSun *sunView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
 @property (weak, nonatomic) IBOutlet UIView *grayGradient;
@@ -82,6 +83,7 @@
 @property (nonatomic, strong) TSWeatherData *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
+
 @property (nonatomic, strong) NSTimer *sliderStoppedTimer;
 @property (nonatomic, strong) NSDate *apiLastRequestTime;
 
@@ -103,25 +105,9 @@
                                              selector:@selector(returnFromSleep)
                                                  name:@"appBecameActive" object:nil];
     [self setupView];
-    [self rain];
+    
     [self setNeedsStatusBarAppearanceUpdate];
-
-}
-
-- (void) rain {
-    SCNParticleSystem *particleSystem = [SCNParticleSystem particleSystemNamed:@"DefaultRain" inDirectory:nil];
     
-    SCNScene *s = [SCNScene new];
-    
-    [s addParticleSystem:particleSystem withTransform:SCNMatrix4Identity];
-    s.background.contents = nil;
-    
-    SCNView *v = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    
-    v.backgroundColor = [UIColor clearColor];
-    v.scene = s;
-    
-    [self.view insertSubview:v aboveSubview:self.grayGradient];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -181,7 +167,7 @@
                                    exclusions:nil
                                        extend:nil
                                       success:^(id JSON) {
-                                                                                //NSLog(@"JSON Response was: %@", JSON);
+                                          //NSLog(@"JSON Response was: %@", JSON);
                                           
                                           [self.locationManager startMonitoringSignificantLocationChanges];
                                           
@@ -191,7 +177,7 @@
                                           self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
                                           self.hourSlider.value = self.hourSlider.minimumValue;
                                           self.hourOffset = self.hourSlider.minimumValue;
-
+                                          
                                           CGFloat currentTime = self.weatherData.startingHour;
                                           
                                           if (currentTime > 21 || currentTime < 5) {
@@ -236,7 +222,7 @@
         currentTime = self.hourSlider.value;
     }
     
-    if (currentTime >= 800 && currentTime <= 2100) {
+    if (currentTime >= 800 && currentTime <= 2100 && self.currentWeather.percentRainFloat < 90) {
         
         [self.sunView makeDisplayLinkIfNeeded];
         
@@ -251,8 +237,10 @@
     } else if (currentTime < 700) {
         self.sunXAxis.constant = 0;
         [self.sunView destroyDisplayLink];
-    } else if (currentTime > 2200){
+    } else if (currentTime > 2100){
         self.sunXAxis.constant = z + x;
+        [self.sunView destroyDisplayLink];
+    } else {
         [self.sunView destroyDisplayLink];
     }
 }
@@ -338,7 +326,13 @@
         }];
         
     } else {
-        self.dayTimeGradient.alpha = alphaValue;
+        
+        if (!self.animalsInMotion) {
+            
+            self.dayTimeGradient.alpha = alphaValue;
+        } else if (self.animalsInMotion) {
+            self.dayTimeGradient.alpha = 0;
+        }
         
         if (!self.grayGradientInMotion) {
             self.grayGradientInMotion = YES;
@@ -444,10 +438,10 @@
             self.sunRiseSetLabel.alpha = 1;
             
             if (self.hourSlider.value > 2400) {
-            self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunSet];
+                self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunSet];
                 
             } else {
-            self.timeLabel.text = self.weatherData.sunSet;
+                self.timeLabel.text = self.weatherData.sunSet;
                 
             }
             self.sunRiseSetLabel.text = @"Sunset";
@@ -455,7 +449,7 @@
         } else if (weather.sunRiseHour) {
             self.sunRiseSetLabel.hidden = NO;
             self.sunRiseSetLabel.alpha = 1;
-
+            
             if (self.hourSlider.value > 2400) {
                 self.timeLabel.text = [NSString stringWithFormat:@"+%@",self.weatherData.sunRise];
                 
@@ -527,9 +521,10 @@
         currentTime = self.hourSlider.value;
     }
     
-    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat <= 30 && self.currentWeather.cloudCoverFloat < .6 && self.currentWeather.currentHourInt % 2) {
+    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat < 30 && self.currentWeather.cloudCoverFloat < .6 ) {
         
         self.sheepInMotion = YES;
+
         [self.sheepClouds makeDisplayLinkIfNeeded];
         
         [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -542,10 +537,10 @@
             self.sheepInMotion = NO;
         }];
         
-    } else if (self.planeInMotion == NO && self.sheepInMotion == NO && self.currentWeather.currentHourInt % 2){
+    } else if (self.planeInMotion == NO && self.sheepInMotion == NO && self.currentWeather.percentRainFloat < 90){
         
         self.planeInMotion = YES;
-        
+
         [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.airplaneXAxis.constant = -200;
             [self.airplane layoutIfNeeded];
@@ -562,11 +557,11 @@
 
 - (void) rainAnimation {
     
-    if (self.currentWeather.percentRainFloat >= 70 ) {
+    if (self.currentWeather.percentRainFloat >= 90 && !self.animalsInMotion) {
         
         self.animalsInMotion = YES;
         NSUInteger constant = 1100;
-        NSUInteger duration = 9;
+        NSUInteger duration = 7;
         
         [UIView animateWithDuration:duration
                               delay:0
@@ -579,7 +574,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:1
+                              delay:.8
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.corgiYAxis.constant = constant;
@@ -589,7 +584,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:2
+                              delay:1.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.blackCatYAxis.constant = constant;
@@ -599,7 +594,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:3.5
+                              delay:2.7
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.poodleYAxis.constant = constant;
@@ -609,7 +604,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:4.5
+                              delay:3.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.pugYAxis.constant = constant;
@@ -619,7 +614,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:5.5
+                              delay:4.2
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.orangeCatYAxis.constant = constant;
@@ -629,7 +624,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:6.5
+                              delay:5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.greyStripeYAxis.constant = constant;
@@ -639,7 +634,7 @@
                          }];
         
         [UIView animateWithDuration:duration
-                              delay:7.5
+                              delay:6
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.yorkieYAxis.constant = constant;
@@ -647,12 +642,76 @@
                          } completion:^(BOOL finished) {
                              
                          }];
+        
+    } else if (self.v.alpha == 0 && self.currentWeather.percentRainFloat >= 30) {
+        [self startRain];
     }
+}
+
+- (void) makeItRain {
+
+    if (self.v != nil) {
+        return;
+    }
+
+    SCNParticleSystem *particleSystem = [SCNParticleSystem particleSystemNamed:@"DefaultRain" inDirectory:nil];
+    
+    SCNScene *s = [SCNScene new];
+    
+    [s addParticleSystem:particleSystem withTransform:SCNMatrix4Identity];
+    s.background.contents = nil;
+    
+    self.v = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    self.v.backgroundColor = [UIColor clearColor];
+    self.v.scene = s;
+    
+    [self.view insertSubview:self.v aboveSubview:self.grayGradient];
+    
+    self.v.alpha = 0;
+}
+
+
+- (void) startRain {
+    
+    [self makeItRain];
+    [UIView animateWithDuration:1
+                          delay:1
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.v.alpha = 1;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                     }];
+}
+
+- (void) stopRain {
+    
+    if (self.v.alpha > 0) {
+
+        [UIView animateWithDuration:1
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.v.alpha = 0;
+                         } completion:^(BOOL finished) {
+                            
+                             if (finished && self.v.alpha == 0) {
+                                 [self removeRain];
+                             }
+                         }];
+    }
+}
+
+- (void) removeRain {
+    [self.v removeFromSuperview];
+    self.v = nil;
 }
 
 - (void) removeWeatherAnimation {
     
-    if (self.currentWeather.percentRainFloat < 70 && self.animalsInMotion) {
+    if (self.currentWeather.percentRainFloat < 90 && self.animalsInMotion) {
         
         self.animalsInMotion = NO;
         
@@ -694,6 +753,8 @@
                              self.pugYAxis.constant = -150;
                              self.greyStripeYAxis.constant = -150;
                          }];
+    } else if (self.currentWeather.percentRainFloat < 30) {
+        [self stopRain];
     }
 }
 
@@ -809,12 +870,12 @@
     self.pugYAxis.constant = -150;
     self.yorkieYAxis.constant = -150;
     self.greyStripeYAxis.constant = -150;
-        
-        if (self.view.frame.size.width == 320) {
-            self.locationLabel.font = [self.locationLabel.font fontWithSize:36];
-            self.timeLabel.font = [self.timeLabel.font fontWithSize:28];
-            self.percentPrecip.font = [self.percentPrecip.font fontWithSize:28];
-        }
+    
+    if (self.view.frame.size.width == 320) {
+        self.locationLabel.font = [self.locationLabel.font fontWithSize:36];
+        self.timeLabel.font = [self.timeLabel.font fontWithSize:28];
+        self.percentPrecip.font = [self.percentPrecip.font fontWithSize:28];
+    }
     
 }
 
