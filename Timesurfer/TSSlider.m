@@ -57,8 +57,27 @@
         
         [self addNewEntry];
     }
-    
+
+    CGPoint touchPoint = [touch locationInView:touch.view];
+
+    CGFloat sliderX = [self xPositionFromSliderValue:self];
+//    NSLog(@"%.f  %.f",sliderX,touchPoint.x);
+//    if ((touchPoint.x + 50) > (sliderX - 20) && (touchPoint.x + 50) < (sliderX + 20) ) {
+//        retVal = YES;
+//    } else {
+//        retVal = NO;
+//    }
+//    
     return YES;
+}
+
+- (CGFloat)xPositionFromSliderValue:(UISlider *)aSlider {
+    float sliderRange = aSlider.frame.size.width - aSlider.currentThumbImage.size.width;
+    float sliderOrigin = aSlider.frame.origin.x + (aSlider.currentThumbImage.size.width / 2.0);
+    
+    float sliderValueToPixels = (((aSlider.value - aSlider.minimumValue)/(aSlider.maximumValue - aSlider.minimumValue)) * sliderRange) + sliderOrigin;
+    
+    return sliderValueToPixels;
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event

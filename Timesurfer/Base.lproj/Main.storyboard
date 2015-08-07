@@ -68,13 +68,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlackCat" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-W2-0x5">
-                                <rect key="frame" x="43" y="155" width="120" height="79"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="jtz-jy-LWl"/>
-                                    <constraint firstAttribute="width" secondItem="F7g-W2-0x5" secondAttribute="height" multiplier="55:36" id="y7i-Wa-jhr"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreyUpsideDownCat" translatesAutoresizingMaskIntoConstraints="NO" id="rM4-sd-xLA">
                                 <rect key="frame" x="16" y="229" width="57" height="99"/>
                                 <constraints>
@@ -89,18 +82,18 @@
                                     <constraint firstAttribute="width" secondItem="ELg-3b-LUd" secondAttribute="height" multiplier="25:39" id="t8P-Bb-jOS"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pug" translatesAutoresizingMaskIntoConstraints="NO" id="IJN-7e-fpa">
-                                <rect key="frame" x="45" y="333" width="97" height="78"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="d9T-J6-n3z"/>
-                                    <constraint firstAttribute="width" secondItem="IJN-7e-fpa" secondAttribute="height" multiplier="97:78" id="qMY-jq-hN8"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TummyCat" translatesAutoresizingMaskIntoConstraints="NO" id="m8O-hO-p76">
                                 <rect key="frame" x="276" y="224" width="83" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="m8O-hO-p76" secondAttribute="height" multiplier="83:95" id="1Dl-t7-1dh"/>
                                     <constraint firstAttribute="width" constant="83" id="dkc-eM-xCc"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pug" translatesAutoresizingMaskIntoConstraints="NO" id="IJN-7e-fpa">
+                                <rect key="frame" x="45" y="333" width="97" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="d9T-J6-n3z"/>
+                                    <constraint firstAttribute="width" secondItem="IJN-7e-fpa" secondAttribute="height" multiplier="97:78" id="qMY-jq-hN8"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" minimumScaleFactor="0.30000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="76G-yV-tCX" userLabel="Weather Summary Text">
@@ -142,11 +135,24 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Circle" translatesAutoresizingMaskIntoConstraints="NO" id="B6G-Y3-fbD">
-                                <rect key="frame" x="500" y="500" width="80" height="80"/>
-                            </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Circle-Border" translatesAutoresizingMaskIntoConstraints="NO" id="HJR-NG-Y3n">
-                                <rect key="frame" x="500" y="500" width="80" height="80"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="103" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I" userLabel="Temperature">
+                                <rect key="frame" x="37" y="226" width="300" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="jkl-JC-tHe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="130"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="EOP-4c-Xdh" appends="YES" id="AEI-FR-zJY"/>
+                                </connections>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlackCat" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-W2-0x5">
+                                <rect key="frame" x="43" y="155" width="120" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="jtz-jy-LWl"/>
+                                    <constraint firstAttribute="width" secondItem="F7g-W2-0x5" secondAttribute="height" multiplier="55:36" id="y7i-Wa-jhr"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Poodle" translatesAutoresizingMaskIntoConstraints="NO" id="lvi-Qj-QIA">
                                 <rect key="frame" x="226" y="211" width="112" height="129"/>
@@ -204,18 +210,6 @@
                                     <action selector="sliderChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="sKF-7l-xso"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="103" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gog-Tu-62I" userLabel="Temperature">
-                                <rect key="frame" x="37" y="226" width="300" height="110"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="jkl-JC-tHe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="130"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="EOP-4c-Xdh" appends="YES" id="AEI-FR-zJY"/>
-                                </connections>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -314,7 +308,6 @@
                         <outlet property="percentPrecip" destination="d5D-eI-mHl" id="5yu-Bq-caj"/>
                         <outlet property="poodleDog" destination="lvi-Qj-QIA" id="F1c-5m-kYB"/>
                         <outlet property="poodleYAxis" destination="Zbw-O0-2JB" id="dof-aF-fBF"/>
-                        <outlet property="precipitationAnimation" destination="B6G-Y3-fbD" id="TQM-Mt-4Sh"/>
                         <outlet property="pugDog" destination="IJN-7e-fpa" id="HuY-hh-SCU"/>
                         <outlet property="pugYAxis" destination="hyb-Te-b0N" id="5yq-0F-XxU"/>
                         <outlet property="sheepClouds" destination="fW1-Qn-bho" id="xdK-Or-pVW"/>
@@ -344,8 +337,6 @@
     </scenes>
     <resources>
         <image name="BlackCat" width="2080" height="1300"/>
-        <image name="Circle" width="600" height="600"/>
-        <image name="Circle-Border" width="600" height="600"/>
         <image name="Corgi" width="1827" height="1845"/>
         <image name="GreyUpsideDownCat" width="1070" height="1760"/>
         <image name="Milky-Way" width="1626" height="883"/>
