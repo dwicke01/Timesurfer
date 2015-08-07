@@ -177,9 +177,9 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="wLJ-ty-fIW">
-                                <rect key="frame" x="333" y="621" width="46" height="46"/>
+                                <rect key="frame" x="342" y="621" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="cQh-Eh-gHB"/>
+                                    <constraint firstAttribute="height" constant="25" id="cQh-Eh-gHB"/>
                                     <constraint firstAttribute="width" secondItem="wLJ-ty-fIW" secondAttribute="height" multiplier="1:1" id="glU-w1-bG9"/>
                                 </constraints>
                             </imageView>
@@ -217,6 +217,7 @@
                             <constraint firstItem="gog-Tu-62I" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="1nP-hG-IDY"/>
                             <constraint firstItem="XEV-1r-G3o" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="2lS-v6-yI7"/>
                             <constraint firstItem="8D6-NV-UvY" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="1.1" id="4xQ-ta-12E"/>
+                            <constraint firstItem="wLJ-ty-fIW" firstAttribute="centerY" secondItem="EqI-wX-JTi" secondAttribute="centerY" constant="1" id="5Xo-Bp-mfJ"/>
                             <constraint firstItem="d5D-eI-mHl" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="6TX-KY-5x4"/>
                             <constraint firstItem="gog-Tu-62I" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="7ER-ax-rur"/>
                             <constraint firstItem="AEq-0A-abj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="8Qh-1B-NIM"/>
@@ -229,7 +230,7 @@
                             <constraint firstItem="lvi-Qj-QIA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" multiplier="1.5" id="DkX-AD-1R3"/>
                             <constraint firstItem="fW1-Qn-bho" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" multiplier="2" id="EIE-wG-y7L"/>
                             <constraint firstAttribute="centerX" secondItem="ELg-3b-LUd" secondAttribute="centerX" multiplier="0.75" id="FNp-DD-62W"/>
-                            <constraint firstItem="wLJ-ty-fIW" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" constant="4" id="FuH-04-EBy"/>
+                            <constraint firstItem="wLJ-ty-fIW" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" constant="-8" id="FuH-04-EBy"/>
                             <constraint firstItem="NuN-EI-buN" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" multiplier="6.5" id="HE7-oD-8hy"/>
                             <constraint firstItem="yeB-Rb-2y0" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="26" id="Ink-dj-4I1"/>
                             <constraint firstItem="d5D-eI-mHl" firstAttribute="top" secondItem="5zR-wb-zWd" secondAttribute="bottom" constant="8" id="J3G-Sg-VrI"/>
@@ -239,7 +240,7 @@
                             <constraint firstItem="U99-vA-Ucs" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Mqc-NV-Pfd"/>
                             <constraint firstItem="F7g-W2-0x5" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerXWithinMargins" multiplier="0.55" id="Nf0-TO-1Gs"/>
                             <constraint firstAttribute="centerX" secondItem="hlW-Bp-yqc" secondAttribute="centerX" multiplier="2" constant="2.7000000000000171" id="Ng5-Xz-4vZ"/>
-                            <constraint firstItem="EqI-wX-JTi" firstAttribute="trailing" secondItem="wLJ-ty-fIW" secondAttribute="leading" priority="999" constant="-8" id="NqS-Zq-4QY"/>
+                            <constraint firstItem="EqI-wX-JTi" firstAttribute="trailing" secondItem="wLJ-ty-fIW" secondAttribute="leading" priority="999" id="NqS-Zq-4QY"/>
                             <constraint firstItem="hlW-Bp-yqc" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="112" id="PDp-6l-Ce2"/>
                             <constraint firstItem="EqI-wX-JTi" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="Psk-Zi-6HM"/>
                             <constraint firstItem="F7g-W2-0x5" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="135" id="S26-7h-ST9"/>
@@ -277,7 +278,6 @@
                             <constraint firstItem="m8O-hO-p76" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="204" id="wAw-G2-8Zz"/>
                             <constraint firstItem="AEq-0A-abj" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="xox-P6-U0a"/>
                             <constraint firstItem="Vkd-Zs-aIC" firstAttribute="top" secondItem="EqI-wX-JTi" secondAttribute="bottom" constant="20" id="yOM-4w-CN4"/>
-                            <constraint firstItem="Vkd-Zs-aIC" firstAttribute="top" secondItem="wLJ-ty-fIW" secondAttribute="bottom" id="ysD-pN-xKh"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -343,7 +343,7 @@
         <image name="Moon" width="383" height="384"/>
         <image name="Poodle" width="244" height="340"/>
         <image name="Pug" width="1652" height="1295"/>
-        <image name="Settings" width="1024" height="1024"/>
+        <image name="Settings" width="751" height="752"/>
         <image name="TummyCat" width="159" height="160"/>
         <image name="Yorkie" width="1320" height="1704"/>
         <image name="purpleCat" width="1080" height="1168"/>

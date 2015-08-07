@@ -334,13 +334,18 @@
             
             self.dayTimeGradient.alpha = alphaValue;
         } else if (self.animalsInMotion) {
-            self.dayTimeGradient.alpha = 0;
+            
+            [UIView animateWithDuration:1
+                             animations:^{
+                                 self.dayTimeGradient.alpha = 0;
+                             }];
+
         }
         
         if (!self.grayGradientInMotion) {
             self.grayGradientInMotion = YES;
             
-            [UIView animateWithDuration:.25 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
                 self.grayGradient.alpha = 1 * ((self.currentWeather.percentRainFloat-40)/50);
             } completion:^(BOOL finished) {
                 self.grayGradientInMotion = NO;
