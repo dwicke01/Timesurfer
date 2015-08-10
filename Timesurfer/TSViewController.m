@@ -26,14 +26,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highLowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sunRiseSetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *longDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherSummaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sunriseLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *moonImage;
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
-@property (weak, nonatomic) IBOutlet UIImageView *precipitationAnimation;
 @property (weak, nonatomic) IBOutlet UIView *skyView;
-@property (nonatomic, strong) SCNView *v;
+@property (nonatomic, strong) SCNView *sceneView;
 @property (weak, nonatomic) IBOutlet TSSun *sunView;
 @property (weak, nonatomic) IBOutlet UIView *dayTimeGradient;
 @property (weak, nonatomic) IBOutlet UIView *grayGradient;
@@ -411,11 +411,12 @@
         return;
         
     } else if (self.currentWeather != weather || self.currentWeather.currentHourInt == 0){
+
         [self rainAnimation];
         [self removeWeatherAnimation];
 
         self.currentWeather = weather;
-        [self updateTemperatureLabelUnits];
+
         [UIView animateWithDuration:.5 animations:^{
             
             CGFloat nearestHour = floor((self.hourSlider.value - self.hourOffset)/100)*100;
@@ -427,16 +428,17 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"h:mm a"];
         
-        self.sunRiseSetLabel.hidden = NO;
-        self.sunRiseSetLabel.alpha = 1;
-        
-
+        self.longDateLabel.hidden = NO;
+        self.longDateLabel.alpha = 1;
 
         self.timeLabel.text = weather.currentDate;
+        
         if (indexOfHour == 0 && !weather.sunRiseHour && !weather.sunSetHour) {
             self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
             
         }
+        
+        [self updateTemperatureLabelUnits];
         
         self.weatherSummaryLabel.text = self.weatherData.weatherSummaryString;
         self.weatherImage.image = weather.weatherImage;
@@ -451,37 +453,41 @@
 
 - (void) updateTemperatureLabelUnits {
     
-    if (self.currentWeather.sunSetHour) {
-        
-        self.timeLabel.text = self.weatherData.sunSet;
-        self.sunRiseSetLabel.text = @"Sunset";
-        
-    } else if (self.currentWeather.sunRiseHour) {
-        
-        self.timeLabel.text = self.weatherData.sunRise;
-        self.sunRiseSetLabel.text = @"Sunrise";
-        
-    } else if (self.hourSlider.value > 2400) {
+ if (self.hourSlider.value > 2400) {
         
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
             self.highLowLabel.text = self.weatherData.highLowTempC;
-            self.sunRiseSetLabel.text = self.tomorrowShortDateUK;
+            self.longDateLabel.text = self.tomorrowShortDateUK;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
             self.highLowLabel.text = self.weatherData.highLowTempF;
-            self.sunRiseSetLabel.text = self.tomorrowShortDateUS;
+            self.longDateLabel.text = self.tomorrowShortDateUS;
         }
     } else {
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
             self.highLowLabel.text = self.weatherData.highLowTempC;
-            self.sunRiseSetLabel.text = self.todayShortDateUK;
+            self.longDateLabel.text = self.todayShortDateUK;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
             self.highLowLabel.text = self.weatherData.highLowTempF;
-            self.sunRiseSetLabel.text = self.todayShortDateUS;
+            self.longDateLabel.text = self.todayShortDateUS;
         }
+    }
+
+    if (self.currentWeather.sunSetHour) {
+        self.sunriseLabel.alpha = 1;
+        self.timeLabel.text = self.weatherData.sunSet;
+        self.sunriseLabel.text = @"Sunset";
+        
+    } else if (self.currentWeather.sunRiseHour) {
+        
+        self.timeLabel.text = self.weatherData.sunRise;
+        self.sunriseLabel.text = @"Sunrise";
+        self.sunriseLabel.alpha = 1;
+    } else {
+        self.sunriseLabel.alpha = 0;
     }
 }
 
@@ -646,32 +652,32 @@
                              
                          }];
         
-    } else if (self.v.alpha == 0 && self.currentWeather.percentRainFloat >= 50) {
+    } else if (self.sceneView.alpha == 0 && self.currentWeather.percentRainFloat >= 50) {
         [self startRain];
     }
 }
 
 - (void) makeItRain {
 
-    if (self.v != nil) {
+    if (self.sceneView != nil) {
         return;
     }
 
     SCNParticleSystem *particleSystem = [SCNParticleSystem particleSystemNamed:@"DefaultRain2" inDirectory:nil];
     
-    SCNScene *s = [SCNScene new];
+    SCNScene *scene = [SCNScene new];
     
-    [s addParticleSystem:particleSystem withTransform:SCNMatrix4Identity];
-    s.background.contents = nil;
+    [scene addParticleSystem:particleSystem withTransform:SCNMatrix4Identity];
+    scene.background.contents = nil;
     
-    self.v = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.sceneView = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
-    self.v.backgroundColor = [UIColor clearColor];
-    self.v.scene = s;
+    self.sceneView.backgroundColor = [UIColor clearColor];
+    self.sceneView.scene = scene;
     
-    [self.view insertSubview:self.v aboveSubview:self.grayGradient];
+    [self.view insertSubview:self.sceneView aboveSubview:self.grayGradient];
     
-    self.v.alpha = 0;
+    self.sceneView.alpha = 0;
 }
 
 
@@ -682,7 +688,7 @@
                           delay:1
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         self.v.alpha = 1;
+                         self.sceneView.alpha = 1;
                          
                      } completion:^(BOOL finished) {
                          
@@ -691,16 +697,16 @@
 
 - (void) stopRain {
     
-    if (self.v.alpha > 0) {
+    if (self.sceneView.alpha > 0) {
 
         [UIView animateWithDuration:.5
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear
                          animations:^{
-                             self.v.alpha = 0;
+                             self.sceneView.alpha = 0;
                          } completion:^(BOOL finished) {
                             
-                             if (finished && self.v.alpha == 0) {
+                             if (finished && self.sceneView.alpha == 0) {
                                  [self removeRain];
                              }
                          }];
@@ -708,8 +714,8 @@
 }
 
 - (void) removeRain {
-    [self.v removeFromSuperview];
-    self.v = nil;
+    [self.sceneView removeFromSuperview];
+    self.sceneView = nil;
 }
 
 - (void) removeWeatherAnimation {
@@ -879,20 +885,22 @@
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
-    [dateFormat setDateFormat:@"M/d"];
+    [dateFormat setDateFormat:@"EEEE, MMMM d"];
     
-    self.todayShortDateUS = [NSString stringWithFormat:@"Today: %@",[dateFormat stringFromDate:[NSDate date]]];
-    self.tomorrowShortDateUS = [NSString stringWithFormat:@"Tomorrow: %@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
+    self.todayShortDateUS = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[NSDate date]]];
+    self.tomorrowShortDateUS = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
     
-    [dateFormat setDateFormat:@"d/M"];
-    self.todayShortDateUK = [NSString stringWithFormat:@"Today: %@",[dateFormat stringFromDate:[NSDate date]]];
-    self.tomorrowShortDateUS = [NSString stringWithFormat:@"Tomorrow: %@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
+    [dateFormat setDateFormat:@"EEEE, d MMMM"];
+    self.todayShortDateUK = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[NSDate date]]];
+    self.tomorrowShortDateUK = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
     
     if (self.view.frame.size.width == 320) {
-        self.locationLabel.font = [self.locationLabel.font fontWithSize:36];
-        self.timeLabel.font = [self.timeLabel.font fontWithSize:28];
+        self.locationLabel.font = [self.locationLabel.font fontWithSize:32];
+        self.timeLabel.font = [self.timeLabel.font fontWithSize:32];
         self.percentPrecip.font = [self.percentPrecip.font fontWithSize:28];
         self.weatherSummaryLabel.font = [self.percentPrecip.font fontWithSize:16];
+        self.longDateLabel.font = [self.longDateLabel.font fontWithSize:32];
+        self.temperatureLabel.font = [self.temperatureLabel.font fontWithSize:100];
     }
     
 }
