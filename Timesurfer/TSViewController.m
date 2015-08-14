@@ -83,7 +83,8 @@
 @property (nonatomic, strong) TSWeatherData *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
-
+@property (nonatomic, assign) NSUInteger loopCount;
+@property (nonatomic, strong) NSTimer *animatedDayTimer;
 @property (nonatomic, strong) NSTimer *sliderStoppedTimer;
 @property (nonatomic, strong) NSDate *apiLastRequestTime;
 @property (nonatomic, strong) NSString *todayShortDateUS;
@@ -128,7 +129,7 @@
 
 - (void) returnFromSleep {
     [self.locationManager startUpdatingLocation];
-    self.hourSlider.value = 0;
+//    self.hourSlider.value = 0;
     
     if (arc4random_uniform(5) == 4) {
         UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(40,40)];
@@ -150,6 +151,7 @@
     [self updateSky];
     [self updateSun];
     [self updateMoon];
+    [self easterEggTimer];
 }
 
 - (void) getWeather{
@@ -201,13 +203,14 @@
                                           }
                                           
                                           [self updateWeatherInfo];
+                                          [self startAnimatedDayTimer];
                                           
                                       } failure:^(NSError *error, id response) {
                                           NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
                                           
                                       }];
     } else {
-        [self updateWeatherInfo];
+        
     }
 }
 
@@ -443,7 +446,7 @@
         self.weatherSummaryLabel.text = self.weatherData.weatherSummaryString;
         self.weatherImage.image = weather.weatherImage;
         
-        if (self.weatherData.rainChanceTodayAbove50 || weather.percentRainFloat >= 50) {
+        if (weather.percentRainFloat >= 50) {
             self.percentPrecip.text = [NSString stringWithFormat:@"%@ ☂",weather.percentRainString];
         } else {
             self.percentPrecip.text = weather.percentRainString;
@@ -509,7 +512,41 @@
 
 - (IBAction)sliderChanged:(id)sender {
     [self updateWeatherInfo];
+}
+
+- (void) startAnimatedDayTimer {
+
+    self.animatedDayTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1] interval:.00001 target:self selector:@selector(animateDay) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.animatedDayTimer forMode:NSDefaultRunLoopMode];
+}
+
+- (void) animateDay {
     
+    self.loopCount++;
+    
+    CGFloat currentTime = 0.0;
+    
+    if (self.hourSlider.value > 2400) {
+        currentTime = self.hourSlider.value-2400;
+    } else {
+        currentTime = self.hourSlider.value;
+    }
+    
+    if (self.loopCount > 2300) {
+        [self.animatedDayTimer invalidate];
+        self.animatedDayTimer = nil;
+        
+    } else if (currentTime == 800 || currentTime == 1200 || currentTime == 1800){
+        self.hourSlider.value += 1;
+        [self updateWeatherInfo];
+        [NSThread sleepForTimeInterval:1];
+    } else {
+        self.hourSlider.value += 4;
+        [self updateWeatherInfo];
+    }
+}
+
+- (void) easterEggTimer {
     if (!self.sliderStoppedTimer) {
         self.sliderStoppedTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1] interval:0 target:self selector:@selector(easterEggs) userInfo:nil repeats:NO];
         [[NSRunLoop currentRunLoop] addTimer:self.sliderStoppedTimer forMode:NSDefaultRunLoopMode];
@@ -528,7 +565,9 @@
         currentTime = self.hourSlider.value;
     }
     
-    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && self.currentWeather.percentRainFloat < 50) {
+    [self rainAnimation];
+    
+    if ((currentTime >= 2000 || currentTime < 500) && self.sheepInMotion == NO && self.planeInMotion == NO && !self.weatherData.rainChanceTodayAbove70) {
         
         self.sheepInMotion = YES;
 
@@ -570,10 +609,10 @@
         NSUInteger constant = 1100;
         NSUInteger duration = 7;
         
-         [self startRain];
+        [self startRain];
         
         [UIView animateWithDuration:duration
-                              delay:0
+                              delay:0.01  // Prevent starting simultaneously with particle system
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
                          animations:^{
                              self.greyCatYAxis.constant = constant;

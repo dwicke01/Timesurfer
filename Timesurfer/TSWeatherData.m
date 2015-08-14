@@ -93,8 +93,8 @@
         
         TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
         
-        if (weather.percentRainFloat >= 50) {
-            self.rainChanceTodayAbove50 = YES;
+        if (weather.percentRainFloat >= 70) {
+            self.rainChanceTodayAbove70 = YES;
         }
         
         [self.weatherByHour addObject:weather];
@@ -123,8 +123,8 @@
             
             TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
             
-            if (weather.percentRainFloat >= 50 && i < 13) {
-                self.rainChanceTodayAbove50 = YES;
+            if (weather.percentRainFloat >= 70 && i < 13) {
+                self.rainChanceTodayAbove70 = YES;
             }
             
             [self.weatherByHour addObject:weather];
