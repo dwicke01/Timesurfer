@@ -1,11 +1,3 @@
-//
-//  TSWeather.m
-//  Timesurfer
-//
-//  Created by Jordan Guggenheim on 6/25/15.
-//  Copyright (c) 2015 gugges. All rights reserved.
-//
-
 #import "TSWeather.h"
 
 @interface TSWeather()
@@ -37,7 +29,6 @@
     return self;
 }
 
-
 - (void) formatWeatherData{
 
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
@@ -55,7 +46,9 @@
     
     [dateFormatter setDateFormat:@"H"];
     _currentHour = [dateFormatter stringFromDate:dateTime];
+    
     self.currentHourInt = self.currentHour.integerValue;
+    
     if ([self.currentHour isEqualToString:self.sunRiseString]) {
         _sunRiseHour = YES;
     }
@@ -69,7 +62,7 @@
     
     NSNumber *percentRain = self.incomingDictionary[@"precipProbability"];
     self.percentRainFloat = roundf(percentRain.floatValue*10)*10;
-//    NSLog(@"%.2f",self.cloudCoverFloat);
+
     _percentRainString = [NSString stringWithFormat:@"%.0F%%",self.percentRainFloat];
     
     NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];

@@ -1,11 +1,3 @@
-//
-//  TSSheepClouds.m
-//  Timesurfer
-//
-//  Created by Jordan Guggenheim on 7/16/15.
-//  Copyright (c) 2015 gugges. All rights reserved.
-//
-
 #import "TSSheepClouds.h"
 #import "TSGraphics.h"
 
@@ -18,7 +10,7 @@
 
 @implementation TSSheepClouds
 
--(void)drawRect:(CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
     if(self.firstDrawTime == 0)
     {
@@ -27,9 +19,7 @@
     }
     
     CFTimeInterval elapsedTime = self.displayLink.timestamp - self.firstDrawTime;
-    // 50 - 140
-    
-    
+
     if (self.frame.size.width == 320) {
         [TSGraphics drawLightSheepCloudsSmallWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) legRotation:-1*(15 + 15 * sin(self.displayLink.timestamp*8))];
     } else {
@@ -38,19 +28,7 @@
     
 }
 
-//-(void)willMoveToWindow:(UIWindow *)newWindow
-//{
-//    if(newWindow) {
-//        // We're moving to a window, so we're on screen somehow
-//        [self makeDisplayLinkIfNeeded];
-//    }
-//    else {
-//        // We're leaving a window (i.e., we're going offscreen)
-//        [self destroyDisplayLink];
-//    }
-//}
-
--(void)makeDisplayLinkIfNeeded
+- (void)makeDisplayLinkIfNeeded
 {
     if(self.displayLink) {
         return;
@@ -60,12 +38,10 @@
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
--(void)destroyDisplayLink
+- (void)destroyDisplayLink
 {
     [self.displayLink invalidate];
     self.displayLink = nil;
 }
-
-
 
 @end

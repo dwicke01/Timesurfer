@@ -21,8 +21,6 @@
 		17DB0C071B3BAA690001810D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
 		17DB0C0A1B3BAA690001810D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C081B3BAA690001810D /* LaunchScreen.xib */; };
 		17DB0C161B3BAA690001810D /* TimesurferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C151B3BAA690001810D /* TimesurferTests.m */; };
-		17E0115B1B612FF600E3EE31 /* TSAirplane.h in Headers */ = {isa = PBXBuildFile; fileRef = 17E011581B612FF600E3EE31 /* TSAirplane.h */; };
-		17E0115C1B612FF600E3EE31 /* TSAirplane.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E011591B612FF600E3EE31 /* TSAirplane.m */; };
 		17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */; };
 		17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -165,8 +163,6 @@
 		17DB0C0F1B3BAA690001810D /* TimesurferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimesurferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DB0C141B3BAA690001810D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17DB0C151B3BAA690001810D /* TimesurferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferTests.m; sourceTree = "<group>"; };
-		17E011581B612FF600E3EE31 /* TSAirplane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAirplane.h; sourceTree = "<group>"; };
-		17E011591B612FF600E3EE31 /* TSAirplane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAirplane.m; sourceTree = "<group>"; };
 		17EC3D681B51781B00BA0D9E /* TSDayTimeGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDayTimeGradient.h; sourceTree = "<group>"; };
 		17EC3D691B51781B00BA0D9E /* TSDayTimeGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDayTimeGradient.m; sourceTree = "<group>"; };
 		17EC3D6C1B5178A000BA0D9E /* TSNightGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSNightGradient.h; path = Timesurfer/TSNightGradient.h; sourceTree = SOURCE_ROOT; };
@@ -357,8 +353,6 @@
 		FA22DAC01B41DEEE0072005E /* TimesurferFramework */ = {
 			isa = PBXGroup;
 			children = (
-				17E011581B612FF600E3EE31 /* TSAirplane.h */,
-				17E011591B612FF600E3EE31 /* TSAirplane.m */,
 				17DB0C001B3BAA690001810D /* TSViewController.h */,
 				17DB0C011B3BAA690001810D /* TSViewController.m */,
 				1732C4AE1B3E242700B82ED3 /* TSStarField.h */,
@@ -445,7 +439,6 @@
 				FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */,
 				FA22DAE11B41E04D0072005E /* TSWeatherData.h in Headers */,
 				17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */,
-				17E0115B1B612FF600E3EE31 /* TSAirplane.h in Headers */,
 				178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */,
 				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
 				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
@@ -784,7 +777,6 @@
 				FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */,
 				FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */,
 				FA22DADF1B41E0400072005E /* TSWeatherData.m in Sources */,
-				17E0115C1B612FF600E3EE31 /* TSAirplane.m in Sources */,
 				FA22DAE01B41E0400072005E /* TSWeather.m in Sources */,
 				17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */,
 				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,

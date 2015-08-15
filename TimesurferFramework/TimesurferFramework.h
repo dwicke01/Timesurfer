@@ -1,11 +1,3 @@
-//
-//  TimesurferFramework.h
-//  TimesurferFramework
-//
-//  Created by Daniel Wickes on 6/29/15.
-//  Copyright (c) 2015 gugges. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "TSWeather.h"
 #import "TSWeatherData.h"
@@ -13,7 +5,6 @@
 #import "TSGraphics.h"
 #import "TSViewController.h"
 #import "TSClouds.h"
-
 
 //! Project version number for TimesurferFramework.
 FOUNDATION_EXPORT double TimesurferFrameworkVersionNumber;

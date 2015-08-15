@@ -1,17 +1,7 @@
-//
-//  TSSheepClouds.m
-//  Timesurfer
-//
-//  Created by Jordan Guggenheim on 7/12/15.
-//  Copyright (c) 2015 gugges. All rights reserved.
-//
-
 #import "TSClouds.h"
 #import "TSGraphics.h"
 
-
 @interface TSClouds()
-
 
 @end
 
@@ -21,18 +11,18 @@
     
     if (self.weatherData != nil) {
 
-        [self doABarrelRoll];
+        [self drawClouds];
     }
     
 }
 
-
-- (void)doABarrelRoll{
+- (void)drawClouds{
     
     CGFloat xWidth = (self.frame.size.width/25) * 1.2;
     CGFloat yHeight = self.frame.size.height;
     CGFloat xAxis = (self.frame.size.width/25);
     CGFloat xAxisOffset = 30;
+    
     for (int i = 0; i < 25; i++) {
         
         TSWeather *weather = [self.weatherData weatherForHour:i];
