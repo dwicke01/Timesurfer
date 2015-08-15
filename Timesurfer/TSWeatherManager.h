@@ -3,7 +3,7 @@
 
 @class CLLocation;
 
-@interface TSWeatherData : NSObject
+@interface TSWeatherManager : NSObject
 
 @property (nonatomic, strong) NSString *sunRise;
 @property (nonatomic, strong) NSString *sunSet;

@@ -58,7 +58,7 @@
     }
 }
 
-- (void) setWeatherData:(TSWeatherData *)weatherData {
+- (void) setWeatherData:(TSWeatherManager *)weatherData {
     
     _weatherData = weatherData;
     [self setNeedsDisplay];

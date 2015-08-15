@@ -1,7 +1,7 @@
-#import "TSWeatherData.h"
+#import "TSWeatherManager.h"
 #import <CoreLocation/CLLocation.h>
 
-@interface TSWeatherData ()
+@interface TSWeatherManager ()
 
 @property (nonatomic, strong) NSDictionary *weatherDictionary;
 @property (nonatomic, strong) NSMutableArray *weatherByHour;
@@ -13,7 +13,7 @@
 
 @end
 
-@implementation TSWeatherData
+@implementation TSWeatherManager
 
 - (instancetype)initWithDictionary:(NSDictionary *)incomingWeatherJSON{
     

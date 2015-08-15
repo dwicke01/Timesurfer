@@ -3,7 +3,7 @@
 #import <Forecastr/Forecastr.h>
 
 #import "TSViewController.h"
-#import "TSWeatherData.h"
+#import "TSWeatherManager.h"
 #import "TSConstants.h"
 #import "TSStarField.h"
 #import "TSClouds.h"
@@ -76,7 +76,7 @@
 @property (nonatomic, strong) CLLocation *weatherLocation;
 
 @property (nonatomic, strong) Forecastr *forcastr;
-@property (nonatomic, strong) TSWeatherData *weatherData;
+@property (nonatomic, strong) TSWeatherManager *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
 @property (nonatomic, assign) NSUInteger loopCount;
@@ -163,7 +163,7 @@
                                           
                                           [self.locationManager startMonitoringSignificantLocationChanges];
                                           
-                                          self.weatherData = [[TSWeatherData alloc] initWithDictionary:JSON];
+                                          self.weatherData = [[TSWeatherManager alloc] initWithDictionary:JSON];
                                           
                                           self.hourSlider.minimumValue = self.weatherData.startingHour*100;
                                           self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
@@ -885,6 +885,7 @@
     
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
     self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
+    self.hourSlider.contentScaleFactor = 4;
     
     self.frameHeight = self.view.frame.size.height;
     
