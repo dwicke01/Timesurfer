@@ -434,11 +434,11 @@
         
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
-            self.highLowLabel.text = self.weatherData.highLowTempC;
+            self.highLowLabel.text = self.weatherData.highLowTempCTomorrow;
             self.longDateLabel.text = self.tomorrowShortDateUK;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
-            self.highLowLabel.text = self.weatherData.highLowTempF;
+            self.highLowLabel.text = self.weatherData.highLowTempFTomorrow;
             self.longDateLabel.text = self.tomorrowShortDateUS;
         }
         
@@ -493,7 +493,7 @@
 - (void) startAnimatedDayTimer {
     
     self.animatedDayTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1.] interval:.000001 target:self selector:@selector(animateDay) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.animatedDayTimer forMode:NSDefaultRunLoopMode];
+//    [[NSRunLoop currentRunLoop] addTimer:self.animatedDayTimer forMode:NSDefaultRunLoopMode];
 }
 
 - (void) animateDay {
@@ -576,7 +576,7 @@
 - (void) showWeatherAnimations {
     
     if (self.currentWeather.percentRainFloat >= 80 && !self.animalsInMotion) {
-        
+
         [UIView animateWithDuration:1 animations:^{
             self.dayTimeGradient.alpha = 0;
         }];
@@ -739,10 +739,9 @@
 
 - (void) removeAnimationsAndParticles {
     
-    if (self.currentWeather.percentRainFloat < 90 && self.animalsInMotion) {
-        
+    if (self.currentWeather.percentRainFloat < 80 && self.animalsInMotion) {
         self.animalsInMotion = NO;
-        
+  
         [UIView animateWithDuration:.4
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
@@ -756,30 +755,31 @@
                              self.yorkieDog.alpha = 0;
                              self.greyStripeCat.alpha = 0;
                          } completion:^(BOOL finished) {
-                             [self.corgieDog.layer removeAllAnimations];
-                             [self.poodleDog.layer removeAllAnimations];
-                             [self.pugDog.layer removeAllAnimations];
-                             [self.greyCat.layer removeAllAnimations];
-                             [self.blackCat.layer removeAllAnimations];
-                             [self.orangeCat.layer removeAllAnimations];
-                             [self.yorkieDog.layer removeAllAnimations];
-                             [self.greyStripeCat.layer removeAllAnimations];
-                             self.greyStripeCat.alpha = 1;
-                             self.yorkieDog.alpha = 1;
-                             self.corgieDog.alpha = 1;
-                             self.greyCat.alpha = 1;
-                             self.pugDog.alpha = 1;
-                             self.orangeCat.alpha = 1;
-                             self.poodleDog.alpha = 1;
-                             self.blackCat.alpha = 1;
-                             self.yorkieYAxis.constant = -150;
-                             self.greyCatYAxis.constant = -150;
-                             self.blackCatYAxis.constant = -150;
-                             self.orangeCatYAxis.constant = -150;
-                             self.corgiYAxis.constant = -150;
-                             self.poodleYAxis.constant = -150;
-                             self.pugYAxis.constant = -150;
-                             self.greyStripeYAxis.constant = -150;
+                                 [self.corgieDog.layer removeAllAnimations];
+                                 [self.poodleDog.layer removeAllAnimations];
+                                 [self.pugDog.layer removeAllAnimations];
+                                 [self.greyCat.layer removeAllAnimations];
+                                 [self.blackCat.layer removeAllAnimations];
+                                 [self.orangeCat.layer removeAllAnimations];
+                                 [self.yorkieDog.layer removeAllAnimations];
+                                 [self.greyStripeCat.layer removeAllAnimations];
+                                 self.greyStripeCat.alpha = 1;
+                                 self.yorkieDog.alpha = 1;
+                                 self.corgieDog.alpha = 1;
+                                 self.greyCat.alpha = 1;
+                                 self.pugDog.alpha = 1;
+                                 self.orangeCat.alpha = 1;
+                                 self.poodleDog.alpha = 1;
+                                 self.blackCat.alpha = 1;
+                                 self.yorkieYAxis.constant = -150;
+                                 self.greyCatYAxis.constant = -150;
+                                 self.blackCatYAxis.constant = -150;
+                                 self.orangeCatYAxis.constant = -150;
+                                 self.corgiYAxis.constant = -150;
+                                 self.poodleYAxis.constant = -150;
+                                 self.pugYAxis.constant = -150;
+                                 self.greyStripeYAxis.constant = -150;
+
                          }];
     } else if (self.currentWeather.percentRainFloat < 60) {
         [self hideParticleSystem];

@@ -30,17 +30,23 @@
 
 #pragma mark - UIControl
 
-#define SIZE_EXTENSION_Y -100
+#define THUMB_SIZE 10
+#define EFFECTIVE_THUMB_SIZE 20
 
 - (BOOL) pointInside:(CGPoint)point withEvent:(UIEvent*)event {
     CGRect bounds = self.bounds;
-    bounds = CGRectInset(bounds, 0, SIZE_EXTENSION_Y);
+    bounds = CGRectInset(bounds, -10, -100);
     return CGRectContainsPoint(bounds, point);
 }
 
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    CGRect bounds = self.bounds;
+    float thumbPercent = (self.value - self.minimumValue) / (self.maximumValue - self.minimumValue);
+    float thumbPos = THUMB_SIZE + (thumbPercent * (bounds.size.width - (2 * THUMB_SIZE)));
+    CGPoint touchPoint = [touch locationInView:self];
+    
     BOOL retVal = [super beginTrackingWithTouch:touch withEvent:event];
     
     if (retVal) {
@@ -49,27 +55,9 @@
         
         [self addNewEntry];
     }
-
-    CGPoint touchPoint = [touch locationInView:touch.view];
-
-    CGFloat sliderX = [self xPositionFromSliderValue:self];
-//    NSLog(@"%.f  %.f",sliderX,touchPoint.x);
-//    if ((touchPoint.x + 50) > (sliderX - 20) && (touchPoint.x + 50) < (sliderX + 20) ) {
-//        retVal = YES;
-//    } else {
-//        retVal = NO;
-//    }
-//    
-    return YES;
-}
-
-- (CGFloat)xPositionFromSliderValue:(UISlider *)aSlider {
-    float sliderRange = aSlider.frame.size.width - aSlider.currentThumbImage.size.width;
-    float sliderOrigin = aSlider.frame.origin.x + (aSlider.currentThumbImage.size.width / 2.0);
     
-    float sliderValueToPixels = (((aSlider.value - aSlider.minimumValue)/(aSlider.maximumValue - aSlider.minimumValue)) * sliderRange) + sliderOrigin;
-    
-    return sliderValueToPixels;
+    return (touchPoint.x >= (thumbPos - EFFECTIVE_THUMB_SIZE) &&
+            touchPoint.x <= (thumbPos + EFFECTIVE_THUMB_SIZE));
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
