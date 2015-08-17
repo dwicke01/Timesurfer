@@ -1,6 +1,0 @@
-#include "Pods-TimesurferFramework-AFNetworking.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/AFNetworking" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Forecastr" "${PODS_ROOT}/Headers/Public/Google-API-Client" "${PODS_ROOT}/Headers/Public/LMGeocoder" "${PODS_ROOT}/Headers/Public/Masonry" "${PODS_ROOT}/Headers/Public/gtm-http-fetcher" "${PODS_ROOT}/Headers/Public/gtm-oauth2"
-OTHER_LDFLAGS = ${PODS_TIMESURFERFRAMEWORK_AFNETWORKING_OTHER_LDFLAGS} -ObjC
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES
