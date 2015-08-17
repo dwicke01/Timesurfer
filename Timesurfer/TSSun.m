@@ -20,8 +20,8 @@
     
     CFTimeInterval elapsedTime = self.displayLink.timestamp - self.firstDrawTime;
 
-            [TSGraphics drawSunTwoWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) sunRotation:(180 + 18000 * sin(elapsedTime*.001)) scale:.8];
-
+                [TSGraphics drawSunTwoWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) sunRotation:(180 + elapsedTime * 20) scale:.8];
+    
 }
 
 - (void)makeDisplayLinkIfNeeded {

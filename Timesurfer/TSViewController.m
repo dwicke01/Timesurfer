@@ -72,9 +72,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelRightAcornXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *helicopterXAxis;
 
-
-
-
 @property (nonatomic, assign) BOOL sheepInMotion;
 @property (nonatomic, assign) BOOL randomizerInMotion;
 @property (nonatomic, assign) BOOL animalsInMotion;
@@ -117,10 +114,15 @@
     
     self.forcastr = [Forecastr sharedManager];
     self.forcastr.apiKey = FORCAST_KEY;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appEnteredForeground)
+                                                 name:@"appEnteredForeground" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(returnFromSleep)
-                                                 name:@"appBecameActive" object:nil];
+                                             selector:@selector(appEnteredBackground)
+                                                 name:@"appEnteredBackground"
+                                               object:nil];
     [self setupView];
 }
 
@@ -136,7 +138,15 @@
     }
 }
 
-- (void) returnFromSleep {
+- (void)appEnteredBackground {
+
+    [self animalStartingPositions];
+    self.sheepInMotion = NO;
+    self.animalsInMotion = NO;
+    self.randomizerInMotion = NO;
+}
+
+- (void) appEnteredForeground {
     [self.locationManager startUpdatingLocation];
     
     if (arc4random_uniform(5) == 4) {
@@ -174,39 +184,44 @@
                                          time:nil
                                    exclusions:nil
                                        extend:nil
-                                      success:^(id JSON) {
+                                      success:^(NSDictionary *JSON) {
+                                          
+                                          NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                                          NSString *documentsDirectory = [paths objectAtIndex:0];
+                                          NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"Latest_Weather"];
+                                          
+                                          [JSON writeToFile:filePath atomically:YES];
+                                          
+                                          [self createWeatherWithJSON:JSON];
                                           
                                           [self.locationManager startMonitoringSignificantLocationChanges];
-                                          
-                                          self.weatherData = [[TSWeatherManager alloc] initWithDictionary:JSON];
-                                          
-                                          self.hourSlider.minimumValue = self.weatherData.startingHour*100;
-                                          self.hourSlider.maximumValue = 2400+self.weatherData.startingHour*100;
-                                          self.hourSlider.value = self.hourSlider.minimumValue;
-                                          self.hourOffset = self.hourSlider.minimumValue;
-                                          
-                                          CGFloat currentTime = self.weatherData.startingHour;
-                                          
-                                          if (currentTime > 21 || currentTime < 5) {
-                                              self.skyView.alpha =1;
-                                          }
-                                          
-                                          if (currentTime >= 12) {
-                                              currentTime = ((24-currentTime)/12)*-736;
-                                          } else {
-                                              currentTime = (currentTime/12)*-736;
-                                          }
-                                          self.clouds.weatherData = self.weatherData;
-                                          
-                                          [self updateWeatherInfo];
-                                          [self startAnimatedDayTimer];
-                                          
+
                                       } failure:^(NSError *error, id response) {
-                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+//                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                          NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                                          NSString *documentsDirectory = [paths objectAtIndex:0];
+                                          NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"Latest_Weather"];
+
+                                          NSDictionary *JSON = [NSDictionary dictionaryWithContentsOfFile:filePath];
+                                          [self createWeatherWithJSON:JSON];
                                       }];
     } else {
-        
+        [self updateWeatherInfo];
     }
+}
+
+- (void) createWeatherWithJSON:(NSDictionary *)JSON {
+    self.weatherData = [[TSWeatherManager alloc] initWithDictionary:JSON];
+    
+    self.hourSlider.minimumValue = self.weatherData.startingHour * 100;
+    self.hourSlider.maximumValue = 2400 + self.weatherData.startingHour * 100;
+    self.hourSlider.value = self.hourSlider.minimumValue;
+    self.hourOffset = self.hourSlider.minimumValue;
+    
+    self.clouds.weatherData = self.weatherData;
+    
+    [self updateWeatherInfo];
+    [self startAnimatedDayTimer];
 }
 
 #pragma mark UI Updates
@@ -337,7 +352,6 @@
     }
 }
 
-
 - (void) updateSky {
     
     CGFloat currentTime = 0.0;
@@ -416,24 +430,12 @@
         
         if (indexOfHour == 0 && !weather.sunRiseHour && !weather.sunSetHour) {
             self.timeLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-            
         }
         
         [self updateTemperatureLabelUnits];
         
-        
         self.weatherSummaryLabel.text = @"";
 
-        
-//        if (self.weatherData.rainChanceTodayAbove50) {
-//            self.weatherSummaryLabel.text = self.weatherData.weatherDaySummaryString;
-//            
-//        } else {
-//            self.weatherSummaryLabel.text = @"";
-//        }
-        
-
-        
         if (weather.percentRainFloat >= 50) {
             self.percentPrecip.text = [NSString stringWithFormat:@"%@ ☂",weather.percentRainString];
         } else {
@@ -559,7 +561,7 @@
         
         [self sheepAnimation];
         
-    } else if (!self.randomizerInMotion && !self.sheepInMotion && self.currentWeather.percentRainFloat < 90){
+    } else if (!self.randomizerInMotion && !self.sheepInMotion && self.currentWeather.percentRainFloat < 60){
         
         [self animationRandomizer];
     }
@@ -570,7 +572,7 @@
 - (void) animationRandomizer {
 
     switch (self.animationCount % 3) {
-//    switch (2) {
+//    switch (0) {
         case 0:
             [self squirrelAnimation];
             break;
@@ -618,15 +620,14 @@
         [self.helicopter stopAnimating];
         self.randomizerInMotion = NO;
     }];
-    
 }
 
 - (void) planeAnimation {
     
     self.randomizerInMotion = YES;
     
-    [UIView animateWithDuration:10 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.airplaneXAxis.constant = -515;
+    [UIView animateWithDuration:11 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.airplaneXAxis.constant = -575;
         [self.airplane layoutIfNeeded];
         
     } completion:^(BOOL finished) {
@@ -639,9 +640,9 @@
 
 - (void) squirrelAnimation {
     
-#define SquirrelBeginningDuration 0.25
-#define SquirrelEndingDuration 0.6
-#define SquirrelDampening 0.5
+    CGFloat SquirrelBeginningDuration = 0.25;
+    CGFloat SquirrelEndingDuration = 0.8;
+    CGFloat SquirrelDampening = 0.4;
     
     self.randomizerInMotion = YES;
     
@@ -656,17 +657,6 @@
                          [self.squirrelLeft layoutIfNeeded];
                      } completion:^(BOOL finished) {}];
     
-    [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:3
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelXAxis.constant = 0;
-                         self.squirrelYAxis.constant = -100;
-                         [self.squirrelLeft layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
-    
     [UIView animateWithDuration:SquirrelBeginningDuration
                           delay:0.2
          usingSpringWithDamping:SquirrelDampening
@@ -675,17 +665,6 @@
                      animations:^{
                          self.squirrelRightXAxis.constant = -50;
                          self.squirrelRightYAxis.constant = -170;
-                         [self.squirrelRight layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
-    
-    [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:3.2
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelRightXAxis.constant = 0;
-                         self.squirrelRightYAxis.constant = -160;
                          [self.squirrelRight layoutIfNeeded];
                      } completion:^(BOOL finished) {}];
     
@@ -701,7 +680,29 @@
                      } completion:^(BOOL finished) {}];
     
     [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:3.8
+                          delay:2
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelRightXAxis.constant = 0;
+                         self.squirrelRightYAxis.constant = -160;
+                         [self.squirrelRight layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+
+    [UIView animateWithDuration:SquirrelEndingDuration
+                          delay:2.1
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelXAxis.constant = 0;
+                         self.squirrelYAxis.constant = -100;
+                         [self.squirrelLeft layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+    
+    [UIView animateWithDuration:SquirrelEndingDuration
+                          delay:2.2
          usingSpringWithDamping:SquirrelDampening
           initialSpringVelocity:1
                         options:0
@@ -734,9 +735,7 @@
                          animations:^{
                              self.greyCatYAxis.constant = constant;
                              [self.greyCat layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:.8
@@ -744,9 +743,7 @@
                          animations:^{
                              self.corgiYAxis.constant = constant;
                              [self.corgieDog layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:1.5
@@ -754,9 +751,7 @@
                          animations:^{
                              self.blackCatYAxis.constant = constant;
                              [self.blackCat layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:2.7
@@ -764,9 +759,7 @@
                          animations:^{
                              self.poodleYAxis.constant = constant;
                              [self.poodleDog layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:3.5
@@ -774,9 +767,7 @@
                          animations:^{
                              self.pugYAxis.constant = constant;
                              [self.pugDog layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:4.2
@@ -784,9 +775,7 @@
                          animations:^{
                              self.orangeCatYAxis.constant = constant;
                              [self.orangeCat layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                           } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:5
@@ -794,9 +783,7 @@
                          animations:^{
                              self.greyStripeYAxis.constant = constant;
                              [self.greyStripeCat layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:6
@@ -804,9 +791,7 @@
                          animations:^{
                              self.yorkieYAxis.constant = constant;
                              [self.yorkieDog layoutIfNeeded];
-                         } completion:^(BOOL finished) {
-                             
-                         }];
+                         } completion:^(BOOL finished) {}];
         
     } else if (self.sceneView.alpha == 0 && self.currentWeather.percentRainFloat >= 60) {
         [self showParticleSystem];
@@ -836,7 +821,6 @@
     self.sceneView.alpha = 0;
 }
 
-
 - (void) showParticleSystem {
     
     if (self.sceneView) {
@@ -850,9 +834,7 @@
                      animations:^{
                          self.sceneView.alpha = 1;
                          
-                     } completion:^(BOOL finished) {
-                         
-                     }];
+                     } completion:^(BOOL finished) {}];
 }
 
 - (void) hideParticleSystem {
@@ -896,30 +878,8 @@
                              self.yorkieDog.alpha = 0;
                              self.greyStripeCat.alpha = 0;
                          } completion:^(BOOL finished) {
-                                 [self.corgieDog.layer removeAllAnimations];
-                                 [self.poodleDog.layer removeAllAnimations];
-                                 [self.pugDog.layer removeAllAnimations];
-                                 [self.greyCat.layer removeAllAnimations];
-                                 [self.blackCat.layer removeAllAnimations];
-                                 [self.orangeCat.layer removeAllAnimations];
-                                 [self.yorkieDog.layer removeAllAnimations];
-                                 [self.greyStripeCat.layer removeAllAnimations];
-                                 self.greyStripeCat.alpha = 1;
-                                 self.yorkieDog.alpha = 1;
-                                 self.corgieDog.alpha = 1;
-                                 self.greyCat.alpha = 1;
-                                 self.pugDog.alpha = 1;
-                                 self.orangeCat.alpha = 1;
-                                 self.poodleDog.alpha = 1;
-                                 self.blackCat.alpha = 1;
-                                 self.yorkieYAxis.constant = -150;
-                                 self.greyCatYAxis.constant = -150;
-                                 self.blackCatYAxis.constant = -150;
-                                 self.orangeCatYAxis.constant = -150;
-                                 self.corgiYAxis.constant = -150;
-                                 self.poodleYAxis.constant = -150;
-                                 self.pugYAxis.constant = -150;
-                                 self.greyStripeYAxis.constant = -150;
+
+                             [self animalStartingPositions];
 
                          }];
     } else if (self.currentWeather.percentRainFloat < 60) {
@@ -973,12 +933,13 @@
                                                 }
                                                 
                                                 self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
+                                                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@", locality] forKey:@"Last_Location"];
                                             }
                                             else if (error) {
-                                                NSLog(@"%@ %@", results, error.localizedDescription);
+//                                                NSLog(@"%@ %@", results, error.localizedDescription);
+                                                self.locationLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Last_Location"];
                                             }
                                         }
-     
      ];
     
     self.latitude = self.weatherLocation.coordinate.latitude;
@@ -1028,6 +989,8 @@
     self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
     self.hourSlider.contentScaleFactor = 2;
     
+    [self animalStartingPositions];
+    
     self.frameHeight = self.view.frame.size.height;
     
     self.milkyWay.alpha = 0;
@@ -1037,16 +1000,6 @@
     self.helicopter.animationImages = @[[UIImage imageNamed:@"Helicopter1"],
                                         [UIImage imageNamed:@"Helicopter2"]];
     self.helicopter.animationDuration = 0.1;
-
-    
-    self.greyCatYAxis.constant = -150;
-    self.blackCatYAxis.constant = -150;
-    self.orangeCatYAxis.constant = -150;
-    self.corgiYAxis.constant = -150;
-    self.poodleYAxis.constant = -150;
-    self.pugYAxis.constant = -150;
-    self.yorkieYAxis.constant = -150;
-    self.greyStripeYAxis.constant = -150;
     
     [NSUserDefaults standardUserDefaults];
     
@@ -1058,6 +1011,35 @@
         self.longDateLabel.font = [self.longDateLabel.font fontWithSize:32];
         self.temperatureLabel.font = [self.temperatureLabel.font fontWithSize:100];
     }
+}
+
+- (void) animalStartingPositions {
+    [self.corgieDog.layer removeAllAnimations];
+    [self.poodleDog.layer removeAllAnimations];
+    [self.pugDog.layer removeAllAnimations];
+    [self.greyCat.layer removeAllAnimations];
+    [self.blackCat.layer removeAllAnimations];
+    [self.orangeCat.layer removeAllAnimations];
+    [self.yorkieDog.layer removeAllAnimations];
+    [self.greyStripeCat.layer removeAllAnimations];
+    
+    self.greyCatYAxis.constant = -150;
+    self.blackCatYAxis.constant = -150;
+    self.orangeCatYAxis.constant = -150;
+    self.corgiYAxis.constant = -150;
+    self.poodleYAxis.constant = -150;
+    self.pugYAxis.constant = -150;
+    self.yorkieYAxis.constant = -150;
+    self.greyStripeYAxis.constant = -150;
+
+    self.greyStripeCat.alpha = 1;
+    self.yorkieDog.alpha = 1;
+    self.corgieDog.alpha = 1;
+    self.greyCat.alpha = 1;
+    self.pugDog.alpha = 1;
+    self.orangeCat.alpha = 1;
+    self.poodleDog.alpha = 1;
+    self.blackCat.alpha = 1;
 }
 
 - (void) populateDateLabels {
