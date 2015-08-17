@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06F08A735193A1BF8F974CA4"
+               BlueprintIdentifier = "AD25133459410EA6B6ED9A9E"
                BuildableName = "libPods-TimesurferFramework-Google-API-Client.a"
                BlueprintName = "Pods-TimesurferFramework-Google-API-Client"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -1,19 +1,17 @@
 target 'Timesurfer' do
 pod 'Forecastr', '~> 0.2.1'
-pod 'BAFluidView', '~> 0.1.1'
 pod 'Masonry'
 end
 
 target 'TimesurferExtension' do
 pod 'Forecastr', '~> 0.2.1'
-pod 'BAFluidView', '~> 0.1.1'
 end
 
 target 'TimesurferFramework' do
 pod 'Forecastr', '~> 0.2.1'
 pod 'LMGeocoder'
-pod 'BAFluidView', '~> 0.1.1'
 pod 'Google-API-Client'
+pod 'Masonry'
 end
 
 post_install do |installer_representation|

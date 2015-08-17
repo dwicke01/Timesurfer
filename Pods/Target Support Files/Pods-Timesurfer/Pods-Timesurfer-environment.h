@@ -48,12 +48,6 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
-// BAFluidView
-#define COCOAPODS_POD_AVAILABLE_BAFluidView
-#define COCOAPODS_VERSION_MAJOR_BAFluidView 0
-#define COCOAPODS_VERSION_MINOR_BAFluidView 1
-#define COCOAPODS_VERSION_PATCH_BAFluidView 4
-
 // Forecastr
 #define COCOAPODS_POD_AVAILABLE_Forecastr
 #define COCOAPODS_VERSION_MAJOR_Forecastr 0

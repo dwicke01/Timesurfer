@@ -20,7 +20,6 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - BAFluidView (0.1.4)
   - Forecastr (0.2.2):
     - AFNetworking (~> 2.5.4)
   - Google-API-Client (1.0.422):
@@ -182,7 +181,6 @@ PODS:
   - Masonry (0.6.2)
 
 DEPENDENCIES:
-  - BAFluidView (~> 0.1.1)
   - Forecastr (~> 0.2.1)
   - Google-API-Client
   - LMGeocoder
@@ -190,7 +188,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  BAFluidView: 7ef80fa8148b123fa74de2d97597edc42e45cb97
   Forecastr: 590a5ae3ecfa417e8292192eb436de4d03126984
   Google-API-Client: cb712cf122f1d7fda966de4c2bc551324573366c
   gtm-http-fetcher: 6d4617e7d343b6e4c082b777541c334eb6f5d81e

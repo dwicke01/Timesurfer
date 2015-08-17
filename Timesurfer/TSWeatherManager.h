@@ -17,6 +17,7 @@
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSDate *currentDate;
 @property (nonatomic, assign) BOOL rainChanceTodayAbove70;
+@property (nonatomic, assign) BOOL rainChanceTodayAbove50;
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingWeatherJSON;
 - (TSWeather *)weatherForHour:(NSUInteger)hour;

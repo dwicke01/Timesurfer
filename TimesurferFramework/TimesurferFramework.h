@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "TSWeather.h"
-#import "TSWeatherData.h"
+#import "TSWeatherManager.h"
 #import "TSStarField.h"
 #import "TSGraphics.h"
 #import "TSViewController.h"

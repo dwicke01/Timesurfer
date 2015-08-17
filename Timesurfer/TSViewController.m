@@ -3,6 +3,7 @@
 #import <Forecastr/Forecastr.h>
 
 #import "TSViewController.h"
+#import "TSSettingsViewController.h"
 #import "TSWeatherManager.h"
 #import "TSConstants.h"
 #import "TSStarField.h"
@@ -18,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *highLowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherSummaryLabel;
@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet TSClouds *clouds;
 @property (weak, nonatomic) IBOutlet TSSlider *hourSlider;
 
+@property (weak, nonatomic) IBOutlet UIImageView *helicopter;
 @property (weak, nonatomic) IBOutlet UIImageView *airplane;
 @property (weak, nonatomic) IBOutlet UIImageView *moonImage;
 @property (weak, nonatomic) IBOutlet UIImageView *milkyWay;
@@ -44,6 +45,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *corgieDog;
 @property (weak, nonatomic) IBOutlet UIImageView *poodleDog;
 @property (weak, nonatomic) IBOutlet UIImageView *greyStripeCat;
+@property (weak, nonatomic) IBOutlet UIImageView *squirrelLeft;
+@property (weak, nonatomic) IBOutlet UIImageView *squirrelRight;
+@property (weak, nonatomic) IBOutlet UIImageView *squirrelRightAcorn;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonYAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
@@ -60,9 +64,19 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *poodleYAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *yorkieYAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *greyStripeYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelRightYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelRightXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelRightAcornYAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *squirrelRightAcornXAxis;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *helicopterXAxis;
+
+
+
 
 @property (nonatomic, assign) BOOL sheepInMotion;
-@property (nonatomic, assign) BOOL planeInMotion;
+@property (nonatomic, assign) BOOL randomizerInMotion;
 @property (nonatomic, assign) BOOL animalsInMotion;
 @property (nonatomic, assign) BOOL grayGradientInMotion;
 @property (nonatomic, assign) BOOL temperatureInCelcius;
@@ -79,6 +93,7 @@
 @property (nonatomic, strong) TSWeatherManager *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
+@property (nonatomic, assign) NSUInteger animationCount;
 @property (nonatomic, assign) NSUInteger loopCount;
 @property (nonatomic, strong) NSTimer *animatedDayTimer;
 @property (nonatomic, strong) NSTimer *sliderStoppedTimer;
@@ -182,12 +197,6 @@
                                               currentTime = (currentTime/12)*-736;
                                           }
                                           self.clouds.weatherData = self.weatherData;
-                                          
-                                          if (self.temperatureInCelcius) {
-                                              self.highLowLabel.text = self.weatherData.highLowTempC;
-                                          } else {
-                                              self.highLowLabel.text = self.weatherData.highLowTempF;
-                                          }
                                           
                                           [self updateWeatherInfo];
                                           [self startAnimatedDayTimer];
@@ -412,7 +421,18 @@
         
         [self updateTemperatureLabelUnits];
         
-        self.weatherSummaryLabel.text = self.weatherData.weatherDaySummaryString;
+        
+        self.weatherSummaryLabel.text = @"";
+
+        
+//        if (self.weatherData.rainChanceTodayAbove50) {
+//            self.weatherSummaryLabel.text = self.weatherData.weatherDaySummaryString;
+//            
+//        } else {
+//            self.weatherSummaryLabel.text = @"";
+//        }
+        
+
         
         if (weather.percentRainFloat >= 50) {
             self.percentPrecip.text = [NSString stringWithFormat:@"%@ ☂",weather.percentRainString];
@@ -434,22 +454,18 @@
         
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
-            self.highLowLabel.text = self.weatherData.highLowTempCTomorrow;
             self.longDateLabel.text = self.tomorrowShortDateUK;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
-            self.highLowLabel.text = self.weatherData.highLowTempFTomorrow;
             self.longDateLabel.text = self.tomorrowShortDateUS;
         }
         
     } else {
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
-            self.highLowLabel.text = self.weatherData.highLowTempC;
             self.longDateLabel.text = self.todayShortDateUK;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
-            self.highLowLabel.text = self.weatherData.highLowTempF;
             self.longDateLabel.text = self.todayShortDateUS;
         }
     }
@@ -539,38 +555,163 @@
     
     [self showWeatherAnimations];
     
-    if ((currentTime >= 2000 || currentTime < 500) && !self.sheepInMotion && !self.planeInMotion && !self.weatherData.rainChanceTodayAbove70) {
+    if ((currentTime >= 2000 || currentTime < 500) && !self.sheepInMotion && !self.randomizerInMotion && !self.weatherData.rainChanceTodayAbove70) {
         
-        self.sheepInMotion = YES;
+        [self sheepAnimation];
         
-        [self.sheepClouds makeDisplayLinkIfNeeded];
+    } else if (!self.randomizerInMotion && !self.sheepInMotion && self.currentWeather.percentRainFloat < 90){
         
-        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
-            [self.sheepClouds layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            
-            self.sheepCloudsXAxis.constant = self.view.frame.size.width;
-            [self.sheepClouds destroyDisplayLink];
-            self.sheepInMotion = NO;
-        }];
-        
-    } else if (!self.planeInMotion && !self.sheepInMotion && self.currentWeather.percentRainFloat < 90){
-        
-        self.planeInMotion = YES;
-        
-        [UIView animateWithDuration:12 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.airplaneXAxis.constant = -200;
-            [self.airplane layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            
-            self.airplaneXAxis.constant = 500;
-            [self.airplane layoutIfNeeded];
-            self.planeInMotion = NO;
-            
-        }];
+        [self animationRandomizer];
     }
+    
     self.sliderStoppedTimer = nil;
+}
+
+- (void) animationRandomizer {
+
+    switch (self.animationCount % 3) {
+//    switch (2) {
+        case 0:
+            [self squirrelAnimation];
+            break;
+        case 1:
+            [self planeAnimation];
+            break;
+        case 2:
+            [self helicopterAnimation];
+            break;
+        default:
+            break;
+    }
+        self.animationCount++;
+}
+
+- (void) sheepAnimation {
+    
+    self.sheepInMotion = YES;
+    
+    [self.sheepClouds makeDisplayLinkIfNeeded];
+    
+    [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
+        [self.sheepClouds layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+        self.sheepCloudsXAxis.constant = self.view.frame.size.width;
+        [self.sheepClouds destroyDisplayLink];
+        self.sheepInMotion = NO;
+    }];
+}
+
+- (void) helicopterAnimation {
+    
+    self.randomizerInMotion = YES;
+    [self.helicopter startAnimating];
+    [UIView animateWithDuration:7 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.helicopterXAxis.constant = 600;
+        [self.helicopter layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        
+        self.helicopterXAxis.constant = 0;
+        [self.helicopter layoutIfNeeded];
+        [self.helicopter stopAnimating];
+        self.randomizerInMotion = NO;
+    }];
+    
+}
+
+- (void) planeAnimation {
+    
+    self.randomizerInMotion = YES;
+    
+    [UIView animateWithDuration:10 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.airplaneXAxis.constant = -515;
+        [self.airplane layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        
+        self.airplaneXAxis.constant = 0;
+        [self.airplane layoutIfNeeded];
+        self.randomizerInMotion = NO;
+    }];
+}
+
+- (void) squirrelAnimation {
+    
+#define SquirrelBeginningDuration 0.25
+#define SquirrelEndingDuration 0.6
+#define SquirrelDampening 0.5
+    
+    self.randomizerInMotion = YES;
+    
+    [UIView animateWithDuration:SquirrelBeginningDuration
+                          delay:0
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelXAxis.constant = 50;
+                         self.squirrelYAxis.constant = -110;
+                         [self.squirrelLeft layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+    
+    [UIView animateWithDuration:SquirrelEndingDuration
+                          delay:3
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelXAxis.constant = 0;
+                         self.squirrelYAxis.constant = -100;
+                         [self.squirrelLeft layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+    
+    [UIView animateWithDuration:SquirrelBeginningDuration
+                          delay:0.2
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelRightXAxis.constant = -50;
+                         self.squirrelRightYAxis.constant = -170;
+                         [self.squirrelRight layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+    
+    [UIView animateWithDuration:SquirrelEndingDuration
+                          delay:3.2
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelRightXAxis.constant = 0;
+                         self.squirrelRightYAxis.constant = -160;
+                         [self.squirrelRight layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+    
+    [UIView animateWithDuration:SquirrelBeginningDuration
+                          delay:0.3
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelRightAcornXAxis.constant = -50;
+                         self.squirrelRightAcornYAxis.constant = -310;
+                         [self.squirrelRightAcorn layoutIfNeeded];
+                     } completion:^(BOOL finished) {}];
+    
+    [UIView animateWithDuration:SquirrelEndingDuration
+                          delay:3.8
+         usingSpringWithDamping:SquirrelDampening
+          initialSpringVelocity:1
+                        options:0
+                     animations:^{
+                         self.squirrelRightAcornXAxis.constant = 0;
+                         self.squirrelRightAcornYAxis.constant = -300;
+                         [self.squirrelRightAcorn layoutIfNeeded];
+                     } completion:^(BOOL finished) {
+                         self.randomizerInMotion = NO;
+                     }];
 }
 
 - (void) showWeatherAnimations {
@@ -885,13 +1026,18 @@
     
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
     self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
-    self.hourSlider.contentScaleFactor = 4;
+    self.hourSlider.contentScaleFactor = 2;
     
     self.frameHeight = self.view.frame.size.height;
     
     self.milkyWay.alpha = 0;
     self.skyView.alpha = 0;
     self.grayGradient.alpha = 0;
+    
+    self.helicopter.animationImages = @[[UIImage imageNamed:@"Helicopter1"],
+                                        [UIImage imageNamed:@"Helicopter2"]];
+    self.helicopter.animationDuration = 0.1;
+
     
     self.greyCatYAxis.constant = -150;
     self.blackCatYAxis.constant = -150;
@@ -941,6 +1087,21 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+# pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"SettingsSegueID"]) {
+        TSSettingsViewController *vc = segue.destinationViewController;
+        
+        if (self.dayTimeGradient.alpha < 0.5) {
+            vc.darkTransparency = YES;
+        } else {
+            vc.darkTransparency = NO;
+        }
+    }
 }
 
 @end

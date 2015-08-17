@@ -13,6 +13,7 @@
 + (void)drawDayGradientWithCanvasSize: (CGSize)canvasSize;
 + (void)drawNightGradientWithCanvasSize: (CGSize)canvasSize;
 + (void)drawGrayGradientWithCanvasSize: (CGSize)canvasSize;
++ (void)drawSunsetGradientWithCanvasSize: (CGSize)canvasSize;
 + (void)drawBiggerStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
 + (void)drawMediumStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
 + (void)drawLittleStarWithFrame: (CGRect)frame starColor: (UIColor*)starColor rotation: (CGFloat)rotation;
@@ -35,6 +36,8 @@
 + (void)drawPrivateJetWithFrame: (CGRect)frame;
 
 @end
+
+
 
 @interface UIColor (PaintCodeAdditions)
 
