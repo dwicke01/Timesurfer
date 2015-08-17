@@ -207,7 +207,7 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvN-yy-9w1" customClass="TSButton">
-                                <rect key="frame" x="346" y="620" width="25" height="25"/>
+                                <rect key="frame" x="342" y="620" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="P0S-LQ-ka7"/>
                                     <constraint firstAttribute="width" secondItem="JvN-yy-9w1" secondAttribute="height" multiplier="1:1" id="onF-e2-xOn"/>
@@ -287,6 +287,7 @@
                             <constraint firstItem="sxq-t0-qA0" firstAttribute="bottom" secondItem="Vkd-Zs-aIC" secondAttribute="top" constant="-100" id="aCk-BI-Eax"/>
                             <constraint firstItem="AEq-0A-abj" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="aG3-SP-CX0"/>
                             <constraint firstItem="Mkh-CP-iOv" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="acH-Is-hUH"/>
+                            <constraint firstItem="JvN-yy-9w1" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" constant="-8" id="bGf-gx-ogX"/>
                             <constraint firstItem="m8O-hO-p76" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" constant="-16" id="c1o-1h-LNk"/>
                             <constraint firstItem="BoH-zj-CHv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="trailing" id="dKs-OZ-QsD"/>
                             <constraint firstAttribute="height" secondItem="bef-Ld-ilk" secondAttribute="height" id="fPT-7Z-65a"/>
@@ -314,7 +315,6 @@
                             <constraint firstItem="AEq-0A-abj" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="xox-P6-U0a"/>
                             <constraint firstItem="Pqh-Zt-OO7" firstAttribute="top" secondItem="N9V-rz-2Mv" secondAttribute="bottom" constant="80" id="yN9-f2-hIp"/>
                             <constraint firstItem="Vkd-Zs-aIC" firstAttribute="top" secondItem="EqI-wX-JTi" secondAttribute="bottom" constant="20" id="yOM-4w-CN4"/>
-                            <constraint firstItem="JvN-yy-9w1" firstAttribute="leading" secondItem="EqI-wX-JTi" secondAttribute="trailing" constant="8" id="z4g-vz-o9z"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -366,6 +366,7 @@
                         <outlet property="sunYAxis" destination="Ssy-nW-w13" id="bjD-uJ-wM3"/>
                         <outlet property="sunriseLabel" destination="vCU-vE-GVn" id="kcw-Jg-FsZ"/>
                         <outlet property="temperatureLabel" destination="gog-Tu-62I" id="pNR-Ht-EgW"/>
+                        <outlet property="temperatureYAxis" destination="ZjH-7Y-HXv" id="P7H-g1-e6F"/>
                         <outlet property="timeLabel" destination="5zR-wb-zWd" id="NwT-lp-vU6"/>
                         <outlet property="weatherSummaryLabel" destination="76G-yV-tCX" id="rFq-x6-L5d"/>
                         <outlet property="yorkieDog" destination="ELg-3b-LUd" id="TeV-6T-Dqs"/>

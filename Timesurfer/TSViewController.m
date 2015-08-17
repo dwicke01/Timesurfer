@@ -49,6 +49,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *squirrelRight;
 @property (weak, nonatomic) IBOutlet UIImageView *squirrelRightAcorn;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *temperatureYAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonYAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moonXAxis;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sunYAxis;
@@ -384,7 +385,7 @@
         [UIView animateWithDuration:1 animations:^{
             
             self.skyView.alpha = alphaValue;
-            self.milkyWay.alpha = alphaValue-.7;
+            self.milkyWay.alpha = alphaValue-.75;
             
             self.cloudsXAxis.constant = 0;
             [self.clouds layoutIfNeeded];
@@ -392,7 +393,7 @@
     } else {
         
         self.skyView.alpha = alphaValue;
-        self.milkyWay.alpha = alphaValue-.7;
+        self.milkyWay.alpha = alphaValue-.75;
         [self.clouds layoutIfNeeded];
     }
     
@@ -1004,12 +1005,13 @@
     [NSUserDefaults standardUserDefaults];
     
     if (self.view.frame.size.width == 320) {
-        self.locationLabel.font = [self.locationLabel.font fontWithSize:32];
-        self.timeLabel.font = [self.timeLabel.font fontWithSize:32];
-        self.percentPrecip.font = [self.percentPrecip.font fontWithSize:28];
-        self.weatherSummaryLabel.font = [self.percentPrecip.font fontWithSize:16];
-        self.longDateLabel.font = [self.longDateLabel.font fontWithSize:32];
+        self.longDateLabel.font = [self.longDateLabel.font fontWithSize:36];
         self.temperatureLabel.font = [self.temperatureLabel.font fontWithSize:100];
+        self.locationLabel.font = [self.locationLabel.font fontWithSize:36];
+        self.timeLabel.font = [self.timeLabel.font fontWithSize:42];
+        self.percentPrecip.font = [self.percentPrecip.font fontWithSize:36];
+        self.weatherSummaryLabel.font = [self.percentPrecip.font fontWithSize:16];
+        self.temperatureYAxis.constant = 14;
     }
 }
 
