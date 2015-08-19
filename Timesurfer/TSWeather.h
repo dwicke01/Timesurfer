@@ -5,7 +5,7 @@
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString sunUp:(BOOL)sunUp;
 
-@property (nonatomic, strong, readonly) UIImage *weatherImage;
+//@property (nonatomic, strong, readonly) UIImage *weatherImage;
 @property (nonatomic, strong) NSString *currentDate;
 @property (nonatomic, strong) NSString *weatherTemperatureF;
 @property (nonatomic, strong) NSString *weatherTemperatureC;
@@ -17,4 +17,7 @@
 @property (nonatomic, assign) CGFloat cloudCoverFloat;
 @property (nonatomic, assign) CGFloat precipIntensityFloat;
 @property (nonatomic, assign) NSUInteger currentHourInt;
+
+-(UIImage *)weatherImage;
+
 @end
