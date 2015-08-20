@@ -88,7 +88,6 @@
 @property (nonatomic, strong) CLLocation *weatherLocation;
 
 @property (nonatomic, strong) Forecastr *forcastr;
-@property (nonatomic, strong) TSWeatherManager *weatherData;
 @property (nonatomic, strong) TSWeather *currentWeather;
 
 @property (nonatomic, assign) NSUInteger animationCount;
@@ -443,8 +442,15 @@
             self.percentPrecip.text = weather.percentRainString;
         }
     }
+
     [self showWeatherAnimations];
     [self removeAnimationsAndParticles];
+    
+    if ([self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
+        UIImageView *imageView = [self valueForKey:@"weatherImageView"];
+        imageView.image = [weather weatherImage];
+    }
+    
     [self updateGradient];
     [self updateSky];
     [self updateSun];

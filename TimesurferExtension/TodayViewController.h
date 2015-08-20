@@ -10,5 +10,6 @@
 @import TimesurferFramework;
 
 @interface TodayViewController : TSViewController
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImageView;
 
 @end

@@ -3,11 +3,12 @@
 
 @import CoreLocation;
 
-@class TSWeather;
+@class TSWeatherManager;
 
 @interface TSViewController : UIViewController <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) TSWeatherManager *weatherData;
 
 - (void) getWeatherForced:(BOOL)override;
 - (void) updateWeatherLabelsWithIndex:(NSUInteger)hour;
