@@ -1,51 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
         <scene sceneID="cwh-vc-ff4">
             <objects>
                 <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A2v-oG-MU9"/>
+                        <viewControllerLayoutGuide type="bottom" id="l2r-vb-4RO"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Fr-ai-8HX">
-                                <rect key="frame" x="180" y="64" width="124" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fr-ai-8HX">
+                                <rect key="frame" x="147" y="63" width="157" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="glt-UD-zNz">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="glt-UD-zNz">
                                 <rect key="frame" x="210" y="121" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="timeStepper:" destination="M4Y-Lb-cyx" eventType="valueChanged" id="Cim-DK-bZw"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yP2-ZK-as7">
-                                <rect key="frame" x="180" y="11" width="124" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yP2-ZK-as7">
+                                <rect key="frame" x="186" y="0.0" width="118" height="63"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="48"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UW8-P0-ZIE">
-                                <rect key="frame" x="180" y="94" width="124" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW8-P0-ZIE">
+                                <rect key="frame" x="147" y="89" width="157" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pu9-hF-aKz">
-                                <rect key="frame" x="16" y="7" width="139" height="139"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1uV-Ir-A1d">
+                                <rect key="frame" x="17" y="20" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1uV-Ir-A1d" secondAttribute="height" multiplier="1:1" id="wh6-Im-ieH"/>
+                                    <constraint firstAttribute="height" constant="130" id="yTo-5h-IwJ"/>
+                                </constraints>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="glt-UD-zNz" firstAttribute="leading" secondItem="1uV-Ir-A1d" secondAttribute="trailing" constant="63" id="8Yx-5Z-2gY"/>
+                            <constraint firstItem="UW8-P0-ZIE" firstAttribute="top" secondItem="6Fr-ai-8HX" secondAttribute="bottom" id="8bp-s4-x6B"/>
+                            <constraint firstItem="UW8-P0-ZIE" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="8na-bW-V9j"/>
+                            <constraint firstItem="l2r-vb-4RO" firstAttribute="top" secondItem="glt-UD-zNz" secondAttribute="bottom" constant="38" id="PTl-dV-ONQ"/>
+                            <constraint firstItem="UW8-P0-ZIE" firstAttribute="top" secondItem="6Fr-ai-8HX" secondAttribute="bottom" id="STq-32-H9r"/>
+                            <constraint firstItem="6Fr-ai-8HX" firstAttribute="leading" secondItem="1uV-Ir-A1d" secondAttribute="trailing" id="TUn-dU-wtT"/>
+                            <constraint firstAttribute="centerY" secondItem="1uV-Ir-A1d" secondAttribute="centerY" constant="9" id="TeL-4h-cE6"/>
+                            <constraint firstItem="UW8-P0-ZIE" firstAttribute="leading" secondItem="1uV-Ir-A1d" secondAttribute="trailing" id="Y6Y-Yo-S7L"/>
+                            <constraint firstItem="glt-UD-zNz" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="Y9y-7J-0Wc"/>
+                            <constraint firstItem="6Fr-ai-8HX" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="gYP-q3-Eah"/>
+                            <constraint firstItem="1uV-Ir-A1d" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="1" id="kta-rH-cd3"/>
+                            <constraint firstItem="UW8-P0-ZIE" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="l5i-lx-uSs"/>
+                            <constraint firstItem="yP2-ZK-as7" firstAttribute="top" secondItem="A2v-oG-MU9" secondAttribute="bottom" id="mo7-sS-7Gq"/>
+                            <constraint firstItem="yP2-ZK-as7" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="rpV-yi-Kcg"/>
+                            <constraint firstItem="glt-UD-zNz" firstAttribute="top" secondItem="UW8-P0-ZIE" secondAttribute="bottom" constant="6" id="uXR-av-kW4"/>
+                            <constraint firstItem="glt-UD-zNz" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="viH-yA-RI7"/>
+                            <constraint firstItem="6Fr-ai-8HX" firstAttribute="top" secondItem="yP2-ZK-as7" secondAttribute="bottom" id="wiY-dP-xKG"/>
+                            <constraint firstItem="6Fr-ai-8HX" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="zt6-b9-ZRT"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="150"/>
@@ -58,7 +83,7 @@
                         <outlet property="percentPrecip" destination="UW8-P0-ZIE" id="IRJ-dd-z8u"/>
                         <outlet property="temperatureLabel" destination="yP2-ZK-as7" id="mTc-lz-5Sa"/>
                         <outlet property="timeLabel" destination="6Fr-ai-8HX" id="bcT-dw-Lgf"/>
-                        <outlet property="weatherImage" destination="pu9-hF-aKz" id="y9u-Wy-3BB"/>
+                        <outlet property="weatherImageView" destination="1uV-Ir-A1d" id="pMZ-Nq-pyL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>

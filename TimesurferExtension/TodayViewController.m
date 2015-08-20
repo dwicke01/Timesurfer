@@ -44,8 +44,11 @@
         stepper.value = 0;
     else if (stepper.value > 23)
         stepper.value = 23;
-    else
+    else {
         [self updateWeatherLabelsWithIndex:(NSInteger)stepper.value];
+        TSWeather *weather = [self.weatherData weatherForHour:stepper.value];
+        //self.weatherImageView.image = weather.weatherImage;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

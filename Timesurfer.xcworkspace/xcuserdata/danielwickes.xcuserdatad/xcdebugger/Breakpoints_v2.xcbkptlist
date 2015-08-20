@@ -19,61 +19,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TimesurferExtension/TodayViewController.m"
-            timestampString = "457392372.159536"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-timeStepper:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TimesurferExtension/TodayViewController.m"
-            timestampString = "457391653.49393"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TimesurferExtension/TodayViewController.m"
-            timestampString = "457392372.159536"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-timeStepper:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
+            timestampString = "461710784.357255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
             endingLineNumber = "241"
-            landmarkName = "-updateMoon"
+            landmarkName = "-updateSun"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,28 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
+            timestampString = "461710784.357255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "246"
             endingLineNumber = "246"
-            landmarkName = "-updateMoon"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TimesurferExtension/TodayViewController.m"
-            timestampString = "457391653.49393"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-viewDidAppear:"
+            landmarkName = "-updateSun"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,7 +57,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
-            landmarkName = "sunYAxis"
+            landmarkName = "greyCat"
             landmarkType = "19">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,8 +73,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            landmarkName = "hourOffset"
+            landmarkType = "19">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -148,28 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
+            timestampString = "461709886.60388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-sliderChanged:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "-easterEggs"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,6 +105,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
+            landmarkName = "weatherLocation"
+            landmarkType = "19">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Timesurfer/TSViewController.m"
+            timestampString = "461709886.60388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -196,28 +132,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
+            timestampString = "461710784.357255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "327"
             endingLineNumber = "327"
-            landmarkName = "-updateSky"
+            landmarkName = "-updateGradient"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -228,12 +148,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "458848468.486894"
+            timestampString = "461710784.357255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
             endingLineNumber = "319"
-            landmarkName = "-updateSky"
+            landmarkName = "-updateGradient"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -244,12 +164,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "459200019.101592"
+            timestampString = "461710784.357255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
-            landmarkName = "-locationManager:didUpdateLocations:"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
+            landmarkName = "-updateWeatherLabelsWithIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
