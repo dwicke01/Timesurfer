@@ -15,5 +15,6 @@
 @property (nonatomic) BOOL eventsAccessGranted;
 
 +(TSEventManager*)sharedEventManger;
--(void) fetchEvents;
+-(NSString*)eventForHourAtIndex:(NSUInteger)index;
+
 @end

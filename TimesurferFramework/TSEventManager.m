@@ -9,7 +9,9 @@
 #import "TSEventManager.h"
 #import "TSEvent.h"
 
-@implementation TSEventManager
+@implementation TSEventManager {
+    NSMutableArray *_eventsArray;
+}
 
 static TSEventManager *_sharedEventManager;
 
@@ -28,7 +30,8 @@ static TSEventManager *_sharedEventManager;
         self.eventStore = [[EKEventStore alloc] init];
         [self requestAccessToEvents];
 
-        
+        _eventsArray = [[NSMutableArray alloc] init];
+        [self fetchEvents];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
@@ -97,12 +100,42 @@ static TSEventManager *_sharedEventManager;
                                                                     calendars:calendarArray];
     
     // Fetch all events that match the predicate
-    NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
+    NSArray *ekEventsArray = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
     
-    EKEvent *event = events[0];
-    TSEvent *event1 = [[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location];
+    for (EKEvent *event in ekEventsArray) {
+        [_eventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
+    }
     
-    NSLog(@"%@", [event1 description]);
+//    EKEvent *event = _eventsArray[0];
+//    TSEvent *event1 = [[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location];
+//    
+//    NSLog(@"%@", [event1 description]);
+}
+
+- (NSDate*) previousHourDate:(NSDate*)inDate{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [calendar components: NSCalendarUnitEra|NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate: inDate];
+    [comps setHour: [comps hour]+1]; //NSDateComponents handles rolling over between days, months, years, etc
+    return [calendar dateFromComponents:comps];
+}
+
+-(NSString*)eventForHourAtIndex:(NSUInteger)index {
+    if (!_eventsArray) {
+        [self fetchEvents];
+    }
+    if (_eventsArray) {
+        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970];
+        NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            TSEvent *event = evaluatedObject;
+            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] >= desiredTimeInterval;
+        }];
+        NSArray *filteredEvents = [_eventsArray filteredArrayUsingPredicate:pred];
+        if ([filteredEvents count] > 0) {
+            return [filteredEvents[0] description];
+        }
+        //return [_eventsArray[index] description];
+    }
+    return @"";
 }
 
 @end

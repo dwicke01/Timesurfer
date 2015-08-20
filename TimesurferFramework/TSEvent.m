@@ -21,12 +21,20 @@
 
 -(instancetype)initWithTitle:(NSString*)title startTime:(NSDate*)startTime endTime:(NSDate*)endTime location:(NSString*)location {
     if (self = [super init]) {
-        self.title = title;
-        self.startTime = startTime;
-        self.endTime = endTime;
-        self.location = location;
+        _title = title;
+        _startTime = startTime;
+        _endTime = endTime;
+        _location = location;
     }
     return self;
+}
+
+-(NSTimeInterval)startTimeAsTimeInterval {
+    return [self.startTime timeIntervalSince1970];
+}
+
+-(NSTimeInterval)endTimeAsTimeInterval {
+    return [self.endTime timeIntervalSince1970];
 }
 
 - (NSString *)formatTime:(NSDate*)time {
