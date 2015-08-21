@@ -107,8 +107,6 @@
 
 @implementation TSViewController
 
-#pragma mark Launch Methods
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -164,8 +162,10 @@
     }
     [self populateDateLabels];
     [self requestWhenInUseAuth];
-    [self getWeather];
+    [self getWeatherWithOverride:NO];
 }
+
+# pragma mark - API 
 
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
@@ -173,7 +173,10 @@
     [self updateWeatherLabelsWithIndex:currentTime];
 }
 
-- (void) getWeather{
+- (void) getWeatherWithOverride:(BOOL)override {
+
+    self.latitude = self.weatherLocation.coordinate.latitude;
+    self.longitude = self.weatherLocation.coordinate.longitude;
     
     if (self.latitude == 0 && self.longitude == 0) {
         return;
@@ -181,7 +184,7 @@
     
     [self.locationManager stopUpdatingLocation];
     
-    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800) {
+    if (!self.weatherData || [self.weatherLocation distanceFromLocation:self.weatherData.location] > 8000 || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800 || override) {
         
         self.apiLastRequestTime = [NSDate date];
         
@@ -200,8 +203,7 @@
                                           
                                           [self createWeatherWithJSON:JSON];
                                           
-                                          [self.locationManager startMonitoringSignificantLocationChanges];
-                                          
+                                          [self updateLocationNameWithLocation:self.weatherLocation];
 
                                       } failure:^(NSError *error, id response) {
 //                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
@@ -414,9 +416,6 @@
         
     } else if (self.currentWeather != weather || self.currentWeather.currentHourInt == 0){
         
-        [self showWeatherAnimations];
-        [self removeAnimationsAndParticles];
-        
         self.currentWeather = weather;
         
         [UIView animateWithDuration:.5 animations:^{
@@ -449,6 +448,9 @@
             self.percentPrecip.text = weather.percentRainString;
         }
     }
+
+    [self showWeatherAnimations];
+    [self removeAnimationsAndParticles];
     
     if ([self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
         UIImageView *imageView = [self valueForKey:@"weatherImageView"];
@@ -498,6 +500,19 @@
     } else {
         self.sunriseLabel.alpha = 0;
     }
+}
+
+- (void) populateDateLabels {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    [dateFormat setDateFormat:@"EEEE, MMMM d"];
+    
+    self.todayShortDateUS = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[NSDate date]]];
+    self.tomorrowShortDateUS = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
+    
+    [dateFormat setDateFormat:@"EEEE, d MMMM"];
+    self.todayShortDateUK = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[NSDate date]]];
+    self.tomorrowShortDateUK = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
 }
 
 - (IBAction)toggleTemperatureUnits:(id)sender {
@@ -692,7 +707,7 @@
                      } completion:^(BOOL finished) {}];
     
     [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:2
+                          delay:3
          usingSpringWithDamping:SquirrelDampening
           initialSpringVelocity:1
                         options:0
@@ -703,7 +718,7 @@
                      } completion:^(BOOL finished) {}];
 
     [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:2.1
+                          delay:3.1
          usingSpringWithDamping:SquirrelDampening
           initialSpringVelocity:1
                         options:0
@@ -714,7 +729,7 @@
                      } completion:^(BOOL finished) {}];
     
     [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:2.2
+                          delay:3.2
          usingSpringWithDamping:SquirrelDampening
           initialSpringVelocity:1
                         options:0
@@ -894,12 +909,49 @@
                              [self animalStartingPositions];
 
                          }];
-    } else if (self.currentWeather.percentRainFloat < 60) {
+    }
+    
+    if (self.currentWeather.percentRainFloat < 60) {
         [self hideParticleSystem];
     }
 }
 
 #pragma mark GPS Logic
+
+
+- (void) changeCities {
+    
+    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Enter Location" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [locationAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"Enter City or Zip";
+         textField.keyboardAppearance = UIKeyboardAppearanceDark;
+     }];
+    
+    UIAlertAction *triggerChange = [UIAlertAction actionWithTitle:@"Go" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        UITextField *textField = locationAlert.textFields[0];
+        
+        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+        [geoCoder geocodeAddressString:textField.text completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            CLLocation *location = placemark.location;
+            
+            self.weatherLocation = location;
+            
+            [self getWeatherWithOverride:YES];
+
+        }];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    
+    [locationAlert addAction:cancel];
+    [locationAlert addAction:triggerChange];
+
+    [self presentViewController:locationAlert animated:NO completion:nil];
+}
 
 - (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
     if (completion != nil) {
@@ -916,47 +968,7 @@
         self.weatherLocation = manager.location;
     }
     
-    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate: /*CLLocationCoordinate2DMake(40.5744, -73.9786)*/
-     self.weatherLocation.coordinate
-                                                  service:kLMGeocoderGoogleService
-                                        completionHandler:^(NSArray *results, NSError *error) {
-                                            if (results.count && !error) {
-                                                LMAddress *address = [results firstObject];
-                                                NSInteger indexOfLocality = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"locality"];
-                                                }];
-                                                
-                                                NSInteger indexOfNeighborhood = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"neighborhood"];
-                                                }];
-                                                NSString *locality;
-                                                
-                                                if (address.subLocality)
-                                                    locality = address.subLocality;
-                                                else
-                                                    locality = address.locality;
-                                                
-                                                if (indexOfNeighborhood < [address.lines count])
-                                                    
-                                                    locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
-                                                if (indexOfLocality < [address.lines count] && [locality length] < 14) {
-                                                    
-                                                    locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
-                                                }
-                                                
-                                                self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
-                                                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@", locality] forKey:@"Last_Location"];
-                                            }
-                                            else if (error) {
-//                                                NSLog(@"%@ %@", results, error.localizedDescription);
-                                                self.locationLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Last_Location"];
-                                            }
-                                        }
-     ];
-    
-    self.latitude = self.weatherLocation.coordinate.latitude;
-    self.longitude = self.weatherLocation.coordinate.longitude;
-    [self getWeather];
+    [self getWeatherWithOverride:NO];
 }
 
 - (void)requestWhenInUseAuth{
@@ -990,6 +1002,46 @@
         [self.locationManager requestWhenInUseAuthorization];}
 }
 
+- (void) updateLocationNameWithLocation:(CLLocation *)coords {
+    
+    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate: coords.coordinate
+                                                  service:kLMGeocoderGoogleService
+                                        completionHandler:^(NSArray *results, NSError *error) {
+                                            if (results.count && !error) {
+                                                LMAddress *address = [results firstObject];
+                                                NSInteger indexOfLocality = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"locality"];
+                                                }];
+                                                
+                                                NSInteger indexOfNeighborhood = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"neighborhood"];
+                                                }];
+                                                NSString *locality;
+                                                
+                                                if (address.subLocality)
+                                                    locality = address.subLocality;
+                                                else
+                                                    locality = address.locality;
+                                                
+                                                if (indexOfNeighborhood < [address.lines count])
+                                                    
+                                                    locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
+                                                if (indexOfLocality < [address.lines count] && [locality length] < 14) {
+                                                    
+                                                    locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
+                                                }
+                                                
+                                                self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
+                                                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@", locality] forKey:@"Last_Location"];
+                                            }
+                                            else if (error) {
+                                                //                                                NSLog(@"%@ %@", results, error.localizedDescription);
+                                                self.locationLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Last_Location"];
+                                            }
+                                        }
+     ];
+
+}
 
 # pragma mark Setup Methods
 
@@ -1002,6 +1054,7 @@
     self.hourSlider.contentScaleFactor = 2;
     
     [self animalStartingPositions];
+    [self setupTapGestureRecognizer];
     
     self.frameHeight = self.view.frame.size.height;
     
@@ -1016,11 +1069,12 @@
     [NSUserDefaults standardUserDefaults];
     
     if (self.view.frame.size.width == 320) {
-        self.longDateLabel.font = [self.longDateLabel.font fontWithSize:36];
+        self.longDateLabel.font = [self.longDateLabel.font fontWithSize:34];
+        NSLog(@"running labels");
         self.temperatureLabel.font = [self.temperatureLabel.font fontWithSize:100];
-        self.locationLabel.font = [self.locationLabel.font fontWithSize:36];
+        self.locationLabel.font = [self.locationLabel.font fontWithSize:34];
         self.timeLabel.font = [self.timeLabel.font fontWithSize:42];
-        self.percentPrecip.font = [self.percentPrecip.font fontWithSize:36];
+        self.percentPrecip.font = [self.percentPrecip.font fontWithSize:34];
         self.weatherSummaryLabel.font = [self.percentPrecip.font fontWithSize:16];
         self.temperatureYAxis.constant = 14;
     }
@@ -1055,25 +1109,21 @@
     self.blackCat.alpha = 1;
 }
 
-- (void) populateDateLabels {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    
-    [dateFormat setDateFormat:@"EEEE, MMMM d"];
-    
-    self.todayShortDateUS = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[NSDate date]]];
-    self.tomorrowShortDateUS = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
-    
-    [dateFormat setDateFormat:@"EEEE, d MMMM"];
-    self.todayShortDateUK = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[NSDate date]]];
-    self.tomorrowShortDateUK = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+- (void) setupTapGestureRecognizer {
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeCities)];
+    
+    [self.locationLabel addGestureRecognizer:recognizer];
+    
+    self.locationLabel.userInteractionEnabled = YES;
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
