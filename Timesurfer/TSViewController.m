@@ -156,7 +156,7 @@
     }
     [self populateDateLabels];
     [self requestWhenInUseAuth];
-    [self getWeatherForced:NO];
+    [self getWeatherWithOverride:NO];
 }
 
 # pragma mark - API 
@@ -167,7 +167,7 @@
     [self updateWeatherLabelsWithIndex:currentTime];
 }
 
-- (void) getWeatherForced:(BOOL)override {
+- (void) getWeatherWithOverride:(BOOL)override {
 
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;
@@ -934,7 +934,7 @@
             
             self.weatherLocation = location;
             
-            [self getWeatherForced:YES];
+            [self getWeatherWithOverride:YES];
 
         }];
     }];
@@ -962,7 +962,7 @@
         self.weatherLocation = manager.location;
     }
     
-    [self getWeatherForced:NO];
+    [self getWeatherWithOverride:NO];
 }
 
 - (void)requestWhenInUseAuth{
