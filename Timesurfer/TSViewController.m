@@ -12,6 +12,7 @@
 #import "TSSun.h"
 #import "TSSlider.h"
 #import "LMGeocoder.h"
+#import "TSEventManager.h"
 
 @import CoreLocation;
 
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *longDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunriseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *calendarEventLabel;
 
 @property (nonatomic, strong) SCNView *sceneView;
 @property (weak, nonatomic) IBOutlet UIView *skyView;
@@ -99,6 +101,8 @@
 @property (nonatomic, strong) NSString *todayShortDateUK;
 @property (nonatomic, strong) NSString *tomorrowShortDateUS;
 @property (nonatomic, strong) NSString *tomorrowShortDateUK;
+
+@property (nonatomic, strong) TSEventManager *eventManager;
 @end
 
 @implementation TSViewController
@@ -111,6 +115,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    
+    self.eventManager = [TSEventManager sharedEventManger];
     
     self.forcastr = [Forecastr sharedManager];
     self.forcastr.apiKey = FORCAST_KEY;
@@ -163,7 +169,7 @@
 
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
-    
+    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
     [self updateWeatherLabelsWithIndex:currentTime];
 }
 
@@ -446,7 +452,7 @@
     
     if ([self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
         UIImageView *imageView = [self valueForKey:@"weatherImageView"];
-        imageView.image = [weather weatherImage];
+        imageView.image = [self imageWithImage:[weather weatherImage] scaledToSize:imageView.bounds.size]; //[weather weatherImage];
     }
     
     [self updateGradient];

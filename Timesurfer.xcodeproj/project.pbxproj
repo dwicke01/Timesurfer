@@ -50,6 +50,12 @@
 		FA22DAE41B41E3BF0072005E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
 		FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B14341B5DB5FC008878C8 /* TSConstants.m */; };
 		FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSClouds.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA4812801B852BCD002F55FC /* TSEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA48127E1B852BCD002F55FC /* TSEventManager.h */; };
+		FA4812811B852BCD002F55FC /* TSEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA48127F1B852BCD002F55FC /* TSEventManager.m */; };
+		FA4812861B852BF9002F55FC /* TSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4812821B852BF9002F55FC /* TSEvent.h */; };
+		FA4812871B852BF9002F55FC /* TSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4812831B852BF9002F55FC /* TSEvent.m */; };
+		FA4812881B852BF9002F55FC /* TSGoogleCalendarManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4812841B852BF9002F55FC /* TSGoogleCalendarManager.h */; };
+		FA4812891B852BF9002F55FC /* TSGoogleCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4812851B852BF9002F55FC /* TSGoogleCalendarManager.m */; };
 		FA5695121B41B65300A9FB98 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1AAC581B3E2A2E00F5A151 /* NotificationCenter.framework */; };
 		FA56951D1B41B65300A9FB98 /* TimesurferExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FA5695241B41B6F000A9FB98 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */; };
@@ -209,6 +215,12 @@
 		FA22DAD11B41DEEE0072005E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferFrameworkTests.m; sourceTree = "<group>"; };
 		FA2B14341B5DB5FC008878C8 /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConstants.m; sourceTree = "<group>"; };
+		FA48127E1B852BCD002F55FC /* TSEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSEventManager.h; sourceTree = "<group>"; };
+		FA48127F1B852BCD002F55FC /* TSEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSEventManager.m; sourceTree = "<group>"; };
+		FA4812821B852BF9002F55FC /* TSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSEvent.h; sourceTree = "<group>"; };
+		FA4812831B852BF9002F55FC /* TSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSEvent.m; sourceTree = "<group>"; };
+		FA4812841B852BF9002F55FC /* TSGoogleCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGoogleCalendarManager.h; sourceTree = "<group>"; };
+		FA4812851B852BF9002F55FC /* TSGoogleCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGoogleCalendarManager.m; sourceTree = "<group>"; };
 		FA5695111B41B65300A9FB98 /* TimesurferExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimesurferExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5695211B41B6F000A9FB98 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		FA5695221B41B6F000A9FB98 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -432,6 +444,12 @@
 				17DB0BFD1B3BAA690001810D /* AppDelegate.h */,
 				17DB0BFE1B3BAA690001810D /* AppDelegate.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
+				FA48127E1B852BCD002F55FC /* TSEventManager.h */,
+				FA48127F1B852BCD002F55FC /* TSEventManager.m */,
+				FA4812821B852BF9002F55FC /* TSEvent.h */,
+				FA4812831B852BF9002F55FC /* TSEvent.m */,
+				FA4812841B852BF9002F55FC /* TSGoogleCalendarManager.h */,
+				FA4812851B852BF9002F55FC /* TSGoogleCalendarManager.m */,
 				174983511B812C2300608C47 /* TSButton.h */,
 				174983521B812C2300608C47 /* TSButton.m */,
 				175E551B1B6D7B83002A7CAA /* TSSlider.h */,
@@ -493,9 +511,12 @@
 				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
 				174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */,
 				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
+				FA4812861B852BF9002F55FC /* TSEvent.h in Headers */,
 				174983471B7FF5E600608C47 /* TSSettingsViewController.h in Headers */,
 				17EC3D6A1B51781B00BA0D9E /* TSDayTimeGradient.h in Headers */,
+				FA4812881B852BF9002F55FC /* TSGoogleCalendarManager.h in Headers */,
 				FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */,
+				FA4812801B852BCD002F55FC /* TSEventManager.h in Headers */,
 				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
@@ -833,10 +854,13 @@
 				FAECE4FB1B41F72A00993A63 /* TSViewController.m in Sources */,
 				FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */,
 				FA22DADF1B41E0400072005E /* TSWeatherManager.m in Sources */,
+				FA4812811B852BCD002F55FC /* TSEventManager.m in Sources */,
 				FA22DAE01B41E0400072005E /* TSWeather.m in Sources */,
 				17EC3D6F1B5178A000BA0D9E /* TSNightGradient.m in Sources */,
+				FA4812891B852BF9002F55FC /* TSGoogleCalendarManager.m in Sources */,
 				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,
 				FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */,
+				FA4812871B852BF9002F55FC /* TSEvent.m in Sources */,
 				1749834C1B7FF78600608C47 /* TSSunsetGradient.m in Sources */,
 				174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */,
 			);
