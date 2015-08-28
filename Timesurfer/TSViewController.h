@@ -1,5 +1,6 @@
 
 #import <UIKit/UIKit.h>
+#import "TSSettingsTableViewCell.h"
 
 @import CoreLocation;
 

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TSSettingsViewController : UIViewController
+@class TSToggleSettingsManager;
+
+@interface TSSettingsViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic, assign) BOOL darkTransparency;
+@property (nonatomic, strong) TSToggleSettingsManager *settingsManager;
 
 @end
