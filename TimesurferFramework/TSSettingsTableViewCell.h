@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSViewController.h"
 
-@interface SettingsTableViewCell : UITableViewCell
+@protocol SettingToggleDelegate <NSObject>
+
+-(void)toggleSetting:(NSString*)setting;
+
+@end
+
+@interface TSSettingsTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) id<SettingToggleDelegate> delegate;
+@property (nonatomic, strong) NSString *labelString;
 
 @end

@@ -52,6 +52,10 @@
 		FA22DAE41B41E3BF0072005E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C061B3BAA690001810D /* Images.xcassets */; };
 		FA2B14351B5DB5FC008878C8 /* TSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B14341B5DB5FC008878C8 /* TSConstants.m */; };
 		FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */ = {isa = PBXBuildFile; fileRef = 1704BDD51B52FCFB00E0DFEF /* TSClouds.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA2C016E1B8E4D15005EB262 /* TSSettingsTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = FA2C016C1B8E4D15005EB262 /* TSSettingsTableViewCell.h */; };
+		FA2C016F1B8E4D15005EB262 /* TSSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2C016D1B8E4D15005EB262 /* TSSettingsTableViewCell.m */; };
+		FA2C01721B8FD4C5005EB262 /* TSToggleSettingsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA2C01701B8FD4C5005EB262 /* TSToggleSettingsManager.h */; };
+		FA2C01731B8FD4C5005EB262 /* TSToggleSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2C01711B8FD4C5005EB262 /* TSToggleSettingsManager.m */; };
 		FA4812801B852BCD002F55FC /* TSEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA48127E1B852BCD002F55FC /* TSEventManager.h */; };
 		FA4812811B852BCD002F55FC /* TSEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA48127F1B852BCD002F55FC /* TSEventManager.m */; };
 		FA4812861B852BF9002F55FC /* TSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4812821B852BF9002F55FC /* TSEvent.h */; };
@@ -219,6 +223,10 @@
 		FA22DAD11B41DEEE0072005E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA22DAD21B41DEEE0072005E /* TimesurferFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimesurferFrameworkTests.m; sourceTree = "<group>"; };
 		FA2B14341B5DB5FC008878C8 /* TSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConstants.m; sourceTree = "<group>"; };
+		FA2C016C1B8E4D15005EB262 /* TSSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSettingsTableViewCell.h; sourceTree = "<group>"; };
+		FA2C016D1B8E4D15005EB262 /* TSSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSettingsTableViewCell.m; sourceTree = "<group>"; };
+		FA2C01701B8FD4C5005EB262 /* TSToggleSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSToggleSettingsManager.h; sourceTree = "<group>"; };
+		FA2C01711B8FD4C5005EB262 /* TSToggleSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSToggleSettingsManager.m; sourceTree = "<group>"; };
 		FA48127E1B852BCD002F55FC /* TSEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSEventManager.h; sourceTree = "<group>"; };
 		FA48127F1B852BCD002F55FC /* TSEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSEventManager.m; sourceTree = "<group>"; };
 		FA4812821B852BF9002F55FC /* TSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSEvent.h; sourceTree = "<group>"; };
@@ -322,6 +330,8 @@
 				17F2B2E81B71C3A10012D090 /* HeavyRain.scnp */,
 				17F2B2E91B71C3A10012D090 /* spark.png */,
 				176D1B611B83818700D2E691 /* spark.png */,
+				FA2C016C1B8E4D15005EB262 /* TSSettingsTableViewCell.h */,
+				FA2C016D1B8E4D15005EB262 /* TSSettingsTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -463,6 +473,8 @@
 				176DA4541B5D9BE9006190BD /* TSConstants.h */,
 				FA2B14341B5DB5FC008878C8 /* TSConstants.m */,
 				FA22DAC21B41DEEE0072005E /* Info.plist */,
+				FA2C01701B8FD4C5005EB262 /* TSToggleSettingsManager.h */,
+				FA2C01711B8FD4C5005EB262 /* TSToggleSettingsManager.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -524,10 +536,12 @@
 				FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */,
 				FA4812801B852BCD002F55FC /* TSEventManager.h in Headers */,
 				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
+				FA2C016E1B8E4D15005EB262 /* TSSettingsTableViewCell.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
 				1749834B1B7FF78600608C47 /* TSSunsetGradient.h in Headers */,
 				FAECE5011B42384900993A63 /* TSGraphics.h in Headers */,
+				FA2C01721B8FD4C5005EB262 /* TSToggleSettingsManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +882,8 @@
 				FA4812891B852BF9002F55FC /* TSGoogleCalendarManager.m in Sources */,
 				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,
 				FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */,
+				FA2C016F1B8E4D15005EB262 /* TSSettingsTableViewCell.m in Sources */,
+				FA2C01731B8FD4C5005EB262 /* TSToggleSettingsManager.m in Sources */,
 				FA4812871B852BF9002F55FC /* TSEvent.m in Sources */,
 				1749834C1B7FF78600608C47 /* TSSunsetGradient.m in Sources */,
 				174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */,

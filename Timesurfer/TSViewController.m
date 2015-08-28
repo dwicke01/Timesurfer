@@ -13,6 +13,7 @@
 #import "TSSlider.h"
 #import "LMGeocoder.h"
 #import "TSEventManager.h"
+#import "TSToggleSettingsManager.h"
 
 @import CoreLocation;
 
@@ -103,6 +104,9 @@
 @property (nonatomic, strong) NSString *tomorrowShortDateUK;
 
 @property (nonatomic, strong) TSEventManager *eventManager;
+
+@property (nonatomic, strong) TSToggleSettingsManager *settingsManager;
+
 @end
 
 @implementation TSViewController
@@ -616,130 +620,134 @@
 }
 
 - (void) sheepAnimation {
-    
-    self.sheepInMotion = YES;
-    
-    [self.sheepClouds makeDisplayLinkIfNeeded];
-    
-    [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
-        [self.sheepClouds layoutIfNeeded];
-    } completion:^(BOOL finished) {
+    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleSheepAnimation) {
+        self.sheepInMotion = YES;
         
-        self.sheepCloudsXAxis.constant = self.view.frame.size.width;
-        [self.sheepClouds destroyDisplayLink];
-        self.sheepInMotion = NO;
-    }];
+        [self.sheepClouds makeDisplayLinkIfNeeded];
+        
+        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
+            [self.sheepClouds layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+            self.sheepCloudsXAxis.constant = self.view.frame.size.width;
+            [self.sheepClouds destroyDisplayLink];
+            self.sheepInMotion = NO;
+        }];
+    }
 }
 
 - (void) helicopterAnimation {
-    
-    self.randomizerInMotion = YES;
-    [self.helicopter startAnimating];
-    [UIView animateWithDuration:7 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.helicopterXAxis.constant = 600;
-        [self.helicopter layoutIfNeeded];
-        
-    } completion:^(BOOL finished) {
-        
-        self.helicopterXAxis.constant = 0;
-        [self.helicopter layoutIfNeeded];
-        [self.helicopter stopAnimating];
-        self.randomizerInMotion = NO;
-    }];
+    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleHelicopterAnimation) {
+        self.randomizerInMotion = YES;
+        [self.helicopter startAnimating];
+        [UIView animateWithDuration:7 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.helicopterXAxis.constant = 600;
+            [self.helicopter layoutIfNeeded];
+            
+        } completion:^(BOOL finished) {
+            
+            self.helicopterXAxis.constant = 0;
+            [self.helicopter layoutIfNeeded];
+            [self.helicopter stopAnimating];
+            self.randomizerInMotion = NO;
+        }];
+    }
 }
 
 - (void) planeAnimation {
-    
-    self.randomizerInMotion = YES;
-    
-    [UIView animateWithDuration:11 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.airplaneXAxis.constant = -575;
-        [self.airplane layoutIfNeeded];
+    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleAirplaneAnimation) {
+        self.randomizerInMotion = YES;
         
-    } completion:^(BOOL finished) {
-        
-        self.airplaneXAxis.constant = 0;
-        [self.airplane layoutIfNeeded];
-        self.randomizerInMotion = NO;
-    }];
+        [UIView animateWithDuration:11 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.airplaneXAxis.constant = -575;
+            [self.airplane layoutIfNeeded];
+            
+        } completion:^(BOOL finished) {
+            
+            self.airplaneXAxis.constant = 0;
+            [self.airplane layoutIfNeeded];
+            self.randomizerInMotion = NO;
+        }];
+    }
 }
 
 - (void) squirrelAnimation {
-    
-    CGFloat SquirrelBeginningDuration = 0.25;
-    CGFloat SquirrelEndingDuration = 0.8;
-    CGFloat SquirrelDampening = 0.4;
-    
-    self.randomizerInMotion = YES;
-    
-    [UIView animateWithDuration:SquirrelBeginningDuration
-                          delay:0
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelXAxis.constant = 50;
-                         self.squirrelYAxis.constant = -110;
-                         [self.squirrelLeft layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
-    
-    [UIView animateWithDuration:SquirrelBeginningDuration
-                          delay:0.2
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelRightXAxis.constant = -50;
-                         self.squirrelRightYAxis.constant = -170;
-                         [self.squirrelRight layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
-    
-    [UIView animateWithDuration:SquirrelBeginningDuration
-                          delay:0.3
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelRightAcornXAxis.constant = -50;
-                         self.squirrelRightAcornYAxis.constant = -310;
-                         [self.squirrelRightAcorn layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
-    
-    [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:3
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelRightXAxis.constant = 0;
-                         self.squirrelRightYAxis.constant = -160;
-                         [self.squirrelRight layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
+    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleSquirrelAnimation) {
+        CGFloat SquirrelBeginningDuration = 0.25;
+        CGFloat SquirrelEndingDuration = 0.8;
+        CGFloat SquirrelDampening = 0.4;
+        
+        self.randomizerInMotion = YES;
+        
+        [UIView animateWithDuration:SquirrelBeginningDuration
+                              delay:0
+             usingSpringWithDamping:SquirrelDampening
+              initialSpringVelocity:1
+                            options:0
+                         animations:^{
+                             self.squirrelXAxis.constant = 50;
+                             self.squirrelYAxis.constant = -110;
+                             [self.squirrelLeft layoutIfNeeded];
+                         } completion:^(BOOL finished) {}];
+        
+        [UIView animateWithDuration:SquirrelBeginningDuration
+                              delay:0.2
+             usingSpringWithDamping:SquirrelDampening
+              initialSpringVelocity:1
+                            options:0
+                         animations:^{
+                             self.squirrelRightXAxis.constant = -50;
+                             self.squirrelRightYAxis.constant = -170;
+                             [self.squirrelRight layoutIfNeeded];
+                         } completion:^(BOOL finished) {}];
+        
+        [UIView animateWithDuration:SquirrelBeginningDuration
+                              delay:0.3
+             usingSpringWithDamping:SquirrelDampening
+              initialSpringVelocity:1
+                            options:0
+                         animations:^{
+                             self.squirrelRightAcornXAxis.constant = -50;
+                             self.squirrelRightAcornYAxis.constant = -310;
+                             [self.squirrelRightAcorn layoutIfNeeded];
+                         } completion:^(BOOL finished) {}];
+        
+        [UIView animateWithDuration:SquirrelEndingDuration
+                              delay:3
+             usingSpringWithDamping:SquirrelDampening
+              initialSpringVelocity:1
+                            options:0
+                         animations:^{
+                             self.squirrelRightXAxis.constant = 0;
+                             self.squirrelRightYAxis.constant = -160;
+                             [self.squirrelRight layoutIfNeeded];
+                         } completion:^(BOOL finished) {}];
 
-    [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:3.1
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelXAxis.constant = 0;
-                         self.squirrelYAxis.constant = -100;
-                         [self.squirrelLeft layoutIfNeeded];
-                     } completion:^(BOOL finished) {}];
-    
-    [UIView animateWithDuration:SquirrelEndingDuration
-                          delay:3.2
-         usingSpringWithDamping:SquirrelDampening
-          initialSpringVelocity:1
-                        options:0
-                     animations:^{
-                         self.squirrelRightAcornXAxis.constant = 0;
-                         self.squirrelRightAcornYAxis.constant = -300;
-                         [self.squirrelRightAcorn layoutIfNeeded];
-                     } completion:^(BOOL finished) {
-                         self.randomizerInMotion = NO;
-                     }];
+        [UIView animateWithDuration:SquirrelEndingDuration
+                              delay:3.1
+             usingSpringWithDamping:SquirrelDampening
+              initialSpringVelocity:1
+                            options:0
+                         animations:^{
+                             self.squirrelXAxis.constant = 0;
+                             self.squirrelYAxis.constant = -100;
+                             [self.squirrelLeft layoutIfNeeded];
+                         } completion:^(BOOL finished) {}];
+        
+        [UIView animateWithDuration:SquirrelEndingDuration
+                              delay:3.2
+             usingSpringWithDamping:SquirrelDampening
+              initialSpringVelocity:1
+                            options:0
+                         animations:^{
+                             self.squirrelRightAcornXAxis.constant = 0;
+                             self.squirrelRightAcornYAxis.constant = -300;
+                             [self.squirrelRightAcorn layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             self.randomizerInMotion = NO;
+                         }];
+    }
 }
 
 - (void) showWeatherAnimations {
@@ -1133,6 +1141,8 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+
+
 
 # pragma mark - Navigation
 
