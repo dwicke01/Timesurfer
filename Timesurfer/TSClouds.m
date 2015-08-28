@@ -45,14 +45,11 @@
         } else if (weather.percentRainFloat >= 80) {
             [TSGraphics drawHeavyRainCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
-        } else if (weather.percentRainFloat >= 70) {
-            [TSGraphics drawHeavyCloudsHeavyRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
-            
-        } else if (weather.percentRainFloat >= 50) {
+        } else if (weather.percentRainFloat >= 60) {
             [TSGraphics drawHeavyCloudsMediumRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         } else if (weather.percentRainFloat >= 40) {
-            [TSGraphics drawHeavyCloudsLightRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
+            [TSGraphics drawHeavyCloudsMayRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         }
     }

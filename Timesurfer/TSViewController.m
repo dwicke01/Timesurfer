@@ -615,7 +615,7 @@
     
     [self.sheepClouds makeDisplayLinkIfNeeded];
     
-    [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:8 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
         [self.sheepClouds layoutIfNeeded];
     } completion:^(BOOL finished) {
