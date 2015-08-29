@@ -125,12 +125,16 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appEnteredForeground)
-                                                 name:@"appEnteredForeground" object:nil];
+                                                 name:@"appEnteredForeground"
+                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appEnteredBackground)
                                                  name:@"appEnteredBackground"
                                                object:nil];
+    //self.settingsDictionary = [[NSMutableDictionary alloc] initWithObjects:@[@YES, @YES, @YES, @YES, @YES, @NO] forKeys:@[]];
+    self.settingsManager = [[TSToggleSettingsManager alloc] init];
+    
     [self setupView];
 }
 
@@ -1142,6 +1146,18 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+
+
+# pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"SettingsSegueID"]) {
+        TSSettingsViewController *vc = segue.destinationViewController;
+        vc.settingsManager = self.settingsManager;
+    }
 }
 
 @end

@@ -1,15 +1,19 @@
+#import "TSSettingsViewController.h"
 #import <Masonry/Masonry.h>
 #import "TSSettingsViewController.h"
 #import "TSSettingsTableViewCell.h"
 #import "TSToggleSettingsManager.h"
+#import "TSGoogleCalendarManager.h"
+#import "GTMOAuth2ViewControllerTouch.h"
 
 @class TSViewController;
 
-@interface TSSettingsViewController () <SettingToggleDelegate>
+@interface TSSettingsViewController () <SettingToggleDelegate, GoogleAuthenticationViewControllerPresentationDelegate>
 
 @property (nonatomic, strong) UIVisualEffectView *visualEffectView;
 @property (nonatomic, strong) NSArray *settingsArray;
 @property (nonatomic, strong) NSDictionary *settingsDictionary;
+@property (nonatomic, strong) NSDictionary *settingsSwitch;
 
 @end
 
@@ -18,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupSettingsDictionaryAndArray];
+    [self setupSettingsDictionarySwitchAndArray];
     [self setupTapGesture];
     [self setupVisualEffectView];
 }
@@ -38,9 +42,27 @@
     [self.view addGestureRecognizer:recognizer];
 }
 
-- (void)setupSettingsDictionaryAndArray {
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.settingsManager saveEverything];
+    [super viewWillDisappear:animated];
+}
+
+- (void)setupSettingsDictionarySwitchAndArray {
     __weak TSSettingsViewController *weakSelf = self;
     self.settingsDictionary = @{
+                                  @"Squirrels" : @"toggleSquirrelAnimation",
+                                  @"Cats and Dogs" : @"toggleCatsAndDogsAnimation",
+                                  @"Sheep" : @"toggleSheepAnimation",
+                                  @"Airplane" : @"toggleAirplaneAnimation",
+                                  @"Helicopter" : @"toggleHelicopterAnimation",
+                                  @"All Animations" : @"toggleAllAnimations",
+                                  @"Use Google Calendar" : @"toggleGoogleCalendar"};
+    self.settingsSwitch = @{
                                 @"Squirrels" : ^{
                                     weakSelf.settingsManager.toggleSquirrelAnimation = !weakSelf.settingsManager.toggleSquirrelAnimation;
                                 },
@@ -50,7 +72,7 @@
                                 @"Sheep" : ^{
                                     weakSelf.settingsManager.toggleSheepAnimation = !weakSelf.settingsManager.toggleSheepAnimation;
                                 },
-                                @"Plane" : ^{
+                                @"Airplane" : ^{
                                     weakSelf.settingsManager.toggleAirplaneAnimation = !weakSelf.settingsManager.toggleAirplaneAnimation;
                                 },
                                 @"Helicopter" : ^{
@@ -59,7 +81,8 @@
                                 @"All Animations" : ^{
                                     weakSelf.settingsManager.toggleAllAnimations = !weakSelf.settingsManager.toggleAllAnimations;
                                 },
-                                @"Use Google Calendar" : ^{ weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
+                                @"Use Google Calendar" : ^{
+                                    weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
                                 }};
     self.settingsArray = [[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
@@ -71,11 +94,14 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TSSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"toggleSettingCell" forIndexPath:indexPath];
     cell.labelString = [self.settingsArray objectAtIndex:indexPath.row];
+    cell.delegate = self;
+    NSNumber *settingState = [self.settingsManager valueForKey:self.settingsDictionary[cell.labelString]];
+    cell.toggleAnimationSwitch.on = [settingState boolValue];
     return cell;
 }
 
 -(void)toggleSetting:(NSString *)setting {
-    void (^settingToggleBlock)() = self.settingsDictionary[setting];
+    void (^settingToggleBlock)() = self.settingsSwitch[setting];
     settingToggleBlock();
 }
 
@@ -93,6 +119,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)doMeAFavorAndPresentThisViewControllerNowWouldYou:(UIViewController *)controller {
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)thanksDearOneLastThingWouldYouKindlyDismissThatSameViewControllerForMe {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

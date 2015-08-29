@@ -11,4 +11,6 @@
 @property (nonatomic, assign) BOOL toggleSquirrelAnimation;
 @property (nonatomic, assign) BOOL toggleGoogleCalendar;
 
+-(void)saveEverything;
+
 @end

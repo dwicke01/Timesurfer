@@ -25,12 +25,19 @@
         NSDictionary *appDefaults  = [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], dateKey, nil];
         
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"tempInC"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"airplaneAnimation"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"allAnimations"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"catsAndDogsAnimation"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"helicopterAnimation"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"sheepAnimation"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"squirrelAnimation"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"googleCalendar"];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
-
+    
     return YES;
 }
 
