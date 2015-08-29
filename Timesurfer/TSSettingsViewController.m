@@ -35,6 +35,11 @@
     //self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.settingsManager saveEverything];
+    [super viewWillDisappear:animated];
+}
+
 - (void)setupSettingsDictionarySwitchAndArray {
     __weak TSSettingsViewController *weakSelf = self;
     self.settingsDictionary = @{
