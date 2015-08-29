@@ -290,6 +290,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		171550E11B922DE600AA9B97 /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				174983511B812C2300608C47 /* TSButton.h */,
+				174983521B812C2300608C47 /* TSButton.m */,
+				175E551B1B6D7B83002A7CAA /* TSSlider.h */,
+				175E551C1B6D7B83002A7CAA /* TSSlider.m */,
+			);
+			name = Subclasses;
+			sourceTree = "<group>";
+		};
 		174983421B7FE4E200608C47 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +354,14 @@
 				1780FAF61B3C75E700C31748 /* TSWeatherManager.m */,
 				1780FAF81B3C75FE00C31748 /* TSWeather.h */,
 				1780FAF91B3C75FE00C31748 /* TSWeather.m */,
+				FA48127E1B852BCD002F55FC /* TSEventManager.h */,
+				FA48127F1B852BCD002F55FC /* TSEventManager.m */,
+				FA4812821B852BF9002F55FC /* TSEvent.h */,
+				FA4812831B852BF9002F55FC /* TSEvent.m */,
+				FA4812841B852BF9002F55FC /* TSGoogleCalendarManager.h */,
+				FA4812851B852BF9002F55FC /* TSGoogleCalendarManager.m */,
+				FA2C01701B8FD4C5005EB262 /* TSToggleSettingsManager.h */,
+				FA2C01711B8FD4C5005EB262 /* TSToggleSettingsManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -449,6 +468,7 @@
 				174983421B7FE4E200608C47 /* View Controllers */,
 				174983441B7FE50F00608C47 /* Model */,
 				174983431B7FE4F500608C47 /* Views */,
+				171550E11B922DE600AA9B97 /* Subclasses */,
 				FA22DAC11B41DEEE0072005E /* Supporting Files */,
 			);
 			path = TimesurferFramework;
@@ -460,21 +480,9 @@
 				17DB0BFD1B3BAA690001810D /* AppDelegate.h */,
 				17DB0BFE1B3BAA690001810D /* AppDelegate.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
-				FA48127E1B852BCD002F55FC /* TSEventManager.h */,
-				FA48127F1B852BCD002F55FC /* TSEventManager.m */,
-				FA4812821B852BF9002F55FC /* TSEvent.h */,
-				FA4812831B852BF9002F55FC /* TSEvent.m */,
-				FA4812841B852BF9002F55FC /* TSGoogleCalendarManager.h */,
-				FA4812851B852BF9002F55FC /* TSGoogleCalendarManager.m */,
-				174983511B812C2300608C47 /* TSButton.h */,
-				174983521B812C2300608C47 /* TSButton.m */,
-				175E551B1B6D7B83002A7CAA /* TSSlider.h */,
-				175E551C1B6D7B83002A7CAA /* TSSlider.m */,
 				176DA4541B5D9BE9006190BD /* TSConstants.h */,
 				FA2B14341B5DB5FC008878C8 /* TSConstants.m */,
 				FA22DAC21B41DEEE0072005E /* Info.plist */,
-				FA2C01701B8FD4C5005EB262 /* TSToggleSettingsManager.h */,
-				FA2C01711B8FD4C5005EB262 /* TSToggleSettingsManager.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

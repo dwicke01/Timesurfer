@@ -1,10 +1,10 @@
 #import "TSSettingsViewController.h"
 #import <Masonry/Masonry.h>
+#import "TSSettingsViewController.h"
 #import "TSSettingsTableViewCell.h"
 #import "TSToggleSettingsManager.h"
 #import "TSGoogleCalendarManager.h"
 #import "GTMOAuth2ViewControllerTouch.h"
-
 
 @class TSViewController;
 
@@ -22,12 +22,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissVC)];
+    [self setupSettingsDictionaryAndArray];
+    [self setupTapGesture];
+    [self setupVisualEffectView];
+}
+
+- (void) setupVisualEffectView {
+    self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
     
-    [self.view addGestureRecognizer:recognizer];
+    [self.view insertSubview:self.visualEffectView atIndex:0];
+    
+    [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0);
+    }];
+}
 
     [self setupSettingsDictionarySwitchAndArray];
     
+- (void) setupTapGesture {
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
+    [self.view addGestureRecognizer:recognizer];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -72,7 +86,7 @@
                                 @"Use Google Calendar" : ^{
                                     weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
                                 }};
-    self.settingsArray = [self.settingsDictionary allKeys];
+    self.settingsArray = [[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -123,10 +137,17 @@
     settingToggleBlock();
 }
 
-- (IBAction)dismissVC {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+- (void)tapHandler:(UITapGestureRecognizer *)sender {
+    
+    UIView *containerView = [sender view];
+   
+    // Shrink tappable area to prevent dismissing settings when tapping switches
+    CGRect bounds = CGRectMake(0, 0, containerView.bounds.size.width - 100, containerView.bounds.size.height);
+    
+    if (CGRectContainsPoint(bounds, [sender locationInView:containerView])) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

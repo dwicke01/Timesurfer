@@ -105,7 +105,6 @@
 
 @property (nonatomic, strong) TSEventManager *eventManager;
 
-//@property (nonatomic, strong) NSMutableDictionary *settingsDictionary;
 @property (nonatomic, strong) TSToggleSettingsManager *settingsManager;
 
 @end
