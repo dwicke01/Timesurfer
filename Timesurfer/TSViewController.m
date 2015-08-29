@@ -1144,21 +1144,4 @@
     return newImage;
 }
 
-
-
-# pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"SettingsSegueID"]) {
-        TSSettingsViewController *vc = segue.destinationViewController;
-        
-        if (self.dayTimeGradient.alpha < 0.5) {
-            vc.darkTransparency = YES;
-        } else {
-            vc.darkTransparency = NO;
-        }
-    }
-}
-
 @end

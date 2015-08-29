@@ -1,8 +1,7 @@
-#import "TSSettingsViewController.h"
 #import <Masonry/Masonry.h>
+#import "TSSettingsViewController.h"
 #import "TSSettingsTableViewCell.h"
 #import "TSToggleSettingsManager.h"
-
 
 @class TSViewController;
 
@@ -19,11 +18,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissVC)];
-    
-    [self.view addGestureRecognizer:recognizer];
-
     [self setupSettingsDictionaryAndArray];
+    [self setupTapGesture];
+    [self setupVisualEffectView];
+}
+
+- (void) setupVisualEffectView {
+    self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+    
+    [self.view insertSubview:self.visualEffectView atIndex:0];
+    
+    [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0);
+    }];
+}
+
+- (void) setupTapGesture {
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
+    [self.view addGestureRecognizer:recognizer];
 }
 
 - (void)setupSettingsDictionaryAndArray {
@@ -38,7 +50,7 @@
                                 @"Sheep" : ^{
                                     weakSelf.settingsManager.toggleSheepAnimation = !weakSelf.settingsManager.toggleSheepAnimation;
                                 },
-                                @"Airplane" : ^{
+                                @"Plane" : ^{
                                     weakSelf.settingsManager.toggleAirplaneAnimation = !weakSelf.settingsManager.toggleAirplaneAnimation;
                                 },
                                 @"Helicopter" : ^{
@@ -49,37 +61,7 @@
                                 },
                                 @"Use Google Calendar" : ^{ weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
                                 }};
-    self.settingsArray = [self.settingsDictionary allKeys];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-    
-    if (self.darkTransparency) {
-        
-        [self.visualEffectView removeFromSuperview];
-        self.visualEffectView = nil;
-        
-        self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-        
-        [self.view insertSubview:self.visualEffectView atIndex:0];
-        
-        [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(@0);
-        }];
-        
-    } else {
-        [self.visualEffectView removeFromSuperview];
-        self.visualEffectView = nil;
-        
-        self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        
-        [self.view insertSubview:self.visualEffectView atIndex:0];
-        
-        [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(@0);
-        }];
-    }
+    self.settingsArray = [[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -97,10 +79,17 @@
     settingToggleBlock();
 }
 
-- (IBAction)dismissVC {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+- (void)tapHandler:(UITapGestureRecognizer *)sender {
+    
+    UIView *containerView = [sender view];
+   
+    // Shrink tappable area to prevent dismissing settings when tapping switches
+    CGRect bounds = CGRectMake(0, 0, containerView.bounds.size.width - 100, containerView.bounds.size.height);
+    
+    if (CGRectContainsPoint(bounds, [sender locationInView:containerView])) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
