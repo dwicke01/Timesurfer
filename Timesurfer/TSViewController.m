@@ -140,10 +140,6 @@
     [self populateDateLabels];
     
     [self.locationManager startUpdatingLocation];
-    
-    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]){
-        [self.locationManager startMonitoringSignificantLocationChanges];
-    }
 }
 
 - (void)appEnteredBackground {
@@ -458,7 +454,11 @@
     
     if ([self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
         UIImageView *imageView = [self valueForKey:@"weatherImageView"];
-        imageView.image = [self imageWithImage:[weather weatherImage] scaledToSize:imageView.bounds.size]; //[weather weatherImage];
+        
+        CGFloat aspectRatio = ((UIImage *)[weather weatherImage]).size.width / ((UIImage *)[weather weatherImage]).size.height ;
+        
+        imageView.image = [self imageWithImage:[weather weatherImage] scaledToSize:CGSizeMake(imageView.bounds.size.width, (imageView.bounds.size.width)/aspectRatio)];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;//
     }
     
     [self updateGradient];
@@ -1138,7 +1138,7 @@
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(2, 0, newSize.width, newSize.height)];
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
