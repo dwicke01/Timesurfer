@@ -2,11 +2,13 @@
 #import <Masonry/Masonry.h>
 #import "TSSettingsTableViewCell.h"
 #import "TSToggleSettingsManager.h"
+#import "TSGoogleCalendarManager.h"
+#import "GTMOAuth2ViewControllerTouch.h"
 
 
 @class TSViewController;
 
-@interface TSSettingsViewController () <SettingToggleDelegate>
+@interface TSSettingsViewController () <SettingToggleDelegate, GoogleAuthenticationViewControllerPresentationDelegate>
 
 @property (nonatomic, strong) UIVisualEffectView *visualEffectView;
 @property (nonatomic, strong) NSArray *settingsArray;
@@ -24,6 +26,12 @@
     [self.view addGestureRecognizer:recognizer];
 
     [self setupSettingsDictionaryAndArray];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
 }
 
 - (void)setupSettingsDictionaryAndArray {
@@ -104,6 +112,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)doMeAFavorAndPresentThisViewControllerNowWouldYou:(UIViewController *)controller {
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)thanksDearOneLastThingWouldYouKindlyDismissThatSameViewControllerForMe {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

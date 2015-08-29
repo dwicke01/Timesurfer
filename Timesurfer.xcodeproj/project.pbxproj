@@ -763,7 +763,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Timesurfer/Pods-Timesurfer-resources.sh\"\n\"${SRCROOT}/Pods/Target Support Files/Pods-TimesurferFramework/Pods-TimesurferFramework-resources.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		3BD958E00F367287F7B75F40 /* Check Pods Manifest.lock */ = {

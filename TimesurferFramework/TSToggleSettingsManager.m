@@ -18,7 +18,7 @@
         _toggleHelicopterAnimation = YES;
         _toggleSheepAnimation = YES;
         _toggleSquirrelAnimation = YES;
-        _toggleGoogleCalendar = YES;
+        _toggleGoogleCalendar = NO;
     }
     return self;
 }
