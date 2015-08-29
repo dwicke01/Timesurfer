@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupSettingsDictionaryAndArray];
+    [self setupSettingsDictionarySwitchAndArray];
     [self setupTapGesture];
     [self setupVisualEffectView];
 }
@@ -37,8 +37,6 @@
     }];
 }
 
-    [self setupSettingsDictionarySwitchAndArray];
-    
 - (void) setupTapGesture {
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
     [self.view addGestureRecognizer:recognizer];
@@ -87,36 +85,6 @@
                                     weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
                                 }};
     self.settingsArray = [[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-    
-    if (self.darkTransparency) {
-        
-        [self.visualEffectView removeFromSuperview];
-        self.visualEffectView = nil;
-        
-        self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-        
-        [self.view insertSubview:self.visualEffectView atIndex:0];
-        
-        [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(@0);
-        }];
-        
-    } else {
-        [self.visualEffectView removeFromSuperview];
-        self.visualEffectView = nil;
-        
-        self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        
-        [self.view insertSubview:self.visualEffectView atIndex:0];
-        
-        [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(@0);
-        }];
-    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

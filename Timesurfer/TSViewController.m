@@ -1157,11 +1157,6 @@
     if ([segue.identifier isEqualToString:@"SettingsSegueID"]) {
         TSSettingsViewController *vc = segue.destinationViewController;
         vc.settingsManager = self.settingsManager;
-        if (self.dayTimeGradient.alpha < 0.5) {
-            vc.darkTransparency = YES;
-        } else {
-            vc.darkTransparency = NO;
-        }
     }
 }
 
