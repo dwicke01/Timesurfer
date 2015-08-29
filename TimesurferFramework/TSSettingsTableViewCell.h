@@ -17,6 +17,7 @@
 
 @interface TSSettingsTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UISwitch *toggleAnimationSwitch;
 @property (nonatomic, weak) id<SettingToggleDelegate> delegate;
 @property (nonatomic, strong) NSString *labelString;
 

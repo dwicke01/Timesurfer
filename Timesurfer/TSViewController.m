@@ -105,6 +105,7 @@
 
 @property (nonatomic, strong) TSEventManager *eventManager;
 
+//@property (nonatomic, strong) NSMutableDictionary *settingsDictionary;
 @property (nonatomic, strong) TSToggleSettingsManager *settingsManager;
 
 @end
@@ -125,12 +126,16 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appEnteredForeground)
-                                                 name:@"appEnteredForeground" object:nil];
+                                                 name:@"appEnteredForeground"
+                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appEnteredBackground)
                                                  name:@"appEnteredBackground"
                                                object:nil];
+    //self.settingsDictionary = [[NSMutableDictionary alloc] initWithObjects:@[@YES, @YES, @YES, @YES, @YES, @NO] forKeys:@[]];
+    self.settingsManager = [[TSToggleSettingsManager alloc] init];
+    
     [self setupView];
 }
 
@@ -1152,7 +1157,7 @@
     
     if ([segue.identifier isEqualToString:@"SettingsSegueID"]) {
         TSSettingsViewController *vc = segue.destinationViewController;
-        
+        vc.settingsManager = self.settingsManager;
         if (self.dayTimeGradient.alpha < 0.5) {
             vc.darkTransparency = YES;
         } else {

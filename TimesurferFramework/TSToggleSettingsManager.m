@@ -19,6 +19,7 @@
         _toggleSheepAnimation = YES;
         _toggleSquirrelAnimation = YES;
         _toggleGoogleCalendar = NO;
+        NSLog(@"%@", self);
     }
     return self;
 }

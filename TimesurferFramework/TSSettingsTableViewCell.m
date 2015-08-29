@@ -11,7 +11,6 @@
 @interface TSSettingsTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *settingTypeLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *toggleAnimationSwitch;
 
 @end
 
