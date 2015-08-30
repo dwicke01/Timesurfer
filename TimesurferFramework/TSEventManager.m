@@ -108,7 +108,7 @@ static TSEventManager *_sharedEventManager;
 - (NSDate*) previousHourDate:(NSDate*)inDate{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components: NSCalendarUnitEra|NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate: inDate];
-    [comps setHour: [comps hour]+1]; //NSDateComponents handles rolling over between days, months, years, etc
+    //[comps setHour: [comps hour]]; //NSDateComponents handles rolling over between days, months, years, etc
     return [calendar dateFromComponents:comps];
 }
 
@@ -117,10 +117,10 @@ static TSEventManager *_sharedEventManager;
         [self fetchEvents];
     }
     if (_eventsArray) {
-        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970];
+        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
         NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
-            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] >= desiredTimeInterval;
+            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
         }];
         NSArray *filteredEvents = [_eventsArray filteredArrayUsingPredicate:pred];
         if ([filteredEvents count] > 0) {
