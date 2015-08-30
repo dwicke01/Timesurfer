@@ -1,6 +1,12 @@
 
 #import "TSToggleSettingsManager.h"
 
+@interface TSToggleSettingsManager ()
+
+
+
+@end
+
 @implementation TSToggleSettingsManager
 
 -(instancetype)init {

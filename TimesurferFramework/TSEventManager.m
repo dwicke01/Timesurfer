@@ -3,7 +3,9 @@
 #import "TSEvent.h"
 
 @implementation TSEventManager {
-    NSMutableArray *_eventsArray;
+    NSMutableArray *_localCalendarEventsArray;
+    NSArray *_googleCalendarEventsArray;
+    BOOL _useGoogleCalendar;
 }
 
 static TSEventManager *_sharedEventManager;
@@ -23,7 +25,7 @@ static TSEventManager *_sharedEventManager;
         self.eventStore = [[EKEventStore alloc] init];
         [self requestAccessToEvents];
 
-        _eventsArray = [[NSMutableArray alloc] init];
+        _localCalendarEventsArray = [[NSMutableArray alloc] init];
         [self fetchEvents];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -37,6 +39,9 @@ static TSEventManager *_sharedEventManager;
             // Set the default value.
             self.eventsAccessGranted = NO;
         }
+        
+        _useGoogleCalendar = NO;
+        _googleCalendarEventsArray = @[];
     }
     return self;
 }
@@ -96,7 +101,7 @@ static TSEventManager *_sharedEventManager;
     NSArray *ekEventsArray = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
     
     for (EKEvent *event in ekEventsArray) {
-        [_eventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
+        [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
     }
     
 //    EKEvent *event = _eventsArray[0];
@@ -113,22 +118,36 @@ static TSEventManager *_sharedEventManager;
 }
 
 -(NSString*)eventForHourAtIndex:(NSUInteger)index {
-    if (!_eventsArray) {
-        [self fetchEvents];
+    NSArray *useThisCalendarArray;
+    if (_useGoogleCalendar) {
+        useThisCalendarArray = _googleCalendarEventsArray;
     }
-    if (_eventsArray) {
-        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
-        NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-            TSEvent *event = evaluatedObject;
-            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
-        }];
-        NSArray *filteredEvents = [_eventsArray filteredArrayUsingPredicate:pred];
-        if ([filteredEvents count] > 0) {
-            return [filteredEvents[0] description];
+    else {
+        if (!_localCalendarEventsArray) {
+            [self fetchEvents];
         }
-        //return [_eventsArray[index] description];
+        useThisCalendarArray = _localCalendarEventsArray;
     }
+    //if (_localCalendarEventsArray) {
+    NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
+    NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        TSEvent *event = evaluatedObject;
+        return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
+    }];
+    NSArray *filteredEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
+    if ([filteredEvents count] > 0) {
+        return [filteredEvents[0] description];
+    }
+        //return [_eventsArray[index] description];
+    //}
     return @"";
 }
 
+-(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents {
+    _googleCalendarEventsArray = googleCalendarEvents;
+}
+
+-(void)toggleGoogleCalendar {
+    _useGoogleCalendar = !_useGoogleCalendar;
+}
 @end

@@ -1,4 +1,5 @@
-
+#import "TSEventManager.h"
+#import "TSEvent.h"
 #import "TSGoogleCalendarManager.h"
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "GTLCalendar.h"
@@ -24,7 +25,7 @@ static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
         [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                               clientID:kClientID
                                                           clientSecret:kClientSecret];
-        [self authorize];
+        //[self authorize];
     }
     return self;
 }
@@ -42,15 +43,15 @@ static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
     }
 }
 
-// Construct a query and get a list of upcoming events from the user calendar. Display the
-// start dates and event summaries in the UITextView.
+// Construct a query and get a list of upcoming events from the user calendar.
 - (void)fetchEvents {
     GTLQueryCalendar *query = [GTLQueryCalendar queryForEventsListWithCalendarId:@"primary"];
-    query.maxResults = 10;
     query.timeMin = [GTLDateTime dateTimeWithDate:[NSDate date]
                                          timeZone:[NSTimeZone localTimeZone]];;
     query.singleEvents = YES;
     query.orderBy = kGTLCalendarOrderByStartTime;
+    query.timeMax = [GTLDateTime dateTimeWithDate:[NSDate dateWithTimeIntervalSinceNow:24 * 60 * 60]
+                                         timeZone:[NSTimeZone localTimeZone]];
     
     [self.service executeQuery:query
                       delegate:self
@@ -63,22 +64,29 @@ static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
     if (error == nil) {
         NSMutableString *eventString = [[NSMutableString alloc] init];
         if (events.items.count > 0) {
-            [eventString appendString:@"Upcoming 10 events:\n"];
+            TSEventManager *eventManager = [TSEventManager sharedEventManger];
+            NSMutableArray *tsEvents = [@[] mutableCopy];
             for (GTLCalendarEvent *event in events) {
                 GTLDateTime *start = event.start.dateTime ?: event.start.date;
-                NSString *startString =
-                [NSDateFormatter localizedStringFromDate:[start date]
+                NSString *startString = [NSDateFormatter localizedStringFromDate:[start date]   
                                                dateStyle:NSDateFormatterShortStyle
                                                timeStyle:NSDateFormatterShortStyle];
+                
                 [eventString appendFormat:@"%@ - %@\n", startString, event.summary];
+                
+                TSEvent *tsEvent = [[TSEvent alloc] initWithTitle:event.summary startTime:event.start.dateTime.date endTime:event.end.dateTime.date location:event.location];
+                [tsEvents addObject:tsEvent];
             }
+            [eventManager addGoogleCalendarEvents:tsEvents];
         } else {
             [eventString appendString:@"No upcoming events found."];
         }
         NSLog(@"%@", eventString);
         //self.output.text = eventString;
     } else {
-        [self showAlert:@"Error" message:error.localizedDescription];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];   ///// UNTESTED!!!!!!!! /////////
+        [self.delegate doMeAFavorAndPresentThisViewControllerNowWouldYou:alert];
+        //[self showAlert:@"Error" message:error.localizedDescription];
     }
 }
 
@@ -110,7 +118,6 @@ static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
     else {
         self.service.authorizer = authResult;
         [self.delegate thanksDearOneLastThingWouldYouKindlyDismissThatSameViewControllerForMe];
-        //[self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

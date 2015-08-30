@@ -9,5 +9,7 @@
 
 +(TSEventManager*)sharedEventManger;
 -(NSString*)eventForHourAtIndex:(NSUInteger)index;
+-(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents;
+-(void)toggleGoogleCalendar;
 
 @end

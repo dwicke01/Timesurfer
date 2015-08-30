@@ -15,5 +15,6 @@
 @property (nonatomic, weak) id<GoogleAuthenticationViewControllerPresentationDelegate> delegate;
 
 -(instancetype)initWithDelegate:(id<GoogleAuthenticationViewControllerPresentationDelegate>)delegate;
+-(void)authorize;
 
 @end

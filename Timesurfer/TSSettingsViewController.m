@@ -4,6 +4,7 @@
 #import "TSSettingsTableViewCell.h"
 #import "TSToggleSettingsManager.h"
 #import "TSGoogleCalendarManager.h"
+#import "TSEventManager.h"
 #import "GTMOAuth2ViewControllerTouch.h"
 
 @class TSViewController;
@@ -14,6 +15,7 @@
 @property (nonatomic, strong) NSArray *settingsArray;
 @property (nonatomic, strong) NSDictionary *settingsDictionary;
 @property (nonatomic, strong) NSDictionary *settingsSwitch;
+@property (nonatomic, assign) BOOL isSignedInToGoogle;
 
 @end
 
@@ -25,6 +27,8 @@
     [self setupSettingsDictionarySwitchAndArray];
     [self setupTapGesture];
     [self setupVisualEffectView];
+    self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
+    _isSignedInToGoogle = NO;
 }
 
 - (void) setupVisualEffectView {
@@ -82,6 +86,12 @@
                                     weakSelf.settingsManager.toggleAllAnimations = !weakSelf.settingsManager.toggleAllAnimations;
                                 },
                                 @"Use Google Calendar" : ^{
+                                    if (!self.isSignedInToGoogle) {
+                                        [self.googleCalendarManager authorize];
+                                        self.isSignedInToGoogle = YES;
+                                    }
+                                    TSEventManager *eventManager = [TSEventManager sharedEventManger];
+                                    [eventManager toggleGoogleCalendar];
                                     weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
                                 }};
     self.settingsArray = [[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
