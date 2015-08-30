@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *weatherSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunriseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *calendarEventLabel;
 
@@ -173,7 +172,13 @@
 
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
+    
+    if (currentTime >= 4) {
+        self.calendarEventLabel.text = @"";
+    } else {
     self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
+    }
+    
     [self updateWeatherLabelsWithIndex:currentTime];
 }
 
@@ -444,8 +449,6 @@
         
         [self updateTemperatureLabelUnits];
         
-        self.weatherSummaryLabel.text = @"";
-
         if (weather.percentRainFloat >= 50) {
             self.percentPrecip.text = [NSString stringWithFormat:@"%@ ☂",weather.percentRainString];
         } else {
@@ -1089,7 +1092,7 @@
         self.locationLabel.font = [self.locationLabel.font fontWithSize:34];
         self.timeLabel.font = [self.timeLabel.font fontWithSize:42];
         self.percentPrecip.font = [self.percentPrecip.font fontWithSize:34];
-        self.weatherSummaryLabel.font = [self.percentPrecip.font fontWithSize:16];
+        self.calendarEventLabel.font = [self.percentPrecip.font fontWithSize:16];
         self.temperatureYAxis.constant = 14;
     }
 }

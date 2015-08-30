@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "462574979.502823"
+            timestampString = "462636548.406957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1022"
-            endingLineNumber = "1022"
+            startingLineNumber = "1025"
+            endingLineNumber = "1025"
             landmarkName = "-updateLocationNameWithLocation:"
             landmarkType = "5">
          </BreakpointContent>
