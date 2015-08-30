@@ -396,20 +396,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRM-hN-Z1h">
-                                <rect key="frame" x="116" y="172" width="142" height="50"/>
+                                <rect key="frame" x="116" y="179" width="142" height="50"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="42"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather data powered by Forecaster" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaL-fw-e34">
-                                <rect key="frame" x="52" y="230" width="272" height="21"/>
+                                <rect key="frame" x="52" y="237" width="272" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tc2-m2-IB0">
-                                <rect key="frame" x="16" y="270" width="343" height="397"/>
+                                <rect key="frame" x="16" y="277" width="343" height="350"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="JiV-bl-wt2"/>
+                                </constraints>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -456,10 +459,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PRM-hN-Z1h" firstAttribute="centerX" secondItem="PXo-aC-1WE" secondAttribute="centerX" id="59M-yp-9AA"/>
-                            <constraint firstItem="tc2-m2-IB0" firstAttribute="top" secondItem="lWo-ZT-zmV" secondAttribute="bottom" constant="250" id="EDJ-we-QJz"/>
+                            <constraint firstItem="8jw-fs-byA" firstAttribute="top" secondItem="tc2-m2-IB0" secondAttribute="bottom" constant="40" id="Eru-ht-sp8"/>
                             <constraint firstItem="EaL-fw-e34" firstAttribute="centerX" secondItem="PXo-aC-1WE" secondAttribute="centerX" id="KQQ-VQ-Lnx"/>
                             <constraint firstItem="EaL-fw-e34" firstAttribute="top" secondItem="PRM-hN-Z1h" secondAttribute="bottom" constant="8" id="LhP-hR-Irz"/>
-                            <constraint firstItem="8jw-fs-byA" firstAttribute="bottom" secondItem="tc2-m2-IB0" secondAttribute="bottom" id="NgP-bc-Uz6"/>
                             <constraint firstItem="tc2-m2-IB0" firstAttribute="top" secondItem="EaL-fw-e34" secondAttribute="bottom" constant="20" id="W6b-lV-fXy"/>
                             <constraint firstItem="tc2-m2-IB0" firstAttribute="leading" secondItem="PXo-aC-1WE" secondAttribute="leadingMargin" id="mJU-wg-nxH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tc2-m2-IB0" secondAttribute="trailing" id="phI-7A-v8o"/>
