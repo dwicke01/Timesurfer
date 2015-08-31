@@ -7,6 +7,7 @@
 //
 
 #import "TSGoogleAuthenticationViewController.h"
+#import <Masonry/Masonry.h>
 
 @interface TSGoogleAuthenticationViewController ()
 
@@ -16,12 +17,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self setUpNavigation];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@   {NSForegroundColorAttributeName : [UIColor blueColor]}];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    UINavigationBar *naviBarObj = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 63)];
+    [self.view addSubview:naviBarObj];
+    
+    UIView *superview = self.view;
+    [naviBarObj mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(superview.mas_left);
+        make.right.equalTo(superview.mas_right);
+        make.height.equalTo(@63);
+    }];
+    
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Cancel", nil)] style:UIBarButtonItemStylePlain target:self
+                                                                 action:@selector(cancelGdriveSignIn:)];
+    UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@"Google Calendar"];
+    navigItem.rightBarButtonItem = cancelItem;
+    naviBarObj.items = [NSArray arrayWithObjects: navigItem,nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)cancelGdriveSignIn:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^(void){}];
 }
 
 /*
