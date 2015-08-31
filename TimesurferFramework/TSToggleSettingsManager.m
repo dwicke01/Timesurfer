@@ -17,7 +17,7 @@
         _toggleHelicopterAnimation = [[NSUserDefaults standardUserDefaults] boolForKey:@"helicopterAnimation"];
         _toggleSheepAnimation = [[NSUserDefaults standardUserDefaults] boolForKey:@"sheepAnimation"];
         _toggleSquirrelAnimation = [[NSUserDefaults standardUserDefaults] boolForKey:@"squirrelAnimation"];
-        _toggleGoogleCalendar = [[NSUserDefaults standardUserDefaults] boolForKey:@"airplaneAnimation"];
+        _toggleGoogleCalendar = [[NSUserDefaults standardUserDefaults] boolForKey:@"googleCalendar"];
     }
     return self;
 }
