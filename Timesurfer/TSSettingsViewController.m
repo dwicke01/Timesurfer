@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSDictionary *settingsDictionary;
 @property (nonatomic, strong) NSDictionary *settingsSwitch;
 @property (nonatomic, assign) BOOL isSignedInToGoogle;
+@property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
 
 @end
 
@@ -84,6 +85,18 @@
                                 },
                                 @"All Animations" : ^{
                                     weakSelf.settingsManager.toggleAllAnimations = !weakSelf.settingsManager.toggleAllAnimations;
+                                    BOOL settingForAllAnimations = weakSelf.settingsManager.toggleAllAnimations;
+                                    weakSelf.settingsManager.toggleAirplaneAnimation = settingForAllAnimations;
+                                    weakSelf.settingsManager.toggleCatsAndDogsAnimation = settingForAllAnimations;
+                                    weakSelf.settingsManager.toggleHelicopterAnimation = settingForAllAnimations;
+                                    weakSelf.settingsManager.toggleSheepAnimation = settingForAllAnimations;
+                                    weakSelf.settingsManager.toggleSquirrelAnimation = settingForAllAnimations;
+                                    
+                                    for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
+                                        if (![cell.labelString isEqualToString:@"Use Google Calendar"]) {
+                                            cell.toggleAnimationSwitch.on = settingForAllAnimations;
+                                        }
+                                    }
                                 },
                                 @"Use Google Calendar" : ^{
                                     if (!self.isSignedInToGoogle) {
