@@ -3,6 +3,7 @@
 #import "TSGoogleCalendarManager.h"
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "GTLCalendar.h"
+#import "TSGoogleAuthenticationViewController.h"
 
 static NSString *const kKeychainItemName = @"Google Calendar API";
 static NSString *const kClientID = @"733207349789-1582sd7en82s0ugn4ce8p059rla9q8fh.apps.googleusercontent.com";
@@ -21,10 +22,11 @@ static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
         // Initialize the Google Calendar API service & load existing credentials from the keychain if available.
         self.delegate = delegate;
         self.service = [[GTLServiceCalendar alloc] init];
-        self.service.authorizer =
-        [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+        //[self.service.authorize];
+        self.service.authorizer = [TSGoogleAuthenticationViewController authForGoogleFromKeychainForName:kKeychainItemName
                                                               clientID:kClientID
                                                           clientSecret:kClientSecret];
+        
         //[self authorize];
     }
     return self;
@@ -94,9 +96,9 @@ static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
 
 // Creates the auth controller for authorizing access to Google Calendar API.
 - (GTMOAuth2ViewControllerTouch *)createAuthController {
-    GTMOAuth2ViewControllerTouch *authController;
+    TSGoogleAuthenticationViewController *authController;
     NSArray *scopes = [NSArray arrayWithObjects:kGTLAuthScopeCalendarReadonly, nil];
-    authController = [[GTMOAuth2ViewControllerTouch alloc]
+    authController = [[TSGoogleAuthenticationViewController alloc]
                       initWithScope:[scopes componentsJoinedByString:@" "]
                       clientID:kClientID
                       clientSecret:kClientSecret

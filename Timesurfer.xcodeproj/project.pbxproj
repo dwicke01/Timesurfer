@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172AF9C11B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 172AF9BF1B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h */; };
+		172AF9C21B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */; };
 		174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1749833E1B7FE4D500608C47 /* TSDailyViewController.h */; };
 		174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1749833F1B7FE4D500608C47 /* TSDailyViewController.m */; };
 		174983471B7FF5E600608C47 /* TSSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 174983451B7FF5E600608C47 /* TSSettingsViewController.h */; };
@@ -154,6 +156,8 @@
 /* Begin PBXFileReference section */
 		1704BDD51B52FCFB00E0DFEF /* TSClouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSClouds.h; path = Timesurfer/TSClouds.h; sourceTree = SOURCE_ROOT; };
 		1704BDD61B52FCFB00E0DFEF /* TSClouds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSClouds.m; path = Timesurfer/TSClouds.m; sourceTree = SOURCE_ROOT; };
+		172AF9BF1B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGoogleAuthenticationViewController.h; sourceTree = "<group>"; };
+		172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGoogleAuthenticationViewController.m; sourceTree = "<group>"; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 				174983461B7FF5E600608C47 /* TSSettingsViewController.m */,
 				177D72BB1B94EEC4000368AB /* TSLocationSearchViewController.h */,
 				177D72BC1B94EEC4000368AB /* TSLocationSearchViewController.m */,
+				172AF9BF1B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h */,
+				172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 				FA2B14361B5DBC17008878C8 /* TSClouds.h in Headers */,
 				FA4812801B852BCD002F55FC /* TSEventManager.h in Headers */,
 				FAECE4FA1B41F6F900993A63 /* TSViewController.h in Headers */,
+				172AF9C11B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h in Headers */,
 				FA2C016E1B8E4D15005EB262 /* TSSettingsTableViewCell.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
@@ -903,6 +910,7 @@
 				FA2C016F1B8E4D15005EB262 /* TSSettingsTableViewCell.m in Sources */,
 				FA2C01731B8FD4C5005EB262 /* TSToggleSettingsManager.m in Sources */,
 				FA4812871B852BF9002F55FC /* TSEvent.m in Sources */,
+				172AF9C21B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m in Sources */,
 				1749834C1B7FF78600608C47 /* TSSunsetGradient.m in Sources */,
 				174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */,
 			);
