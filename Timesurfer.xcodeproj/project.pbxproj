@@ -11,6 +11,8 @@
 		172AF9C21B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */; };
 		172AF9C41B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */; };
 		172AF9C71B974D0600C9F4D9 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */; };
+		172AF9CD1B97518C00C9F4D9 /* UIImage+ResizeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 172AF9CB1B97518C00C9F4D9 /* UIImage+ResizeImage.h */; };
+		172AF9CE1B97518C00C9F4D9 /* UIImage+ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9CC1B97518C00C9F4D9 /* UIImage+ResizeImage.m */; };
 		174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1749833E1B7FE4D500608C47 /* TSDailyViewController.h */; };
 		174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1749833F1B7FE4D500608C47 /* TSDailyViewController.m */; };
 		174983471B7FF5E600608C47 /* TSSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 174983451B7FF5E600608C47 /* TSSettingsViewController.h */; };
@@ -161,6 +163,8 @@
 		172AF9BF1B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGoogleAuthenticationViewController.h; sourceTree = "<group>"; };
 		172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGoogleAuthenticationViewController.m; sourceTree = "<group>"; };
 		172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = "../Pods/gtm-oauth2/Source/Touch/GTMOAuth2ViewTouch.xib"; sourceTree = "<group>"; };
+		172AF9CB1B97518C00C9F4D9 /* UIImage+ResizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ResizeImage.h"; path = "Timesurfer/UIImage+ResizeImage.h"; sourceTree = SOURCE_ROOT; };
+		172AF9CC1B97518C00C9F4D9 /* UIImage+ResizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ResizeImage.m"; path = "Timesurfer/UIImage+ResizeImage.m"; sourceTree = SOURCE_ROOT; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
@@ -311,6 +315,33 @@
 				175E551C1B6D7B83002A7CAA /* TSSlider.m */,
 			);
 			name = Subclasses;
+			sourceTree = "<group>";
+		};
+		172AF9C81B974FBB00C9F4D9 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0BFD1B3BAA690001810D /* AppDelegate.h */,
+				17DB0BFE1B3BAA690001810D /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		172AF9C91B974FC900C9F4D9 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				176DA4541B5D9BE9006190BD /* TSConstants.h */,
+				FA2B14341B5DB5FC008878C8 /* TSConstants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		172AF9CA1B97516100C9F4D9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				172AF9CB1B97518C00C9F4D9 /* UIImage+ResizeImage.h */,
+				172AF9CC1B97518C00C9F4D9 /* UIImage+ResizeImage.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		174983421B7FE4E200608C47 /* View Controllers */ = {
@@ -483,9 +514,12 @@
 			children = (
 				17DB0C031B3BAA690001810D /* Main.storyboard */,
 				17DB0C061B3BAA690001810D /* Images.xcassets */,
+				172AF9C81B974FBB00C9F4D9 /* App Delegate */,
+				172AF9C91B974FC900C9F4D9 /* Constants */,
 				174983421B7FE4E200608C47 /* View Controllers */,
 				174983441B7FE50F00608C47 /* Model */,
 				174983431B7FE4F500608C47 /* Views */,
+				172AF9CA1B97516100C9F4D9 /* Categories */,
 				171550E11B922DE600AA9B97 /* Subclasses */,
 				FA22DAC11B41DEEE0072005E /* Supporting Files */,
 			);
@@ -495,11 +529,7 @@
 		FA22DAC11B41DEEE0072005E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				17DB0BFD1B3BAA690001810D /* AppDelegate.h */,
-				17DB0BFE1B3BAA690001810D /* AppDelegate.m */,
 				FA22DAC31B41DEEE0072005E /* TimesurferFramework.h */,
-				176DA4541B5D9BE9006190BD /* TSConstants.h */,
-				FA2B14341B5DB5FC008878C8 /* TSConstants.m */,
 				FA22DAC21B41DEEE0072005E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -551,6 +581,7 @@
 				FA22DAC41B41DEEE0072005E /* TimesurferFramework.h in Headers */,
 				FA22DAE11B41E04D0072005E /* TSWeatherManager.h in Headers */,
 				17EC3D6E1B5178A000BA0D9E /* TSNightGradient.h in Headers */,
+				172AF9CD1B97518C00C9F4D9 /* UIImage+ResizeImage.h in Headers */,
 				178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */,
 				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
 				174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */,
@@ -919,6 +950,7 @@
 				172AF9C21B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m in Sources */,
 				1749834C1B7FF78600608C47 /* TSSunsetGradient.m in Sources */,
 				174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */,
+				172AF9CE1B97518C00C9F4D9 /* UIImage+ResizeImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
