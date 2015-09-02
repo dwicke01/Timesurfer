@@ -174,6 +174,7 @@ PODS:
     - Google-API-Client/Common
     - gtm-http-fetcher (~> 1.0.141)
     - gtm-oauth2 (~> 1.0.125)
+  - GoogleMaps (1.10.2)
   - gtm-http-fetcher (1.0.141)
   - gtm-oauth2 (1.0.126):
     - gtm-http-fetcher (~> 1.0.141)
@@ -183,6 +184,7 @@ PODS:
 DEPENDENCIES:
   - Forecastr (~> 0.2.1)
   - Google-API-Client
+  - GoogleMaps
   - LMGeocoder
   - Masonry
 
@@ -190,6 +192,7 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Forecastr: 590a5ae3ecfa417e8292192eb436de4d03126984
   Google-API-Client: cb712cf122f1d7fda966de4c2bc551324573366c
+  GoogleMaps: 5c92e599b07b0a2a9b367c5dd128edc629bddfea
   gtm-http-fetcher: 6d4617e7d343b6e4c082b777541c334eb6f5d81e
   gtm-oauth2: 2a18b824e4f8a02df6cfe987beb59ae9d9697f9d
   LMGeocoder: 100572f9e572a26d3506ee0604d6629bea391767

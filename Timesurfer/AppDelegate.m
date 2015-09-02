@@ -1,14 +1,6 @@
-//
-//  AppDelegate.m
-//  Timesurfer
-//
-//  Created by Jordan Guggenheim on 6/24/15.
-//  Copyright (c) 2015 gugges. All rights reserved.
-//
 
 #import "AppDelegate.h"
 #import "TSViewController.h"
-
 
 @interface AppDelegate ()
 
@@ -37,7 +29,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
-    
+
     return YES;
 }
 

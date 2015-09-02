@@ -5,7 +5,7 @@
 #import "TSToggleSettingsManager.h"
 #import "TSGoogleCalendarManager.h"
 #import "TSEventManager.h"
-#import "GTMOAuth2ViewControllerTouch.h"
+
 
 @class TSViewController;
 
