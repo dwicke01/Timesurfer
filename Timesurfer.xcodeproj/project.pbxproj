@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		172AF9C11B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 172AF9BF1B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h */; };
 		172AF9C21B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */; };
+		172AF9C41B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */; };
+		172AF9C71B974D0600C9F4D9 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */; };
 		174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1749833E1B7FE4D500608C47 /* TSDailyViewController.h */; };
 		174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1749833F1B7FE4D500608C47 /* TSDailyViewController.m */; };
 		174983471B7FF5E600608C47 /* TSSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 174983451B7FF5E600608C47 /* TSSettingsViewController.h */; };
@@ -158,6 +160,7 @@
 		1704BDD61B52FCFB00E0DFEF /* TSClouds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSClouds.m; path = Timesurfer/TSClouds.m; sourceTree = SOURCE_ROOT; };
 		172AF9BF1B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGoogleAuthenticationViewController.h; sourceTree = "<group>"; };
 		172AF9C01B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGoogleAuthenticationViewController.m; sourceTree = "<group>"; };
+		172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = "../Pods/gtm-oauth2/Source/Touch/GTMOAuth2ViewTouch.xib"; sourceTree = "<group>"; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 		174983431B7FE4F500608C47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */,
 				1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */,
 				1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */,
 				1704BDD51B52FCFB00E0DFEF /* TSClouds.h */,
@@ -728,6 +732,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				172AF9C71B974D0600C9F4D9 /* GTMOAuth2ViewTouch.xib in Resources */,
 				176D1B5B1B82848E00D2E691 /* Settings.bundle in Resources */,
 				17F2B2EB1B71C3A10012D090 /* spark.png in Resources */,
 				1760C08D1B7460CB0013C287 /* DefaultRain2.scnp in Resources */,
@@ -892,6 +897,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				172AF9C41B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib in Sources */,
 				17EC3D6B1B51781B00BA0D9E /* TSDayTimeGradient.m in Sources */,
 				FAECE4FE1B42383E00993A63 /* TSStarField.m in Sources */,
 				178CDEFF1B5C5DE900B76ED6 /* TSSun.m in Sources */,
