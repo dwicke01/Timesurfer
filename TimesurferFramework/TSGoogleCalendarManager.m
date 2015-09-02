@@ -4,10 +4,8 @@
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "GTLCalendar.h"
 #import "TSGoogleAuthenticationViewController.h"
+#import "TSConstants.h"
 
-static NSString *const kKeychainItemName = @"Google Calendar API";
-static NSString *const kClientID = @"733207349789-1582sd7en82s0ugn4ce8p059rla9q8fh.apps.googleusercontent.com";
-static NSString *const kClientSecret = @"QrrWLWTsfGA4VOpMkxYrzOBu";
 
 @interface TSGoogleCalendarManager ()
 
