@@ -173,11 +173,11 @@
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
     
-    if (currentTime >= 4) {
-        self.calendarEventLabel.text = @"";
-    } else {
+//    if (currentTime >= 4) {
+//        self.calendarEventLabel.text = @"";
+//    } else {
     self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
-    }
+//    }
     
     [self updateWeatherLabelsWithIndex:currentTime];
 }
@@ -628,7 +628,7 @@
 
 - (void) sheepAnimation {
 
-    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleSheepAnimation) {
+    if (self.settingsManager.toggleSheepAnimation && !self.weatherData.rainChanceTodayAbove50) {
         self.sheepInMotion = YES;
 
         
@@ -647,7 +647,7 @@
 }
 
 - (void) helicopterAnimation {
-    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleHelicopterAnimation) {
+    if (self.settingsManager.toggleHelicopterAnimation) {
         self.randomizerInMotion = YES;
         [self.helicopter startAnimating];
         [UIView animateWithDuration:7 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -665,7 +665,7 @@
 }
 
 - (void) planeAnimation {
-    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleAirplaneAnimation) {
+    if (self.settingsManager.toggleAirplaneAnimation) {
         self.randomizerInMotion = YES;
         
         [UIView animateWithDuration:11 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -682,7 +682,7 @@
 }
 
 - (void) squirrelAnimation {
-    if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleSquirrelAnimation) {
+    if (self.settingsManager.toggleSquirrelAnimation) {
         CGFloat SquirrelBeginningDuration = 0.25;
         CGFloat SquirrelEndingDuration = 0.8;
         CGFloat SquirrelDampening = 0.4;
@@ -761,7 +761,7 @@
 
 - (void) showWeatherAnimations {
     
-    if (self.currentWeather.percentRainFloat >= 80 && !self.animalsInMotion) {
+    if (self.currentWeather.percentRainFloat >= 80 && !self.animalsInMotion && self.settingsManager.toggleCatsAndDogsAnimation) {
 
         [UIView animateWithDuration:1 animations:^{
             self.dayTimeGradient.alpha = 0;
