@@ -1,6 +1,7 @@
 #import <SceneKit/SceneKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <Forecastr/Forecastr.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #import "TSViewController.h"
 #import "TSSettingsViewController.h"
@@ -14,10 +15,11 @@
 #import "LMGeocoder.h"
 #import "TSEventManager.h"
 #import "TSToggleSettingsManager.h"
+#import "TSLocationSearchViewController.h"
 
 @import CoreLocation;
 
-@interface TSViewController ()
+@interface TSViewController () <TSLocationSearchViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -113,6 +115,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [GMSServices provideAPIKey:GOOGLE_KEY];
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
@@ -121,7 +125,7 @@
     
     self.forcastr = [Forecastr sharedManager];
     self.forcastr.apiKey = FORCAST_KEY;
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appEnteredForeground)
                                                  name:@"appEnteredForeground"
@@ -133,20 +137,17 @@
                                                object:nil];
     //self.settingsDictionary = [[NSMutableDictionary alloc] initWithObjects:@[@YES, @YES, @YES, @YES, @YES, @NO] forKeys:@[]];
     self.settingsManager = [[TSToggleSettingsManager alloc] init];
-    
+
     [self setupView];
+    [self appEnteredForeground];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self requestWhenInUseAuth];
-    [self populateDateLabels];
-    
-    [self.locationManager startUpdatingLocation];
 }
 
 - (void)appEnteredBackground {
-
+    
     [self animalStartingPositions];
     self.sheepInMotion = NO;
     self.animalsInMotion = NO;
@@ -168,7 +169,7 @@
     [self getWeatherWithOverride:NO];
 }
 
-# pragma mark - API 
+# pragma mark - API
 
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
@@ -176,14 +177,14 @@
     if (currentTime >= 4) {
         self.calendarEventLabel.text = @"";
     } else {
-    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
+        self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
     }
     
     [self updateWeatherLabelsWithIndex:currentTime];
 }
 
 - (void) getWeatherWithOverride:(BOOL)override {
-
+    
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;
     
@@ -213,13 +214,13 @@
                                           [self createWeatherWithJSON:JSON];
                                           
                                           [self updateLocationNameWithLocation:self.weatherLocation];
-
+                                          
                                       } failure:^(NSError *error, id response) {
-//                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                          //                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
                                           NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                                           NSString *documentsDirectory = [paths objectAtIndex:0];
                                           NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"Latest_Weather"];
-
+                                          
                                           NSDictionary *JSON = [NSDictionary dictionaryWithContentsOfFile:filePath];
                                           [self createWeatherWithJSON:JSON];
                                       }];
@@ -455,7 +456,7 @@
             self.percentPrecip.text = weather.percentRainString;
         }
     }
-
+    
     [self showWeatherAnimations];
     [self removeAnimationsAndParticles];
     
@@ -549,7 +550,7 @@
 - (void) startAnimatedDayTimer {
     
     self.animatedDayTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1.] interval:.000001 target:self selector:@selector(animateDay) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:self.animatedDayTimer forMode:NSDefaultRunLoopMode];
+    //    [[NSRunLoop currentRunLoop] addTimer:self.animatedDayTimer forMode:NSDefaultRunLoopMode];
 }
 
 - (void) animateDay {
@@ -608,9 +609,9 @@
 }
 
 - (void) animationRandomizer {
-
+    
     switch (self.animationCount % 3) {
-//    switch (0) {
+            //    switch (0) {
         case 0:
             [self squirrelAnimation];
             break;
@@ -623,14 +624,14 @@
         default:
             break;
     }
-        self.animationCount++;
+    self.animationCount++;
 }
 
 - (void) sheepAnimation {
-
+    
     if (self.settingsManager.toggleAllAnimations && self.settingsManager.toggleSheepAnimation) {
         self.sheepInMotion = YES;
-
+        
         
         [self.sheepClouds makeDisplayLinkIfNeeded];
         
@@ -732,7 +733,7 @@
                              self.squirrelRightYAxis.constant = -160;
                              [self.squirrelRight layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
-
+        
         [UIView animateWithDuration:SquirrelEndingDuration
                               delay:3.1
              usingSpringWithDamping:SquirrelDampening
@@ -762,7 +763,7 @@
 - (void) showWeatherAnimations {
     
     if (self.currentWeather.percentRainFloat >= 80 && !self.animalsInMotion) {
-
+        
         [UIView animateWithDuration:1 animations:^{
             self.dayTimeGradient.alpha = 0;
         }];
@@ -819,7 +820,7 @@
                          animations:^{
                              self.orangeCatYAxis.constant = constant;
                              [self.orangeCat layoutIfNeeded];
-                           } completion:^(BOOL finished) {}];
+                         } completion:^(BOOL finished) {}];
         
         [UIView animateWithDuration:duration
                               delay:5
@@ -908,7 +909,7 @@
     
     if (self.currentWeather.percentRainFloat < 80 && self.animalsInMotion) {
         self.animalsInMotion = NO;
-  
+        
         [UIView animateWithDuration:.4
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
@@ -922,9 +923,9 @@
                              self.yorkieDog.alpha = 0;
                              self.greyStripeCat.alpha = 0;
                          } completion:^(BOOL finished) {
-
+                             
                              [self animalStartingPositions];
-
+                             
                          }];
     }
     
@@ -935,40 +936,21 @@
 
 #pragma mark GPS Logic
 
-
-- (void) changeCities {
+- (void)updateWeatherWithLocation:(NSString *)location {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     
-    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Enter Location" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    
-    [locationAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
-     {
-         textField.placeholder = @"Enter City or Zip";
-         textField.keyboardAppearance = UIKeyboardAppearanceDark;
-     }];
-    
-    UIAlertAction *triggerChange = [UIAlertAction actionWithTitle:@"Go" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    [geoCoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
         
-        UITextField *textField = locationAlert.textFields[0];
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        CLLocation *location = placemark.location;
         
-        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-        [geoCoder geocodeAddressString:textField.text completionHandler:^(NSArray *placemarks, NSError *error) {
-            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            CLLocation *location = placemark.location;
-            
-            self.weatherLocation = location;
-            
-            [self getWeatherWithOverride:YES];
-
-        }];
+        self.weatherLocation = location;
+        
+        [self getWeatherWithOverride:YES];
     }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
-    
-    [locationAlert addAction:cancel];
-    [locationAlert addAction:triggerChange];
-
-    [self presentViewController:locationAlert animated:NO completion:nil];
 }
+
 
 - (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
     if (completion != nil) {
@@ -1021,43 +1003,27 @@
 
 - (void) updateLocationNameWithLocation:(CLLocation *)coords {
     
-    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate: coords.coordinate
-                                                  service:kLMGeocoderGoogleService
-                                        completionHandler:^(NSArray *results, NSError *error) {
-                                            if (results.count && !error) {
-                                                LMAddress *address = [results firstObject];
-                                                NSInteger indexOfLocality = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"locality"];
-                                                }];
-                                                
-                                                NSInteger indexOfNeighborhood = [address.lines indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                    return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:@"neighborhood"];
-                                                }];
-                                                NSString *locality;
-                                                
-                                                if (address.subLocality)
-                                                    locality = address.subLocality;
-                                                else
-                                                    locality = address.locality;
-                                                
-                                                if (indexOfNeighborhood < [address.lines count])
-                                                    
-                                                    locality = [address.lines[indexOfNeighborhood] objectForKey:@"short_name"];
-                                                if (indexOfLocality < [address.lines count] && [locality length] < 14) {
-                                                    
-                                                    locality = [address.lines[indexOfLocality] objectForKey:@"long_name"];
-                                                }
-                                                
-                                                self.locationLabel.text = [NSString stringWithFormat:@"%@", locality];
-                                                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@", locality] forKey:@"Last_Location"];
-                                            }
-                                            else if (error) {
-                                                //                                                NSLog(@"%@ %@", results, error.localizedDescription);
-                                                self.locationLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Last_Location"];
-                                            }
-                                        }
-     ];
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    
+    [geoCoder reverseGeocodeLocation:self.weatherLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       if ([placemarks firstObject]) {
+                           CLPlacemark *placemark = [placemarks firstObject];
+                           
+                           if ([placemark.name rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound) {
+                               self.locationLabel.text = placemark.name;
 
+                           } else {
+                               self.locationLabel.text = placemark.locality;
+                           }
+                           
+                           [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@", self.locationLabel.text] forKey:@"Last_Location"];
+                           
+                       } else {
+                           self.locationLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Last_Location"];
+                       }
+
+                   }];
 }
 
 # pragma mark Setup Methods
@@ -1087,7 +1053,6 @@
     
     if (self.view.frame.size.width == 320) {
         self.longDateLabel.font = [self.longDateLabel.font fontWithSize:34];
-        NSLog(@"running labels");
         self.temperatureLabel.font = [self.temperatureLabel.font fontWithSize:100];
         self.locationLabel.font = [self.locationLabel.font fontWithSize:34];
         self.timeLabel.font = [self.timeLabel.font fontWithSize:42];
@@ -1115,7 +1080,7 @@
     self.pugYAxis.constant = -150;
     self.yorkieYAxis.constant = -150;
     self.greyStripeYAxis.constant = -150;
-
+    
     self.greyStripeCat.alpha = 1;
     self.yorkieDog.alpha = 1;
     self.corgieDog.alpha = 1;
@@ -1136,11 +1101,19 @@
 
 - (void) setupTapGestureRecognizer {
     
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeCities)];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocationSearchViewController)];
     
     [self.locationLabel addGestureRecognizer:recognizer];
     
     self.locationLabel.userInteractionEnabled = YES;
+}
+
+- (void) showLocationSearchViewController {
+    
+   TSLocationSearchViewController *vc = [[self storyboard] instantiateViewControllerWithIdentifier:@"LocationSearchVC"];
+    vc.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+    
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -1150,8 +1123,6 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-
-
 
 # pragma mark - Navigation
 
