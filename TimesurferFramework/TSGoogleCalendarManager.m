@@ -85,6 +85,7 @@
         //self.output.text = eventString;
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];   ///// UNTESTED!!!!!!!! /////////
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
         [self.delegate doMeAFavorAndPresentThisViewControllerNowWouldYou:alert];
         //[self showAlert:@"Error" message:error.localizedDescription];
     }
