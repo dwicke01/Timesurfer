@@ -10,6 +10,8 @@
 +(TSEventManager*)sharedEventManger;
 -(NSString*)eventForHourAtIndex:(NSUInteger)index;
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents;
+-(void)toggleAppleCalendar;
 -(void)toggleGoogleCalendar;
+-(BOOL)calendarEnabled;
 
 @end

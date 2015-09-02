@@ -5,7 +5,7 @@
 #import "GTLCalendar.h"
 #import "TSGoogleAuthenticationViewController.h"
 #import "TSConstants.h"
-
+#import "GTMOAuth2SignIn.h"
 
 @interface TSGoogleCalendarManager ()
 

@@ -1,5 +1,6 @@
 #import "TSSettingsViewController.h"
 #import <Masonry/Masonry.h>
+#import <AFNetworking/AFNetworking.h>
 #import "TSSettingsViewController.h"
 #import "TSSettingsTableViewCell.h"
 #import "TSToggleSettingsManager.h"
@@ -66,6 +67,7 @@
                                   @"Airplane" : @"toggleAirplaneAnimation",
                                   @"Helicopter" : @"toggleHelicopterAnimation",
                                   @"All Animations" : @"toggleAllAnimations",
+                                  @"Use Apple Calendar" : @"toggleAppleCalendar",
                                   @"Use Google Calendar" : @"toggleGoogleCalendar"};
     self.settingsSwitch = @{
                                 @"Squirrels" : ^{
@@ -97,6 +99,21 @@
                                             cell.toggleAnimationSwitch.on = settingForAllAnimations;
                                         }
                                     }
+                                },
+                                @"Use Apple Calendar" : ^{
+                                    TSEventManager *eventManager = [TSEventManager sharedEventManger];
+                                    [eventManager toggleAppleCalendar];
+                                    
+                                    weakSelf.settingsManager.toggleAppleCalendar = !weakSelf.settingsManager.toggleAppleCalendar;
+                                    
+//                                    if (weakSelf.settingsManager.toggleGoogleCalendar) {
+//                                        weakSelf.settingsManager.toggleGoogleCalendar = NO;
+//                                        for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
+//                                            if (![cell.labelString isEqualToString:@"Use Google Calendar"]) {
+//                                                cell.toggleAnimationSwitch.on = NO;
+//                                            }
+//                                        }
+//                                    }
                                 },
                                 @"Use Google Calendar" : ^{
                                     if (!self.isSignedInToGoogle) {

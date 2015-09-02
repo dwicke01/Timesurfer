@@ -5,6 +5,7 @@
 @implementation TSEventManager {
     NSMutableArray *_localCalendarEventsArray;
     NSArray *_googleCalendarEventsArray;
+    BOOL _useAppleCalendar;
     BOOL _useGoogleCalendar;
 }
 
@@ -40,6 +41,7 @@ static TSEventManager *_sharedEventManager;
             self.eventsAccessGranted = NO;
         }
         
+        _useAppleCalendar = NO;
         _useGoogleCalendar = NO;
         _googleCalendarEventsArray = @[];
     }
@@ -103,11 +105,6 @@ static TSEventManager *_sharedEventManager;
     for (EKEvent *event in ekEventsArray) {
         [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
     }
-    
-//    EKEvent *event = _eventsArray[0];
-//    TSEvent *event1 = [[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location];
-//    
-//    NSLog(@"%@", [event1 description]);
 }
 
 - (NSDate*) previousHourDate:(NSDate*)inDate{
@@ -145,6 +142,14 @@ static TSEventManager *_sharedEventManager;
 
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents {
     _googleCalendarEventsArray = googleCalendarEvents;
+}
+
+-(BOOL)calendarEnabled {
+    return _useAppleCalendar || _useGoogleCalendar;
+}
+
+-(void)toggleAppleCalendar {
+    _useAppleCalendar = !_useAppleCalendar;
 }
 
 -(void)toggleGoogleCalendar {

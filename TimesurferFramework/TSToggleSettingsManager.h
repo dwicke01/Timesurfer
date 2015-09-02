@@ -9,6 +9,7 @@
 @property (nonatomic, assign) BOOL toggleHelicopterAnimation;
 @property (nonatomic, assign) BOOL toggleAirplaneAnimation;
 @property (nonatomic, assign) BOOL toggleSquirrelAnimation;
+@property (nonatomic, assign) BOOL toggleAppleCalendar;
 @property (nonatomic, assign) BOOL toggleGoogleCalendar;
 
 -(void)saveEverything;

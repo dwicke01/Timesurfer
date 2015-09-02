@@ -17,6 +17,7 @@
         _toggleHelicopterAnimation = [[NSUserDefaults standardUserDefaults] boolForKey:@"helicopterAnimation"];
         _toggleSheepAnimation = [[NSUserDefaults standardUserDefaults] boolForKey:@"sheepAnimation"];
         _toggleSquirrelAnimation = [[NSUserDefaults standardUserDefaults] boolForKey:@"squirrelAnimation"];
+        _toggleAppleCalendar = [[NSUserDefaults standardUserDefaults] boolForKey:@"appleCalendar"];
         _toggleGoogleCalendar = [[NSUserDefaults standardUserDefaults] boolForKey:@"googleCalendar"];
     }
     return self;
@@ -29,6 +30,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:_toggleHelicopterAnimation forKey:@"helicopterAnimation"];
     [[NSUserDefaults standardUserDefaults] setBool:_toggleSheepAnimation forKey:@"sheepAnimation"];
     [[NSUserDefaults standardUserDefaults] setBool:_toggleSquirrelAnimation forKey:@"squirrelAnimation"];
+    [[NSUserDefaults standardUserDefaults] setBool:_toggleAppleCalendar forKey:@"appleCalendar"];
     [[NSUserDefaults standardUserDefaults] setBool:_toggleGoogleCalendar forKey:@"googleCalendar"];
 }
 
