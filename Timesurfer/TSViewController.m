@@ -160,7 +160,6 @@
     if (arc4random_uniform(5) == 4) {
         UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(40,40)];
         [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
-        
     } else {
         [self.hourSlider setThumbImage:nil forState:UIControlStateNormal];
     }
@@ -174,9 +173,9 @@
 - (void) updateWeatherInfo {
     CGFloat currentTime = floor(self.hourSlider.value-self.hourOffset)/100;
     
-
-    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
-    
+    if ([self.eventManager calendarEnabled]) {
+        self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:currentTime];
+    }
     [self updateWeatherLabelsWithIndex:currentTime];
 }
 
