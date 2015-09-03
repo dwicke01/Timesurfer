@@ -10,7 +10,7 @@
 
 @class TSViewController;
 
-@interface TSSettingsViewController () <SettingToggleDelegate, GoogleAuthenticationViewControllerPresentationDelegate>
+@interface TSSettingsViewController () <SettingToggleDelegate, UITableViewDelegate, GoogleAuthenticationViewControllerPresentationDelegate>
 
 @property (nonatomic, strong) UIVisualEffectView *visualEffectView;
 @property (nonatomic, strong) NSArray *settingsArray;
@@ -31,6 +31,7 @@
     [self setupVisualEffectView];
     self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
     _isSignedInToGoogle = NO;
+    self.settingsTableView.delegate = self;
 }
 
 - (void) setupVisualEffectView {
@@ -210,7 +211,8 @@
     }
 
 }
-
-
+-(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.settingsTableView.bounds.size.height / [self.settingsArray count];
+}
 
 @end
