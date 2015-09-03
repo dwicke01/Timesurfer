@@ -159,7 +159,6 @@
     if (arc4random_uniform(5) == 4) {
         UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(40,40)];
         [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
-        
     } else {
         [self.hourSlider setThumbImage:nil forState:UIControlStateNormal];
     }
@@ -171,9 +170,10 @@
 # pragma mark - API
 
 - (void) updateWeatherInfo {
-
-    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
     
+    if ([self.eventManager calendarEnabled]) {
+        self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
+    }
     [self updateWeatherLabelsWithIndex:self.currentWeatherIndex];
 }
 

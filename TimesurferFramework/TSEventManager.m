@@ -5,6 +5,7 @@
 @implementation TSEventManager {
     NSMutableArray *_localCalendarEventsArray;
     NSArray *_googleCalendarEventsArray;
+    BOOL _useAppleCalendar;
     BOOL _useGoogleCalendar;
 }
 
@@ -23,34 +24,41 @@ static TSEventManager *_sharedEventManager;
 {
     if (self = [super init]) {
         self.eventStore = [[EKEventStore alloc] init];
-        [self requestAccessToEvents];
+//[self requestAccessToEvents];
 
-        _localCalendarEventsArray = [[NSMutableArray alloc] init];
-        [self fetchEvents];
+        //_localCalendarEventsArray = [[NSMutableArray alloc] init];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
         // Check if the access granted value for the events exists in the user defaults dictionary.
         if ([userDefaults valueForKey:@"eventkit_events_access_granted"] != nil) {
             // The value exists, so assign it to the property.
+            self.eventsAccessRequested = YES;
             self.eventsAccessGranted = [[userDefaults valueForKey:@"eventkit_events_access_granted"] intValue];
         }
         else{
             // Set the default value.
+            self.eventsAccessRequested = NO;
             self.eventsAccessGranted = NO;
         }
         
-        _useGoogleCalendar = NO;
+        if (self.eventsAccessGranted) {
+            [self fetchEvents];
+        }
+
+        _useAppleCalendar = [[NSUserDefaults standardUserDefaults] boolForKey:@"appleCalendar"];
+        _useGoogleCalendar = [[NSUserDefaults standardUserDefaults] boolForKey:@"googleCalendar"];
         _googleCalendarEventsArray = @[];
     }
     return self;
 }
 
--(void)requestAccessToEvents{
+-(void)requestAccessToEventsWithCompletion:(void(^)())completion{
     [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
         if (error == nil) {
             // Store the returned granted value.
             self.eventsAccessGranted = granted;
+            completion();
         }
         else{
             // In case of error, just log its description to the debugger.
@@ -100,14 +108,11 @@ static TSEventManager *_sharedEventManager;
     // Fetch all events that match the predicate
     NSArray *ekEventsArray = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
     
+    _localCalendarEventsArray = [@[] mutableCopy];
+    
     for (EKEvent *event in ekEventsArray) {
         [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
     }
-    
-//    EKEvent *event = _eventsArray[0];
-//    TSEvent *event1 = [[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location];
-//    
-//    NSLog(@"%@", [event1 description]);
 }
 
 - (NSDate*) previousHourDate:(NSDate*)inDate{
@@ -145,6 +150,14 @@ static TSEventManager *_sharedEventManager;
 
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents {
     _googleCalendarEventsArray = googleCalendarEvents;
+}
+
+-(BOOL)calendarEnabled {
+    return _useAppleCalendar || _useGoogleCalendar;
+}
+
+-(void)toggleAppleCalendar {
+    _useAppleCalendar = !_useAppleCalendar;
 }
 
 -(void)toggleGoogleCalendar {

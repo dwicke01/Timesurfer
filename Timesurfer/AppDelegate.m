@@ -23,6 +23,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"helicopterAnimation"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"sheepAnimation"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"squirrelAnimation"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"appleCalendar"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"googleCalendar"];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
