@@ -96,7 +96,7 @@
                                     weakSelf.settingsManager.toggleSquirrelAnimation = settingForAllAnimations;
                                     
                                     for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
-                                        if (![cell.labelString isEqualToString:@"Use Google Calendar"]) {
+                                        if (![cell.labelString isEqualToString:@"Use Google Calendar"] && ![cell.labelString isEqualToString:@"Use Apple Calendar"]) {
                                             cell.toggleAnimationSwitch.on = settingForAllAnimations;
                                         }
                                     }
@@ -138,7 +138,7 @@
                                     if (weakSelf.settingsManager.toggleAppleCalendar) {
                                         weakSelf.settingsManager.toggleAppleCalendar = NO;
                                         for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
-                                            if (![cell.labelString isEqualToString:@"Use Apple Calendar"]) {
+                                            if ([cell.labelString isEqualToString:@"Use Apple Calendar"]) {
                                                 cell.toggleAnimationSwitch.on = NO;
                                             }
                                         }
@@ -149,7 +149,9 @@
                                     [eventManager toggleGoogleCalendar];
                                     weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
                                 }};
-    self.settingsArray = [[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSMutableArray *temp = [[[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] mutableCopy];
+    [temp exchangeObjectAtIndex:0 withObjectAtIndex:1];
+    self.settingsArray = temp;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
