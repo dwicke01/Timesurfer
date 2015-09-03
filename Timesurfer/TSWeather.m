@@ -1,28 +1,24 @@
 #import "TSWeather.h"
+#import "NSDate+Utilities.h"
 
 @interface TSWeather()
 
 @property (nonatomic, strong) NSDictionary *incomingDictionary;
 @property (nonatomic, assign) NSUInteger currentTime;
-@property (nonatomic, strong) NSString *currentHour;
-@property (nonatomic, strong) NSString *sunRiseString;
-@property (nonatomic, strong) NSString *sunSetString;
+@property (nonatomic, assign) NSInteger gmtOffset;
 
 @end
 
 @implementation TSWeather
 
-
-- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary sunRiseString:(NSString *)sunRiseString sunSetString:(NSString *)sunSetString sunUp:(BOOL)sunUp{
+- (instancetype)initWithDictionary:(NSDictionary *)incomingDictionary gmtOffset:(NSInteger) gmtOffset{
     
     self = [super init];
     
     if (self) {
         _incomingDictionary = incomingDictionary;
-        _currentTime = [self.incomingDictionary[@"time"] integerValue];
-        _sunSetString = sunSetString;
-        _sunRiseString = sunRiseString;
-        _sunUp = sunUp;
+        _currentTime = [incomingDictionary[@"time"] integerValue];
+        _gmtOffset = gmtOffset;
         [self formatWeatherData];
     }
     
@@ -33,44 +29,30 @@
 
     NSNumber *temperatureNumber = self.incomingDictionary[@"temperature"];
     _weatherTemperatureF = [[NSString alloc] initWithFormat:@"%.f°F",temperatureNumber.floatValue];
-    
     CGFloat celcius = ((temperatureNumber.floatValue - 32.f) / 1.8f);
-    
     _weatherTemperatureC = [[NSString alloc] initWithFormat:@"%.f°C",celcius];
     
+    
     NSDate *dateTime = [[NSDate alloc] initWithTimeIntervalSince1970:self.currentTime];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    _weatherTime = [dateTime timeStringWithGMTOffset:self.gmtOffset militaryTime:NO];
     
-    [dateFormatter setDateFormat:@"h:mm a"];
-    _currentDate = [dateFormatter stringFromDate:dateTime];
-    
-    [dateFormatter setDateFormat:@"H"];
-    _currentHour = [dateFormatter stringFromDate:dateTime];
-    
-    self.currentHourInt = self.currentHour.integerValue;
-    
-    if ([self.currentHour isEqualToString:self.sunRiseString]) {
-        _sunRiseHour = YES;
-    }
-
-    if([self.currentHour isEqualToString:self.sunSetString]){
-        _sunSetHour = YES;
-    }
+    _weatherMilitaryHour = [dateTime militaryHourWithGMTOffset:self.gmtOffset];
     
     NSNumber *cloudCover = self.incomingDictionary[@"cloudCover"];
-    _cloudCoverFloat = cloudCover.floatValue;
+    _weatherCloudCover = cloudCover.floatValue;
+    
     
     NSNumber *percentRain = self.incomingDictionary[@"precipProbability"];
-    self.percentRainFloat = roundf(percentRain.floatValue*10)*10;
-
-    _percentRainString = [NSString stringWithFormat:@"%.0F%%",self.percentRainFloat];
+    // Round rain down, then make value out of 100
+    _weatherPercentRain = roundf(percentRain.floatValue * 10) * 10;
+    _weatherPercentRainString = [NSString stringWithFormat:@"%.0F%%",self.weatherPercentRain];
+    
     
     NSNumber *precipIntense = self.incomingDictionary[@"precipIntensity"];
-    _precipIntensityFloat = precipIntense.floatValue;
+    _weatherPrecipIntensity = precipIntense.floatValue;
 }
 
--(UIImage *)weatherImage
-{
+-(UIImage *)weatherImage {
     return [UIImage imageNamed:self.incomingDictionary[@"icon"]];
 }
 

@@ -3,6 +3,6 @@
 
 @interface TSClouds : UIView
 
-@property (nonatomic, strong) TSWeatherManager *weatherData;
+@property (nonatomic, strong) TSWeatherManager *weatherManager;
 
 @end

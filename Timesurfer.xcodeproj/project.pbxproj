@@ -13,8 +13,8 @@
 		172AF9C71B974D0600C9F4D9 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */; };
 		172AF9CD1B97518C00C9F4D9 /* UIImage+ResizeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 172AF9CB1B97518C00C9F4D9 /* UIImage+ResizeImage.h */; };
 		172AF9CE1B97518C00C9F4D9 /* UIImage+ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9CC1B97518C00C9F4D9 /* UIImage+ResizeImage.m */; };
-		174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1749833E1B7FE4D500608C47 /* TSDailyViewController.h */; };
-		174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1749833F1B7FE4D500608C47 /* TSDailyViewController.m */; };
+		172AF9D11B9758A300C9F4D9 /* NSDate+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 172AF9CF1B9758A300C9F4D9 /* NSDate+Utilities.h */; };
+		172AF9D21B9758A300C9F4D9 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AF9D01B9758A300C9F4D9 /* NSDate+Utilities.m */; };
 		174983471B7FF5E600608C47 /* TSSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 174983451B7FF5E600608C47 /* TSSettingsViewController.h */; };
 		174983481B7FF5E600608C47 /* TSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174983461B7FF5E600608C47 /* TSSettingsViewController.m */; };
 		1749834B1B7FF78600608C47 /* TSSunsetGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 174983491B7FF78600608C47 /* TSSunsetGradient.h */; };
@@ -165,12 +165,12 @@
 		172AF9C31B974C9000C9F4D9 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = "../Pods/gtm-oauth2/Source/Touch/GTMOAuth2ViewTouch.xib"; sourceTree = "<group>"; };
 		172AF9CB1B97518C00C9F4D9 /* UIImage+ResizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ResizeImage.h"; path = "Timesurfer/UIImage+ResizeImage.h"; sourceTree = SOURCE_ROOT; };
 		172AF9CC1B97518C00C9F4D9 /* UIImage+ResizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ResizeImage.m"; path = "Timesurfer/UIImage+ResizeImage.m"; sourceTree = SOURCE_ROOT; };
+		172AF9CF1B9758A300C9F4D9 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Utilities.h"; path = "Timesurfer/NSDate+Utilities.h"; sourceTree = SOURCE_ROOT; };
+		172AF9D01B9758A300C9F4D9 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Utilities.m"; path = "Timesurfer/NSDate+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		1732C4AE1B3E242700B82ED3 /* TSStarField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSStarField.h; path = ../Timesurfer/TSStarField.h; sourceTree = "<group>"; };
 		1732C4AF1B3E242700B82ED3 /* TSStarField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSStarField.m; path = ../Timesurfer/TSStarField.m; sourceTree = "<group>"; };
 		1732C4B41B3F0ECF00B82ED3 /* TSGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSGraphics.h; path = ../Timesurfer/TSGraphics.h; sourceTree = "<group>"; };
 		1732C4B51B3F0ECF00B82ED3 /* TSGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSGraphics.m; path = ../Timesurfer/TSGraphics.m; sourceTree = "<group>"; };
-		1749833E1B7FE4D500608C47 /* TSDailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSDailyViewController.h; path = Timesurfer/TSDailyViewController.h; sourceTree = SOURCE_ROOT; };
-		1749833F1B7FE4D500608C47 /* TSDailyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSDailyViewController.m; path = Timesurfer/TSDailyViewController.m; sourceTree = SOURCE_ROOT; };
 		174983451B7FF5E600608C47 /* TSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSSettingsViewController.h; path = Timesurfer/TSSettingsViewController.h; sourceTree = SOURCE_ROOT; };
 		174983461B7FF5E600608C47 /* TSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSSettingsViewController.m; path = Timesurfer/TSSettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		174983491B7FF78600608C47 /* TSSunsetGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSSunsetGradient.h; path = Timesurfer/TSSunsetGradient.h; sourceTree = SOURCE_ROOT; };
@@ -340,6 +340,8 @@
 			children = (
 				172AF9CB1B97518C00C9F4D9 /* UIImage+ResizeImage.h */,
 				172AF9CC1B97518C00C9F4D9 /* UIImage+ResizeImage.m */,
+				172AF9CF1B9758A300C9F4D9 /* NSDate+Utilities.h */,
+				172AF9D01B9758A300C9F4D9 /* NSDate+Utilities.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -349,8 +351,6 @@
 			children = (
 				17DB0C001B3BAA690001810D /* TSViewController.h */,
 				17DB0C011B3BAA690001810D /* TSViewController.m */,
-				1749833E1B7FE4D500608C47 /* TSDailyViewController.h */,
-				1749833F1B7FE4D500608C47 /* TSDailyViewController.m */,
 				174983451B7FF5E600608C47 /* TSSettingsViewController.h */,
 				174983461B7FF5E600608C47 /* TSSettingsViewController.m */,
 				177D72BB1B94EEC4000368AB /* TSLocationSearchViewController.h */,
@@ -584,7 +584,6 @@
 				172AF9CD1B97518C00C9F4D9 /* UIImage+ResizeImage.h in Headers */,
 				178CDEF01B585F0200B76ED6 /* TSSheepClouds.h in Headers */,
 				178CDEFE1B5C5DE900B76ED6 /* TSSun.h in Headers */,
-				174983401B7FE4D500608C47 /* TSDailyViewController.h in Headers */,
 				176DA4561B5D9BE9006190BD /* TSConstants.h in Headers */,
 				FA4812861B852BF9002F55FC /* TSEvent.h in Headers */,
 				174983471B7FF5E600608C47 /* TSSettingsViewController.h in Headers */,
@@ -598,6 +597,7 @@
 				FA2C016E1B8E4D15005EB262 /* TSSettingsTableViewCell.h in Headers */,
 				FA22DAE21B41E04D0072005E /* TSWeather.h in Headers */,
 				FAECE5001B42384900993A63 /* TSStarField.h in Headers */,
+				172AF9D11B9758A300C9F4D9 /* NSDate+Utilities.h in Headers */,
 				1749834B1B7FF78600608C47 /* TSSunsetGradient.h in Headers */,
 				FAECE5011B42384900993A63 /* TSGraphics.h in Headers */,
 				FA2C01721B8FD4C5005EB262 /* TSToggleSettingsManager.h in Headers */,
@@ -945,11 +945,11 @@
 				178CDEF11B585F0200B76ED6 /* TSSheepClouds.m in Sources */,
 				FAFE83621B5E839C00450B52 /* TSClouds.m in Sources */,
 				FA2C016F1B8E4D15005EB262 /* TSSettingsTableViewCell.m in Sources */,
+				172AF9D21B9758A300C9F4D9 /* NSDate+Utilities.m in Sources */,
 				FA2C01731B8FD4C5005EB262 /* TSToggleSettingsManager.m in Sources */,
 				FA4812871B852BF9002F55FC /* TSEvent.m in Sources */,
 				172AF9C21B96B03F00C9F4D9 /* TSGoogleAuthenticationViewController.m in Sources */,
 				1749834C1B7FF78600608C47 /* TSSunsetGradient.m in Sources */,
-				174983411B7FE4D500608C47 /* TSDailyViewController.m in Sources */,
 				172AF9CE1B97518C00C9F4D9 /* UIImage+ResizeImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

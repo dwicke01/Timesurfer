@@ -6,21 +6,24 @@
 
 @interface TSWeatherManager : NSObject
 
-@property (nonatomic, strong) NSString *sunRise;
-@property (nonatomic, strong) NSString *sunSet;
-@property (nonatomic, strong) NSString *weatherDaySummaryString;
-@property (nonatomic, assign) NSString *weatherHourSummaryString;
-@property (nonatomic, strong) NSString *highLowTempF;
-@property (nonatomic, strong) NSString *highLowTempC;
-@property (nonatomic, strong) NSString *highLowTempFTomorrow;
-@property (nonatomic, strong) NSString *highLowTempCTomorrow;
-@property (nonatomic, assign) NSUInteger startingHour;
-@property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, strong) NSDate *currentDate;
-@property (nonatomic, assign) BOOL rainChanceTodayAbove70;
-@property (nonatomic, assign) BOOL rainChanceTodayAbove50;
+@property (nonatomic, strong) NSString *weatherSunrise;
+@property (nonatomic, strong) NSString *weatherSunset;
+@property (nonatomic, strong) NSString *weatherDaySummary;
+@property (nonatomic, assign) NSString *weatherHourSummary;
+@property (nonatomic, strong) NSString *weatherLongDateLocal;
+@property (nonatomic, strong) NSString *weatherLongDateLocalTomorrow;
+@property (nonatomic, strong) NSString *weatherHighLowTemperaturesF;
+@property (nonatomic, strong) NSString *weatherHighLowTemperaturesC;
+@property (nonatomic, strong) NSString *weatherHighLowTemperaturesFTomorrow;
+@property (nonatomic, strong) NSString *weatherHighLowTemperaturesCTomorrow;
+@property (nonatomic, assign) CGFloat weatherStartingMilitaryHourLocal;
+@property (nonatomic, assign) CGFloat weatherSunriseMilitaryHourLocal;
+@property (nonatomic, assign) CGFloat weatherSunsetMilitaryHourLocal;
+@property (nonatomic, assign) NSInteger weatherGMTOffset;
+@property (nonatomic, assign) BOOL weatherRainParticlesPresent;
 
 - (instancetype) initWithDictionary:(NSDictionary *)incomingWeatherJSON;
+
 - (TSWeather *)weatherForHour:(NSUInteger)hour;
 
 @end
