@@ -547,6 +547,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="tc2-m2-IB0" secondAttribute="trailing" id="phI-7A-v8o"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="settingsTableView" destination="tc2-m2-IB0" id="Zme-P6-ohO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHK-oO-e13" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
