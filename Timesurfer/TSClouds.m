@@ -9,7 +9,7 @@
 
 - (void)drawRect:(CGRect)rect {
     
-    if (self.weatherData != nil) {
+    if (self.weatherManager != nil) {
 
         [self drawClouds];
     }
@@ -25,38 +25,38 @@
     
     for (int i = 0; i < 25; i++) {
         
-        TSWeather *weather = [self.weatherData weatherForHour:i];
-//            NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, weather.currentHourInt);
+        TSWeather *weather = [self.weatherManager weatherForHour:i];
+//            NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, i);
         
-        if (weather.percentRainFloat <= 30) {
+        if (weather.weatherPercentRain <= 30) {
             
-            if (weather.cloudCoverFloat >= 0.69) {
+            if (weather.weatherCloudCover >= 0.69) {
                 [TSGraphics drawHeavyCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
                 
-            } else if (weather.percentRainFloat == 30) {
+            } else if (weather.weatherPercentRain == 30) {
                 [TSGraphics drawMediumCloudsWithFrame:CGRectMake(xAxis * i + 10, 0, xAxis, yHeight)];
             }
         }
         
-        if (weather.percentRainFloat >= 90) {
+        if (weather.weatherPercentRain >= 90) {
             [TSGraphics drawHeaviestRainCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
-        } else if (weather.percentRainFloat >= 80) {
+        } else if (weather.weatherPercentRain >= 80) {
             [TSGraphics drawHeavyRainCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
-        } else if (weather.percentRainFloat >= 60) {
+        } else if (weather.weatherPercentRain >= 60) {
             [TSGraphics drawHeavyCloudsMediumRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
-        } else if (weather.percentRainFloat >= 40) {
+        } else if (weather.weatherPercentRain >= 40) {
             [TSGraphics drawHeavyCloudsMayRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         }
     }
 }
 
-- (void) setWeatherData:(TSWeatherManager *)weatherData {
+- (void) setWeatherManager:(TSWeatherManager *)weatherManager {
     
-    _weatherData = weatherData;
+    _weatherManager = weatherManager;
     [self setNeedsDisplay];
 }
 

@@ -60,7 +60,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     if (!self.searchTimer) {
-        self.searchTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:0.5] interval:0 target:self selector:@selector(googlePlacesSearch) userInfo:nil repeats:NO];
+        self.searchTimer = [[NSTimer alloc] initWithFireDate:[[NSDate date] dateByAddingTimeInterval:1] interval:0 target:self selector:@selector(googlePlacesSearch) userInfo:nil repeats:NO];
         
         [[NSRunLoop currentRunLoop] addTimer:self.searchTimer forMode:NSDefaultRunLoopMode];
         
@@ -78,6 +78,8 @@
         for (GMSAutocompletePrediction *location in results) {
             [self.searchResults addObject:location.attributedFullText];
         }
+        
+        self.searchTimer = nil;
         
         [self.tableView reloadData];
         

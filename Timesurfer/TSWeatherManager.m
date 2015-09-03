@@ -1,16 +1,12 @@
 
 #import "TSWeatherManager.h"
 #import <CoreLocation/CLLocation.h>
+#import "NSDate+Utilities.h"
 
 @interface TSWeatherManager ()
 
 @property (nonatomic, strong) NSDictionary *weatherDictionary;
 @property (nonatomic, strong) NSMutableArray *weatherByHour;
-@property (nonatomic, strong) NSDate *sunRiseDate;
-@property (nonatomic, strong) NSDate *sunSetDate;
-@property (nonatomic, strong) NSString *sunRiseHour;
-@property (nonatomic, strong) NSString *sunSetHour;
-@property (nonatomic, assign) BOOL dayLight;
 
 @end
 
@@ -22,82 +18,93 @@
     
     if (self){
         _weatherDictionary = incomingWeatherJSON;
-        _weatherByHour = [[NSMutableArray alloc] init];
-        _location = [[CLLocation alloc] initWithLatitude:[self.weatherDictionary[@"latitude"] doubleValue] longitude:[self.weatherDictionary[@"longitude"] doubleValue]];
-        _weatherHourSummaryString = self.weatherDictionary[@"minutely"][@"summary"];
-        _weatherDaySummaryString = self.weatherDictionary[@"hourly"][@"summary"];
-        
-        [self sunRiseData];
-        
-        [self highLowTempStrings];
 
+        _weatherByHour = [[NSMutableArray alloc] init];
+
+        _weatherHourSummary = self.weatherDictionary[@"minutely"][@"summary"];
+        
+        _weatherDaySummary = self.weatherDictionary[@"hourly"][@"summary"];
+
+        _weatherGMTOffset = ((NSNumber *)self.weatherDictionary[@"offset"]).integerValue;
+        
+        [self weatherSunriseSunset];
+        
+        [self weatherhighLowTemps];
+
+        [self weatherDates];
+        
         [self populateWeatherByHour];
     }
     
     return self;
 }
 
-
-- (void) sunRiseData {
-    NSNumber *sunRiseNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
-    NSNumber *sunSetNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
-    NSNumber *currentNum = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];
-    _sunRiseDate = [NSDate dateWithTimeIntervalSince1970:sunRiseNum.integerValue];
-    _sunSetDate = [NSDate dateWithTimeIntervalSince1970:sunSetNum.integerValue];
-    _currentDate = [NSDate dateWithTimeIntervalSince1970:currentNum.integerValue];
+- (TSWeather *)weatherForHour:(NSUInteger)hour{
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"h:mm a"];
-    
-    _sunRise = [dateFormatter stringFromDate:self.sunRiseDate];
-    _sunSet = [dateFormatter stringFromDate:self.sunSetDate];
-    
-    [dateFormatter setDateFormat:@"H"];
-    
-    _sunRiseHour = [dateFormatter stringFromDate:self.sunRiseDate];
-    _sunSetHour = [dateFormatter stringFromDate:self.sunSetDate];
-    _startingHour = [[dateFormatter stringFromDate:self.currentDate] integerValue];
+    return self.weatherByHour[hour];
 }
 
-- (void) highLowTempStrings {
+- (void) weatherDates {
+    
+    NSNumber *startingEpochTime = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];
+    NSDate *startingDate = [NSDate dateWithTimeIntervalSince1970:startingEpochTime.integerValue];
+    
+    _weatherStartingMilitaryHourLocal = [startingDate militaryHourWithGMTOffset:self.weatherGMTOffset];
+    
+    _weatherLongDateLocal = [startingDate longDateWithGMTOffset:self.weatherGMTOffset];
+    
+    NSDate *tomorrowDate = [startingDate dateByAddingTimeInterval:60*60*24];
+    
+    _weatherLongDateLocalTomorrow = [tomorrowDate longDateWithGMTOffset:self.weatherGMTOffset];
+}
+
+- (void) weatherSunriseSunset {
+    
+    NSNumber *sunRiseNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunriseTime"];
+    NSDate *sunriseDate = [NSDate dateWithTimeIntervalSince1970:sunRiseNum.integerValue];
+    _weatherSunrise = [sunriseDate timeStringWithGMTOffset:self.weatherGMTOffset militaryTime:0];
+    _weatherSunriseMilitaryHourLocal = [sunriseDate militaryHourWithGMTOffset:self.weatherGMTOffset];
+    
+    NSNumber *sunSetNum = self.weatherDictionary[@"daily"][@"data"][0][@"sunsetTime"];
+    NSDate *sunsetDate = [NSDate dateWithTimeIntervalSince1970:sunSetNum.integerValue];
+    _weatherSunset = [sunsetDate timeStringWithGMTOffset:self.weatherGMTOffset militaryTime:0];
+    _weatherSunsetMilitaryHourLocal = [sunsetDate militaryHourWithGMTOffset:self.weatherGMTOffset];
+}
+
+- (void) weatherhighLowTemps {
     NSDictionary *today = [[[self.weatherDictionary valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:0];
     CGFloat high = [today[@"temperatureMax"] floatValue];
     CGFloat low = [today[@"temperatureMin"] floatValue];
     
-    _highLowTempF = [NSString stringWithFormat:@"H %.f°F   L %.f°F", high, low];
+    _weatherHighLowTemperaturesF = [NSString stringWithFormat:@"H %.f°F   L %.f°F", high, low];
     
     high = ((high - 32.f) / 1.8f);
     low = ((low - 32.f) / 1.8f);
     
-    _highLowTempC = [NSString stringWithFormat:@"H %.f°C   L %.f°C", high, low];
+    _weatherHighLowTemperaturesC = [NSString stringWithFormat:@"H %.f°C   L %.f°C", high, low];
     
     // Tomorrow
     today = [[[self.weatherDictionary valueForKey:@"daily"] valueForKey:@"data"] objectAtIndex:1];
     high = [today[@"temperatureMax"] floatValue];
     low = [today[@"temperatureMin"] floatValue];
     
-    _highLowTempFTomorrow = [NSString stringWithFormat:@"H %.f°F   L %.f°F", high, low];
+    _weatherHighLowTemperaturesFTomorrow = [NSString stringWithFormat:@"H %.f°F   L %.f°F", high, low];
     
     high = ((high - 32.f) / 1.8f);
     low = ((low - 32.f) / 1.8f);
     
-    _highLowTempCTomorrow = [NSString stringWithFormat:@"H %.f°C   L %.f°C", high, low];
+    _weatherHighLowTemperaturesCTomorrow = [NSString stringWithFormat:@"H %.f°C   L %.f°C", high, low];
 }
 
 - (void) populateWeatherByHour{
-   
+    
     // Create first weather object for current weather
     if (self.weatherDictionary[@"currently"]) {
         
-        NSNumber *unixTime = self.weatherDictionary[@"hourly"][@"data"][0][@"time"];
-        NSUInteger militaryHour = [self convertToMilitaryHourWithUnixTime:unixTime];
+        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] gmtOffset:self.weatherGMTOffset];
         
-        TSWeather *weather = [[TSWeather alloc] initWithDictionary:self.weatherDictionary[@"currently"] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
-        
-        if (weather.percentRainFloat >= 70) {
-            self.rainChanceTodayAbove70 = YES;
-        } else if (weather.percentRainFloat >= 50){
-            self.rainChanceTodayAbove50 = YES;
+        if (weather.weatherPercentRain >= 70) {
+            self.weatherRainParticlesPresent = YES;
         }
         
         [self.weatherByHour addObject:weather];
@@ -120,52 +127,14 @@
         //Create Weather Objects and add to weatherByHour array
         for (NSUInteger i = 1; i < hourlyWeatherDataArray.count; i++) {
             
-            NSNumber *unixTime = self.weatherDictionary[@"hourly"][@"data"][i][@"time"];
-            NSUInteger militaryHour = [self convertToMilitaryHourWithUnixTime:unixTime];
+            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] gmtOffset:self.weatherGMTOffset];
             
-            TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] sunRiseString:self.sunRiseHour sunSetString:self.sunSetHour sunUp:[self sunUpCheck:militaryHour]];
-            
-            if (weather.percentRainFloat >= 70) {
-                self.rainChanceTodayAbove70 = YES;
-            } else if (weather.percentRainFloat >= 50){
-                self.rainChanceTodayAbove50 = YES;
+            if (weather.weatherPercentRain >= 70) {
+                self.weatherRainParticlesPresent = YES;
             }
             
             [self.weatherByHour addObject:weather];
         }
-    }
-}
-
-
-- (TSWeather *)weatherForHour:(NSUInteger)hour{
-    
-    if (self.weatherByHour[hour]) {
-        
-        return self.weatherByHour[hour];
-        
-    } else {
-        
-        NSArray *staleWeatherArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"staleWeather"];
-        
-        return staleWeatherArray[hour];
-    }
-}
-
-- (NSUInteger)convertToMilitaryHourWithUnixTime:(NSNumber *) unixTime{
-    
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:unixTime.integerValue];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"H"];
-    NSString *hourString = [dateFormatter stringFromDate:date];
-    return hourString.integerValue;
-}
-
-- (BOOL) sunUpCheck:(NSUInteger) theHour {
-    
-    if (theHour >= self.sunRiseHour.integerValue && theHour < self.sunSetHour.integerValue) {
-        return YES;
-    } else {
-        return NO;
     }
 }
 

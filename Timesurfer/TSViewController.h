@@ -9,7 +9,7 @@
 @interface TSViewController : UIViewController <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) TSWeatherManager *weatherData;
+@property (nonatomic, strong) TSWeatherManager *weatherManager;
 
 - (void) getWeatherWithOverride:(BOOL)override;
 - (void) updateWeatherLabelsWithIndex:(NSUInteger)hour;
