@@ -180,6 +180,7 @@
     CGRect bounds = CGRectMake(0, 0, containerView.bounds.size.width - 100, containerView.bounds.size.height);
     
     if (CGRectContainsPoint(bounds, [sender locationInView:containerView])) {
+        [self.delegate updateCalendarLabelOffOfSettingsDismissal];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

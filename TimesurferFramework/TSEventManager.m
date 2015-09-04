@@ -24,9 +24,6 @@ static TSEventManager *_sharedEventManager;
 {
     if (self = [super init]) {
         self.eventStore = [[EKEventStore alloc] init];
-//[self requestAccessToEvents];
-
-        //_localCalendarEventsArray = [[NSMutableArray alloc] init];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
@@ -123,28 +120,27 @@ static TSEventManager *_sharedEventManager;
 }
 
 -(NSString*)eventForHourAtIndex:(NSUInteger)index {
-    NSArray *useThisCalendarArray;
-    if (_useGoogleCalendar) {
-        useThisCalendarArray = _googleCalendarEventsArray;
-    }
-    else {
-        if (!_localCalendarEventsArray) {
-            [self fetchEvents];
+    if ([self calendarEnabled]) {
+        NSArray *useThisCalendarArray;
+        if (_useGoogleCalendar) {
+            useThisCalendarArray = _googleCalendarEventsArray;
         }
-        useThisCalendarArray = _localCalendarEventsArray;
+        else {
+            if (!_localCalendarEventsArray) {
+                [self fetchEvents];
+            }
+            useThisCalendarArray = _localCalendarEventsArray;
+        }
+        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
+        NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            TSEvent *event = evaluatedObject;
+            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
+        }];
+        NSArray *filteredEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
+        if ([filteredEvents count] > 0) {
+            return [filteredEvents[0] description];
+        }
     }
-    //if (_localCalendarEventsArray) {
-    NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
-    NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        TSEvent *event = evaluatedObject;
-        return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
-    }];
-    NSArray *filteredEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
-    if ([filteredEvents count] > 0) {
-        return [filteredEvents[0] description];
-    }
-        //return [_eventsArray[index] description];
-    //}
     return @"";
 }
 

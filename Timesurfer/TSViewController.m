@@ -19,7 +19,7 @@
 
 @import CoreLocation;
 
-@interface TSViewController () <TSLocationSearchViewDelegate>
+@interface TSViewController () <TSLocationSearchViewDelegate, CalendarEventLabelHidingDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -1055,13 +1055,17 @@
     return newImage;
 }
 
+-(void)updateCalendarLabelOffOfSettingsDismissal {
+    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
+}
+
 # pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     if ([segue.identifier isEqualToString:@"SettingsSegueID"]) {
         TSSettingsViewController *vc = segue.destinationViewController;
         vc.settingsManager = self.settingsManager;
+        vc.delegate = self;
     }
 }
 
