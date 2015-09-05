@@ -8,6 +8,16 @@
 
 #import "GTMOAuth2ViewControllerTouch.h"
 
+@protocol GoogleCalendarDelegate <NSObject>
+
+@required
+-(void)turnOffTheSwitch;
+-(void)heyMisterDelegatePleaseActivateGoogleCalendar;
+
+@end
+
 @interface TSGoogleAuthenticationViewController : GTMOAuth2ViewControllerTouch
+
+@property (nonatomic, weak) id<GoogleCalendarDelegate> googleCalendarDelegate;
 
 @end

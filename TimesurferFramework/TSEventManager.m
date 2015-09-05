@@ -26,18 +26,8 @@ static TSEventManager *_sharedEventManager;
         self.eventStore = [[EKEventStore alloc] init];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        
-        // Check if the access granted value for the events exists in the user defaults dictionary.
-        if ([userDefaults valueForKey:@"eventkit_events_access_granted"] != nil) {
-            // The value exists, so assign it to the property.
-            self.eventsAccessRequested = YES;
-            self.eventsAccessGranted = [[userDefaults valueForKey:@"eventkit_events_access_granted"] intValue];
-        }
-        else{
-            // Set the default value.
-            self.eventsAccessRequested = NO;
-            self.eventsAccessGranted = NO;
-        }
+        self.eventsAccessRequested = [userDefaults boolForKey:@"eventsAccessRequested"];
+        self.eventsAccessGranted = [userDefaults boolForKey:@"eventsAccessGranted"];
         
         if (self.eventsAccessGranted) {
             [self fetchEvents];
@@ -51,11 +41,16 @@ static TSEventManager *_sharedEventManager;
 }
 
 -(void)requestAccessToEventsWithCompletion:(void(^)())completion{
+    self.eventsAccessRequested = YES;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"eventsAccessRequested"];
     [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
         if (error == nil) {
             // Store the returned granted value.
             self.eventsAccessGranted = granted;
-            completion();
+            [[NSUserDefaults standardUserDefaults] setBool:granted forKey:@"eventsAccessGranted"];
+            if (granted) {
+                completion();
+            }
         }
         else{
             // In case of error, just log its description to the debugger.
@@ -70,9 +65,7 @@ static TSEventManager *_sharedEventManager;
     
     for (int i=0; i<allCalendars.count; i++) {
         EKCalendar *currentCalendar = [allCalendars objectAtIndex:i];
-        //if (currentCalendar.type == EKCalendarType) {
-            [localCalendars addObject:currentCalendar];
-        //}
+        [localCalendars addObject:currentCalendar];
     }
     
     return (NSArray *)localCalendars;

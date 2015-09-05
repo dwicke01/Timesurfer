@@ -1,6 +1,7 @@
 
 #import "AppDelegate.h"
 #import "TSViewController.h"
+#import "TSGoogleCalendarManager.h"
 
 @interface AppDelegate ()
 
@@ -11,26 +12,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSString *dateKey = @"dateKey";
-    NSDate *lastRead  = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:dateKey];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSDate *lastRead  = (NSDate *)[defaults objectForKey:dateKey];
+    
+
+    
     if (lastRead == nil)
     {
         NSDictionary *appDefaults  = [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], dateKey, nil];
         
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"tempInC"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"airplaneAnimation"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"allAnimations"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"catsAndDogsAnimation"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"helicopterAnimation"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"sheepAnimation"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"squirrelAnimation"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"appleCalendar"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"googleCalendar"];
         
-        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [defaults setBool:NO forKey:@"tempInC"];
+        [defaults setBool:NO forKey:@"signedInToGoogle"];
+        [defaults setBool:YES forKey:@"airplaneAnimation"];
+        [defaults setBool:YES forKey:@"allAnimations"];
+        [defaults setBool:YES forKey:@"catsAndDogsAnimation"];
+        [defaults setBool:YES forKey:@"helicopterAnimation"];
+        [defaults setBool:YES forKey:@"sheepAnimation"];
+        [defaults setBool:YES forKey:@"squirrelAnimation"];
+        [defaults setBool:NO forKey:@"appleCalendar"];
+        [defaults setBool:NO forKey:@"googleCalendar"];
+        
+        [defaults registerDefaults:appDefaults];
+        [defaults synchronize];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
-
+    [defaults setObject:[NSDate date] forKey:dateKey];
+    
     return YES;
 }
 
@@ -47,17 +55,20 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"appEnteredForeground" object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"googleCalendar"]) {
+        TSGoogleCalendarManager *googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:nil];
+        [googleCalendarManager authorizeWithCalendarDelegate:nil];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
 
 @end

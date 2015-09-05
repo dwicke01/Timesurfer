@@ -47,6 +47,7 @@
 
 -(void)cancelGdriveSignIn:(id)sender
 {
+    [self.googleCalendarDelegate turnOffTheSwitch];
     [self dismissViewControllerAnimated:YES completion:^(void){}];
 }
 

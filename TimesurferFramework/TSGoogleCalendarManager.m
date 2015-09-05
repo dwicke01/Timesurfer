@@ -31,11 +31,12 @@
 }
 
 // When the view appears, ensure that the Google Calendar API service is authorized, and perform API calls.
-- (void)authorize {
+-(void)authorizeWithCalendarDelegate:(id<GoogleCalendarDelegate>)delegate {
+    self.googleCalendarDelegate = delegate;
+
     if (!self.service.authorizer.canAuthorize) {
         // Not yet authorized, request authorization by pushing the login UI onto the UI stack.
-        
-        [self.delegate doMeAFavorAndPresentThisViewControllerNowWouldYou:[self createAuthController]];
+        [self.delegate doMeAFavorAndPresentThisViewControllerNowWouldYou:[self createAuthControllerWithCalendarDelegate:delegate]];
         //[self presentViewController:[self createAuthController] animated:YES completion:nil];
         
     } else {
@@ -94,7 +95,7 @@
 
 
 // Creates the auth controller for authorizing access to Google Calendar API.
-- (GTMOAuth2ViewControllerTouch *)createAuthController {
+- (GTMOAuth2ViewControllerTouch *)createAuthControllerWithCalendarDelegate:(id<GoogleCalendarDelegate>)delegate {
     TSGoogleAuthenticationViewController *authController;
     NSArray *scopes = [NSArray arrayWithObjects:kGTLAuthScopeCalendarReadonly, nil];
     authController = [[TSGoogleAuthenticationViewController alloc]
@@ -104,6 +105,7 @@
                       keychainItemName:kKeychainItemName
                       delegate:self
                       finishedSelector:@selector(viewController:finishedWithAuth:error:)];
+    authController.googleCalendarDelegate = delegate;
     return authController;
 }
 
@@ -118,6 +120,8 @@
     }
     else {
         self.service.authorizer = authResult;
+        [self fetchEvents];
+        [self.googleCalendarDelegate heyMisterDelegatePleaseActivateGoogleCalendar];
         [self.delegate thanksDearOneLastThingWouldYouKindlyDismissThatSameViewControllerForMe];
     }
 }

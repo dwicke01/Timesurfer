@@ -10,7 +10,7 @@
 
 @class TSViewController;
 
-@interface TSSettingsViewController () <SettingToggleDelegate, UITableViewDelegate, GoogleAuthenticationViewControllerPresentationDelegate>
+@interface TSSettingsViewController () <SettingToggleDelegate, UITableViewDelegate, GoogleAuthenticationViewControllerPresentationDelegate, GoogleCalendarDelegate>
 
 @property (nonatomic, strong) UIVisualEffectView *visualEffectView;
 @property (nonatomic, strong) NSArray *settingsArray;
@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSDictionary *settingsSwitch;
 @property (nonatomic, assign) BOOL isSignedInToGoogle;
 @property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
+
+-(void)activateAppleCalendar:(TSEventManager*)eventManager;
 
 @end
 
@@ -30,7 +32,13 @@
     [self setupTapGesture];
     [self setupVisualEffectView];
     self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
-    _isSignedInToGoogle = NO;
+    _isSignedInToGoogle = [[NSUserDefaults standardUserDefaults] boolForKey:@"signedInToGoogle"];
+//    if (_isSignedInToGoogle) {
+//        [self.googleCalendarManager authorizeWithCalendarDelegate:self];
+//        [[TSEventManager sharedEventManger] toggleGoogleCalendar];
+//        self.settingsManager.toggleGoogleCalendar = !self.settingsManager.toggleGoogleCalendar;
+//    }
+    
     self.settingsTableView.delegate = self;
 }
 
@@ -56,6 +64,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [self.settingsManager saveEverything];
+    [[NSUserDefaults standardUserDefaults] setBool:self.isSignedInToGoogle forKey:@"signedInToGoogle"];
     [super viewWillDisappear:animated];
 }
 
@@ -115,13 +124,11 @@
                                                                                     }];
                                                                                 }]];
                                         [alert addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                                 for (TSSettingsTableViewCell *cell in [weakSelf.settingsTableView visibleCells]) {
                                                     if ([cell.labelString isEqualToString:@"Use Apple Calendar"]) {
                                                         cell.toggleAnimationSwitch.on = NO;
                                                     }
                                                 }
-                                            }];
                                         }]];
                                         [self presentViewController:alert animated:YES completion:nil];
                                     }
@@ -130,24 +137,48 @@
                                     }
                                 },
                                 @"Use Google Calendar" : ^{
-                                    if (!self.isSignedInToGoogle) {
-                                        [self.googleCalendarManager authorize];
-                                        self.isSignedInToGoogle = YES;
-                                    }
+                                    /*
+//                                    if (!self.isSignedInToGoogle) {
+//                                        [self.googleCalendarManager authorizeWithSwitchDelegate:self];
+//                                        self.isSignedInToGoogle = YES;
+//                                    }
                                     
-                                    if (weakSelf.settingsManager.toggleAppleCalendar) {
-                                        weakSelf.settingsManager.toggleAppleCalendar = NO;
-                                        for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
-                                            if ([cell.labelString isEqualToString:@"Use Apple Calendar"]) {
-                                                cell.toggleAnimationSwitch.on = NO;
-                                            }
-                                        }
-                                    }
+//                                    if (weakSelf.settingsManager.toggleAppleCalendar) {
+//                                        weakSelf.settingsManager.toggleAppleCalendar = NO;
+//                                        for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
+//                                            if ([cell.labelString isEqualToString:@"Use Apple Calendar"]) {
+//                                                cell.toggleAnimationSwitch.on = NO;
+//                                            }
+//                                        }
+//                                    }
+                  */
+                                    TSEventManager *eventManager = [TSEventManager sharedEventManger];
+                                    if (!self.isSignedInToGoogle) {
+                                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Google Calendar"
+                                                                                                       message:@"Would you like to see your Google  calendar events?"
+                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                        [alert addAction:[UIAlertAction actionWithTitle:@"Yes"
+                                                                                  style:UIAlertActionStyleDefault
+                                                                                handler:^(UIAlertAction *action) {
+                                                                                    [self.googleCalendarManager authorizeWithCalendarDelegate:weakSelf];
+                                                                                }]];
+                                        [alert addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                                                for (TSSettingsTableViewCell *cell in [weakSelf.settingsTableView visibleCells]) {
+                                                    if ([cell.labelString isEqualToString:@"Use Google Calendar"]) {
+                                                        cell.toggleAnimationSwitch.on = NO;
+                                                    }
+                                                }
+                                        }]];
+                                        [self presentViewController:alert animated:YES completion:nil];
 
                                     
-                                    TSEventManager *eventManager = [TSEventManager sharedEventManger];
-                                    [eventManager toggleGoogleCalendar];
-                                    weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
+                                    //TSEventManager *eventManager = [TSEventManager sharedEventManger];
+                                    //[eventManager toggleGoogleCalendar];
+                                    //weakSelf.settingsManager.toggleGoogleCalendar = !weakSelf.settingsManager.toggleGoogleCalendar;
+                                    }
+                                    else {
+                                        [weakSelf activateGoogleCalendar:eventManager];
+                                    }
                                 }};
     NSMutableArray *temp = [[[self.settingsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] mutableCopy];
     [temp exchangeObjectAtIndex:0 withObjectAtIndex:1];
@@ -212,10 +243,42 @@
             }
         }
     }
-
 }
+    
+-(void)activateGoogleCalendar:(TSEventManager*)eventManager {
+    [eventManager toggleGoogleCalendar];
+    self.isSignedInToGoogle = YES;
+    
+    self.settingsManager.toggleGoogleCalendar = !self.settingsManager.toggleGoogleCalendar;
+    
+    if (self.settingsManager.toggleAppleCalendar) {
+        self.settingsManager.toggleAppleCalendar = NO;
+        for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
+            if ([cell.labelString isEqualToString:@"Use Apple Calendar"]) {
+                cell.toggleAnimationSwitch.on = NO;
+            }
+        }
+    }
+}
+
 -(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.settingsTableView.bounds.size.height / [self.settingsArray count];
+}
+
+-(void)heyMisterDelegatePleaseActivateGoogleCalendar {
+    [self activateGoogleCalendar:[TSEventManager sharedEventManger]];
+}
+
+-(void)turnOffTheSwitch {
+    [self turnOffSwitchNamed:@"Use Google Calendar"];
+}
+
+-(void)turnOffSwitchNamed:(NSString*)nameOfSwitch {
+    for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
+        if ([cell.labelString isEqualToString:nameOfSwitch]) {
+            cell.toggleAnimationSwitch.on = NO;
+        }
+    }
 }
 
 @end
