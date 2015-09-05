@@ -34,4 +34,13 @@
     [[NSUserDefaults standardUserDefaults] setBool:_toggleGoogleCalendar forKey:@"googleCalendar"];
 }
 
+-(void)setToggleAllAnimations:(BOOL)toggleAllAnimations {
+    _toggleAirplaneAnimation = toggleAllAnimations;
+    _toggleAllAnimations = toggleAllAnimations;
+    _toggleCatsAndDogsAnimation = toggleAllAnimations;
+    _toggleHelicopterAnimation = toggleAllAnimations;
+    _toggleSheepAnimation = toggleAllAnimations;
+    _toggleSquirrelAnimation = toggleAllAnimations;
+}
+
 @end

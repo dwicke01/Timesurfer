@@ -53,7 +53,6 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //self.googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:self];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -92,12 +91,6 @@
                                 @"All Animations" : ^{
                                     weakSelf.settingsManager.toggleAllAnimations = !weakSelf.settingsManager.toggleAllAnimations;
                                     BOOL settingForAllAnimations = weakSelf.settingsManager.toggleAllAnimations;
-                                    weakSelf.settingsManager.toggleAirplaneAnimation = settingForAllAnimations;
-                                    weakSelf.settingsManager.toggleCatsAndDogsAnimation = settingForAllAnimations;
-                                    weakSelf.settingsManager.toggleHelicopterAnimation = settingForAllAnimations;
-                                    weakSelf.settingsManager.toggleSheepAnimation = settingForAllAnimations;
-                                    weakSelf.settingsManager.toggleSquirrelAnimation = settingForAllAnimations;
-                                    
                                     for (TSSettingsTableViewCell *cell in [self.settingsTableView visibleCells]) {
                                         if (![cell.labelString isEqualToString:@"Use Google Calendar"] && ![cell.labelString isEqualToString:@"Use Apple Calendar"]) {
                                             cell.toggleAnimationSwitch.on = settingForAllAnimations;
