@@ -6,6 +6,6 @@
 
 - (NSString *) timeStringWithGMTOffset:(NSInteger)offset militaryTime:(BOOL)militaryTime;
 - (CGFloat) militaryHourWithGMTOffset:(NSInteger)offset;
-- (NSString *) longDateWithGMTOffset:(NSUInteger)offset;
+- (NSAttributedString *) longDateWithGMTOffset:(NSUInteger)offset;
 
 @end
