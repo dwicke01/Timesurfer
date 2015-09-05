@@ -161,9 +161,11 @@ static TSEventManager *_sharedEventManager;
 
 -(void)toggleAppleCalendar {
     _useAppleCalendar = !_useAppleCalendar;
+    _useGoogleCalendar = NO;
 }
 
 -(void)toggleGoogleCalendar {
     _useGoogleCalendar = !_useGoogleCalendar;
+    _useAppleCalendar = NO;
 }
 @end

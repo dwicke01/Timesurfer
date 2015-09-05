@@ -57,7 +57,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [self.settingsManager saveEverything];
-    [[NSUserDefaults standardUserDefaults] setBool:self.isSignedInToGoogle forKey:@"signedInToGoogle"];
     [super viewWillDisappear:animated];
 }
 
@@ -204,7 +203,8 @@
 -(void)activateGoogleCalendar:(TSEventManager*)eventManager {
     [eventManager toggleGoogleCalendar];
     self.isSignedInToGoogle = YES;
-    
+    [[NSUserDefaults standardUserDefaults] setBool:self.isSignedInToGoogle forKey:@"signedInToGoogle"];
+
     self.settingsManager.toggleGoogleCalendar = !self.settingsManager.toggleGoogleCalendar;
     
     if (self.settingsManager.toggleAppleCalendar) {
