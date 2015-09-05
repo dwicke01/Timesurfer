@@ -13,6 +13,7 @@
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents;
 -(void)toggleAppleCalendar;
 -(void)toggleGoogleCalendar;
+-(void)fetchEvents;
 -(void)requestAccessToEventsWithCompletion:(void(^)())completion;
 -(BOOL)calendarEnabled;
 

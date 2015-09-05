@@ -2,6 +2,7 @@
 #import "AppDelegate.h"
 #import "TSViewController.h"
 #import "TSGoogleCalendarManager.h"
+#import "TSEventManager.h"
 
 @interface AppDelegate ()
 
@@ -33,6 +34,8 @@
         [defaults setBool:YES forKey:@"squirrelAnimation"];
         [defaults setBool:NO forKey:@"appleCalendar"];
         [defaults setBool:NO forKey:@"googleCalendar"];
+        [defaults setBool:NO forKey:@"eventsAccessRequested"];
+        [defaults setBool:NO forKey:@"eventsAccessGranted"];
         
         [defaults registerDefaults:appDefaults];
         [defaults synchronize];
@@ -60,7 +63,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"googleCalendar"]) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults boolForKey:@"eventsAccessRequested"]) {
+        [[TSEventManager sharedEventManger] fetchEvents];
+    }
+    
+    
+    if ([defaults boolForKey:@"googleCalendar"]) {
         TSGoogleCalendarManager *googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:nil];
         [googleCalendarManager authorizeWithCalendarDelegate:nil];
     }
