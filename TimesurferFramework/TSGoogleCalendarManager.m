@@ -75,7 +75,15 @@
                 
                 [eventString appendFormat:@"%@ - %@\n", startString, event.summary];
                 
-                TSEvent *tsEvent = [[TSEvent alloc] initWithTitle:event.summary startTime:event.start.dateTime.date endTime:event.end.dateTime.date location:event.location];
+                BOOL isAllDay = event.start.dateTime == nil;
+                NSDate *startTime = event.start.dateTime.date;
+                NSDate *endTime = event.end.dateTime.date;
+                if (isAllDay) {
+                    startTime = event.start.date.date;
+                }
+                
+                TSEvent *tsEvent = [[TSEvent alloc] initWithTitle:event.summary startTime:startTime endTime:endTime location:event.location allDay:isAllDay];
+                
                 [tsEvents addObject:tsEvent];
             }
             [eventManager addGoogleCalendarEvents:tsEvents];
@@ -83,12 +91,10 @@
             [eventString appendString:@"No upcoming events found."];
         }
         NSLog(@"%@", eventString);
-        //self.output.text = eventString;
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];   ///// UNTESTED!!!!!!!! /////////
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
         [self.delegate doMeAFavorAndPresentThisViewControllerNowWouldYou:alert];
-        //[self showAlert:@"Error" message:error.localizedDescription];
     }
 }
 

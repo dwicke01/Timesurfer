@@ -101,14 +101,13 @@ static TSEventManager *_sharedEventManager;
     _localCalendarEventsArray = [@[] mutableCopy];
     
     for (EKEvent *event in ekEventsArray) {
-        [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
+        [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location allDay:event.allDay]];
     }
 }
 
 - (NSDate*) previousHourDate:(NSDate*)inDate{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components: NSCalendarUnitEra|NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate: inDate];
-    //[comps setHour: [comps hour]]; //NSDateComponents handles rolling over between days, months, years, etc
     return [calendar dateFromComponents:comps];
 }
 
@@ -124,7 +123,22 @@ static TSEventManager *_sharedEventManager;
             }
             useThisCalendarArray = _localCalendarEventsArray;
         }
+        
         NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
+        
+        ////////// HERE GOES CODE FOR ALL DAY EVENTS
+        NSPredicate *allDayPred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            TSEvent *event = evaluatedObject;
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            NSDateComponents *eventComps = [calendar components: NSCalendarUnitDay fromDate: [NSDate dateWithTimeIntervalSince1970:event.startTimeAsTimeInterval]];
+            NSDateComponents *nowComps = [calendar components: NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSince1970:desiredTimeInterval]];
+            return event.allDay && ([eventComps day] == [nowComps day]);
+        }];
+        NSArray *allDayEvents = [useThisCalendarArray filteredArrayUsingPredicate:allDayPred];
+        if ([allDayEvents count] > 0) {
+            return [allDayEvents[0] description];
+        }
+        
         NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
             return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
