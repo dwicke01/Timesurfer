@@ -173,7 +173,7 @@
 - (void) updateWeatherInfo {
     
     if ([self.eventManager calendarEnabled]) {
-        self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
+        self.calendarEventLabel.text = [self.eventManager eventsForHourAtIndex:self.currentWeatherIndex];
     }
     [self updateWeatherLabelsWithIndex:self.currentWeatherIndex];
 }
@@ -1073,7 +1073,7 @@
 }
 
 -(void)updateCalendarLabelOffOfSettingsDismissal {
-    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
+    self.calendarEventLabel.text = [self.eventManager eventsForHourAtIndex:self.currentWeatherIndex];
 }
 
 # pragma mark - Navigation

@@ -112,7 +112,7 @@ static const double SECONDS_IN_AN_HOUR = 3600;
 }
 
 -(NSString*)eventsForHourAtIndex:(NSUInteger)index {
-    //NSMutableString *eventsString = [@"" mutableCopy];
+    NSMutableString *eventsString = [@"" mutableCopy];
     if ([self calendarEnabled]) {
         NSArray *useThisCalendarArray;
         if (_useGoogleCalendar) {
@@ -136,20 +136,24 @@ static const double SECONDS_IN_AN_HOUR = 3600;
             return event.allDay && ([eventComps day] == [nowComps day]);
         }];
         NSArray *allDayEvents = [useThisCalendarArray filteredArrayUsingPredicate:allDayPred];
-        if ([allDayEvents count] > 0) {
-            return [allDayEvents[0] description];
+        for (TSEvent *event in allDayEvents) {
+            [eventsString appendFormat:@"%@\n", [event description]];
         }
         
         NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
-            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
+            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval && !event.allDay;
         }];
-        NSArray *filteredEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
-        if ([filteredEvents count] > 0) {
-            return [filteredEvents[0] description];
+        NSArray *filteredHourlyEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
+        for (TSEvent *event in filteredHourlyEvents) {
+            [eventsString appendFormat:@"%@\n", [event description]];
         }
     }
-    return @"";
+    NSString *adjustedEventsString = eventsString;
+    if ([eventsString length] > 0) {
+        adjustedEventsString = [eventsString substringToIndex:[eventsString length] - 1];
+    }
+    return adjustedEventsString;
 }
 
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents {
