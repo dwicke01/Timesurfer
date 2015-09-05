@@ -29,7 +29,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CityCellReuseID" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationCellReuseID" forIndexPath:indexPath];
     
     cell.textLabel.attributedText = self.searchResults[indexPath.row];
 
@@ -75,14 +75,18 @@
     
     [client autocompleteQuery:self.searchBar.text bounds:nil filter:nil callback:^(NSArray *results, NSError *error) {
         
-        for (GMSAutocompletePrediction *location in results) {
-            [self.searchResults addObject:location.attributedFullText];
+        if (results) {
+            
+            [self.searchResults removeAllObjects];
+            
+            for (GMSAutocompletePrediction *location in results) {
+                [self.searchResults addObject:location.attributedFullText];
+            }
+            
+            [self.tableView reloadData];
         }
         
         self.searchTimer = nil;
-        
-        [self.tableView reloadData];
-        
     }];
 }
 

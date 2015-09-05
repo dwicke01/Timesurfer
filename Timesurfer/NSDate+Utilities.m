@@ -36,7 +36,7 @@
     return hourString.floatValue;
 }
 
-- (NSString *) longDateWithGMTOffset:(NSUInteger)offset {
+- (NSAttributedString *) longDateWithGMTOffset:(NSUInteger)offset {
     
     NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * 60 * 60];
     
@@ -53,8 +53,9 @@
     NSString *day = [dateFormatter stringFromDate:self];
     
     [longDate appendString:[NSString stringWithFormat:@" %@",[self daySuffixForDate:day.integerValue]]];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[longDate copy]];
     
-    return [longDate copy];
+    return [attrString copy];
 }
 
 - (NSString *)daySuffixForDate:(NSInteger)dayOfMonth {

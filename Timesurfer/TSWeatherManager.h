@@ -10,8 +10,8 @@
 @property (nonatomic, strong) NSString *weatherSunset;
 @property (nonatomic, strong) NSString *weatherDaySummary;
 @property (nonatomic, assign) NSString *weatherHourSummary;
-@property (nonatomic, strong) NSString *weatherLongDateLocal;
-@property (nonatomic, strong) NSString *weatherLongDateLocalTomorrow;
+@property (nonatomic, strong) NSAttributedString *weatherLongDateLocal;
+@property (nonatomic, strong) NSAttributedString *weatherLongDateLocalTomorrow;
 @property (nonatomic, strong) NSString *weatherHighLowTemperaturesF;
 @property (nonatomic, strong) NSString *weatherHighLowTemperaturesC;
 @property (nonatomic, strong) NSString *weatherHighLowTemperaturesFTomorrow;

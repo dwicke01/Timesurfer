@@ -2,6 +2,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Forecastr/Forecastr.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <CoreText/CTStringAttributes.h>
 
 #import "TSViewController.h"
 #import "TSSettingsViewController.h"
@@ -457,21 +458,37 @@
         
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
-            self.longDateLabel.text = self.weatherManager.weatherLongDateLocalTomorrow;
+            self.longDateLabel.attributedText = self.weatherManager.weatherLongDateLocalTomorrow;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
-            self.longDateLabel.text = self.weatherManager.weatherLongDateLocalTomorrow;
+            self.longDateLabel.attributedText = self.weatherManager.weatherLongDateLocalTomorrow;
         }
         
     } else {
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
-            self.longDateLabel.text = self.weatherManager.weatherLongDateLocal;
+            self.longDateLabel.attributedText = self.weatherManager.weatherLongDateLocal;
         } else {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureF;
-            self.longDateLabel.text = self.weatherManager.weatherLongDateLocal;
+            self.longDateLabel.attributedText = self.weatherManager.weatherLongDateLocal;
         }
     }
+    
+    NSMutableAttributedString *attrString = [self.longDateLabel.attributedText mutableCopy];
+    UIFont *labelFont = self.longDateLabel.font;
+    
+    [attrString beginEditing];
+    [attrString addAttribute:(NSString*)kCTSuperscriptAttributeName
+                       value:@(1)
+                       range:NSMakeRange(attrString.length - 2, 2)];
+    
+    [attrString addAttribute:NSFontAttributeName
+                       value:[labelFont fontWithSize:labelFont.pointSize * 0.6]
+                       range:NSMakeRange(attrString.length - 2, 2)];
+    
+    [attrString endEditing];
+    
+    self.longDateLabel.attributedText = [attrString copy];
     
     if (self.weatherManager.weatherSunsetMilitaryHourLocal == self.currentMilitaryHour) {
         self.sunriseLabel.alpha = 1;
