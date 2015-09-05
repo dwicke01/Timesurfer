@@ -718,6 +718,7 @@
 				TargetAttributes = {
 					17DB0BF51B3BAA690001810D = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 9SGALY6Q3W;
 					};
 					17DB0C0E1B3BAA690001810D = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -725,6 +726,7 @@
 					};
 					FA22DABE1B41DEED0072005E = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 9SGALY6Q3W;
 					};
 					FA22DAC81B41DEEE0072005E = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -732,7 +734,7 @@
 					};
 					FA5695101B41B65300A9FB98 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 9RXLE5FXUN;
+						DevelopmentTeam = 9SGALY6Q3W;
 					};
 				};
 			};
@@ -1117,6 +1119,7 @@
 			baseConfigurationReference = 1A76722F0040275B706F556D /* Pods-Timesurfer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
@@ -1136,6 +1139,7 @@
 			baseConfigurationReference = 37C3A64486D20A46C0AA10FE /* Pods-Timesurfer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
@@ -1190,6 +1194,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1217,6 +1222,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
