@@ -10,7 +10,7 @@
 }
 
 static TSEventManager *_sharedEventManager;
-
+static const double SECONDS_IN_AN_HOUR = 3600;
 
 +(TSEventManager*)sharedEventManger {
     static dispatch_once_t onceToken;
@@ -111,7 +111,8 @@ static TSEventManager *_sharedEventManager;
     return [calendar dateFromComponents:comps];
 }
 
--(NSString*)eventForHourAtIndex:(NSUInteger)index {
+-(NSString*)eventsForHourAtIndex:(NSUInteger)index {
+    //NSMutableString *eventsString = [@"" mutableCopy];
     if ([self calendarEnabled]) {
         NSArray *useThisCalendarArray;
         if (_useGoogleCalendar) {
@@ -124,7 +125,7 @@ static TSEventManager *_sharedEventManager;
             useThisCalendarArray = _localCalendarEventsArray;
         }
         
-        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
+        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * SECONDS_IN_AN_HOUR;
         
         ////////// HERE GOES CODE FOR ALL DAY EVENTS
         NSPredicate *allDayPred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
