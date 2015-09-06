@@ -48,7 +48,7 @@
     NSMutableString *description = [@"" mutableCopy];
     [description appendFormat:@"%@", self.title];
     if (!self.allDay) {
-        NSString *times = [NSMutableString stringWithFormat:@"%@-%@",
+        NSString *times = [NSMutableString stringWithFormat:@" %@-%@",
                            [self formatTime:self.startTime],
                            [self formatTime:self.endTime]];
         times = [times stringByReplacingOccurrencesOfString:@":00" withString:@""];
