@@ -171,6 +171,10 @@
 # pragma mark - API
 
 - (void) updateWeatherInfo {
+    
+    if ([self.eventManager calendarEnabled]) {
+        self.calendarEventLabel.text = [self.eventManager eventsForHourAtIndex:self.currentWeatherIndex];
+    }
 
     [self updateWeatherLabelsWithIndex:self.currentWeatherIndex];
 }
@@ -403,7 +407,7 @@
     } else if (self.currentWeather != weather || [self.currentWeather isEqual:[self.weatherManager weatherForHour:0]]){
         
         if ([self.eventManager calendarEnabled]) {
-            self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:indexOfHour];
+            self.calendarEventLabel.text = [self.eventManager eventsForHourAtIndex:indexOfHour];
         }
         
         self.currentWeather = weather;
@@ -1076,8 +1080,9 @@
     return newImage;
 }
 
-- (void)updateCalendarLabelOffOfSettingsDismissal {
-    self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
+
+-(void)updateCalendarLabelOffOfSettingsDismissal {
+    self.calendarEventLabel.text = [self.eventManager eventsForHourAtIndex:self.currentWeatherIndex];
 }
 
 # pragma mark - Navigation

@@ -10,7 +10,7 @@
 }
 
 static TSEventManager *_sharedEventManager;
-
+static const double SECONDS_IN_AN_HOUR = 3600;
 
 +(TSEventManager*)sharedEventManger {
     static dispatch_once_t onceToken;
@@ -101,18 +101,18 @@ static TSEventManager *_sharedEventManager;
     _localCalendarEventsArray = [@[] mutableCopy];
     
     for (EKEvent *event in ekEventsArray) {
-        [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location]];
+        [_localCalendarEventsArray addObject:[[TSEvent alloc] initWithTitle:event.title startTime:event.startDate endTime:event.endDate location:event.location allDay:event.allDay]];
     }
 }
 
 - (NSDate*) previousHourDate:(NSDate*)inDate{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components: NSCalendarUnitEra|NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate: inDate];
-    //[comps setHour: [comps hour]]; //NSDateComponents handles rolling over between days, months, years, etc
     return [calendar dateFromComponents:comps];
 }
 
--(NSString*)eventForHourAtIndex:(NSUInteger)index {
+-(NSString*)eventsForHourAtIndex:(NSUInteger)index {
+    NSMutableString *eventsString = [@"" mutableCopy];
     if ([self calendarEnabled]) {
         NSArray *useThisCalendarArray;
         if (_useGoogleCalendar) {
@@ -124,17 +124,36 @@ static TSEventManager *_sharedEventManager;
             }
             useThisCalendarArray = _localCalendarEventsArray;
         }
-        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * 3600;
+        
+        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * SECONDS_IN_AN_HOUR;
+        
+        ////////// HERE GOES CODE FOR ALL DAY EVENTS
+        NSPredicate *allDayPred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            TSEvent *event = evaluatedObject;
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            NSDateComponents *eventComps = [calendar components: NSCalendarUnitDay fromDate: [NSDate dateWithTimeIntervalSince1970:event.startTimeAsTimeInterval]];
+            NSDateComponents *nowComps = [calendar components: NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSince1970:desiredTimeInterval]];
+            return event.allDay && ([eventComps day] == [nowComps day]);
+        }];
+        NSArray *allDayEvents = [useThisCalendarArray filteredArrayUsingPredicate:allDayPred];
+        for (TSEvent *event in allDayEvents) {
+            [eventsString appendFormat:@"%@\n", [event description]];
+        }
+        
         NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
-            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval;
+            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval && !event.allDay;
         }];
-        NSArray *filteredEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
-        if ([filteredEvents count] > 0) {
-            return [filteredEvents[0] description];
+        NSArray *filteredHourlyEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
+        for (TSEvent *event in filteredHourlyEvents) {
+            [eventsString appendFormat:@"%@\n", [event description]];
         }
     }
-    return @"";
+    NSString *adjustedEventsString = eventsString;
+    if ([eventsString length] > 0) {
+        adjustedEventsString = [eventsString substringToIndex:[eventsString length] - 1];
+    }
+    return adjustedEventsString;
 }
 
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents {
@@ -147,9 +166,11 @@ static TSEventManager *_sharedEventManager;
 
 -(void)toggleAppleCalendar {
     _useAppleCalendar = !_useAppleCalendar;
+    _useGoogleCalendar = NO;
 }
 
 -(void)toggleGoogleCalendar {
     _useGoogleCalendar = !_useGoogleCalendar;
+    _useAppleCalendar = NO;
 }
 @end

@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.themostsocial.timesurf.framework</string>
+	<string>com.themostsocial.sunscreen.framework</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,9 +21,9 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Allow Timesurf to update via GPS periodically in the background.</string>
+	<string>Allow Sunscreen to update via GPS periodically in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow Timesurf to update via GPS when the app is open.</string>
+	<string>Allow Sunscreen to update via GPS when the app is open.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>

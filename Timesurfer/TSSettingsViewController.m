@@ -57,7 +57,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [self.settingsManager saveEverything];
-    [[NSUserDefaults standardUserDefaults] setBool:self.isSignedInToGoogle forKey:@"signedInToGoogle"];
     [super viewWillDisappear:animated];
 }
 
@@ -70,8 +69,9 @@
                                   @"Airplane" : @"toggleAirplaneAnimation",
                                   @"Helicopter" : @"toggleHelicopterAnimation",
                                   @"All Animations" : @"toggleAllAnimations",
-                                  @"Use Apple Calendar" : @"toggleAppleCalendar",
-                                  @"Use Google Calendar" : @"toggleGoogleCalendar"};
+                                  @"Use Apple Calendar" : @"toggleAppleCalendar"
+//                                  ,@"Use Google Calendar" : @"toggleGoogleCalendar"
+                                  };
     self.settingsSwitch = @{
                                 @"Squirrels" : ^{
                                     weakSelf.settingsManager.toggleSquirrelAnimation = !weakSelf.settingsManager.toggleSquirrelAnimation;
@@ -204,7 +204,8 @@
 -(void)activateGoogleCalendar:(TSEventManager*)eventManager {
     [eventManager toggleGoogleCalendar];
     self.isSignedInToGoogle = YES;
-    
+    [[NSUserDefaults standardUserDefaults] setBool:self.isSignedInToGoogle forKey:@"signedInToGoogle"];
+
     self.settingsManager.toggleGoogleCalendar = !self.settingsManager.toggleGoogleCalendar;
     
     if (self.settingsManager.toggleAppleCalendar) {

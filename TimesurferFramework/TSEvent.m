@@ -8,16 +8,19 @@
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, strong) NSString *location;
 
+@property (nonatomic, assign, readwrite) BOOL allDay;
+
 @end
 
 @implementation TSEvent
 
--(instancetype)initWithTitle:(NSString*)title startTime:(NSDate*)startTime endTime:(NSDate*)endTime location:(NSString*)location {
+-(instancetype)initWithTitle:(NSString*)title startTime:(NSDate*)startTime endTime:(NSDate*)endTime location:(NSString*)location allDay:(BOOL)allDay {
     if (self = [super init]) {
         _title = title;
         _startTime = startTime;
         _endTime = endTime;
         _location = location;
+        _allDay = allDay;
     }
     return self;
 }
@@ -43,12 +46,14 @@
 - (NSString *)description
 {
     NSMutableString *description = [@"" mutableCopy];
-    [description appendFormat:@"%@\t%@ - %@",
-     self.title,
-     [self formatTime:self.startTime],
-     [self formatTime:self.endTime]];
-    if (self.location && ![self.location isEqualToString:@""])
-        [description appendFormat:@"\n%@", self.location];
+    [description appendFormat:@"%@", self.title];
+    if (!self.allDay) {
+        NSString *times = [NSMutableString stringWithFormat:@"%@ - %@",
+                           [self formatTime:self.startTime],
+                           [self formatTime:self.endTime]];
+        times = [times stringByReplacingOccurrencesOfString:@":00" withString:@""];
+        [description appendString:[NSString stringWithFormat:@"  %@",times]];
+    }
     return description;
 }
 
