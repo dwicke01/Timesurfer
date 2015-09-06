@@ -69,7 +69,6 @@
         [[TSEventManager sharedEventManger] fetchEvents];
     }
     
-    
     if ([defaults boolForKey:@"signedInToGoogle"]) {
         TSGoogleCalendarManager *googleCalendarManager = [[TSGoogleCalendarManager alloc] initWithDelegate:nil];
         [googleCalendarManager authorizeWithCalendarDelegate:nil];

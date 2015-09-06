@@ -121,7 +121,7 @@
       finishedWithAuth:(GTMOAuth2Authentication *)authResult
                  error:(NSError *)error {
     if (error != nil) {
-        [self showAlert:@"Authentication Error" message:error.localizedDescription];
+        NSLog(@"%@", error.localizedDescription);
         self.service.authorizer = nil;
     }
     else {
