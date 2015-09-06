@@ -6,7 +6,13 @@
 @interface TodayViewController()
 
 @property (nonatomic, assign) NSUInteger hourIndex;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
+
+@property (weak, nonatomic) IBOutlet UIView *leftChevronFrame;
+@property (weak, nonatomic) IBOutlet UIView *rightChevronFrame;
+
+@property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightButton;
+
 
 @end
 
@@ -18,11 +24,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(extensionTapped:)];
+    UITapGestureRecognizer *leftTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapped:)];
     
-    [self.containerView addGestureRecognizer:tapGesture];
+    [self.leftButton addGestureRecognizer:leftTapGesture];
+    
+    UITapGestureRecognizer *rightTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapped:)];
+    
+    [self.rightButton addGestureRecognizer:rightTapGesture];
     
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -33,14 +44,30 @@
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets
 {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(0, 8, 8, 0);
 }
 
-- (void)extensionTapped:(id)sender {
+
+- (void)leftTapped:(UITapGestureRecognizer *)recognizer {
     
-    [self updateWeatherLabelsWithIndex:self.hourIndex % 23];
+    NSLog(@"Tapped");
     
-    self.hourIndex++;
+    if (self.hourIndex > 0) {
+            self.hourIndex--;
+    }
+    
+    [self updateWeatherLabelsWithIndex:self.hourIndex % 24];
+}
+
+- (void)rightTapped:(UITapGestureRecognizer *)recognizer {
+    
+    NSLog(@"Tapped");
+    
+    if (self.hourIndex < 23) {
+        self.hourIndex++;
+    }
+    
+    [self updateWeatherLabelsWithIndex:self.hourIndex % 24];
 }
 
 - (void)didReceiveMemoryWarning {

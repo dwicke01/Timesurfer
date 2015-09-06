@@ -171,10 +171,7 @@
 # pragma mark - API
 
 - (void) updateWeatherInfo {
-    
-    if ([self.eventManager calendarEnabled]) {
-        self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
-    }
+
     [self updateWeatherLabelsWithIndex:self.currentWeatherIndex];
 }
 
@@ -405,6 +402,10 @@
         
     } else if (self.currentWeather != weather || [self.currentWeather isEqual:[self.weatherManager weatherForHour:0]]){
         
+        if ([self.eventManager calendarEnabled]) {
+            self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:indexOfHour];
+        }
+        
         self.currentWeather = weather;
         
         [UIView animateWithDuration:.5 animations:^{
@@ -454,7 +455,7 @@
 
 - (void) updateTemperatureLabelUnits {
     
-    if (self.hourSlider.value > 2400) {
+    if (self.currentWeather.weatherMilitaryHour <= self.weatherManager.weatherStartingMilitaryHourLocal && self.currentWeatherIndex != 0) {
         
         if (self.temperatureInCelcius) {
             self.temperatureLabel.text = self.currentWeather.weatherTemperatureC;
@@ -478,6 +479,7 @@
     UIFont *labelFont = self.longDateLabel.font;
     
     [attrString beginEditing];
+    
     [attrString addAttribute:(NSString*)kCTSuperscriptAttributeName
                        value:@(1)
                        range:NSMakeRange(attrString.length - 2, 2)];
@@ -523,9 +525,11 @@
 #pragma mark Animations
 
 - (IBAction)sliderChanged:(id)sender {
-    self.currentWeatherIndex = floor(self.hourSlider.value - self.hourSlider.minimumValue)/100;
+    self.currentWeatherIndex = floor((self.hourSlider.value - self.hourSlider.minimumValue)/100);
+    
     self.currentTimeLocal = (self.hourSlider.value > 2400) ? self.hourSlider.value - 2400 : self.hourSlider.value;
     self.currentMilitaryHour = floor(self.currentTimeLocal / 100);
+    
     [self updateWeatherInfo];
 }
 
@@ -999,7 +1003,7 @@
     
     [NSUserDefaults standardUserDefaults];
     
-    if (self.view.frame.size.width == 320) {
+    if (self.view.frame.size.width == 320 && ![self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
         self.longDateLabel.font = [self.longDateLabel.font fontWithSize:34];
         self.temperatureLabel.font = [self.temperatureLabel.font fontWithSize:100];
         self.locationLabel.font = [self.locationLabel.font fontWithSize:34];
@@ -1072,7 +1076,7 @@
     return newImage;
 }
 
--(void)updateCalendarLabelOffOfSettingsDismissal {
+- (void)updateCalendarLabelOffOfSettingsDismissal {
     self.calendarEventLabel.text = [self.eventManager eventForHourAtIndex:self.currentWeatherIndex];
 }
 
