@@ -69,8 +69,9 @@
                                   @"Airplane" : @"toggleAirplaneAnimation",
                                   @"Helicopter" : @"toggleHelicopterAnimation",
                                   @"All Animations" : @"toggleAllAnimations",
-                                  @"Use Apple Calendar" : @"toggleAppleCalendar",
-                                  @"Use Google Calendar" : @"toggleGoogleCalendar"};
+                                  @"Use Apple Calendar" : @"toggleAppleCalendar"
+//                                  ,@"Use Google Calendar" : @"toggleGoogleCalendar"
+                                  };
     self.settingsSwitch = @{
                                 @"Squirrels" : ^{
                                     weakSelf.settingsManager.toggleSquirrelAnimation = !weakSelf.settingsManager.toggleSquirrelAnimation;
