@@ -1,5 +1,6 @@
 
 #import "TSEvent.h"
+#import <UIKit/UIKit.h>
 
 @interface TSEvent ()
 
@@ -55,6 +56,15 @@
         [description appendString:[NSString stringWithFormat:@"  %@",times]];
     }
     return description;
+}
+
+- (NSAttributedString *)attributedDescription {
+    NSMutableAttributedString *attributedDescription = [[NSMutableAttributedString alloc] initWithString:[self description]];
+    if (self.allDay) {
+        UIFont *font = [UIFont fontWithName:@"Helvetica" size:10];
+        [attributedDescription addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, [attributedDescription length])];
+    }
+    return attributedDescription;
 }
 
 @end

@@ -1,6 +1,7 @@
 
 #import "TSEventManager.h"
 #import "TSEvent.h"
+#import <UIKit/UIKit.h>
 
 @implementation TSEventManager {
     NSMutableArray *_localCalendarEventsArray;
@@ -111,8 +112,8 @@ static const double SECONDS_IN_AN_HOUR = 3600;
     return [calendar dateFromComponents:comps];
 }
 
--(NSString*)eventsForHourAtIndex:(NSUInteger)index {
-    NSMutableString *eventsString = [@"" mutableCopy];
+-(NSAttributedString*)eventsForHourAtIndex:(NSUInteger)index {
+    NSMutableAttributedString *eventsString = [[NSMutableAttributedString alloc] init]; //[@"" mutableCopy];
     if ([self calendarEnabled]) {
         NSArray *useThisCalendarArray;
         if (_useGoogleCalendar) {
@@ -127,7 +128,6 @@ static const double SECONDS_IN_AN_HOUR = 3600;
         
         NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * SECONDS_IN_AN_HOUR;
         
-        ////////// HERE GOES CODE FOR ALL DAY EVENTS
         NSPredicate *allDayPred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
             NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -137,7 +137,8 @@ static const double SECONDS_IN_AN_HOUR = 3600;
         }];
         NSArray *allDayEvents = [useThisCalendarArray filteredArrayUsingPredicate:allDayPred];
         for (TSEvent *event in allDayEvents) {
-            [eventsString appendFormat:@"%@\n", [event description]];
+            [eventsString appendAttributedString: [event attributedDescription]];
+            [eventsString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
         }
         
         NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -146,12 +147,19 @@ static const double SECONDS_IN_AN_HOUR = 3600;
         }];
         NSArray *filteredHourlyEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
         for (TSEvent *event in filteredHourlyEvents) {
-            [eventsString appendFormat:@"%@\n", [event description]];
+            [eventsString appendAttributedString: [event attributedDescription]];
+            [eventsString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
         }
     }
-    NSString *adjustedEventsString = eventsString;
+    NSMutableParagraphStyle *centered = [[NSMutableParagraphStyle alloc] init];
+    centered.alignment = NSTextAlignmentCenter;
+    [eventsString addAttribute:NSParagraphStyleAttributeName value:centered range:NSMakeRange(0, [eventsString length])];
+    
+    [eventsString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [eventsString length])];
+    
+    NSAttributedString *adjustedEventsString = eventsString;
     if ([eventsString length] > 0) {
-        adjustedEventsString = [eventsString substringToIndex:[eventsString length] - 1];
+        adjustedEventsString = [eventsString attributedSubstringFromRange:NSMakeRange(0, [eventsString length]-1)];
     }
     return adjustedEventsString;
 }

@@ -9,7 +9,7 @@
 @property (nonatomic, assign) BOOL eventsAccessRequested;
 
 +(TSEventManager*)sharedEventManger;
--(NSString*)eventsForHourAtIndex:(NSUInteger)index;
+-(NSAttributedString*)eventsForHourAtIndex:(NSUInteger)index;
 -(void)addGoogleCalendarEvents:(NSArray*)googleCalendarEvents;
 -(void)toggleAppleCalendar;
 -(void)toggleGoogleCalendar;

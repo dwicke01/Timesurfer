@@ -6,6 +6,7 @@
 -(instancetype)initWithTitle:(NSString*)title startTime:(NSDate*)startTime endTime:(NSDate*)endTime location:(NSString*)location allDay:(BOOL)allDay;
 -(NSTimeInterval)startTimeAsTimeInterval;
 -(NSTimeInterval)endTimeAsTimeInterval;
+- (NSAttributedString *)attributedDescription;
 
 @property (nonatomic, assign, readonly) BOOL allDay;
 
