@@ -129,7 +129,7 @@
             
             TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] gmtOffset:self.weatherGMTOffset];
             
-            if (weather.weatherPercentRain >= 70) {
+            if (weather.weatherPercentRain >= 60) {
                 self.weatherRainParticlesPresent = YES;
             }
             
