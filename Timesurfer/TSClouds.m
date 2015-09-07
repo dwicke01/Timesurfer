@@ -28,13 +28,11 @@
         TSWeather *weather = [self.weatherManager weatherForHour:i];
 //            NSLog(@"Clouds %f Rain %f Intense %f Hour %lu",weather.cloudCoverFloat, weather.percentRainFloat, weather.precipIntensityFloat, i);
         
-        if (weather.weatherPercentRain <= 30) {
+        if (weather.weatherPercentRain < 30) {
             
             if (weather.weatherCloudCover >= 0.69) {
                 [TSGraphics drawHeavyCloudsWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
                 
-            } else if (weather.weatherPercentRain == 30) {
-                [TSGraphics drawMediumCloudsWithFrame:CGRectMake(xAxis * i + 10, 0, xAxis, yHeight)];
             }
         }
         
@@ -47,7 +45,7 @@
         } else if (weather.weatherPercentRain >= 60) {
             [TSGraphics drawHeavyCloudsMediumRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
-        } else if (weather.weatherPercentRain >= 40) {
+        } else if (weather.weatherPercentRain >= 30) {
             [TSGraphics drawHeavyCloudsMayRainWithFrame:CGRectMake(xAxis * i - xAxisOffset, 0, xWidth, yHeight)];
             
         }

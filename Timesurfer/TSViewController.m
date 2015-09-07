@@ -250,7 +250,7 @@
     CGFloat x = self.view.frame.size.width * .5;
     CGFloat z = self.view.frame.size.width;
     
-    if (self.currentTimeLocal >= 800 && self.currentTimeLocal <= 2100 && self.currentWeather.weatherPercentRain < 50) {
+    if (self.currentTimeLocal >= 800 && self.currentTimeLocal <= 2100 && self.currentWeather.weatherPercentRain < 60) {
         
         [self.sunView makeDisplayLinkIfNeeded];
         
@@ -592,7 +592,7 @@
         
         [self.sheepClouds makeDisplayLinkIfNeeded];
         
-        [UIView animateWithDuration:15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:9 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.sheepCloudsXAxis.constant = -self.view.frame.size.width;
             [self.sheepClouds layoutIfNeeded];
         } completion:^(BOOL finished) {
