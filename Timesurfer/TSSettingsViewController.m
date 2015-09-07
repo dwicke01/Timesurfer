@@ -70,7 +70,7 @@
                                   @"Helicopter" : @"toggleHelicopterAnimation",
                                   @"All Animations" : @"toggleAllAnimations",
                                   @"Use Apple Calendar" : @"toggleAppleCalendar"
-//                                  ,@"Use Google Calendar" : @"toggleGoogleCalendar"
+                                  ,@"Use Google Calendar" : @"toggleGoogleCalendar"
                                   };
     self.settingsSwitch = @{
                                 @"Squirrels" : ^{
