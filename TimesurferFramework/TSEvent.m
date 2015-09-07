@@ -61,7 +61,7 @@
 - (NSAttributedString *)attributedDescription {
     NSMutableAttributedString *attributedDescription = [[NSMutableAttributedString alloc] initWithString:[self description]];
     if (self.allDay) {
-        UIFont *font = [UIFont fontWithName:@"Helvetica" size:10];
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         [attributedDescription addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, [attributedDescription length])];
     }
     return attributedDescription;
