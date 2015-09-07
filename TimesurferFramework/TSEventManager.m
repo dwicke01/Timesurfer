@@ -126,13 +126,14 @@ static const double SECONDS_IN_AN_HOUR = 3600;
             useThisCalendarArray = _localCalendarEventsArray;
         }
         
-        NSTimeInterval desiredTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * SECONDS_IN_AN_HOUR;
+        NSTimeInterval desiredStartTimeInterval = [[self previousHourDate:[NSDate date]] timeIntervalSince1970] + index * SECONDS_IN_AN_HOUR;
+        NSTimeInterval desiredEndTimeInterval = desiredStartTimeInterval + SECONDS_IN_AN_HOUR;
         
         NSPredicate *allDayPred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
             NSCalendar *calendar = [NSCalendar currentCalendar];
             NSDateComponents *eventComps = [calendar components: NSCalendarUnitDay fromDate: [NSDate dateWithTimeIntervalSince1970:event.startTimeAsTimeInterval]];
-            NSDateComponents *nowComps = [calendar components: NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSince1970:desiredTimeInterval]];
+            NSDateComponents *nowComps = [calendar components: NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSince1970:desiredStartTimeInterval]];
             return event.allDay && ([eventComps day] == [nowComps day]);
         }];
         NSArray *allDayEvents = [useThisCalendarArray filteredArrayUsingPredicate:allDayPred];
@@ -143,7 +144,12 @@ static const double SECONDS_IN_AN_HOUR = 3600;
         
         NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             TSEvent *event = evaluatedObject;
-            return [event startTimeAsTimeInterval] <= desiredTimeInterval && [event endTimeAsTimeInterval] > desiredTimeInterval && !event.allDay;
+            return  !event.allDay &&
+                    (([event startTimeAsTimeInterval] < desiredEndTimeInterval && [event endTimeAsTimeInterval] >= desiredEndTimeInterval) ||
+                     ([event startTimeAsTimeInterval] <= desiredStartTimeInterval && [event endTimeAsTimeInterval] > desiredStartTimeInterval));
+                    //[event startTimeAsTimeInterval] <= desiredTimeInterval &&
+                    //[event endTimeAsTimeInterval] > desiredTimeInterval &&
+                    //!event.allDay;
         }];
         NSArray *filteredHourlyEvents = [useThisCalendarArray filteredArrayUsingPredicate:pred];
         for (TSEvent *event in filteredHourlyEvents) {

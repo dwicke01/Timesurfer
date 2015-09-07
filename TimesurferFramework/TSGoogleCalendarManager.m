@@ -24,8 +24,6 @@
         self.service.authorizer = [TSGoogleAuthenticationViewController authForGoogleFromKeychainForName:kKeychainItemName
                                                               clientID:kClientID
                                                           clientSecret:kClientSecret];
-        
-        //[self authorize];
     }
     return self;
 }
@@ -92,7 +90,8 @@
         }
         NSLog(@"%@", eventString);
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];   ///// UNTESTED!!!!!!!! /////////
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error retrieving your calendar events from Google" preferredStyle:UIAlertControllerStyleAlert];   ///// UNTESTED!!!!!!!! /////////
+        NSLog(@"Error: %@", error.localizedDescription);
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
         [self.delegate doMeAFavorAndPresentThisViewControllerNowWouldYou:alert];
     }
