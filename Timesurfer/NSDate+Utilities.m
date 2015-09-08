@@ -1,11 +1,12 @@
 
 #import "NSDate+Utilities.h"
+#import "TSConstants.h"
 
 @implementation NSDate (Utilities)
 
 - (NSString *) timeStringWithGMTOffset:(NSInteger)offset militaryTime:(BOOL)militaryTime {
     
-    NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * 60 * 60];
+    NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * SECONDS_IN_AN_HOUR];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
@@ -23,7 +24,7 @@
 
 - (CGFloat) militaryHourWithGMTOffset:(NSInteger)offset {
     
-    NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * 60 * 60];
+    NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * SECONDS_IN_AN_HOUR];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
@@ -38,7 +39,7 @@
 
 - (NSAttributedString *) longDateWithGMTOffset:(NSUInteger)offset {
     
-    NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * 60 * 60];
+    NSTimeZone *localTimeZone = [NSTimeZone timeZoneForSecondsFromGMT: offset * SECONDS_IN_AN_HOUR];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     

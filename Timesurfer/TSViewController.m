@@ -449,6 +449,21 @@
         
         imageView.image = [self imageWithImage:[weather weatherImage] scaledToSize:CGSizeMake(imageView.bounds.size.width, (imageView.bounds.size.width)/aspectRatio)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;//
+        
+        NSTimeInterval timeIntervalRightNow = [[NSDate date] timeIntervalSince1970];
+        NSTimeInterval timeIntervalAtCurrentIndex = timeIntervalRightNow + indexOfHour * SECONDS_IN_AN_HOUR;
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        calendar.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:self.weatherManager.weatherGMTOffset * SECONDS_IN_AN_HOUR];
+        NSDateComponents *todayComps = [calendar components:NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSince1970:timeIntervalRightNow]];
+        NSDateComponents *indexComps = [calendar components:NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSince1970:timeIntervalAtCurrentIndex]];
+        
+        if (todayComps.day != indexComps.day) {
+            self.longDateLabel.attributedText = self.weatherManager.weatherLongDateLocalTomorrow;
+        }
+        else {
+            self.longDateLabel.attributedText = self.weatherManager.weatherLongDateLocal;
+        }
+        
     }
     
     [self updateGradient];

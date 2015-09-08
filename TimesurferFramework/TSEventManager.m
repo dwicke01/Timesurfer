@@ -1,6 +1,7 @@
 
 #import "TSEventManager.h"
 #import "TSEvent.h"
+#import "TSConstants.h"
 #import <UIKit/UIKit.h>
 
 @implementation TSEventManager {
@@ -11,7 +12,7 @@
 }
 
 static TSEventManager *_sharedEventManager;
-static const double SECONDS_IN_AN_HOUR = 3600;
+//static const double SECONDS_IN_AN_HOUR = 3600;
 
 +(TSEventManager*)sharedEventManger {
     static dispatch_once_t onceToken;
