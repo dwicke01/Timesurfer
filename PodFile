@@ -13,6 +13,7 @@ pod 'LMGeocoder'
 pod 'Google-API-Client'
 pod 'GoogleMaps'
 pod 'Masonry'
+pod 'MBProgressHUD'
 end
 
 post_install do |installer_representation|
