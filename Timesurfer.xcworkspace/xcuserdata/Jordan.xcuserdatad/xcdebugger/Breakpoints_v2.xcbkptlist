@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Timesurfer/TSViewController.m"
-            timestampString = "463553677.165793"
+            timestampString = "463584959.71808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "582"
+            endingLineNumber = "582"
             landmarkName = "-easterEggs"
             landmarkType = "5">
          </BreakpointContent>

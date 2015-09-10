@@ -226,6 +226,8 @@
                                           NSDictionary *JSON = [NSDictionary dictionaryWithContentsOfFile:filePath];
                                           [self createWeatherWithJSON:JSON];
                                           
+                                          [HUD hide:YES afterDelay:1];
+                                          
                                           self.apiLoading = NO;
                                       }];
     } else {
@@ -417,7 +419,7 @@
     } else if (self.currentWeather != weather || [self.currentWeather isEqual:[self.weatherManager weatherForHour:0]]){
         
         if ([self.eventManager calendarEnabled]) {
-            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithAttributedString:[self.eventManager eventsForHourAtIndex:indexOfHour]];
+//            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithAttributedString:[self.eventManager eventsForHourAtIndex:indexOfHour]];
             self.calendarEventLabel.attributedText = [self.eventManager eventsForHourAtIndex:indexOfHour];
         }
         

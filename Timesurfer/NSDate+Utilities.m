@@ -64,12 +64,12 @@
     switch (dayOfMonth) {
         case 1:
         case 21:
-        case 31: return [NSString stringWithFormat:@"%lust",dayOfMonth];
+        case 31: return [NSString stringWithFormat:@"%lust",(long)dayOfMonth];
         case 2:
-        case 22: return [NSString stringWithFormat:@"%lund",dayOfMonth];;
+        case 22: return [NSString stringWithFormat:@"%lund",(long)dayOfMonth];;
         case 3:
-        case 23: return [NSString stringWithFormat:@"%lurd",dayOfMonth];;
-        default: return [NSString stringWithFormat:@"%luth",dayOfMonth];;
+        case 23: return [NSString stringWithFormat:@"%lurd",(long)dayOfMonth];;
+        default: return [NSString stringWithFormat:@"%luth",(long)dayOfMonth];;
     }
 }
 

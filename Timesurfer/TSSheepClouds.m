@@ -18,7 +18,7 @@
         return;
     }
     
-    CFTimeInterval elapsedTime = self.displayLink.timestamp - self.firstDrawTime;
+//    CFTimeInterval elapsedTime = self.displayLink.timestamp - self.firstDrawTime;
 
     if (self.frame.size.width == 320) {
         [TSGraphics drawLightSheepCloudsSmallWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) legRotation:-1*(15 + 15 * sin(self.displayLink.timestamp*8))];
