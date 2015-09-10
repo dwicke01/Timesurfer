@@ -124,11 +124,11 @@
             [hourlyWeatherDataArray removeObjectAtIndex:1];
         }
         
-        //Create Weather Objects and add to weatherByHour array
-        for (NSUInteger i = 1; i < hourlyWeatherDataArray.count; i++) {
+        // Create Weather Objects and add to weatherByHour array. We receive 48 hours in JSON but only load 24 weather objects.
+        for (NSUInteger i = 1; i < 25; i++) {
             
             TSWeather *weather = [[TSWeather alloc] initWithDictionary:hourlyWeatherDataArray[i] gmtOffset:self.weatherGMTOffset];
-            
+
             if (weather.weatherPercentRain >= 60) {
                 self.weatherRainParticlesPresent = YES;
             }

@@ -39,7 +39,7 @@
     [super viewDidAppear:animated];
     [self.locationManager startUpdatingLocation];
     self.preferredContentSize = CGSizeMake(self.view.frame.size.width, 200);
-    
+
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets

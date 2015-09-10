@@ -3,6 +3,7 @@
 #import <Forecastr/Forecastr.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreText/CTStringAttributes.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #import "TSViewController.h"
 #import "TSSettingsViewController.h"
@@ -20,7 +21,10 @@
 
 @import CoreLocation;
 
-@interface TSViewController () <TSLocationSearchViewDelegate, CalendarEventLabelHidingDelegate>
+@interface TSViewController () <TSLocationSearchViewDelegate, CalendarEventLabelHidingDelegate, MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
+
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentPrecip;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -83,6 +87,8 @@
 @property (nonatomic, assign) BOOL animalsInMotion;
 @property (nonatomic, assign) BOOL grayGradientInMotion;
 @property (nonatomic, assign) BOOL temperatureInCelcius;
+@property (nonatomic, assign) BOOL localweather;
+@property (nonatomic, assign) BOOL apiLoading;
 
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat latitude;
@@ -137,7 +143,7 @@
                                                object:nil];
     //self.settingsDictionary = [[NSMutableDictionary alloc] initWithObjects:@[@YES, @YES, @YES, @YES, @YES, @NO] forKeys:@[]];
     self.settingsManager = [[TSToggleSettingsManager alloc] init];
-
+    
     [self setupView];
     [self appEnteredForeground];
 }
@@ -156,14 +162,6 @@
 
 - (void) appEnteredForeground {
     [self.locationManager startUpdatingLocation];
-
-    if (arc4random_uniform(5) == 4) {
-        UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(40,40)];
-        [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
-    } else {
-        [self.hourSlider setThumbImage:nil forState:UIControlStateNormal];
-    }
-   
     [self requestWhenInUseAuth];
     [self getWeatherWithOverride:NO];
 }
@@ -175,7 +173,7 @@
     if ([self.eventManager calendarEnabled]) {
         self.calendarEventLabel.attributedText = [self.eventManager eventsForHourAtIndex:self.currentWeatherIndex];
     }
-
+    
     [self updateWeatherLabelsWithIndex:self.currentWeatherIndex];
 }
 
@@ -183,6 +181,7 @@
     
     self.latitude = self.weatherLocation.coordinate.latitude;
     self.longitude = self.weatherLocation.coordinate.longitude;
+    self.localweather = !override;
     
     if (self.latitude == 0 && self.longitude == 0) {
         return;
@@ -190,7 +189,11 @@
     
     [self.locationManager stopUpdatingLocation];
     
-    if (!self.weatherManager || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800 || override) {
+    if ((!self.weatherManager || fabs([self.apiLastRequestTime timeIntervalSinceNow])>1800 || override) && !self.apiLoading) {
+        
+        [self displayHUD];
+        
+        self.apiLoading = YES;
         
         self.apiLastRequestTime = [NSDate date];
         
@@ -209,14 +212,21 @@
                                           
                                           [self createWeatherWithJSON:JSON];
                                           
+                                          self.apiLoading = NO;
+                                          
+                                          [HUD hide:YES afterDelay:1];
+                                          
                                       } failure:^(NSError *error, id response) {
                                           //                                          NSLog(@"Error while retrieving forecast: %@", [self.forcastr messageForError:error withResponse:response]);
+                                          
                                           NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                                           NSString *documentsDirectory = [paths objectAtIndex:0];
                                           NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"Latest_Weather"];
                                           
                                           NSDictionary *JSON = [NSDictionary dictionaryWithContentsOfFile:filePath];
                                           [self createWeatherWithJSON:JSON];
+                                          
+                                          self.apiLoading = NO;
                                       }];
     } else {
         [self updateWeatherInfo];
@@ -240,7 +250,7 @@
     
     [self updateWeatherInfo];
     [self updateLocationNameWithLocation:self.weatherLocation];
-   
+    
 }
 
 #pragma mark UI Updates
@@ -564,7 +574,7 @@
 }
 
 - (void) easterEggs {
-
+    
     [self showWeatherAnimations];
     
     if ((self.currentTimeLocal >= 2000 || self.currentTimeLocal < 500) && !self.sheepInMotion && !self.randomizerInMotion && !self.weatherManager.weatherRainParticlesPresent) {
@@ -599,9 +609,9 @@
 }
 
 - (void) sheepAnimation {
-
+    
     if (self.settingsManager.toggleSheepAnimation && !self.weatherManager.weatherRainParticlesPresent) {
-
+        
         self.sheepInMotion = YES;
         
         
@@ -735,7 +745,7 @@
 - (void) showWeatherAnimations {
     
     if (self.currentWeather.weatherPercentRain >= 80 && !self.animalsInMotion && self.settingsManager.toggleCatsAndDogsAnimation) {
-
+        
         [UIView animateWithDuration:1 animations:^{
             self.dayTimeGradient.alpha = 0;
         }];
@@ -923,6 +933,19 @@
     }];
 }
 
+- (void) displayHUD {
+    if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.tintColor = [UIColor blackColor];
+        
+        HUD.color = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.10];
+        HUD.delegate = self;
+        
+        [HUD show:YES];
+    }
+}
 
 - (void)startLocationUpdatesWithCompletionBlock:(void (^)(void))completion {
     if (completion != nil) {
@@ -982,9 +1005,9 @@
                        if ([placemarks firstObject]) {
                            CLPlacemark *placemark = [placemarks firstObject];
                            
-                           if ([placemark.name rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound) {
+                           if ([placemark.name rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound && self.localweather) {
                                self.locationLabel.text = placemark.name;
-
+                               
                            } else {
                                self.locationLabel.text = placemark.locality;
                            }
@@ -994,7 +1017,7 @@
                        } else {
                            self.locationLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Last_Location"];
                        }
-
+                       
                    }];
 }
 
@@ -1007,6 +1030,9 @@
     self.hourSlider.maximumTrackTintColor = [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:0.06];
     self.hourSlider.minimumTrackTintColor = [UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.9];
     self.hourSlider.contentScaleFactor = 2;
+    
+    UIImage *sliderThumb = [self imageWithImage: [UIImage imageNamed:@"Surf-Icon"] scaledToSize:CGSizeMake(40,40)];
+    [self.hourSlider setThumbImage:sliderThumb forState:UIControlStateNormal];
     
     [self animalStartingPositions];
     [self setupTapGestureRecognizer];
@@ -1082,7 +1108,7 @@
 
 - (void) showLocationSearchViewController {
     
-   TSLocationSearchViewController *vc = [[self storyboard] instantiateViewControllerWithIdentifier:@"LocationSearchVC"];
+    TSLocationSearchViewController *vc = [[self storyboard] instantiateViewControllerWithIdentifier:@"LocationSearchVC"];
     vc.delegate = self;
     [self presentViewController:vc animated:YES completion:nil];
     
