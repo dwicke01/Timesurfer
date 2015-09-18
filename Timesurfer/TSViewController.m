@@ -969,14 +969,14 @@
 
 - (void) displayHUD {
     if (![self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
+        if (!HUD) {
+            HUD = [[MBProgressHUD alloc] initWithView:self.view];
+            [self.view addSubview:HUD];
+            HUD.tintColor = [UIColor blackColor];
         
-        HUD = [[MBProgressHUD alloc] initWithView:self.view];
-        [self.view addSubview:HUD];
-        HUD.tintColor = [UIColor blackColor];
-        
-        HUD.color = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.10];
-        HUD.delegate = self;
-        
+            HUD.color = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.10];
+            HUD.delegate = self;
+        }
         [HUD show:YES];
     }
 }
