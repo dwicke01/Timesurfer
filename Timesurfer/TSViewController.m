@@ -266,6 +266,8 @@
         
         [self.sunView makeDisplayLinkIfNeeded];
         
+        [self.sunView setNeedsLayout];
+        
         [UIView animateWithDuration:.4
                          animations:^{
                              self.sunXAxis.constant = 15 + z * ((self.currentTimeLocal-800)/900);
@@ -300,7 +302,7 @@
     if (currentTime >= 2000 && currentTime <= 2600) {
         
         self.moonXAxis.constant = -x;
-        
+        [self.moonImage setNeedsLayout];
         [UIView animateWithDuration:.4
                          animations:^{
                              self.moonXAxis.constant = x * ((currentTime-2000)/600);
@@ -311,7 +313,7 @@
                          }];
         
     } else if (currentTime <= 800){
-        
+        [self.moonImage setNeedsLayout];
         [UIView animateWithDuration:.4
                          animations:^{
                              self.moonXAxis.constant = x + x * (currentTime/600);
@@ -390,7 +392,11 @@
         
     }
     
+
     if (self.hourSlider.value == self.hourSlider.minimumValue) {
+
+        [self.clouds setNeedsLayout];
+        
         [UIView animateWithDuration:1 animations:^{
             
             self.skyView.alpha = alphaValue;
@@ -403,9 +409,7 @@
         
         self.skyView.alpha = alphaValue;
         self.milkyWay.alpha = alphaValue-.75;
-        [self.clouds layoutIfNeeded];
     }
-    
 }
 
 - (void) updateWeatherLabelsWithIndex:(NSUInteger)indexOfHour{
@@ -419,12 +423,12 @@
     } else if (self.currentWeather != weather || [self.currentWeather isEqual:[self.weatherManager weatherForHour:0]]){
         
         if ([self.eventManager calendarEnabled]) {
-//            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithAttributedString:[self.eventManager eventsForHourAtIndex:indexOfHour]];
             self.calendarEventLabel.attributedText = [self.eventManager eventsForHourAtIndex:indexOfHour];
         }
         
         self.currentWeather = weather;
         
+        [self.clouds setNeedsLayout];
         [UIView animateWithDuration:.5 animations:^{
             
             CGFloat nearestHour = floor((self.hourSlider.value - self.hourSlider.minimumValue)/100)*100;
@@ -616,6 +620,7 @@
         
         self.sheepInMotion = YES;
         
+        [self.sheepClouds setNeedsLayout];
         
         [self.sheepClouds makeDisplayLinkIfNeeded];
         
@@ -635,6 +640,7 @@
     if (self.settingsManager.toggleHelicopterAnimation) {
         self.randomizerInMotion = YES;
         [self.helicopter startAnimating];
+        [self.helicopter setNeedsLayout];
         [UIView animateWithDuration:7 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.helicopterXAxis.constant = 600;
             [self.helicopter layoutIfNeeded];
@@ -642,7 +648,6 @@
         } completion:^(BOOL finished) {
             
             self.helicopterXAxis.constant = 0;
-            [self.helicopter layoutIfNeeded];
             [self.helicopter stopAnimating];
             self.randomizerInMotion = NO;
         }];
@@ -652,7 +657,7 @@
 - (void) planeAnimation {
     if (self.settingsManager.toggleAirplaneAnimation) {
         self.randomizerInMotion = YES;
-        
+        [self.airplane setNeedsLayout];
         [UIView animateWithDuration:11 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.airplaneXAxis.constant = -575;
             [self.airplane layoutIfNeeded];
@@ -660,7 +665,6 @@
         } completion:^(BOOL finished) {
             
             self.airplaneXAxis.constant = 0;
-            [self.airplane layoutIfNeeded];
             self.randomizerInMotion = NO;
         }];
     }
@@ -674,6 +678,8 @@
         
         self.randomizerInMotion = YES;
         
+        [self.squirrelLeft setNeedsLayout];
+        
         [UIView animateWithDuration:SquirrelBeginningDuration
                               delay:0
              usingSpringWithDamping:SquirrelDampening
@@ -684,6 +690,8 @@
                              self.squirrelYAxis.constant = -110;
                              [self.squirrelLeft layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.squirrelRight setNeedsLayout];
         
         [UIView animateWithDuration:SquirrelBeginningDuration
                               delay:0.2
@@ -696,6 +704,8 @@
                              [self.squirrelRight layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
         
+        [self.squirrelRightAcorn setNeedsLayout];
+        
         [UIView animateWithDuration:SquirrelBeginningDuration
                               delay:0.3
              usingSpringWithDamping:SquirrelDampening
@@ -706,6 +716,8 @@
                              self.squirrelRightAcornYAxis.constant = -310;
                              [self.squirrelRightAcorn layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.squirrelRight setNeedsLayout];
         
         [UIView animateWithDuration:SquirrelEndingDuration
                               delay:3
@@ -718,6 +730,8 @@
                              [self.squirrelRight layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
         
+        [self.squirrelLeft setNeedsLayout];
+        
         [UIView animateWithDuration:SquirrelEndingDuration
                               delay:3.1
              usingSpringWithDamping:SquirrelDampening
@@ -728,6 +742,8 @@
                              self.squirrelYAxis.constant = -100;
                              [self.squirrelLeft layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.squirrelRightAcorn setNeedsLayout];
         
         [UIView animateWithDuration:SquirrelEndingDuration
                               delay:3.2
@@ -758,6 +774,8 @@
         
         [self showParticleSystem];
         
+        [self.greyCat setNeedsLayout];
+        
         [UIView animateWithDuration:duration
                               delay:0.05  // Prevent starting simultaneously with particle system
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
@@ -765,6 +783,8 @@
                              self.greyCatYAxis.constant = constant;
                              [self.greyCat layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.corgieDog setNeedsLayout];
         
         [UIView animateWithDuration:duration
                               delay:.8
@@ -774,6 +794,8 @@
                              [self.corgieDog layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
         
+        [self.blackCat setNeedsLayout];
+        
         [UIView animateWithDuration:duration
                               delay:1.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
@@ -781,6 +803,8 @@
                              self.blackCatYAxis.constant = constant;
                              [self.blackCat layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.poodleDog setNeedsLayout];
         
         [UIView animateWithDuration:duration
                               delay:2.7
@@ -790,6 +814,8 @@
                              [self.poodleDog layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
         
+        [self.pugDog setNeedsLayout];
+        
         [UIView animateWithDuration:duration
                               delay:3.5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
@@ -797,6 +823,8 @@
                              self.pugYAxis.constant = constant;
                              [self.pugDog layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.orangeCat setNeedsLayout];
         
         [UIView animateWithDuration:duration
                               delay:4.2
@@ -806,6 +834,8 @@
                              [self.orangeCat layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
         
+        [self.greyStripeCat setNeedsLayout];
+        
         [UIView animateWithDuration:duration
                               delay:5
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
@@ -813,6 +843,8 @@
                              self.greyStripeYAxis.constant = constant;
                              [self.greyStripeCat layoutIfNeeded];
                          } completion:^(BOOL finished) {}];
+        
+        [self.yorkieDog setNeedsLayout];
         
         [UIView animateWithDuration:duration
                               delay:6
