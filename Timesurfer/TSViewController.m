@@ -884,6 +884,11 @@
 
 - (void) showParticleSystem {
     
+    if ([self isKindOfClass:NSClassFromString(@"TodayViewController")]) {
+        return;
+    }
+    
+    
     if (self.sceneView) {
         return;
     }
