@@ -5,6 +5,11 @@
 #import "TSGraphics.h"
 #import "TSViewController.h"
 #import "TSClouds.h"
+#import "TSSun.h"
+#import "TSConstants.h"
+#import "TSSheepClouds.h"
+#import "TSNightGradient.h"
+#import "TSDayTimeGradient.h"
 
 //! Project version number for TimesurferFramework.
 FOUNDATION_EXPORT double TimesurferFrameworkVersionNumber;
