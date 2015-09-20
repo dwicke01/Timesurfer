@@ -32,25 +32,25 @@
     
     [self.rightButton addGestureRecognizer:rightTapGesture];
     
+    self.preferredContentSize = CGSizeMake(self.view.frame.size.width, 200);
+    
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.locationManager startUpdatingLocation];
-    self.preferredContentSize = CGSizeMake(self.view.frame.size.width, 200);
+
 
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets
 {
-    return UIEdgeInsetsMake(0, 8, 8, 0);
+    return UIEdgeInsetsMake(0, 16, 0, 16);
 }
 
 
 - (void)leftTapped:(UITapGestureRecognizer *)recognizer {
-    
-    NSLog(@"Tapped");
     
     if (self.hourIndex > 0) {
             self.hourIndex--;
@@ -60,8 +60,6 @@
 }
 
 - (void)rightTapped:(UITapGestureRecognizer *)recognizer {
-    
-    NSLog(@"Tapped");
     
     if (self.hourIndex < 23) {
         self.hourIndex++;
